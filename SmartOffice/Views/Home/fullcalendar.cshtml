@@ -1,0 +1,198 @@
+﻿
+@{
+    ViewData["Title"] = "fullcalendar";
+
+    Layout = "_LayoutStore";
+
+    var part = "CalendarMain";
+}
+
+<link href="~/lib/sweetalert/sweetalert.css" rel="stylesheet" />
+<link href="~/css/fontawesome-free-5.8.1-web/css/all.css" rel="stylesheet" />
+<link href="~/Asset/LTE/bower_components/fullcalendar/packages/fullcalendar.min.css" rel="stylesheet" />
+@*<link href="~/Asset/LTE/bower_components/fullcalendar/packages/core/main.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/fullcalendar/packages/bootstrap/main.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/fullcalendar/packages/daygrid/main.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/fullcalendar/packages/timegrid/main.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/fullcalendar/packages/list/main.css" rel="stylesheet" />*@
+
+<div class="container-fluid">
+
+    <div id="calendar" style="background-image: linear-gradient(to right top, #dadada, #cdcdcd, #c0c0c0, #b3b3b4, #a6a7a7, #a7a8a8, #a7a9a9, #a8aaaa, #b7b9b9, #c6c9c9, #d5d9d9, #e5e9e9);
+font-size:medium;
+"></div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color:firebrick">
+                @*<button type="button" class="close" data-dismiss="modal" style="background-color:white">&times;</button>*@
+                <h6 class="modal-title"><span id="eventType" style="color:white"></span><br /><span id="eventTitle" style="color:white"></span></h6>
+            </div>
+            <div class="modal-body">
+                <button id="btnDelete" class="btn btn-danger btn-sm pull-right">
+                    <span class="glyphicon glyphicon-remove"></span> Remove
+                </button>
+                <button id="btnEdit" class="btn btn-danger btn-sm pull-right" style="margin-right:5px;">
+                    <span class="glyphicon glyphicon-pencil"></span> Edit
+                </button>
+                <p id="pDetails"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="myModalSave" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header" style="background-color: firebrick">
+                @*<button type="button" class="close" data-dismiss="modal" style="background-color:white">&times;</button>*@
+                <h4 class="modal-title" style="color:white">Save Event</h4>
+            </div>
+            <div class="modal-body">
+                <form class="col-md-12 form-horizontal">
+                    <input type="hidden" id="hdEventID" value="0" />
+                    <div class="form-group">
+                        <label>Subject</label>
+                        <input type="text" id="txtSubject" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label>Start</label>
+                        <div class="input-group date" id="dtp1">
+                            <input type="text" id="txtStart" class="form-control datetime" readonly />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label><input type="checkbox" id="chkIsFullDay" checked="checked" />  Is Full Day event</label>
+                        </div>
+                    </div>
+                    <div class="form-group" id="divEndDate" style="display:none">
+                        <label>End</label>
+                        <div class="input-group date" id="dtp2">
+                            <input type="text" id="txtEnd" class="form-control datetime" readonly />
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Description</label>
+                        <textarea id="txtDescription" rows="3" class="form-control"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Theme Color</label>
+                        <select id="ddThemeColor" class="form-control">
+                            <option value="">Default</option>
+                            <option value="lightblue">LightBlue</option>
+                            <option value="lightpink">LightPink</option>
+                            <option value="lightgreen">LightGreen</option>
+                            <option value="lightcoral">LightCoral</option>
+                            <option value="lightyellow">LightYellow</option>
+                            <option value="lightsteelblue">LightSteelBlue</option>
+                            <option value="lightsalmon">LightSalmon</option>
+                            <option value="lavender">Lavender</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Type</label>
+                        <select id="ddType" class="form-control">
+                            <option value="private">Private</option>
+                            <option value="public">Public</option>
+                        </select>
+                    </div>
+                    <button type="button" id="btnSave" class="btn btn-danger">Save</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane fade show " id="settings-v" role="tabpanel">
+    <div class="sv-tab-panel">
+        <div class="card shadow-none mt-3 border border-light">
+            <div class="card-header bg-dark">
+                <h5>Public</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped display responsive" style="width:100%" id="tablecalendar">
+                    <thead class="btn-dark-moon">
+                        <tr>
+
+                            <th>Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Subject</th>
+                            <th>Description</th>
+                            <th>Theme</th>
+                            <th>IsFullDay</th>
+                            <th>Create</th>
+                            <th>Create</th>
+                            <th>Update Date</th>
+                            <th>Update By</th>
+                            <th>EventID</th>
+                            <th>PartID</th>
+                            <th>GroupCateg</th>
+
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="tab-pane fade show " id="settings-v" role="tabpanel">
+    <div class="sv-tab-panel">
+        <div class="card shadow-none mt-3 border border-light">
+            <div class="card-header bg-dark">
+                <h5>Private</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-striped display responsive" style="width:100%" id="tablecalendarprivate">
+                    <thead class="btn-dark-moon">
+                        <tr>
+
+                            <th>Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Subject</th>
+                            <th>Description</th>
+                            <th>Theme</th>
+                            <th>IsFullDay</th>
+                            <th>Create</th>
+                            <th>Create</th>
+                            <th>Update Date</th>
+                            <th>Update By</th>
+                            <th>EventID</th>
+                            <th>PartID</th>
+                            <th>GroupCateg</th>
+
+
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/Asset/LTE/bower_components/fullcalendar/packages/fullcalendar.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.min.js"></script>
+    <script src="~/js/View/CalendarMainControl/_Fullcalendar.js"></script>
+}
+
+
+
+

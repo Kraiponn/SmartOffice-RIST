@@ -1,0 +1,96 @@
+﻿@model SmartOffice.Models.ModelMenuCMMHeader
+@if (User.Identity.IsAuthenticated)
+{
+
+    @*@(await Component.InvokeAsync("SmartSearchControl"))*@
+
+    var Categ = User.Claims.FirstOrDefault(c => c.Type == "GroupCateg").Value;
+    var headerc = Model.menuCMMHeaders.Where(x => x.GroupCateg == "CMMMENUH01").OrderBy(x => x.DisplayOrder).ToList();
+
+    @foreach (var item in headerc)
+    {
+        if ((item.Action != "" && item.Controller != "" && Categ != "CMMUSER000") || (item.MenuIdentity != 140 && Categ == "CMMUSER000" && item.Action != "" && item.Controller != ""))
+        {
+            <li class="nav-item ">
+                <a class="nav-link" style="color:white;" href="@Url.Action(item.Action, null, new { @DeptType = Categ, controller = item.Controller })">
+                    @*<i class="nav-icon @item.IconClass"></i>*@
+                    @Html.Raw(@item.IconClass)
+                    <span>@item.MenuNameE</span>
+                    @if (item.Badges != "")
+                    {
+                        <span class="@item.Badges">@item.BadgesName</span>
+                    }
+                </a>
+            </li>
+        }
+        else if ((item.MenuUrl != "" && Categ != "CMMUSER000") && (item.MenuIdentity != 140 && Categ == "CMMUSER000" && item.MenuUrl != ""))
+        {
+            <li class="nav-item ">
+                <a href="@item.MenuUrl" class="nav-link" style="color:white;">
+                    @*<i class="@item.IconClass nav-icon"></i>*@
+                    @Html.Raw(@item.IconClass)
+                    <span>@item.MenuNameE</span>
+                    @if (item.Badges != "")
+                    {
+                        <span class="@item.Badges">@item.BadgesName</span>
+                    }
+                </a>
+            </li>
+        }
+    }
+
+    @*<li class="nav-item ">
+        <p class="mb-0"> <a href="javascript:$('#logout_form').submit();" class="nav-link  waves-effect"><i class="fas fa-sign-out-alt"></i> Sign Out</a></p>
+    </li>
+    <form class="form-inline" id="logout_form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"></form>*@
+
+}
+else
+{
+
+    @*@(await Component.InvokeAsync("SmartSearchControl"))*@
+
+var headerc2 = Model.menuCMMHeaders.Where(x => x.GroupCateg == "CMMMENUH02").OrderBy(x => x.DisplayOrder).ToList();
+    @foreach (var item in headerc2)
+    {
+    if (item.Action != "" && item.Controller != "")
+    {
+            <li class="nav-item ">
+                <a class="nav-link" style="color:white;" href="@Url.Action(item.Action, null, new {controller = item.Controller })">
+                    @*<i class="nav-icon @item.IconClass"></i>*@
+                    @Html.Raw(@item.IconClass)
+                    <span>@item.MenuNameE</span>
+                    @if (item.Badges != "")
+                    {
+                        <span class="@item.Badges">@item.BadgesName</span>
+                    }
+                </a>
+            </li>
+        }
+        else if (item.MenuUrl != "")
+        {
+            <li class="nav-item ">
+                <a href="@item.MenuUrl" class="nav-link" style="color:white;">
+                    @*<i class="@item.IconClass nav-icon"></i>*@
+                    @Html.Raw(@item.IconClass)
+                    <span>@item.MenuNameE</span>
+                    @if (item.Badges != "")
+                    {
+                        <span class="@item.Badges">@item.BadgesName</span>
+                    }
+                </a>
+            </li>
+        }
+    }
+
+    @*<li class="nav-item  ">
+        <p class="mb-0"><a id="navbar-static-login" asp-area="Identity" asp-page="/Account/login" class="nav-link  waves-effect"><i class="fas fa-sign-in-alt"></i> Sign In/Register </a></p>
+    </li>*@
+
+}
+
+
+
+
+
+

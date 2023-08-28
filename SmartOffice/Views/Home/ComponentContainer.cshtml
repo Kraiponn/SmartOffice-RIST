@@ -1,0 +1,9 @@
+﻿
+@{
+    ViewData["Title"] = "ComponentContainer";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+    var Dept = User.Claims.FirstOrDefault(c => c.Type == "GroupCateg").Value;
+    
+}
+
+    @(await Component.InvokeAsync("NewsControl", new { DeptType = Dept, newstyle = "Manage" }))

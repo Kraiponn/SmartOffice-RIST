@@ -1,0 +1,166 @@
+﻿@model SmartOffice.Models.ModelSubSystems
+<style type="text/css">
+
+    .glow {
+        font-size: 80px;
+        color: #fff;
+        text-align: center;
+        -webkit-animation: glow 1s ease-in-out infinite alternate;
+        -moz-animation: glow 1s ease-in-out infinite alternate;
+        animation: glow 1s ease-in-out infinite alternate;
+    }
+
+    @@-webkit-keyframes glow {
+        from {
+            text-shadow: 0 0 10px #fffbf6, 0 0 20px #fffbf6, 0 0 30px #fffbf6, 0 0 40px #fffbf6, 0 0 50px #fffbf6, 0 0 60px #fffbf6, 0 0 70px #fffbf6;
+        }
+
+        to {
+            text-shadow: 0 0 20px #fffbf6, 0 0 30px #fffbf6, 0 0 40px #fffbf6, 0 0 50px #fffbf6, 0 0 60px #fffbf6, 0 0 70px #fffbf6, 0 0 80px #fffbf6;
+        }
+    }
+
+    .cardresize:hover {
+        transform: scale(0.9, 0.9);
+        /*box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), -5px -5px 30px 15px rgba(0,0,0,0.22);*/
+    }
+
+    h5a a {
+        font-size: 15px;
+        font-weight: bold;
+        position: relative;
+        color: white;
+        text-align: center;
+    }
+    /*effect-underline*/
+    a.effect-underline:after {
+        content: '';
+        position: absolute;
+        left: 0;
+        display: inline-block;
+        height: 1em;
+        width: 100%;
+        border-bottom: 1px solid;
+        margin-top: 10px;
+        opacity: 0;
+        -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+        transition: opacity 0.35s, transform 0.35s;
+        -webkit-transform: scale(0,1);
+        transform: scale(0,1);
+    }
+
+    a.effect-underline:hover:after {
+        opacity: 1;
+        -webkit-transform: scale(1);
+        transform: scale(1);
+    }
+</style>
+<div class="wow fadeInUp" style="visibility: visible; animation-name: fadeInUp;position:relative">
+
+
+    @{
+        var GroupCateg = "";
+        var GroupSub = "";
+
+    }
+
+
+    @foreach (var item in Model.subSystems.Select(x => new { x.GroupCateg, x.GroupName, x.GroupSub, x.DisplayOrder }).Distinct().OrderBy(x => x.GroupCateg).ThenBy(x => x.GroupSub).ThenBy(x => x.DisplayOrder))
+    {
+        @*if (item.GroupCateg != GroupCateg)
+            {
+                <div class="section-header">
+                    <h2>@item.GroupName</h2>
+                </div>
+            }*@
+
+        @if (item.GroupSub != GroupSub || item.GroupSub == "")
+        {
+            @*<div class="section-header p-0">
+                        <h2>@item.GroupSub</h2>
+                    </div>
+                <br />*@
+            @*<div class="d-flex">
+                    <div class="mr-auto section-title"><h3>
+                        <i class="fas fa-desktop" style="color:#2bbbad"></i> @item.GroupSub</h3></div>
+                </div>
+                <hr  SIZE="3" />*@
+            <div class="row">
+     
+                <div class="owl-carousel owl-theme p-0">
+                    @foreach (var itemin in Model.subSystems.Where(x => x.GroupSub == item.GroupSub).OrderBy(x => x.DisplayOrder))
+                    {
+                        <div class="col-lg-12 col-md-12 col-xs-12 px-3">
+
+                            @if (itemin.Action != null && itemin.Controller != null && itemin.Image != null)
+                            {
+
+                                <div class="card shadow cardresize" style="border-radius:20px;box-shadow: 5px 5px 20px 7px rgba(0,0,0,0.25), -5px -5px 20px 7px rgba(0,0,0,0.22); margin: 20px auto;">
+                                    @*<div class="view overlay zoom">*@
+                                    <a class="" href="@Url.Action(itemin.Action, null, new {controller = itemin.Controller })">
+                                        <img class="card-img-top hoverable" src="~/image/SubSystems/@itemin.Image" alt="Card image cap" style="max-height:200px;border-radius:20px">
+                                        @*<span class="font-weight-bold" style="font-size:10px;position: absolute;top:80%;left: 50%;transform: translate(-50%, -50%);color:black">@itemin.MenuNameE</span>*@
+                                    </a>
+
+                                </div>
+                                <div style="text-align:center">
+                                    <h5a>
+                                        <a class="effect-underline" href="@Url.Action(itemin.Action, null, new {controller = itemin.Controller })">
+                                            @itemin.MenuNameE 
+                                            <br>@itemin.MenuNameT
+                                            <br>@itemin.MenuNameJ
+                                            <h6><span class="@itemin.Badges">@itemin.BadgesName</span></h6>
+                                        </a>
+                                    </h5a>
+                                </div>
+                            }
+                            else if (itemin.Image != null)
+                            {
+                                <div class="card shadow" style="border-radius:20px;box-shadow: 5px 5px 20px 7px rgba(0,0,0,0.25), -5px -5px 20px 7px rgba(0,0,0,0.22); margin: 20px auto;">
+                                    @*<div class="view overlay zoom">*@
+                                    <a href="@itemin.MenuUrl">
+                                        <img class="card-img-top hoverable" src="~/image/SubSystems/@itemin.Image" alt="Card image cap" style="max-height:200px;border-radius:20px;">
+                                        @*<span class="font-weight-bold" style="font-size:10px;position: absolute;top:80%;left: 50%;transform: translate(-50%, -50%);color:black">@itemin.MenuNameE</span>*@
+                                    </a>
+                                    @*</div>*@
+                                </div>
+                                <div style="text-align:center">
+                                    <h5a>
+                                        <a class="effect-underline" href="@itemin.MenuUrl">
+                                            @itemin.MenuNameE
+                                            <br>@itemin.MenuNameT
+                                            <br>@itemin.MenuNameJ
+                                            <h6><span class="@itemin.Badges">@itemin.BadgesName</span></h6>
+                                        </a>
+                                    </h5a>
+                                </div>
+
+                            }
+                        </div>
+
+
+                    }
+
+                </div>
+            </div>
+        }
+
+        GroupCateg = item.GroupCateg;
+        GroupSub = item.GroupSub;
+    }
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

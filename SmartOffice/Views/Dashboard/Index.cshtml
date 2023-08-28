@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+
+<div class="content-wrapper">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0" id="DashIdName"></h1>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+                        <input type="text" id="date_rangeh" class="form-control float-right">
+                        <button type="button" class="btn btn-primary" id="btn_search">Search</button>
+                    </div>
+
+                </div>
+                <div class="col-sm-12">
+                    <p id="DashDetail"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row" id="AllChart">
+
+            </div>
+        </div>
+    </section>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        var _DashboardId = "@ViewData["DashID"]";
+    </script>
+    <script src="~/Asset/LTE/dist/js/plugins/chartjs2/Chart.js"></script>
+    <script src="~/js/View/DashBoard/DashboardIndex.js"></script>
+}

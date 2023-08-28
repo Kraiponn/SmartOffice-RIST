@@ -1,0 +1,185 @@
+﻿@model SmartOffice.eManagement.Models.TupleUser
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <style>
+        nav > .nav.nav-tabs {
+            border: none;
+            color: #fff;
+            background: #272e38;
+            border-radius: 0;
+        }
+
+        nav > div a.nav-item.nav-link,
+        nav > div a.nav-item.nav-link.active {
+            border: none;
+            padding: 18px 25px;
+            color: #fff;
+            background: #272e38;
+            border-radius: 0;
+        }
+
+            nav > div a.nav-item.nav-link.active:after {
+                content: "";
+                position: relative;
+                bottom: -60px;
+                left: -10%;
+                border: 15px solid transparent;
+                border-top-color: #e74c3c;
+            }
+
+        /*.tab-content {
+            background: #fdfdfd;
+            line-height: 25px;
+            border: 1px solid #ddd;
+            border-top: 5px solid #e74c3c;
+            border-bottom: 5px solid #e74c3c;
+            padding: 30px 25px;
+        }*/
+
+        nav > div a.nav-item.nav-link:hover,
+        nav > div a.nav-item.nav-link:focus {
+            border: none;
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 0;
+            transition: background 0.20s linear;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-12 ">
+            <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-Message-tab" data-toggle="tab" href="#nav-Message" role="tab" aria-controls="nav-Message" aria-selected="true">Message Slide</a>
+
+                </div>
+            </nav>
+            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+
+                <!--------------------------------------------------------Table Message ---------------------------------------------------------------------->
+                <div class="tab-pane fade show active" id="nav-Message" role="tabpanel" aria-labelledby="nav-Message-tab">
+                    <h5 class="card-title">Message Slide</h5>
+                    <hr COLOR="#FF0000" SIZE="3" />
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group mr-1">
+                                    <button type="button" class="btn btn-orange-moon" aria-label="Left Align" onclick="AddMessage();"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>New Message</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <table class="table table-striped display responsive" style="width:100%" id="TableMessage">
+                        <thead class="btn-dark-moon">
+                            <tr>
+                                <th></th>
+                                <th>ItemCateg</th>
+                                <th>ItemCategName</th>
+                                <th>ItemCode</th>
+                                <th>ItemName</th>
+                                <th>DisplayOrder</th>
+                                <th>Message</th>
+                                <th>StartMessage</th>
+                                <th>EndMessage</th>
+                                <th>AddDate</th>
+                                <th>UpdDate</th>
+                                <th>UserName</th>
+                                <th>ComputerName</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------------------------------------Modal Message ---------------------------------------------------------------------->
+    <div id="modal-placeholder">
+        <div class="modal fade bd-example-modal-lg" id="myModalMessage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content pt-5">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Message Slide</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data" class="form-horizontal">
+
+                            <div class="form-group">
+                                <label>Category:</label>
+                                <div>
+                                    @Html.DropDownList("itemCateg", Model.ddlItemCateg, "- Please select -", new { @class = "form-control", @id = "ddlitemCateg", required = "required" })
+                                    @Html.ValidationMessage("itemCateg")
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <label for="txtDisplayOrder" class="col-form-label">DisplayOrder:</label>
+                                <div class="input-group">
+                                    <input type="text" id="txtDisplayOrder" class="form-control" readonly required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtMessage">Message:</label>
+                                <textarea class="form-control" rows="3" id="txtMessage" required></textarea>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="date_range" class="col-form-label">Start-End Show:</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">
+                                            <i class="fa fa-calendar"></i>
+                                        </span>
+                                    </div>
+                                    <input type="text" id="date_rangeh" class="form-control float-right">
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <input type="button" class="col btn btn-success" id="btn_addMessage" value="Add Message">
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+    </script>
+    <script src="~/js/View/EManageUser/MessageSetting.js"></script>
+
+}
+
+
+
+
+
+

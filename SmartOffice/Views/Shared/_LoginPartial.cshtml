@@ -1,0 +1,30 @@
+@using Microsoft.AspNetCore.Identity
+@using SmartOffice.Areas.Identity.Pages
+@using SmartOffice.Models
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+ <!--Modal: Login / Register Form-->
+<!--Modal: Login / Register Form-->
+<ul class="navbar-nav">
+
+    @if (SignInManager.IsSignedIn(User))
+    {
+        @*<li class="nav-item">
+                <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @User.Identity.Name!</a>
+
+            </li>*@
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="btn btn-danger">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <!-- Login / register -->
+            <p class="mb-0"><a id="navbar-static-login" asp-area="Identity" asp-page="/Account/login" class="btn btn-danger">Sign In/Register <i class="fas fa-sign-in-alt ml-2"></i></a></p>
+        </li>
+    }
+</ul>
+

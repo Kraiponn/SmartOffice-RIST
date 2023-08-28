@@ -1,0 +1,34 @@
+﻿@model SmartOffice.SurveyApp.ViewModel.ViewItemCategory;
+
+<div class="card card-outline card-warning">
+    <div class="card-header">
+
+        <h2 class="card-title"> @Model.ItemCategName </h2>
+        @{
+            if (!String.IsNullOrEmpty(Model.RemarksTitle1))
+            {
+                <br />
+                <div style="color:@Model.RemarksColor1"> @Model.ItemCategName </div>
+            }
+            if (!String.IsNullOrEmpty(Model.RemarksTitle2))
+            {
+                <div style="color:@Model.RemarksColor2"> @Model.ItemCategName </div>
+            }
+            if (!String.IsNullOrEmpty(Model.RemarksTitle3))
+            {
+                <div style="color:@Model.RemarksColor3"> @Model.ItemCategName </div>
+            }
+            if (!String.IsNullOrEmpty(Model.RemarksTitle4))
+            {
+                <div style="color:@Model.RemarksColor4"> @Model.ItemCategName </div>
+            }
+            if (!String.IsNullOrEmpty(Model.RemarksTitle5))
+            {
+                <div style="color:@Model.RemarksColor5"> @Model.ItemCategName </div>
+            }
+
+        }
+        <br />
+        <div style="color:@Model.RemarksColor5"> @Model.InputItems.FirstOrDefault().AddDate.ToShortDateString() </div>
+    </div>
+</div>

@@ -1,0 +1,96 @@
+﻿
+@{
+    ViewData["Title"] = "Update Form";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<section class="content-header">
+    <h1>
+        SmartOffice
+        <small>Edit Form</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/DynamicForm/index"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/DynamicForm/index">List Form</a></li>
+        <li class="active">EditForm</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <section class="col-lg-8 col-md-12 connectedSortable">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                    <h3 class="box-title">Form</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+
+                    <div id='builder'></div>
+                    <hr>
+                    <button type="button" id="saveform" class="btn btn-primary btn-lg btn-block">Update Form</button>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+        </section>
+    </div>
+
+</section>
+
+
+
+<script type='text/javascript'>
+        var id='@ViewBag.id';
+        var sc='';
+    window.onload = function () {
+         $.get("../GetForm", { id: id })
+            .done(function (json) {
+
+                Formio.builder(document.getElementById('builder'), json).then(function (builder) {
+                    sc = builder.schema;
+                    builder.on('saveComponent', function () {
+                        console.log(builder);
+                        sc = builder.schema;
+                    });
+                });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var error = textStatus + ", " + error;
+                // warningBR(error, "Request Failed!!");
+
+            });
+            //Formio.builder(document.getElementById('builder'));
+
+        };
+
+        $("#saveform").on('click', function () {;
+            $.post("../UpdateForm", { jsondata: JSON.stringify(sc),id:id })
+                .done(function (data) {
+                    if (data.status) {
+                        successBR(data.detail, data.subject);
+                        setTimeout(
+                            function () {
+                                window.location.href = '/DynamicForm/index';
+                            }, 2000);
+
+
+                    } else {
+                        warningBR(data.detail, data.subject);
+                    }
+                })
+                .fail(function (jqxhr, textStatus, error) {
+                    var error = textStatus + ", " + error;
+                    // warningBR(error, "Request Failed!!");
+
+                });
+
+        });
+
+
+
+
+
+</script>

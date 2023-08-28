@@ -1,0 +1,224 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/image/Favicons.png" rel="icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>AdmSOffice</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1,NO-CACHE">
+
+    <link href="~/Asset/LTE/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/Asset/LTE/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Asset/LTE/bower_components/morris.js/morris.css">
+    <link rel="stylesheet" href="~/Asset/LTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="~/Asset/LTE/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="~/Asset/LTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+    <link href="~/lib/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/responsive.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/rowGroup.dataTables.min.css" rel="stylesheet" />
+    <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/lib/formio/formio.builder.min.css" rel="stylesheet" />
+    <link href="~/css/fontawesome-free-5.8.1-web/css/all.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/dist/css/AdminLTE.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/Guriddo/css/ui.jqgrid-bootstrap4.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/jquery.datetimepicker.css" rel="stylesheet">
+    <link href="~/lib/select2/css/select2.css" rel="stylesheet" />
+    <link href="~/css/jquery-ui.css" rel="stylesheet">
+
+    <style>
+        .card-header .fa {
+            transition: .3s transform ease-in-out;
+        }
+
+        .card-header .collapsed .fa {
+            transform: rotate(90deg);
+        }
+
+        .control-sidebar, .control-sidebar:before {
+            /*top:50px;*/
+            width: 780px;
+            right: -780px;
+            bottom: 0;
+            transition: right 0.3s ease-in-out;
+        }
+            
+ 
+        .modal-dialog-full-width {
+            width: 100% !important;
+            height: 100% !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            max-width: none !important;
+        }
+
+        .modal-content-full-width {
+            height: auto !important;
+            min-height: 100% !important;
+            border-radius: 0 !important;
+            background-color: #ececec !important
+        }
+
+        .modal-header-full-width {
+            border-bottom: 1px solid #9ea2a2 !important;
+        }
+
+        .modal-footer-full-width {
+            border-top: 1px solid #9ea2a2 !important;
+        }
+
+        .back-to-top {
+            position: fixed;
+            bottom: 0px;
+            right: 5px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body class="hold-transitionv sidebar-collapse">
+    <div class="wrapper">
+        <div class="content-wrapper">
+            <div class="content">
+                <div class="container">
+
+                    <aside class="control-sidebar control-sidebar-dark sidebar11" style="position: fixed; overflow: auto;top:0px">
+                        <embed id="showpdf0" style="width:100%;height:100%;min-height:100vh;top:0px;" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                        <embed id="showpdf1" style="width:100%;height:100%;min-height:100vh;top:0px;" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                        <embed id="showpdf2" style="width:100%;height:100%;min-height:100vh;top:0px;" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                        <embed id="showpdf3" style="width:100%;height:100%;min-height:100vh;top:0px;" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                        <embed id="showpdf4" style="width:100%;height:100%;min-height:100vh;top:0px;" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                    </aside>
+
+                    <aside class="control-sidebar control-sidebar-dark sidebar22" style="position: fixed; overflow: auto;top:0px">
+                        <embed id="showpdfmanual0" style="width:100%;height:100%;min-height:100vh;top:0px;" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                        <embed id="showpdfmanual1" style="width:100%;height:100%;min-height:100vh;top:0px;" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                        <embed id="showpdfmanual2" style="width:100%;height:100%;min-height:100vh;top:0px;" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                        <embed id="showpdfmanual3" style="width:100%;height:100%;min-height:100vh;top:0px;" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                        <embed id="showpdfmanual4" style="width:100%;height:100%;min-height:100vh;top:0px;" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                    </aside>
+
+
+                    <!-- Modal -->
+                    <div class="modal fade right" id="exampleModalPreview" tabindex="-1" role="dialog" aria-labelledby="exampleModalPreviewLabel" aria-hidden="true">
+                        <div class="modal-dialog-full-width modal-dialog momodel modal-fluid" role="document">
+                            <div class="modal-content-full-width modal-content ">
+                                <div class=" modal-header-full-width   modal-header text-center">
+                                    <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                                        <span style="font-size: 1.3em;" aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <embed id="showpdfm0" style="width:100%;height:100%;min-height:100vh" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                                    <embed id="showpdfm1" style="width:100%;height:100%;min-height:100vh" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                                    <embed id="showpdfm2" style="width:100%;height:100%;min-height:100vh" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                                    <embed id="showpdfm3" style="width:100%;height:100%;min-height:100vh" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                                    <embed id="showpdfm4" style="width:100%;height:100%;min-height:100vh" allowfullscreen="true" name="plugin" src="" type="application/pdf" />
+                                </div>
+                                <div class="modal-footer-full-width  modal-footer">
+                                    <button type="button" class="btn btn-danger btn-md btn-rounded" data-dismiss="modal">Close</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    
+
+    <a id="back-to-top" href="#" class="btn btn-lg back-to-top" style="background-color:#1dc9cb" role="button"><i class="fas fa-chevron-up" style="color:white"></i></a>
+
+    <!-- ./wrapper -->
+    <!-- jQuery 3 -->
+    <script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/jquery-migrate-3.0.0.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    @*<script src="~/Asset/LTE/bower_components/jquery-ui/jquery-ui.min.js"></script>*@
+    <script src="~/Asset/LTE/bower_components/jquery-ui-bootstrap/assets/js/jquery-ui-1.10.0.custom.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/Asset/LTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Morris.js charts -->
+    <script src="~/Asset/LTE/bower_components/raphael/raphael.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Asset/LTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/Asset/LTE/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="~/Asset/LTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/Asset/LTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="~/Asset/LTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Asset/LTE/bower_components/fastclick/lib/fastclick.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Asset/LTE/dist/js/adminlte.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/jquery.dataTables.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.bootstrap4.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.responsive.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.cellEdit.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.rowGroup.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/lib/toastr/toastr.min.js"></script>
+    <script src="~/lib/toastr/toastr.init.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.min.js"></script>
+    <script src="~/lib/formio/formio.full.min.js"></script>
+
+    <script src="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+    <script src="~/js/moment.min.js"></script>
+    <script src="~/js/fullcalendar.js"></script>
+    <script src="~/lib/jquery/dist/jquery.datetimepicker.full.js"></script>
+    <script src="~/js/bootstrap-2.min.js"></script>
+    @*<script src="~/js/View/CalendarMainControl/_Fullcalendar.js"></script>*@
+    <script src="~/Asset/LTE/bower_components/Guriddo/js/i18n/grid.locale-en.js"></script>
+    <script src="~/Asset/LTE/bower_components/Guriddo/js/jquery.jqGrid.min.js"></script>
+    <script src="~/js/jquery.fileDownload.js"></script>
+    <script src="~/lib/aspnet/signalr/dist/browser/signalr.js"></script>
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script src="~/js/NotiAndRealTime.js"></script>
+    }
+    <script>
+        $.widget.bridge('uibutton', $.ui.button);
+        $.jgrid.defaults.styleUI = 'Bootstrap4';
+        $.jgrid.defaults.iconSet = "fontAwesome";
+
+
+
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 50) {
+                    $('#back-to-top').fadeIn();
+                } else {
+                    $('#back-to-top').fadeOut();
+                }
+            });
+            // scroll body to 0px on click
+            $('#back-to-top').click(function () {
+                $('body,html').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

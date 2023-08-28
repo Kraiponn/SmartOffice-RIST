@@ -1,0 +1,2044 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AdmSOffice</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="~/css/WebIntro/style.css" rel="stylesheet" />
+    <link href="~/css/WebIntro/reset.css" rel="stylesheet" />
+    <!-- Favicons -->
+    <link href="~/image/Favicons.png" rel="icon">
+    <link rel="stylesheet" media="screen and (device-height: 600px)" />
+    <!-- Bootstrap CSS File -->
+    <link href="~/Avilon/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Libraries CSS Files -->
+    <link href="~/Avilon/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/Avilon/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Avilon/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/Avilon/lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+    <!-- Main Stylesheet File -->
+    <link href="~/css/fontawesome-free-5.8.1-web/css/all.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/OwlCarousel/dist/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/OwlCarousel/dist/assets/owl.theme.green.min.css" rel="stylesheet" />
+    <link href="~/Avilon/css/style.css" rel="stylesheet">
+
+
+
+
+    <link href="~/MDB/css/mdb.min.css" rel="stylesheet" />
+
+
+
+    <!-- =======================================================
+      Theme Name: Avilon
+      Theme URL: https://bootstrapmade.com/avilon-bootstrap-landing-page-template/
+      Author: BootstrapMade.com
+      License: https://bootstrapmade.com/license/
+    ======================================================= -->
+</head>
+<body>
+    <style>
+        section {
+            height: 100vh; /* For 100% screen height */
+            width: 100vw; /* For 100% screen width */
+        }
+
+        .section-bg-W {
+            background-color: #fff;
+        }
+
+        .centered {
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .centered_ {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .lefts_ {
+            position: absolute;
+            top: 50%;
+            left: 20%;
+            transform: translate(-50%, -50%);
+        }
+
+        .table td, .table th {
+            font-size: 10px;
+        }
+
+
+        body {
+            font-family: "Libre Baskerville", serif;
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 30px;
+            background-color: #0c0f15;
+            color: #ababab;
+        }
+
+        ::-webkit-scrollbar {
+            width: 10px;
+            background-color: #F5F5F5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background-color: #f90a23;
+            background-image: -webkit-linear-gradient(45deg,rgba(255, 255, 255, .2) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%, rgba(255, 255, 255, .2) 75%, transparent 75%, transparent);
+        }
+
+        ::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            background-color: #F5F5F5;
+        }
+
+        .heading-page {
+            text-transform: uppercase;
+            font-size: 43px;
+            font-weight: bolder;
+            letter-spacing: 3px;
+            color: white;
+        }
+
+        a {
+            color: inherit;
+            -webkit-transition: all 0.3s ease 0s;
+            -moz-transition: all 0.3s ease 0s;
+            -o-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+        }
+
+            a:hover, a:focus {
+                color: #ababab;
+                text-decoration: none;
+                outline: 0 none;
+            }
+
+        h1, h2, h3,
+        h4, h5, h6 {
+            color: #1e2530;
+            font-family: "Open Sans", sans-serif;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        p {
+            margin-bottom: 20px;
+        }
+
+            p:last-child {
+                margin-bottom: 0;
+            }
+
+        /*
+         * Selection color
+         */
+        ::-moz-selection {
+            background-color: #FA6862;
+            color: #fff;
+        }
+
+        ::selection {
+            background-color: #FA6862;
+            color: #fff;
+        }
+
+        /*
+         *  Reset bootstrap's default style
+         */
+        .form-control::-webkit-input-placeholder,
+        ::-webkit-input-placeholder {
+            opacity: 1;
+            color: inherit;
+        }
+
+        .form-control:-moz-placeholder,
+        :-moz-placeholder {
+            /* Firefox 18- */
+            opacity: 1;
+            color: inherit;
+        }
+
+        .form-control::-moz-placeholder,
+        ::-moz-placeholder {
+            /* Firefox 19+ */
+            opacity: 1;
+            color: inherit;
+        }
+
+        .form-control:-ms-input-placeholder,
+        :-ms-input-placeholder {
+            opacity: 1;
+            color: inherit;
+        }
+
+        button, input, select,
+        textarea, label {
+            font-weight: 400;
+        }
+
+        .btn {
+            -webkit-transition: all 0.3s ease 0s;
+            -moz-transition: all 0.3s ease 0s;
+            -o-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+        }
+
+            .btn:hover, .btn:focus, .btn:active:focus {
+                outline: 0 none;
+            }
+
+        .btn-primary {
+            background-color: #FA6862;
+            border: 0;
+            font-family: "Open Sans", sans-serif;
+            font-weight: 700;
+            height: 48px;
+            line-height: 50px;
+            padding: 0 42px;
+            text-transform: uppercase;
+        }
+
+            .btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:active:focus {
+                background-color: #f9423a;
+            }
+
+        .btn-border {
+            border: 1px solid #d7d8db;
+            display: inline-block;
+            padding: 7px;
+        }
+
+        /*
+         *  CSS Helper Class
+         */
+        .clear:before, .clear:after {
+            content: " ";
+            display: table;
+        }
+
+        .clear:after {
+            clear: both;
+        }
+
+        .pt-table {
+            display: table;
+            width: 100%;
+            height: -webkit-calc(100vh - 4px);
+            height: -moz-calc(100vh - 4px);
+            height: calc(100vh - 4px);
+        }
+
+        .pt-tablecell {
+            display: table-cell;
+            vertical-align: middle;
+        }
+
+        .overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .relative {
+            position: relative;
+        }
+
+        .primary,
+        .link:hover {
+            color: #FA6862;
+        }
+
+        .no-gutter {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+            .no-gutter > [class^="col-"] {
+                padding-left: 0;
+                padding-right: 0;
+            }
+
+        .flex {
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .flex-middle {
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            -webkit-align-items: center;
+            -moz-align-items: center;
+            align-items: center;
+        }
+
+        .space-between {
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            -webkit-justify-content: space-between;
+            -moz-justify-content: space-between;
+            justify-content: space-between;
+        }
+
+        .nicescroll-cursors {
+            background: #FA6862 !important;
+        }
+
+        .preloader {
+            bottom: 0;
+            left: 0;
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1000;
+            display: -webkit-box;
+            display: -webkit-flex;
+            display: -moz-flex;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+            .preloader.active.hidden {
+                display: none;
+            }
+
+        .loading-mask {
+            background-color: #FA6862;
+            height: 100%;
+            left: 0;
+            position: absolute;
+            top: 0;
+            width: 20%;
+            -webkit-transition: all 0.6s cubic-bezier(0.61, 0, 0.6, 1) 0s;
+            -moz-transition: all 0.6s cubic-bezier(0.61, 0, 0.6, 1) 0s;
+            -o-transition: all 0.6s cubic-bezier(0.61, 0, 0.6, 1) 0s;
+            transition: all 0.6s cubic-bezier(0.61, 0, 0.6, 1) 0s;
+        }
+
+            .loading-mask:nth-child(2) {
+                left: 20%;
+                -webkit-transition-delay: 0.1s;
+                -moz-transition-delay: 0.1s;
+                -o-transition-delay: 0.1s;
+                transition-delay: 0.1s;
+            }
+
+            .loading-mask:nth-child(3) {
+                left: 40%;
+                -webkit-transition-delay: 0.2s;
+                -moz-transition-delay: 0.2s;
+                -o-transition-delay: 0.2s;
+                transition-delay: 0.2s;
+            }
+
+            .loading-mask:nth-child(4) {
+                left: 60%;
+                -webkit-transition-delay: 0.3s;
+                -moz-transition-delay: 0.3s;
+                -o-transition-delay: 0.3s;
+                transition-delay: 0.3s;
+            }
+
+            .loading-mask:nth-child(5) {
+                left: 80%;
+                -webkit-transition-delay: 0.4s;
+                -moz-transition-delay: 0.4s;
+                -o-transition-delay: 0.4s;
+                transition-delay: 0.4s;
+            }
+
+        .preloader.active.done {
+            z-index: 0;
+        }
+
+        .preloader.active .loading-mask {
+            width: 0;
+        }
+
+        /*------------------------------------------------
+            Start Styling
+        -------------------------------------------------*/
+        .mt20 {
+            margin-top: 20px;
+        }
+
+        .site-wrapper {
+            border-top: 4px solid #ff0037;
+        }
+
+        .page-close {
+            font-size: 30px;
+            position: absolute;
+            right: 30px;
+            top: 30px;
+            z-index: 100;
+        }
+
+        .page-title {
+            margin-bottom: 75px;
+        }
+
+            .page-title img {
+                margin-bottom: 20px;
+            }
+
+            .page-title h2 {
+                font-size: 68px;
+                margin-bottom: 25px;
+                position: relative;
+                z-index: 0;
+                font-weight: 900;
+                text-transform: uppercase;
+            }
+
+            .page-title p {
+                font-size: 16px;
+            }
+
+            .page-title .title-bg {
+                color: rgba(30, 37, 48, 0.07);
+                font-size: 158px;
+                left: 0;
+                letter-spacing: 10px;
+                line-height: 0.7;
+                position: absolute;
+                right: 0;
+                top: 50%;
+                z-index: -1;
+                -webkit-transform: translateY(-50%);
+                -moz-transform: translateY(-50%);
+                -ms-transform: translateY(-50%);
+                -o-transform: translateY(-50%);
+                transform: translateY(-50%);
+            }
+
+        .section-title {
+            margin-bottom: 20px;
+        }
+
+            .section-title h3 {
+                display: inline-block;
+                position: relative;
+            }
+
+                .section-title h3::before, .section-title h3::after {
+                    content: "";
+                    height: 2px;
+                    position: absolute;
+                    bottom: 8px;
+                    left: -webkit-calc(100% + 14px);
+                    left: -moz-calc(100% + 14px);
+                    left: calc(100% + 14px);
+                }
+
+                .section-title h3::before {
+                    background-color: #1e2530;
+                    width: 96px;
+                    bottom: 14px;
+                }
+
+                .section-title h3::after {
+                    background-color: #FA6862;
+                    width: 73px;
+                }
+
+            .section-title.light h3 {
+                color: #fff;
+            }
+
+                .section-title.light h3::before {
+                    background-color: #fff;
+                }
+
+        .page-nav {
+            bottom: 40px;
+            left: 0;
+            position: absolute;
+            right: 0;
+        }
+
+            .page-nav span {
+                font-family: "Open Sans", sans-serif;
+                font-size: 14px;
+                font-weight: 500;
+                line-height: 0.9;
+                text-transform: uppercase;
+            }
+
+        /*------------------------------------------------
+            Home Page
+        -------------------------------------------------*/
+
+        .hexagon-item:first-child {
+            margin-left: 0;
+        }
+
+        .page-home {
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            vertical-align: middle;
+        }
+
+            .page-home .overlay {
+                background-color: rgba(14, 17, 24, 0.6);
+            }
+
+        /* End of container */
+        .hexagon-item {
+            cursor: pointer;
+            width: 200px;
+            height: 173.20508px;
+            float: left;
+            margin-left: -29px;
+            z-index: 0;
+            position: relative;
+            -webkit-transform: rotate(30deg);
+            -moz-transform: rotate(30deg);
+            -ms-transform: rotate(30deg);
+            -o-transform: rotate(30deg);
+            transform: rotate(30deg);
+        }
+
+            .hexagon-item:first-child {
+                margin-left: 0;
+            }
+
+            .hexagon-item:hover {
+                z-index: 1;
+            }
+
+                .hexagon-item:hover .hex-item:last-child {
+                    opacity: 1;
+                    -webkit-transform: scale(1.3);
+                    -moz-transform: scale(1.3);
+                    -ms-transform: scale(1.3);
+                    -o-transform: scale(1.3);
+                    transform: scale(1.3);
+                }
+
+                .hexagon-item:hover .hex-item:first-child {
+                    opacity: 1;
+                    -webkit-transform: scale(1.2);
+                    -moz-transform: scale(1.2);
+                    -ms-transform: scale(1.2);
+                    -o-transform: scale(1.2);
+                    transform: scale(1.2);
+                }
+
+                    .hexagon-item:hover .hex-item:first-child div:before,
+                    .hexagon-item:hover .hex-item:first-child div:after {
+                        height: 5px;
+                    }
+
+                .hexagon-item:hover .hex-item div::before,
+                .hexagon-item:hover .hex-item div::after {
+                    background-color: #ff0037;
+                }
+
+                .hexagon-item:hover .hex-content svg {
+                    -webkit-transform: scale(0.97);
+                    -moz-transform: scale(0.97);
+                    -ms-transform: scale(0.97);
+                    -o-transform: scale(0.97);
+                    transform: scale(0.97);
+                }
+
+        .page-home .hexagon-item:nth-last-child(1),
+        .page-home .hexagon-item:nth-last-child(2),
+        .page-home .hexagon-item:nth-last-child(3) {
+            -webkit-transform: rotate(30deg) translate(87px, -80px);
+            -moz-transform: rotate(30deg) translate(87px, -80px);
+            -ms-transform: rotate(30deg) translate(87px, -80px);
+            -o-transform: rotate(30deg) translate(87px, -80px);
+            transform: rotate(30deg) translate(87px, -80px);
+        }
+
+        .hex-item {
+            position: absolute;
+            top: 0;
+            left: 50px;
+            width: 100px;
+            height: 173.20508px;
+        }
+
+            .hex-item:first-child {
+                z-index: 0;
+                -webkit-transform: scale(0.9);
+                -moz-transform: scale(0.9);
+                -ms-transform: scale(0.9);
+                -o-transform: scale(0.9);
+                transform: scale(0.9);
+                -webkit-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+                -moz-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+                -o-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+                transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+            }
+
+            .hex-item:last-child {
+                transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+                z-index: 1;
+            }
+
+            .hex-item div {
+                box-sizing: border-box;
+                position: absolute;
+                top: 0;
+                width: 100px;
+                height: 173.20508px;
+                -webkit-transform-origin: center center;
+                -moz-transform-origin: center center;
+                -ms-transform-origin: center center;
+                -o-transform-origin: center center;
+                transform-origin: center center;
+            }
+
+                .hex-item div::before, .hex-item div::after {
+                    background-color: #1e2530;
+                    content: "";
+                    position: absolute;
+                    width: 100%;
+                    height: 3px;
+                    -webkit-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+                    -moz-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+                    -o-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+                    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+                }
+
+                .hex-item div:before {
+                    top: 0;
+                }
+
+                .hex-item div:after {
+                    bottom: 0;
+                }
+
+                .hex-item div:nth-child(1) {
+                    -webkit-transform: rotate(0deg);
+                    -moz-transform: rotate(0deg);
+                    -ms-transform: rotate(0deg);
+                    -o-transform: rotate(0deg);
+                    transform: rotate(0deg);
+                }
+
+                .hex-item div:nth-child(2) {
+                    -webkit-transform: rotate(60deg);
+                    -moz-transform: rotate(60deg);
+                    -ms-transform: rotate(60deg);
+                    -o-transform: rotate(60deg);
+                    transform: rotate(60deg);
+                }
+
+                .hex-item div:nth-child(3) {
+                    -webkit-transform: rotate(120deg);
+                    -moz-transform: rotate(120deg);
+                    -ms-transform: rotate(120deg);
+                    -o-transform: rotate(120deg);
+                    transform: rotate(120deg);
+                }
+
+        .hex-content {
+            color: #fff;
+            display: block;
+            height: 180px;
+            margin: 0 auto;
+            position: relative;
+            text-align: center;
+            transform: rotate(-30deg);
+            width: 156px;
+        }
+
+            .hex-content .hex-content-inner {
+                left: 50%;
+                margin: -3px 0 0 2px;
+                position: absolute;
+                top: 50%;
+                -webkit-transform: translate(-50%, -50%);
+                -moz-transform: translate(-50%, -50%);
+                -ms-transform: translate(-50%, -50%);
+                -o-transform: translate(-50%, -50%);
+                transform: translate(-50%, -50%);
+            }
+
+            .hex-content .icon {
+                display: block;
+                font-size: 36px;
+                line-height: 30px;
+                margin-bottom: 11px;
+            }
+
+            .hex-content .title {
+                display: block;
+                font-family: "Open Sans", sans-serif;
+                font-size: 14px;
+                letter-spacing: 1px;
+                line-height: 24px;
+                text-transform: uppercase;
+            }
+
+            .hex-content svg {
+                left: -7px;
+                position: absolute;
+                top: -13px;
+                transform: scale(0.87);
+                z-index: -1;
+                -webkit-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+                -moz-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+                -o-transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+                transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1) 0s;
+            }
+
+            .hex-content:hover {
+                color: #fff;
+            }
+
+        .page-home .hexagon-item:nth-last-child(1), .page-home .hexagon-item:nth-last-child(2), .page-home .hexagon-item:nth-last-child(3) {
+            -webkit-transform: rotate(30deg) translate(87px, -80px);
+            -moz-transform: rotate(30deg) translate(87px, -80px);
+            -ms-transform: rotate(30deg) translate(87px, -80px);
+            -o-transform: rotate(30deg) translate(87px, -80px);
+            transform: rotate(30deg) translate(87px, -80px);
+        }
+        /*------------------------------------------------
+            Welcome Page
+        -------------------------------------------------*/
+        .author-image-large {
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+            .author-image-large img {
+                height: -webkit-calc(100vh - 4px);
+                height: -moz-calc(100vh - 4px);
+                height: calc(100vh - 4px);
+            }
+
+
+        @@media (min-width: 1200px) {
+            .col-lg-offset-2 {
+                margin-left: 16.66666667%;
+            }
+        }
+
+        @@media (min-width: 1200px) {
+            .col-lg-8 {
+                width: 66.66666667%;
+            }
+        }
+
+        .hexagon-item:first-child {
+            margin-left: 0;
+        }
+
+        .pt-table.desktop-768 .pt-tablecell {
+            padding-bottom: 110px;
+            padding-top: 60px;
+        }
+
+
+
+        .hexagon-item:hover .icon i {
+            color: #ff0037;
+            transition: 0.6s;
+        }
+
+
+        .hexagon-item:hover .title {
+            -webkit-animation: focus-in-contract 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+            animation: focus-in-contract 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+        }
+        /***************************/
+
+        @@-webkit-keyframes focus-in-contract {
+            0% {
+                letter-spacing: 1em;
+                -webkit-filter: blur(12px);
+                filter: blur(12px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-filter: blur(0px);
+                filter: blur(0px);
+                opacity: 1;
+            }
+        }
+
+        @@keyframes focus-in-contract {
+            0% {
+                letter-spacing: 1em;
+                -webkit-filter: blur(12px);
+                filter: blur(12px);
+                opacity: 0;
+            }
+
+            100% {
+                -webkit-filter: blur(0px);
+                filter: blur(0px);
+                opacity: 1;
+            }
+        }
+
+
+
+
+
+        @@media only screen and (max-width: 767px) {
+            .hexagon-item {
+                float: none;
+                margin: 0 auto 50px;
+            }
+
+                .hexagon-item:first-child {
+                    margin-left: auto;
+                }
+
+            .page-home .hexagon-item:nth-last-child(1), .page-home .hexagon-item:nth-last-child(2), .page-home .hexagon-item:nth-last-child(3) {
+                -webkit-transform: rotate(30deg) translate(0px, 0px);
+                -moz-transform: rotate(30deg) translate(0px, 0px);
+                -ms-transform: rotate(30deg) translate(0px, 0px);
+                -o-transform: rotate(30deg) translate(0px, 0px);
+                transform: rotate(30deg) translate(0px, 0px);
+            }
+        }
+
+
+        /*style="background-image: url('../../wwwroot/image/2920341.jpg?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1500&q=80')*/
+
+    </style>
+
+
+    <nav class="cd-vertical-nav">
+        <ul>
+            <li><a href="#intro"><span class="label">Intro</span></a></li>
+            <li><a href="#more-features2"><span class="label">RIST S-Office</span></a></li>
+            <li><a href="#more-features3"><span class="label">Purpose</span></a></li>
+            <li><a href="#more-features4"><span class="label">GOALS</span></a></li>
+            <li><a href="#more-features5"><span class="label">7P-Less</span></a></li>
+            <li><a href="#more-features6"><span class="label">ช่วยลดต้นทุนได้อย่างไร?</span></a></li>
+            <li><a href="#more-features1"><span class="label">Products & Services</span></a></li>
+            <li><a href="#more-features7"><span class="label">Application</span></a></li>
+            <li><a href="#more-features8"><span class="label">Information</span></a></li>
+            <li><a href="#more-features9"><span class="label">Functional</span></a></li>
+            <li><a href="#more-features10"><span class="label">User</span></a></li>
+            <li><a href="#more-features11"><span class="label">Info</span></a></li>
+        </ul>
+    </nav><!-- .cd-vertical-nav -->
+    <!--==========================
+      Intro Section
+    ============================-->
+    <section id="intro">
+        <video class="overlayvedio" style="width: 100%; height: 100vh; z-index: 1;" src="~/Video/SmartOffice.mp4" loop muted autoplay></video>
+        <div class="intro-text">
+            <h2>Welcome to AdmSOffice</h2>
+            <a href="@Url.Action("index","Home")" class="btn-get-started scrollto">Go to web site</a>
+        </div>
+    </section>
+    @*<section id="intro" >
+
+            <div class="intro-text">
+                <h2>Welcome to AdmSOffice</h2>
+
+                <a href="@Url.Action("index","Home")" class="btn-get-started scrollto">Go to web site</a>
+            </div>
+
+            <div class="product-screens">
+                    <div class="product-screen-1 wow fadeInUp" data-wow-delay="0.4s" data-wow-duration="0.6s">
+                        <img src="~/image/webpage1.png" />
+                    </div>
+
+                    <div class="product-screen-2 wow fadeInUp" data-wow-delay="0.2s" data-wow-duration="0.6s">
+                        <img src="~/image/webpage2.png" />
+                    </div>
+
+                    <div class="product-screen-3 wow fadeInUp" data-wow-duration="0.6s">
+                        <img src="~/image/webpage3.png" />
+                    </div>
+
+                </div>
+
+        </section>*@
+    <!-- #intro -->
+    <!-- <main class="site-wrapper">
+        <div class="pt-table desktop-768">
+            <div class="pt-tablecell page-home relative" style="background-image: url(@Url.Content("../image/2920341.jpg"));
+    background-position: center;
+    background-size:cover">
+                <div class="overlay"></div>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
+                            <div class="page-title  home text-center">
+                                @*<span class="heading-page">
+                                    Welcome to SmartOffice
+                                </span>*@
+                                <p class="mt20">ทางลัดเข้าสู่หน้าหลัก ของแต่ละโปรแกรม สามารถคลิกที่ไอคอนเพื่อเข้าสู่เมนูหลักได้เลย.</p>
+                            </div>
+
+                            <div class="hexagon-menu clear">
+                                <div class="hexagon-item">
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <a href="@Url.Action("index","home")" class="hex-content">
+                                        <span class="hex-content-inner">
+                                            <span class="icon">
+                                                <i class="fas fa-home"></i>
+                                            </span>
+                                            <span class="title">Goto Index</span>
+                                        </span>
+                                        <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                    </a>
+                                </div>
+                                <div class="hexagon-item">
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <a href="@Url.Action("privacy","home")" class="hex-content">
+                                        <span class="hex-content-inner">
+                                            <span class="icon">
+                                                <i class="fas fa-clipboard-list"></i>
+                                            </span>
+                                            <span class="title">Form Status</span>
+                                        </span>
+                                        <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                    </a>
+                                </div>
+                                <div class="hexagon-item">
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <a href="@Url.Action("EReservationRoom","EReservation")" class="hex-content">
+                                        <span class="hex-content-inner">
+                                            <span class="icon">
+                                                <i class="fas fa-ticket-alt"></i>
+                                            </span>
+                                            <span class="title">Room Reservation</span>
+                                        </span>
+                                        <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                    </a>
+                                </div>
+                                <div class="hexagon-item">
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <a href="@Url.Action("index","EAppointment")" class="hex-content">
+                                        <span class="hex-content-inner">
+                                            <span class="icon">
+                                                <i class="fas fa-user-clock"></i>
+                                            </span>
+                                            <span class="title">Appointment</span>
+                                        </span>
+                                        <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                    </a>
+                                </div>
+                                <div class="hexagon-item">
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <a href="@Url.Action("FormIndex","EManageForm")" class="hex-content">
+                                        <span class="hex-content-inner">
+                                            <span class="icon">
+                                                <i class="fas fa-poll"></i>
+                                            </span>
+                                            <span class="title">Survey Form</span>
+                                        </span>
+                                        <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                    </a>
+                                </div>
+                                <div class="hexagon-item">
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <a href="../News/ViewAll?newstyle=ViewAll&DeptType=Mainnews" class="hex-content">
+                                        <span class="hex-content-inner">
+                                            <span class="icon">
+                                                <i class="far fa-newspaper"></i>
+                                            </span>
+                                            <span class="title">News</span>
+                                        </span>
+                                        <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                    </a>
+                                </div>
+                                <div class="hexagon-item">
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <div class="hex-item">
+                                        <div></div>
+                                        <div></div>
+                                        <div></div>
+                                    </div>
+                                    <a href="http://rthweb/ISSupport/" class="hex-content">
+                                        <span class="hex-content-inner">
+                                            <span class="icon">
+                                                <i class="fab fa-hire-a-helper"></i>
+                                            </span>
+                                            <span class="title">Helpdesk</span>
+                                        </span>
+                                        <svg viewBox="0 0 173.20508075688772 200" height="200" width="174" version="1.1" xmlns="http://www.w3.org/2000/svg"><path d="M86.60254037844386 0L173.20508075688772 50L173.20508075688772 150L86.60254037844386 200L0 150L0 50Z" fill="#1e2530"></path></svg>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </main> -->
+    <div id="more-features2" class="cd-section">
+        <section id="more-features" class="section-bg-W">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">RIST Admin Smart Office</h3>
+                    <span class="section-divider"></span>
+                </div>
+                <div>
+                    <div class="row text-center text-primary">
+                        <h2><i class="far fa-money-bill-alt"></i> “ทางลัดของการลดต้นทุน และ เพิ่มประสิทธิภาพการบริหารงานแบบก้าวกระโดด”</h2>
+                    </div>
+                    @*<hr />*@
+                    <div class="row">
+                        <div class="col-lg-6 p-2 ">
+                            <div class="row mb-3">
+                                <div class="col-lg-12 text-dark" style="font-size:x-large; font-family:'TH SarabunPSK'; ">
+                                    <div class="wow fadeInLeft">
+                                        <span class="text-lg">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b class="font-weight-bold text-dark">“การเพิ่มขีดความสามารถให้กับองค์กร Admin ด้วย  SmartOffice”</b> เป็นการเพิ่มประสิทธิภาพการทำงานและการสื่อสารภายในองค์กร ด้วยการติดต่อข้อมูลระหว่าง Admin กับหน่วยงานในบริษัท ผ่าน Web Site Portal  ช่วยให้การติดต่อข้อมูลทั้งองค์กรเป็นเรื่องง่ายๆ นอกจากนี้ การพัฒนา Web Site Portal ยังรองรับการเชื่อมต่อระบบสารสนเทศอื่นๆ  ที่ช่วยให้เปลี่ยน หน่วยงาน Admin แบบเดิมเป็น สำนักงานอัจฉริยะที่พร้อมก้าวเข้าสู่ยุค Connected Factory 4.0</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row   p-3">
+                                <div class="col-lg-12">
+                                    <div class="wow fadeInLeft " style="font-size:x-large; font-family:'TH SarabunPSK'; ">
+                                        <h6 class=" font-weight-bold">“ระบบสำนักงานอิเล็กทรอนิกส์”</h6>
+                                        <span>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...เป็นระบบซอฟต์แวร์ที่จำลองกระบวนการทำงาน  ในสำนักงาน
+                                            <u>Admin Smart Office</u> เป็นรูปแบบการประยุกต์เทคโนโลยีหรือข้อมูลสารสนเทศและสร้างการสื่อสาร ในการเพิ่มประสิทธิภาพและคุณภาพของการบริการ  เพื่อช่วยลดต้นทุน ลดปริมาณการใช้ทรัพยากร
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-5 float-right features-img">
+                            <img src="~/image/OFFCE4.gif" alt="" class="wow fadeInRight img-fluid">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div><!-- #more-features -->
+    <div id="more-features3" class="cd-section">
+        <section id="more-features" class="section-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h3 class="section-title">Current situation & Purpose of development</h3>
+                    <span class="section-divider"></span>
+                </div>
+                <div class="row">
+
+                    <div class="col-lg p-2  ">
+
+                        <div class="row">
+
+                            <div class="col-lg-6">
+
+                                <div class="wow box fadeInLeft ">
+                                    <dl>
+                                        <dt>
+                                            <u class="text-dark">RISTAdmin สภาพการณ์ปัจจุบัน</u>
+                                        </dt>
+                                        <dd>
+                                            <p>1. การใช้<span class="font-weight-bold ">กระดาษ</span>เป็นหลัก ,จำนวนปริมาณมาก	</p>
+                                        </dd>
+                                        <dd>
+                                            <p>2. ในหน่วยงาน Admin มีหลายระบบซอฟต์แวร์ <span class="font-weight-bold ">ระบบ Office Automation เป็นอิสระไม่เกี่ยวข้องกัน</span></p>
+                                        </dd>
+                                        <dd>
+                                            <p>3. การแบ่งปันข้อมูลที่จำกัด  <span class="font-weight-bold ">ไม่มีมาตรฐานของข้อมูล และข้อมูลซ้ำซ้อน</span> </p>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                            @*</div>
+                                <div class="row">*@
+                            <div class="col-lg-6">
+                                <div class="wow box fadeInLeft ">
+                                    <dl>
+
+                                        <dt>
+                                            <u class="text-dark">วัตถุประสงค์การพัฒนา</u>
+                                        </dt>
+                                        <dd>
+                                            <p>1. <span class="font-weight-bold ">ลดปริมาณการใช้กระดาษ</span>, ประมวลผลแบบอิเล็กทรอนิกส์</p>
+                                        </dd>
+                                        <dd>
+                                            <p>2. เพื่อการเชื่อมโยง “ทุกระบบสารสนเทศ” ขององค์กร<span class="font-weight-bold ">เป็นระบบเพียงหนึ่งเดียว</span></p>
+                                        </dd>
+                                        <dd>
+                                            <p>3. เพื่อสนับสนุนการรวม,การทำงานร่วมกัน <span class="font-weight-bold ">เผยแพร่ข้อมูลและสร้างการเรียนรู้</span></p>
+                                        </dd>
+                                    </dl>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-lg ">
+                                <div class="wow box  fadeInLeft ">
+                                    <div class="row">
+                                        <div class="col-lg-3 ">
+                                            <img src="~/image/OFFCE10.gif" width="100%" />
+
+                                        </div>
+                                        <div class="col-lg ">
+                                            <dl>
+                                                <dt><u class="text-dark">แนวทางการขับเคลื่อนการพัฒนาสำนักงานอัจฉริยะ</u></dt>
+
+                                                <dd>
+                                                    <p>1. <span class="font-weight-bold ">แบบฟอร์ม</span> กระดาษ เป็นทรัพยากรหลักที่ใช้ในสำนักงาน</p>
+                                                </dd>
+                                                <dd>
+                                                    <p>2. <span class="font-weight-bold ">ปฎิรูปเอกสารที่เกี่ยวข้องกับการพัฒนาสำนักงานอัจฉริยะ</span> โดยมีเป้าหมายบูรณาการเอกสารที่เกี่ยวข้องทั้งระบบ</p>
+                                                </dd>
+                                                <dd>
+                                                    <p>3. <span class="font-weight-bold ">พัฒนาระบบสำนักงานอัจฉริยะ</span>ไปสู่ภาคปฎิบัติ</p>
+                                                </dd>
+                                                <dd>
+                                                    <p>4. <span class="font-weight-bold ">ผลักดันสำนักงานอัจฉริยะด้วยการพัฒนาและนวัตกรรม</span> มีเป้าหมายการพัฒนาที่สามารถปรับใช้ในอนาคต</p>
+                                                </dd>
+                                                <dd>
+                                                    <p>5. <span class="font-weight-bold ">จัดการระบบจัดเก็บข้อมูล</span>,การเชื่อมโยงและการใช้งานข้อมูล เผยแพร่ข้อมูลเพื่อสร้างการเรียนรู้</p>
+                                                </dd>
+
+                                            </dl>
+
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+        </section><!-- #more-features -->
+    </div>
+
+    <div id="more-features4" class="cd-section">
+        <section id="more-features" class=" section-bg-W ">
+            <div class="container" style="min-height:100vh;">
+
+                <div class="section-header">
+                    <h1 class="section-title"> RIST Smart Office GOALS  </h1>
+                    <span class="section-divider"></span>
+                </div>
+                <div class="row">
+                    <div class=" center col-6 features-img">
+                        <h5 class="text-black-50">SMART คืออะไร <i class="fas fa-question text-danger"></i></h5>
+                        <div class="row">
+                            <div class="col-lg-11  mb-3">
+                                <div class="card wow fadeInLeft p-2">
+                                    <h5 class="title text-dark "><b class="font-weight-bold text-danger">S</b>pecific</h5>
+                                    <small class="title ">
+                                        คือ เป้าหมายจะต้องมีลักษณะที่เฉพาะเจาะจงและชัดเจน เป้าหมายที่ตั้งด้วย หลัก SMART ต้องระบุอย่างชัดเจนว่าต้องทำอะไรหรือต้องการอะไร
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-lg-11 mb-3">
+                                <div class="card wow fadeInLeft p-2">
+
+                                    <h5 class="title text-dark "><b class="font-weight-bold text-danger">M</b>easurable</h5>
+                                    <small class="title ">
+                                        คือ เป้าหมายจะต้องสามารถวัดได้ในทางสถิติได้ (กำหนดเป้าที่จะวัดเป็นเลข) ซึ่งการทำให้เป้าหมายวัดได้ด้วยตัวเลขจะทำให้เห็นได้อย่างชัดเจนว่าสำเร็จหรือไม่สำเร็จ
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-lg-11 mb-3">
+                                <div class="card wow fadeInLeft p-2">
+
+                                    <h5 class="title text-dark "><b class="font-weight-bold text-danger">A</b>chievable</h5>
+                                    <small class="title small">
+                                        คือ เป้าหมายจะต้องเป็นเป้าหมายที่สามารถบรรลุผลได้จริง หรือก็คือเป้าหมายที่ตั้งตามหลัก SMART ต้องตั้งให้มันเป็นไปได้
+                                    </small>
+                                </div>
+                            </div>
+                            <div class="col-lg-11 mb-3">
+                                <div class="card wow fadeInLeft p-2">
+
+                                    <h5 class="title text-dark "><b class="font-weight-bold text-danger">R</b>ealistic</h5>
+                                    <small class="title ">
+                                        คือ การที่เป้าหมายจะต้องสอดคล้องกับความเป็นจริง เป็นการตั้งเป้าหมายให้สมเหตุสมผลกับสิ่งที่เป็นอยู่หรือสถานการณ์ที่เป็นอยู่ขององค์กร
+                                    </small>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-11 mb-3">
+                                <div class="card wow fadeInLeft p-2">
+
+                                    <h5 class="title text-dark "><b class="font-weight-bold text-danger">T</b>imely</h5>
+                                    <small class="title ">
+                                        คือ การที่การตั้งเป้าหมายที่ดีจะต้องมีการกำหนดช่วงระยะเวลาในการวัดผลที่ชัดเจน ไม่ว่าจะเป็น 1 เดือน 1 ไตรมาส หรือ 1 ปี
+                                    </small>
+                                </div>
+                            </div>
+
+                        </div>
+                        @*<div class="row">
+                                <div class="col-lg-12">
+                                    <img src="~/image/OFFCE3.gif" alt="" width="100%" class="wow fadeInRight img-fluid">
+                                </div>
+                            </div>*@
+                    </div>
+                    <div class=" center col ">
+                        <div class="row  wow fadeInLeft">
+                            <div class=" center">
+                                <h3 class="text-primary display-4">S</h3>
+                                <h6>เพื่อ <u class="font-weight-bold text-danger">ยกเลิกการใช้แบบฟอร์มกระดาษ</u> และการเดินติดตามงานในแต่ละฝ่าย</h6>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="row  wow fadeInLeft">
+                            <div class=" center">
+                                <h3 class="text-primary display-4">M</h3>
+                                <h6>โดยใช้ระบบการติดต่อสำนักงาน Admin แบบอิเล็คโทรนิคส์ <u class="font-weight-bold text-danger">ให้ได้100%</u></h6>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="row wow fadeInLeft">
+                            <div class=" center">
+                                <h3 class="text-primary display-4">A</h3>
+                                <h6>โดยให้แต่ละฝ่าย <u class="font-weight-bold text-danger">ดำเนินการยกเลิกแบบฟอร์มกระดาษ</u> โดยการบันทึกข้อมูลผ่านระบบ  SmartOffice</h6>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="row wow fadeInLeft">
+                            <div class=" center">
+                                <h3 class="text-primary display-4">R</h3>
+                                <h6>ยกเลิกแบบฟอร์มแบบกระดาษ <u class="font-weight-bold text-danger">เดือนละ 2-5 แบบฟอร์ม</u></h6>
+                                <hr />
+                            </div>
+                        </div>
+                        <div class="row wow fadeInLeft">
+                            <div class=" center">
+                                <h3 class="text-primary display-4">T</h3>
+                                <h6>ภายในระยะเวลา <u class="font-weight-bold text-danger">1 ปี</u> 	</h6>
+                                <hr />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div><!-- #more-features -->
+    <div id="more-features5" class="cd-section">
+        <section id="features" style="background-color:#F4F5F5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 offset-lg-4">
+                        <div class="section-header wow fadeIn" data-wow-duration="1s">
+                            <h3 class="section-title">
+                                Key Indicator 7P-Less
+                            </h3>
+                            <span class="section-divider"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-md-5 features-img">
+                        <img src="~/image/corevalue.png" alt="" class="wow fadeInLeft img-fluid">
+                    </div>
+
+                    <div class="col-lg-8 col-md-7 ">
+
+                        <div class="row">
+
+                            <div class="col-lg-6 col-md-6 box wow fadeInRight">
+                                <div class="icon"><img src="~/image/print.png" style="width:50px"></div>
+
+                                <h4 class="title"><a href="">Paperless</a></h4>
+                                <p class="description">Reduce/quit paper: Use e-Document & Digital Signature instead of paper Use email by sending via e-Workflow both within and across agencies.</p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.1s">
+                                <div class="icon"><img src="~/image/planning.png" style="width:50px"></div>
+                                <h4 class="title"><a href="">Processless</a></h4>
+                                <p class="description">
+                                    Reduce work process steps: Reduce data import using Re-entry Data by connecting to all Front & Back Office systems with e-Workflow To work automatically, track work / documents in real time.
+                                </p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.2s">
+                                <div class="icon"><img src="~/image/filling-cabinet.png" style="width:50px"></div>
+                                <h4 class="title"><a href="">Placeless</a></h4>
+                                <p class="description">
+                                    Reduce storage space / place paper documents
+                                    By ordering / approving / tracking work / documents via e-Document system
+                                    .
+                                </p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.3s">
+                                <div class="icon">
+                                    <img src="~/image/co2.png" style="width:50px">
+                                </div>
+                                <h4 class="title"><a href="">Pollutionless</a></h4>
+                                <p class="description">
+                                    Reduce pollution
+                                    Reduce ink usage, reduce global warming by reducing / disabling paper use.
+                                </p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.3s">
+                                <div class="icon"><img src="~/image/energy.png" style="width:50px"></div>
+                                <h4 class="title"><a href="">Powerless</a></h4>
+                                <p class="description">
+                                    Reduce energy consumption,Car-Oil-Phone-Fax, Reduce document delivery time, office supplies,
+                                    Energy use in the office.
+                                </p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.3s">
+                                <div class="icon"><img src="~/image/team.png" style="width:50px"></div>
+                                <h4 class="title"><a href="">Peopleless</a></h4>
+                                <p class="description">
+                                    Reduce / move people in each step of work
+                                    Reduce workload / error, and report.
+                                </p>
+                            </div>
+                            <div class="col-lg-6 col-md-6 box wow fadeInRight" data-wow-delay="0.3s">
+                                <div class="icon"><img src="~/image/payment.png" style="width:50px"></div>
+                                <h4 class="title"><a href="">Paymentless</a></h4>
+                                <p class="description">
+                                    Reduce pollution
+                                    Reduce ink usage, reduce global warming by reducing / disabling paper use.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- #features -->
+    </div><!-- #more-features -->
+    <div id="more-features6" class="cd-section">
+        <section id="more-features" class=" section-bg-W ">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title">Smart Office ช่วยลดต้นทุนได้อย่างไร?  </h1>
+                    <span class="section-divider"></span>
+                </div>
+                <div class="mb-1">
+                    <hr />
+                </div>
+            </div>
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-4">
+
+                        <div class=" box  wow fadeInLeft">
+                            <div class="mb-1">
+                                <h5 class="text-primary wow fadeInLeft">กราฟแสดงข้อมูล Document แต่ละแผนกใน Admin.</h5>
+                                <hr />
+                            </div>
+                            <canvas id="myChart" width="400" height="300"></canvas>
+
+                        </div>
+                    </div>
+
+
+                    <div class=" col-8">
+                        <div class=" box  wow fadeInRight">
+
+                            <h5 class="text-primary wow fadeInRight">อ้างอิงข้อมูล  November’2019</h5>
+                            <hr />
+                            <div class="table-responsive" style="height:100vh">
+                                <table id="test" class="table table-striped table-bordered table-sm text-center" cellspacing="0" width="100%">
+                                    <thead>
+                                        <tr>
+                                            <th rowspan="2">Dept./Topic</th>
+                                            <th colspan="2">Paperless</th>
+                                            <th colspan="2"> </th>
+                                            <th colspan="2">Placeless </th>
+                                            <th>Pollutionless</th>
+                                            <th colspan="2">Powerless </th>
+                                            <th colspan="2">Peopleless </th>
+                                            <th>Paymentless </th>
+                                        </tr>
+                                        <tr>
+                                            <td>Sheet</td>
+                                            <td>Amount กระดาษ</td>
+                                            <td>ค่าหมึก</td>
+                                            <td>m/a printer </td>
+                                            <td>Pcs</td>
+                                            <td>Amount แฟ้ม </td>
+                                            <td>Ton </td>
+                                            <td>Watt </td>
+                                            <td>ค่าไฟ </td>
+                                            <td>Hour </td>
+                                            <td>ค่าแรง </td>
+                                            <td>Bath </td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>HR</td>
+                                            <td>5,200</td>
+                                            <td>780</td>
+                                            <td>4,680</td>
+                                            <td>4,300</td>
+                                            <td>0</td>
+                                            <td>0</td>
+                                            <td>7.696</td>
+                                            <td>660.75</td>
+                                            <td>2.07</td>
+                                            <td>5</td>
+                                            <td>312.5 </td>
+                                            <td>10,074.57 </td>
+                                        </tr>
+                                        <tr>
+                                            <td> GA </td>
+                                            <td> 956 </td>
+                                            <td> 143.40 </td>
+                                            <td> 860.40 </td>
+                                            <td> 7,950.00 </td>
+                                            <td>2</td>
+                                            <td> 110.00 </td>
+                                            <td>1.41</td>
+                                            <td>121.48</td>
+                                            <td>0.38</td>
+                                            <td>2</td>
+                                            <td> 125.00 </td>
+                                            <td> 9,189.18 </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td>ACCT</td>
+                                            <td> 716 </td>
+                                            <td> 107.40 </td>
+                                            <td> 644.40 </td>
+                                            <td> 3,810.00 </td>
+                                            <td>3</td>
+                                            <td> 165.00 </td>
+                                            <td>1.06</td>
+                                            <td>90.98</td>
+                                            <td>0.28</td>
+                                            <td>17</td>
+                                            <td> 1,062.50 </td>
+                                            <td> 5,789.58 </td>
+                                        </tr>
+                                        <tr>
+                                            <td>PUR&BOI</td>
+                                            <td> 6,000 </td>
+                                            <td> 900.00 </td>
+                                            <td> 5,400.00 </td>
+                                            <td> 14,550.00 </td>
+                                            <td>257</td>
+                                            <td> 14,135.00 </td>
+                                            <td>8.88</td>
+                                            <td>762.40</td>
+                                            <td>2.39</td>
+                                            <td>20</td>
+                                            <td> 1,250.00 </td>
+                                            <td> 36,237.39 </td>
+                                        </tr>
+                                        <tr>
+                                            <td>FAC</td>
+                                            <td> 93 </td>
+                                            <td> 13.95 </td>
+                                            <td> 83.70 </td>
+                                            <td> 3,810.00 </td>
+                                            <td>374</td>
+                                            <td> 20,570.00 </td>
+                                            <td>0.14</td>
+                                            <td>11.82</td>
+                                            <td>0.04</td>
+                                            <td>0</td>
+                                            <td> -   </td>
+                                            <td> 24,477.69 </td>
+                                        </tr>
+                                        <tr>
+                                            <td>IS</td>
+                                            <td> 525 </td>
+                                            <td> 78.75 </td>
+                                            <td> 472.50 </td>
+                                            <td> 3,810.00 </td>
+                                            <td>5</td>
+                                            <td> 275.00 </td>
+                                            <td>0.78</td>
+                                            <td>66.71</td>
+                                            <td>0.21</td>
+                                            <td>5</td>
+                                            <td> 312.50 </td>
+                                            <td> 4,948.96 </td>
+                                        </tr>
+                                        <tr>
+                                            <td>CSR&SAFETY</td>
+                                            <td> 1,233 </td>
+                                            <td> 184.95 </td>
+                                            <td> 1,109.70 </td>
+                                            <td> 4,300.00 </td>
+                                            <td>14</td>
+                                            <td> 770.00 </td>
+                                            <td>1.82</td>
+                                            <td>156.67</td>
+                                            <td>0.49</td>
+                                            <td>10.58</td>
+                                            <td> 661.46 </td>
+                                            <td> 7,026.60 </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr class="table-danger text-danger">
+                                            <td>Grand Total</td>
+                                            <td>14,723.00</td>
+                                            <td>2,283.45</td>
+                                            <td>13,251.60</td>
+                                            <td>42,530.00</td>
+                                            <td>655.00</td>
+                                            <td>36,080.00</td>
+                                            <td>21.79</td>
+                                            <td>1,870.80</td>
+                                            <td>5.86</td>
+                                            <td>59.58</td>
+                                            <td>3,723.96</td>
+                                            <td><b>97,743.96</b></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+
+                                <div class=" text-dark">
+                                    <u class="font-weight-bold text-primary" style="font-size:x-large;">7P-Less</u><br />
+                                    <span>- <i class="font-weight-bold">Paperless</i> จะคำนวณตามการส่งเอกสารมาจริงๆ โดยนับตามจำนวนแผ่นของแต่ละฝ่าย</span><br />
+                                    <span>- <i class="font-weight-bold">Processless</i> ข้อนี้จะไม่ทำการนับค่าแต่เราจะตั้งค่าเป้าหมายเป็นการป้องกันเอกสารหาย 100 เปอร์เซนต์</span><br />
+                                    <span>- <i class="font-weight-bold">Placeless</i> จะนับจากจำนวนแฟ้มงานที่ได้มีการนำมาใช้</span><br />
+                                    <span>- <i class="font-weight-bold">Pollutionless</i> จะใช้การคำนวณเป็น ตัน/Co2 โดยการนำจำนวนการกระดาษที่ใช้มาคำนวณเป็นค่าไฟฟ้า</span><br />
+                                    <span>- <i class="font-weight-bold">Powerless</i> จะเป็นการนำค่าไฟฟ้าที่คำนวณได้มาใช้</span><br />
+                                    <span>- <i class="font-weight-bold">Peopleless</i> คำนวณจากชั่วโมงการทำงานของคนเฉลี่ย 5 นาที</span><br />
+                                    <span>- <i class="font-weight-bold">Paymentless</i> เป็นการนำค่าใช้จ่ายมาคำนวณเป็นเงิน</span><br />
+
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </section><!-- #more-features -->
+    </div><!-- #more-features -->
+    <div id="more-features1" class="cd-section">
+        <section id="more-features" class="section-bg cs1">
+            <div class="container">
+
+                <div class="section-header">
+                    <h3 class="section-title">Products & Services</h3>
+                    @*<span class="section-divider"></span>
+                        <p class="section-description">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque</p>*@
+                </div>
+
+                <div class="row">
+
+                    <div class="col-lg-6">
+                        <div class="box wow fadeInLeft">
+                            <div class="icon"><i class="ion-ios-stopwatch-outline"></i></div>
+                            <h4 class="title"><a href="">Smart Application</a></h4>
+                            <p class="description">
+                                e-Document Generation,Flowing & Signing System, e-Document Registration,Dispatching & Archiving System, e-Meeting Room Reservation & Other Asset Reservation System, e-appointment,e-Meeting System
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="box wow fadeInRight">
+                            <div class="icon"><i class="ion-ios-bookmarks-outline"></i></div>
+                            <h4 class="title"><a href="">Smart Information</a></h4>
+                            <p class="description">
+                                News & PR Update, HelpDesk Information, e-DashBoard
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+
+
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="box wow fadeInLeft">
+                            <div class="icon"><i class="ion-ios-heart-outline"></i></div>
+                            <h4 class="title"><a href="">Smart Functional</a></h4>
+                            <p class="description">
+                                Smart Search, Smart Notify, Smart Calendar, Smart Link
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="box wow fadeInRight">
+                            <div class="icon"><i class="ion-ios-analytics-outline"></i></div>
+                            <h4 class="title"><a href="">Smart User</a></h4>
+                            <p class="description">
+                                จัดการบริหาร UserProfile, Notify , Job List
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </div><!-- #more-features -->
+    <div id="more-features7" class="cd-section">
+        <section id="more-features" class="section-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title"> โครงสร้างพื้นฐาน  SmartOffice มีอะไร [1]  </h1>
+                    <span class="section-divider"></span>
+                </div>
+                <div class="mb-1">
+                    <h2 class="text-primary wow fadeInRight">Smart Application  <i class="fas fa-mouse-pointer"></i></h2>
+                    <hr />
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div>
+
+                    <div class="row p-1">
+                        <div class="col-lg-12">
+
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="box wow fadeInLeft" style="height:530px">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <video autoplay preload="auto" loop="loop" muted="muted" controls>
+                                                <source src="~/Video/SmartDoc.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                        <br />
+                                        <dl class="wow fadeInRight">
+                                            <dt>
+                                                <span> e-Document Generation,Flowing & Signing System</span>
+                                            </dt>
+                                            <dd>
+                                                <p>• สำหรับบันทึกข้อมูล แบบฟอร์มต่างๆ</p>
+                                            </dd>
+                                        </dl>
+                                        <dl class="wow fadeInRight">
+                                            <dt>
+                                                <span> e-Document Registration,Dispatching & Archiving System</span>
+                                            </dt>
+                                            <dd>
+                                                <p>• สำหรับติดตามงานที่ร้องขอ รวมทั้งการ Approve  แบบฟอร์มต่างๆ</p>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4">
+                                    <div class="box wow fadeInUp" style="height:530px">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <video autoplay preload="auto" loop="loop" muted="muted" controls>
+                                                <source src="~/Video/SmartMeeting.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                        <br />
+                                        <dl class="wow fadeInRight">
+                                            <dt>
+                                                <span> e-Meeting Room Reservation & Other Asset Reservation System</span>
+                                            </dt>
+                                            <dd>
+                                                <p>• ระบบจองห้องประชุม</p>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                                <div class="col-lg-4 ">
+                                    <div class="box wow fadeInRight" style="height:530px">
+                                        <div class="embed-responsive embed-responsive-16by9">
+                                            <video autoplay preload="auto" loop="loop" muted="muted" controls>
+                                                <source src="~/Video/SmartAppoinment.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                        <br />
+                                        <dl class="wow fadeInRight">
+                                            <dt>
+                                                <span> e-appointment,e-Meeting System</span>
+                                            </dt>
+                                            <dd>
+                                                <p>• ระบบนัดหมาย, ตาราง event ,reminder</p>
+                                            </dd>
+                                        </dl>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- #more-features -->
+    </div><!-- #more-features -->
+    <div id="more-features8" class="cd-section">
+        <section id="more-features" class=" section-bg-W ">
+            <div class="container ">
+                <div class="section-header">
+                    <h1 class="section-title"> โครงสร้างพื้นฐาน  SmartOffice มีอะไร [2] </h1>
+                    <span class="section-divider"></span>
+                </div>
+                <div>
+                    <div class="mb-1">
+                        <h2 class="text-primary wow fadeInLeft">Smart Information  บริหารจัดการ ด้านข่าวสาร  <i class="far fa-newspaper"></i></h2>
+                        <hr />
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-7 ">
+                            <div class="  wow fadeInRight">
+                                <div class="row  ">
+                                    <div class="col-lg box">
+                                        <div style="">
+                                            <div class="embed-responsive embed-responsive-16by9">
+                                                <video autoplay preload="auto" loop="loop" muted="muted" controls>
+                                                    <source src="~/Video/Smartinfo.mp4" type="video/mp4">
+                                                </video>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg ml-5">
+                                        <dl class="wow fadeInLeft ">
+                                            <dt>
+                                                <span> News & PR Update</span>
+                                            </dt>
+                                            <dd>
+                                                <p>• ข่าวสาร และการประชาสัมพันธ์</p>
+                                            </dd>
+                                        </dl>
+                                        <dl class="wow fadeInLeft">
+                                            <dt>
+                                                <span> HelpDesk Information</span>
+                                            </dt>
+                                            <dd>
+                                                <p>• คู่มือการทำงาน , การแก้ไขปัญหาเบื้องต้น</p>
+                                            </dd>
+                                        </dl>
+                                        <dl class="wow fadeInLeft">
+                                            <dt>
+                                                <span> e-DashBoard </span>
+                                            </dt>
+                                            <dd>
+                                                <p>• ระบบ Dashboard แสดงสถานะข้อมูลต่างๆ </p>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-lg-5 ">
+
+                            <div class="row">
+                                <div class="col-lg ml-5">
+                                    <div class="col-lg col-md-5 features-img wow fadeInLeft ">
+                                        <img src="~/image/OFFICE17.jpg" alt="Responsive image" class="img-fluid">
+                                        <div class="centered  font-weight-bold text-white"><h3 class="" style=" font-family:Impact;">Smart Information</h3></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- #more-features -->
+    </div><!-- #more-features -->
+    <div id="more-features9" class="cd-section">
+        <section id="more-features" class="section-bg">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title"> โครงสร้างพื้นฐาน  SmartOffice มีอะไร [3] </h1>
+                    <span class="section-divider"></span>
+                </div>
+                <div>
+                    <div class="mb-1">
+                        <h2 class="text-primary wow fadeInRight">Smart Functional <i class="fas fa-cog"></i></h2>
+                        <hr />
+                    </div>
+                    <div class="row p-4">
+                        <div class="col-lg-5">
+                            <dl class="wow fadeInRight">
+                                <dt>
+                                    <span> Smart Search</span>
+                                </dt>
+                                <dd>
+                                    <p>• การค้นหาข้อมูล</p>
+                                </dd>
+                            </dl>
+                            <dl class="wow fadeInRight">
+                                <dt>
+                                    <span> Smart Notify</span>
+                                </dt>
+                                <dd>
+                                    <p>• แจ้งเตือน</p>
+                                </dd>
+                            </dl>
+                            <dl class="wow fadeInRight">
+                                <dt>
+                                    <span> Smart Calendar </span>
+                                </dt>
+                                <dd>
+                                    <p>• ปฎิทิน (appointment,event,reminder) </p>
+                                </dd>
+                            </dl>
+                            <dl class="wow fadeInRight">
+                                <dt>
+                                    <span> Smart Link</span>
+                                </dt>
+                                <dd>
+                                    <p>• link website  ต่างๆ ใน บริษัท</p>
+                                </dd>
+                            </dl>
+
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="box">
+                                <div class="embed-responsive embed-responsive-16by9">
+                                    <video autoplay preload="auto" loop="loop" muted="muted" controls>
+                                        <source src="~/Video/SmartFunc.mp4" type="video/mp4">
+                                    </video>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg">
+                            <img src="~/image/OFFICE15.jpg" class="wow fadeInUp" width="100%" />
+                            <div class="centered  font-weight-bold text-dark"><h3 class="" style=" font-family:Impact;">Smart Functional</h3></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- #more-features -->
+    </div><!-- #more-features -->
+    <div id="more-features10" class="cd-section">
+        <section id="more-features" class=" section-bg-W ">
+            <div class="container">
+                <div class="section-header">
+                    <h1 class="section-title"> โครงสร้างพื้นฐาน  SmartOffice มีอะไร [4] </h1>
+                    <span class="section-divider"></span>
+                </div>
+                <div>
+                    <div class="mb-1">
+                        <h2 class="text-primary wow fadeInRight">Smart User <i class="fas fa-users"></i></h2>
+                        <hr />
+                    </div>
+                    <div class="row p-4">
+                        <div class="col-lg-4">
+                            <div class="row">
+                                <img src="~/image/OFFICE18.jpg" width="100%" class="wow fadeInLeft" style="opacity:0.7;" />
+                                <div class="centered_  font-weight-bold text-white"><h3 class="" style=" font-family:Impact;">Smart USER</h3></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div class=" ">
+                                <div class="row mb-4">
+                                    <div class="col-lg">
+                                        <div class="embed-responsive embed-responsive-16by9 wow fadeInRight">
+
+                                            <video autoplay preload="auto" loop="loop" muted="muted" controls>
+                                                <source src="~/Video/SmartUser.mp4" type="video/mp4">
+                                            </video>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <dl class="wow fadeInRight p-4">
+                                            <dt>
+                                                <b> Smart User</b>
+                                            </dt>
+                                            <dd>
+                                                <p>• จัดการบริหาร UserProfile, Notify , Job List</p>
+                                            </dd>
+                                        </dl>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section><!-- #more-features -->
+    </div><!-- #more-features -->
+    <div id="more-features11" class="cd-section">
+        <section id="more-features" class="section-bg">
+            <div class="container">
+                <div>
+                    <div class="row p-0">
+                        <div class="col-lg-12 text-center  features-img">
+                            <img src="~/image/SmartInfo.jpg" style="display: block;margin:0 auto;" alt="Responsive image" class="wow fadeInRight img-fluid">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section><!-- #more-features -->
+    </div><!-- #more-features -->
+    <div style="height:100px; width:100vw;" id="intro">
+        <div class="text-center p-5">
+            @*<text class="display-4">
+                    ABOUT
+                </text>*@
+        </div>
+    </div>
+    <!--==========================
+      Footer
+    ============================-->
+    <!-- JavaScript Libraries -->
+    <script src="~/Avilon/lib/jquery/jquery.min.js"></script>
+    <script src="~/Avilon/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="~/Avilon/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Avilon/lib/easing/easing.min.js"></script>
+    <script src="~/Avilon/lib/wow/wow.min.js"></script>
+    <script src="~/Avilon/lib/superfish/hoverIntent.js"></script>
+    <script src="~/Avilon/lib/superfish/superfish.min.js"></script>
+    <script src="~/Avilon/lib/magnific-popup/magnific-popup.min.js"></script>
+    <script src="~/MDB/js/mdb.min.js"></script>
+    <!-- Contact Form JavaScript File -->
+    <script src="~/Avilon/contactform/contactform.js"></script>
+
+    <!-- Template Main Javascript File -->
+
+    <script src="~/Avilon/js/main.js"></script>
+    <script src="~/Asset/LTE/bower_components/OwlCarousel/dist/owl.carousel.min.js"></script>
+    <script src="~/Asset/LTE/dist/js/plugins/chartjs2/Chart.js"></script>
+    <script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/View/HomeScript/Home.js"></script>
+    <script src="~/js/WebIntro/modernizr.js"></script>
+
+    <script src="~/js/WebIntro/main.js"></script>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'horizontalBar',
+            data: {
+                labels: ['HR', 'GA', 'ACC', 'PUR', 'CSR', 'IS', 'FAC'],
+                datasets: [{
+                    label: 'Paper form',
+                    title: 'Paper form',
+                    data: [47, 23, 13, 15, 24, 6, 0],
+                    backgroundColor: [
+                        '#3366ff',
+                        '#3366ff',
+                        '#3366ff',
+                        '#3366ff',
+                        '#3366ff',
+                        '#3366ff',
+                        '#3366ff'
+                    ],
+                    borderColor: [
+                        '#0066ff',
+                        '#0066ff',
+                        '#0066ff',
+                        '#0066ff',
+                        '#0066ff',
+                        '#0066ff',
+                        '#0066ff'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                },
+                title: {
+                    display: true,
+                    text: 'Chart Paper form.',
+                    fontSize: 15
+                }
+            }
+        });
+
+        //$(document).ready(function () {
+        //    $('#test').DataTable({
+        //        "scrollX": true,
+        //        "scrollY": true,
+        //    });
+        //    $('.dataTables_length').addClass('bs-select');
+        //});
+    </script>
+</body>
+</html>

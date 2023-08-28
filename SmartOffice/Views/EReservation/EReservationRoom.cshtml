@@ -1,0 +1,577 @@
+﻿@model SmartOffice.eReservation.Models.TupleEReservationRoom
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutStoreRoom.cshtml";
+
+    var roomId = ViewBag.roomId;
+
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            font-size: 14px;
+            overflow: hidden;
+        }
+
+        .select2-container--default .select2-selection--multiple {
+            background-color: #1d3047;
+        }
+
+        .calendar-parent {
+            height: 70vh;
+        }
+
+        .radiolayout[readonly] {
+            opacity: 0.7; /* not necessary */
+            pointer-events: none;
+            touch-action: none;
+        }
+        .fc-event {
+            cursor: pointer;
+        }
+
+        .modal-open .modal {
+            overflow: hidden;
+        }
+
+        .modal-body {
+            height: calc(100vh - 126px);
+            overflow-y: scroll;
+        }
+
+
+        .scroller {
+            background-color: #B40404;
+            color: #ffffff;
+            font-family: Verdana;
+            font-size: 14px;
+            height: 25px;
+            line-height: 28px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .scrollingtext {
+            color: #ffffff;
+            white-space: nowrap;
+            position: absolute;
+            font-family: Verdana;
+            font-size: 14px;
+            font-style: oblique;
+        }
+
+            .scrollingtext a:link, a:visited {
+                font-family: Verdana;
+                color: #ffffff;
+                font-size: 14px;
+            }
+
+            .scrollingtext a:visited {
+                text-decoration: none;
+            }
+    </style>
+</head>
+<body>
+    <div id='headerscreen'>
+        <div class="scroller" id="scroller">
+            <div class="scrollingtext" id="scrollingtext">
+                @*<a href="~/File/EReservation/Room/UserManual.pdf" style="font-weight:bold" target="_blank">
+                    <img src="~/image/EReservation/Room/Icon/new.gif" class="img-fluid rounded" style="width:30px" />Click !! User Manual
+                </a>*@
+                <div id="textmarquee"></div>
+            </div>
+        </div>
+        <div id="recipeCarousel" class="carousel slide " data-ride="carousel">
+            <div class="carousel-inner " role="listbox">
+                @{
+                    var count = 0;
+
+                    double amount = Model.reservationMasterRoomsall.Count / 6.00;
+                    var pageslide = Math.Ceiling(amount);
+                    var roomdisplay = "";
+
+                }
+
+                @for (var i = 0; i < pageslide; i++)
+                {
+                    var active = "";
+                    if (i == 0)
+                    {
+                        active = "active";
+                    }
+
+                    <div class="carousel-item row no-gutters text-center @active">
+                        @foreach (var item in Model.reservationMasterRoomsall)
+                        {
+                            if (count == 6)
+                            {
+                                count = 0;
+                                break;
+                            }
+
+                            if (roomdisplay.Contains(item.RoomId) == false)
+                            {
+
+                                <div class="col-2 float-left"><img style="width:30%" class="img-fluid" alt="@item.Name" src="~/image/EReservation/Room/Room/@item.Image"></div>
+                                roomdisplay = roomdisplay + "/" + item.RoomId;
+                                count++;
+                            }
+                        }
+                    </div>
+                }
+            </div>
+            <a class="carousel-control-prev" href="#recipeCarousel" role="button" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="carousel-control-next" href="#recipeCarousel" role="button" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+
+
+
+
+        <div id='top' style="display:none">
+
+            <div class='left'>
+
+                <div id='theme-system-selector' class='selector'>
+                    Theme System:
+
+                    <select>
+                        <option value='bootstrap4' selected>Bootstrap 4</option>
+                        <option value='bootstrap3'>Bootstrap 3</option>
+                        <option value='jquery-ui'>jQuery UI</option>
+                        <option value='standard'>unthemed</option>
+                    </select>
+                </div>
+
+                <div data-theme-system="bootstrap3" class='selector'>
+                    Theme Name:
+
+                    <select>
+                        <option value='' selected>Default</option>
+                        <option value='cosmo'>Cosmo</option>
+                        <option value='cyborg'>Cyborg</option>
+                        <option value='darkly'>Darkly</option>
+                        <option value='flatly'>Flatly</option>
+                        <option value='journal'>Journal</option>
+                        <option value='lumen'>Lumen</option>
+                        <option value='paper'>Paper</option>
+                        <option value='readable'>Readable</option>
+                        <option value='sandstone'>Sandstone</option>
+                        <option value='simplex'>Simplex</option>
+                        <option value='slate'>Slate</option>
+                        <option value='solar'>Solar</option>
+                        <option value='spacelab'>Spacelab</option>
+                        <option value='superhero'>Superhero</option>
+                        <option value='united'>United</option>
+                        <option value='yeti'>Yeti</option>
+                    </select>
+                </div>
+
+                <div data-theme-system="bootstrap4" class='selector'>
+                    Theme Name:
+
+                    <select>
+                        <option value=''>Default</option>
+                        <option value='cerulean'>Cerulean</option>
+                        <option value='cosmo'>Cosmo</option>
+                        <option value='cyborg'>Cyborg</option>
+                        <option value='darkly'>Darkly</option>
+                        <option value='flatly'>Flatly</option>
+                        <option value='journal'>Journal</option>
+                        <option value='litera' selected>Litera</option>
+                        <option value='lumen'>Lumen</option>
+                        <option value='lux'>Lux</option>
+                        <option value='materia'>Materia</option>
+                        <option value='minty'>Minty</option>
+                        <option value='pulse'>Pulse</option>
+                        <option value='sandstone'>Sandstone</option>
+                        <option value='simplex'>Simplex</option>
+                        <option value='sketchy'>Sketchy</option>
+                        <option value='slate'>Slate</option>
+                        <option value='solar'>Solar</option>
+                        <option value='spacelab'>Spacelab</option>
+                        <option value='superhero'>Superhero</option>
+                        <option value='united'>United</option>
+                        <option value='yeti'>Yeti</option>
+                    </select>
+                </div>
+
+                <div data-theme-system="jquery-ui" class='selector'>
+                    Theme Name:
+
+                    <select>
+                        <option value='black-tie'>Black Tie</option>
+                        <option value='blitzer'>Blitzer</option>
+                        <option value='cupertino' selected>Cupertino</option>
+                        <option value='dark-hive'>Dark Hive</option>
+                        <option value='dot-luv'>Dot Luv</option>
+                        <option value='eggplant'>Eggplant</option>
+                        <option value='excite-bike'>Excite Bike</option>
+                        <option value='flick'>Flick</option>
+                        <option value='hot-sneaks'>Hot Sneaks</option>
+                        <option value='humanity'>Humanity</option>
+                        <option value='le-frog'>Le Frog</option>
+                        <option value='mint-choc'>Mint Choc</option>
+                        <option value='overcast'>Overcast</option>
+                        <option value='pepper-grinder'>Pepper Grinder</option>
+                        <option value='redmond'>Redmond</option>
+                        <option value='smoothness'>Smoothness</option>
+                        <option value='south-street'>South Street</option>
+                        <option value='start'>Start</option>
+                        <option value='sunny'>Sunny</option>
+                        <option value='swanky-purse'>Swanky Purse</option>
+                        <option value='trontastic'>Trontastic</option>
+                        <option value='ui-darkness'>UI Darkness</option>
+                        <option value='ui-lightness'>UI Lightness</option>
+                        <option value='vader'>Vader</option>
+                    </select>
+                </div>
+
+                <span id='loading' style='display:none'>loading theme...</span>
+
+            </div>
+
+            @*<div class='right'>
+                <span class='credits' data-credit-id='bootstrap-standard' style='display:none'>
+                    <a href='https://getbootstrap.com/docs/3.3/' target='_blank'>Theme by Bootstrap</a>
+                </span>
+                <span class='credits' data-credit-id='bootstrap-custom' style='display:none'>
+                    <a href='https://bootswatch.com/' target='_blank'>Theme by Bootswatch</a>
+                </span>
+                <span class='credits' data-credit-id='jquery-ui' style='display:none'>
+                    <a href='http://jqueryui.com/themeroller/' target='_blank'>Theme by jQuery UI</a>
+                </span>
+            </div>*@
+
+            <div class='clear'></div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <img src="~/image/EReservation/Room/Icon/color.png" class="img-fluid rounded" />               
+            </div>
+        </div>
+        <select class="js-example-basic-multiple" id="GetResources" name="GetResources[]" multiple="multiple" style="width:100%;"></select>
+    </div>
+
+    
+    <div class="calendar-parent">
+        
+            <div id='calendar'></div>
+              
+    </div>
+        
+       
+
+
+    <div id="myModalSave" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel1" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background-color:#4582ec">
+                    <h6 class="modal-title">Room Reservation</h6>
+                </div>
+                <form method="POST" enctype="multipart/form-data" name="addform" class="form-horizontal" id="addform">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="d-flex  flex-row-reverse bg-secondary text-white">
+                                <div class="btn-group">
+                                    <button type="button" id="btnApprove" class="btn btn-primary"><i class="fas fa-clipboard-check"></i> Approve</button>
+                                    <button type="button" id="btnSave" class="btn btn-success"><i class="fas fa-door-closed"></i> Reservation</button>
+                                    <button type="button" id="btnDelete" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+                                    <button type="button" id="btnClose" class="btn btn-dark" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="text-center">
+                            <label id="lblstatus" style="font-size:larger"></label>
+                            <br />
+                            <label id="lblremarks" style="font-size:medium"></label>
+                        </div>
+                        <div class="row">
+                            <div class="input-group" id="carduploadfile">
+                                <div class="custom-file">
+                                    <input type="file" id="fUpload" name="fUpload" multiple class="form-control" />
+                                </div>
+
+                            </div>
+                            <div class="form-group" id="Group_picture">
+                                <table class="table table-bordered table-hover dt-responsive display table-sm" cellspacing="0" style="width:100%" id="tablefile">
+                                    <thead class="" style="background-color:#35B597">
+                                        <tr>
+                                            <th>ReservationId</th>
+                                            <th>Type</th>
+                                            <th>FileName</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="hidden" id="txtreservationId" value="0" />
+                                <input type="hidden" id="txtroomId" />
+                                <div class="row">
+                                    <div class="form-group col-md-12">
+                                        <label>Building</label>
+                                        <div class="row">
+                                            <div class=" col-md-3">
+
+                                                <input type="text" id="txtbldg" class="form-control" readonly />
+                                            </div>
+                                            <div class=" col-md-9">
+                                                <input type="text" id="txtbuilding" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Room Name</label>
+                                    <input type="text" id="txtnameroom" class="form-control" readonly />
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label>Start</label>
+                                        <input type="text" id="txtstart" class="form-control" readonly />
+                                    </div>
+
+                                    <div class="form-group col-md-6" id="divEndDate">
+                                        <label>End</label>
+                                        <input type="text" id="txtend" class="form-control" readonly />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label>Subject</label>
+                                    <textarea type="text" id="txtsubject" rows="5" class="form-control"></textarea>
+                                </div>
+
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label>
+                                            Number of people in the meeting
+                                        </label>
+                                        <input type="number" id="txttotalOperator" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Internal Telephone Number</label>
+                                        <input type="text" id="txtoperatorPhoneNumber" class="form-control" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="row">
+                                    <div class="form-group col-md-3">
+                                        <label>Operator Id</label>
+                                        <input type="text" id="txtoperatorId" class="form-control" readonly />
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label>Operator Name</label>
+                                        <input type="text" id="txtoperatorName" class="form-control" readonly />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group  col-md-3">
+                                        <label>Operator Bldg</label>
+                                        <input type="text" id="txtoperatorbldg" class="form-control" readonly />
+                                    </div>
+                                    <div class="form-group col-md-9">
+                                        <label>Organizationname</label>
+                                        <input type="text" id="txtoperatorOrganizationname" class="form-control" readonly />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-md-6">
+                                        <label>Request Date</label>
+                                        <input type="text" id="txtrequestDate" class="form-control" readonly />
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label>Update Date</label>
+                                        <input type="text" id="txtupdateDate" class="form-control" readonly />
+                                    </div>
+                                </div>
+                                <label>Select Layout</label>
+                                <table class="table table-hover dt-responsive display table-sm" cellspacing="0" style="width:100%;" id="tablelayout">
+                                    <thead class="">
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row" style="background-color:#1d3047">
+                            <div class="col-12 text-center form-group" id="divdatemultiple">
+                                <h6 style="color:white"><u>COPY</u></h6>
+                                <label style="color:white">
+                                    For adding or editing reservations for the same period of this.
+                                    Can select multiple days.
+                                </label>
+                                <input id="txtdatemultiple" class="form-control" placeholder="Pick the multiple dates" readonly />
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="myModalRoom" class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel2" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background-color:#4582ec">
+                    <h6 class="modal-title">Room details</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group  col-md-6">
+                                <img scr="" id="imgmasterroom" class="img-fluid rounded" />
+                                <table class="table table-hover dt-responsive display table-sm" cellspacing="0" style="width:100%" id="tableimgd">
+                                    <thead class="">
+                                        <tr>
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                            <div class="form-group  col-md-6">
+                                <div class="form-group">
+                                    <label id="lblbuilding"></label>
+                                </div>
+                                <div class="form-group">
+                                    <label id="lblnameroom"></label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblResponsibleBy"></label>
+                                </div>
+                                <div class="form-group">
+                                    <label id="lblResponsibleName"></label>
+                                </div>
+                                <div class="form-group">
+                                    <label id="lblResponsibleTelNo"></label>
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblResponsibleEmail"></label>
+                                </div>
+                                <hr />
+                                <div class="form-row text-center">
+                                    <div class="form-group col-md-3">
+                                        <img src="~/image/EReservation/Room/Icon/chair.png" class="img-fluid rounded" style="width:50%" />
+                                        <br />
+                                        <label>Number Of Seats</label>
+                                        <br />
+                                        <label id="lblNumberOfSeats"></label>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <img src="~/image/EReservation/Room/Icon/projector.png" class="img-fluid rounded" style="width:50%" />
+                                        <br />
+                                        <label>Projector</label>
+                                        <br />
+                                        <label id="lblProjector"></label>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <img src="~/image/EReservation/Room/Icon/computer.png" class="img-fluid rounded" style="width:50%" />
+                                        <br />
+                                        <label>Computer</label>
+                                        <br />
+                                        <label id="lblComputer"></label>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <img src="~/image/EReservation/Room/Icon/conference.png" class="img-fluid rounded" style="width:50%" />
+                                        <br />
+                                        <label>TV Conference IP</label>
+                                        <br />
+                                        <label id="lblTVConferenceIP"></label>
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="form-group">
+                                    <label id="lblimgdesc"></label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="myModalApprove" class="modal fade bd-example-modal-md" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel3" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header text-white" style="background-color:#4582ec">
+                    <h6 class="modal-title">Confirm/Reject</h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-row">
+                            
+                            <div class="form-group  col-md-12">
+                                <div class="form-group">
+                                    <label>Remarks</label>
+                                    <textarea type="text" id="txtremarks" rows="3" class="form-control"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <button type="button" id="btnConfirm" class="btn btn-success"><i class="fas fa-check-circle"></i> Confirm</button>
+                                    <button type="button" id="btnReject" class="btn btn-danger"><i class="fas fa-times-circle"></i> Reject</button>
+                                </div>
+
+                            </div>
+                                                                                         
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+@section scripts {
+
+    <script type="text/javascript">
+        var _user =  "@ViewBag.user";
+        var _namempe = "@ViewBag.namempe";
+        var _organizationname = "@ViewBag.organizationname";
+        var _phoneNumber = "@ViewBag.phoneNumber";
+        var _bldg = "@ViewBag.bldg";
+        var _email1 = "@ViewBag.email1";
+        var _email2 = "@ViewBag.email2";
+    </script>
+    <script src="~/js/View/eReservationControl/EReservationRoom.js?version=1"></script>
+
+}
+
+
+
+
+
+

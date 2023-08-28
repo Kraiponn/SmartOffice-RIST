@@ -1,0 +1,206 @@
+﻿
+@{
+    ViewData["Title"] = "SearchResultPage";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+
+    .search_area {
+        /*height: 200px;*/
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        background: -moz-linear-gradient(45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+        background: -webkit-linear-gradient(45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+        background: linear-gradient(to 45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+    }
+
+    .searchbar {
+        margin-bottom: auto;
+        margin-top: auto;
+        height: 60px;
+        background-color: #353b48;
+        border-radius: 30px;
+        padding: 10px;
+    }
+
+    .search_input {
+        color: white;
+        border: 0;
+        outline: 0;
+        background: none;
+        width: 300px;
+        line-height: 40px;
+        transition: width 0.4s linear;
+    }
+
+    /*.searchbar:hover > .search_input {
+        padding: 0 10px;
+        width: 450px;
+        caret-color: red;
+        transition: width 0.4s linear;
+    }*/
+
+    .searchbar:hover > .search_icon {
+        background: white;
+        color: #e74c3c;
+    }
+
+    .search_icon {
+        height: 40px;
+        width: 40px;
+        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        color: white;
+        text-decoration: none;
+    }
+
+    .rgba-gradient {
+        background: -moz-linear-gradient(45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+        background: -webkit-linear-gradient(45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+        background: linear-gradient(to 45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+    }
+
+    .ibox-content {
+        background-color: #FFFFFF;
+        color: inherit;
+        padding: 15px 20px 20px 20px;
+        border-color: #E7EAEC;
+        border-image: none;
+        border-style: solid solid none;
+        border-width: 1px 0px;
+    }
+
+    .search-form {
+        margin-top: 10px;
+    }
+
+    .search-result h5 {
+        margin-bottom: 0;
+        color: #1E0FBE;
+    }
+
+    .search-result .search-link {
+        color: #006621;
+    }
+
+    .search-result p {
+        font-size: 12px;
+        margin-top: 5px;
+    }
+
+    .hr-line-dashed {
+        border-top: 1px dashed #E7EAEC;
+        color: #ffffff;
+        background-color: #ffffff;
+        height: 1px;
+        margin: 20px 0;
+    }
+
+    h2 {
+        font-size: 24px;
+        font-weight: 100;
+    }
+    /*h4 {
+       padding:0;
+    }*/
+</style>
+
+<div class="container-fluid p-3">
+
+        <br />  <br />  <br />  <br />
+        <div class="layout">
+            <div class="layout-header">
+                <div class="layout-header-content">
+                    <div class="layout-header-item">
+                        <h4><i class="fas fa-search" style="color:seagreen"></i>SmartSearch</h4>
+                        <span class="text-muted">SmartSearch Result.</span>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="layout-body">
+                <div class="row gutter-sm">
+                    <div class="col-lg-12 layout-content">
+
+
+                        <div class="mt-0" id="postReply">
+
+                            <div class="list-body reply-body">
+                                <div class="card mt-0">
+                                    <div class="card-header">
+                                        <h6 class="card-title float-left"><input type="hidden" id="smartview_textsearch" value="@ViewBag.texsearch" /></h6>
+                                    </div><div class="card-body">
+
+                                        <input type="hidden" data-val="true" data-val-required="The Id field is required." id="Id" name="Id" value="1115">
+
+                                        <fieldset>
+                                            <div class="form-group">
+
+                                                <span class="text-danger field-validation-valid" data-valmsg-for="Value" data-valmsg-replace="true"></span>
+                                                <div class="position-relative">
+                                                    <div class="md-editor" id="1584342313215">
+                                                        <div class="md-header-row">
+
+                                                            <div class="search_area">
+                                                                <div class="container-fluid bootstrap snippet p-0" id="container_result_search">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="ibox float-e-margins p-0">
+                                                                                <div class="ibox-content">
+                                                                                    <h2>
+                                                                                        <span id="countall_search"></span> results found for: <span class="text-navy" id="text_search_result"></span>
+                                                                                    </h2>
+
+                                                                                    <section class="p-3">
+                                                                                        <div class="data-container"></div>
+                                                                                        <div id="pagination-demo1"></div>
+                                                                                    </section>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </fieldset>
+
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+@using (Html.BeginForm("index", "DynamicForm", FormMethod.Post, new { @id = "toupdate", @role = "form", @target = "_blank" }))
+{
+    @Html.Hidden("docno")
+    @Html.Hidden("code")
+    @Html.Hidden("mode")
+}
+<!-- Card -->
+<script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/js/View/HomeScript/SmartSearchPage.js"></script>
+

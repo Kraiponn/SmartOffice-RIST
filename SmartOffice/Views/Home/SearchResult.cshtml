@@ -1,0 +1,95 @@
+﻿@model List<SmartOffice.ModelsDocControl.DocumentItem>
+@{
+    ViewData["Title"] = "SearchResult";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+<div class="container-fluid">
+    <div class="row">
+        <!-- Left col -->
+        <section class="col-xl-12 col-lg-12 col-md-12">
+            <div class="card" id="cardapprove">
+                <div class="card-header bg-secondary text-white">
+                    <div class="card-title">Search Result</div>
+                </div>
+                <div class="card-body p-0">
+                    @if (Model != null)
+                    {
+                        <table class="table table-bordered table-hover dt-responsive display table-sm" cellspacing="0" style="width:100%" id="tb_search">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        No
+                                    </th>
+                                    <th>
+                                        Doc Name
+                                    </th>
+                                    <th>
+                                        Request Name
+                                    </th>
+                                    <th>
+                                        Issue Date
+                                    </th>
+                                    <th>
+                                        Status
+                                    </th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+
+                                    <tr>
+                                        <td>
+                                            <a title="Click to do something" href="#" onclick="Updatedoc('@item.DocumentNo','@item.DocumentCode','issue');">@item.DocumentNo</a>
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ReqDescription1)
+                                        </td>
+
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ReqOperatorName)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.IssuedDate)
+                                        </td>
+                                        <td>
+                                            @if (item.DocumentStatus == "Process")
+                                            {
+                                                <span class='badge badge-info'>Process</span>
+                                            }
+                                            else if (item.DocumentStatus == "Cancel")
+                                            {
+                                                <span class='badge badge-danger'>Cancel</span>
+                                            }
+                                            else if (item.DocumentStatus == "Complete")
+                                            {
+                                                <span class='badge badge-success'>Complete</span>
+                                            }
+                                            else if (item.DocumentStatus == "Reject")
+                                            {
+                                                <span class='badge badge-warning'>Reject</span>
+                                            }
+
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    }
+                    <div id="jqsearch"></div>
+                </div>
+            </div>
+        </section>
+        <!-- /.Left col -->
+
+    </div>
+
+</div>
+@using (Html.BeginForm("index", "DynamicForm", FormMethod.Post, new { @id = "toupdate", @role = "form", @target = "_blank" }))
+{
+    @Html.Hidden("docno")
+    @Html.Hidden("code")
+    @Html.Hidden("mode")
+}
+<script src="~/js/View/DynamicFormScript/SearchResult.js"></script>

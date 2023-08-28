@@ -1,0 +1,69 @@
+﻿@model SmartOffice.Models.ViewModel.TupleFormMasterDashboard
+@{
+
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+<script src="~/js/WebIntro/modernizr.js"></script>
+<style>
+    body {
+        background: #1D1F20;
+    }
+
+</style>
+
+<div class="content-wrapper">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Dashboard @ViewBag.name</h1>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group">
+
+                        <input type="text" id="date_rangeh" class="form-control float-right">
+                        <button type="button" class="btn btn-primary" id="btn_search">Search</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+
+
+                @foreach (var item in Model.formMasterDashboards)
+                {                    
+                    <div class="col-md-@item.sub">
+                        <div class="card-header bg-dark">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                @item.namechart
+                            </h3>
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <canvas id="@item.nochart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>    
+</div>
+<script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Asset/LTE/dist/js/plugins/chartjs2/Chart.js"></script>
+<script src="~/js/View/EManageForm/FormDashboardSummary.js"></script>
+
+
+
+<script type="text/javascript">
+
+    var _Mode = "@ViewBag.mode"
+</script>

@@ -1,0 +1,119 @@
+﻿@model SmartOffice.Models.ViewModel.ViewNewsTable
+
+<link href="~/lib/gallery/baguetteBox.min.css" rel="stylesheet" />
+<style>
+    @@media (min-width: 768px) {
+        .carousel-multi-item-2 .col-md-3 {
+            float: left;
+            width: 25%;
+            max-width: 100%;
+        }
+    }
+
+    .carousel-multi-item-2 .card img {
+        border-radius: 2px;
+    }
+</style>
+
+@{
+    int pictureno = 0;
+    string[] words = new string[]
+    {
+"col-sm-12 col-md-4",
+"col-sm-6 col-md-4",
+"col-sm-6 col-md-4",
+"col-sm-12 col-md-8",
+"col-sm-6 col-md-4",
+"col-sm-6 col-md-4"
+    };
+}
+
+<section id="carousel-1">
+    <div class="" style="background-image: radial-gradient( circle 788px at 0.7% 3.4%,  rgba(164,231,192,1) 0%, rgba(255,255,255,1) 90% );">
+        <!--Title-->
+        <div class="card-header">
+            <div class="d-flex bd-highlight p-2">
+                <div class="mr-auto section-title">
+                    <span class="title" style="color:#193b5c">@Model.Title1</span>
+
+                    @*<h5>
+                            <i class="fas fa-image" style="color:#2bbbad"></i>  @Model.Title1
+                        </h5>*@
+                </div>
+            </div>
+        </div>
+        <!-- Description -->
+        <p>
+        </p>
+
+        <!--Section: Live preview-->
+        <section class="section-preview">
+
+            <!--Carousel Wrapper-->
+            <div id="multi-item-example" class="carousel slide carousel-multi-item carousel-multi-item-2" data-ride="carousel">
+
+                <!--Controls-->
+                <div class="d-flex justify-content-center">
+                    <a class="black-text" href="#multi-item-example" data-slide="prev"><i class="fas fa-angle-left fa-3x pr-3"></i></a>
+                    <a class="black-text" href="#multi-item-example" data-slide="next"><i class="fas fa-angle-right fa-3x pl-3"></i></a>
+                </div>
+                <!--/.Controls-->
+                <!--Slides-->
+                <div class="carousel-inner" role="listbox">
+
+                    <!--First slide-->
+                    <div class="carousel-item active">
+                        @foreach (var item in Model.NnewsDetail.Take(4))
+                        {
+                            var imgpath = "~/image/" + @item.GroupCateg + "/" + Model.NewsType + "/" + @item.Value;
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="@Url.Content(@imgpath)" alt="@item.Value1">
+                                </div>
+                            </div>
+                            pictureno++;
+                        }
+                    </div>
+                    <!--/.First slide-->
+                    <!--First slide-->
+                    <div class="carousel-item">
+                        @foreach (var item in Model.NnewsDetail.Skip(4).Take(4))
+                        {
+                            var imgpath = "~/image/" + @item.GroupCateg + "/" + Model.NewsType + "/" + @item.Value;
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="@Url.Content(@imgpath)" alt="@item.Value1">
+                                </div>
+                            </div>
+                            pictureno++;
+                        }
+                    </div>
+                    <!--/.First slide-->
+                    <!--First slide-->
+                    <div class="carousel-item">
+                        @foreach (var item in Model.NnewsDetail.Skip(8).Take(4))
+                        {
+                            var imgpath = "~/image/" + @item.GroupCateg + "/" + Model.NewsType + "/" + @item.Value;
+                            <div class="col-md-3 mb-3">
+                                <div class="card">
+                                    <img class="img-fluid" src="@Url.Content(@imgpath)" alt="@item.Value1">
+                                </div>
+                            </div>
+                            pictureno++;
+                        }
+                    </div>
+                    <!--/.First slide-->
+
+                </div>
+                <!--/.Slides-->
+
+            </div>
+            <!--/.Carousel Wrapper-->
+
+        </section>
+        <!--Section: Live preview-->
+    </div>
+
+</section>
+<script src="~/lib/gallery/baguetteBox.min.js"></script>
+<script>baguetteBox.run('.tz-gallery');</script>

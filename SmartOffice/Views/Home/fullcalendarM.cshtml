@@ -1,0 +1,92 @@
+﻿@{
+
+    Layout = null;
+}
+
+
+
+<style type="text/css">
+</style>
+
+
+    <div id="calendar2" style="background-color:WHITESMOKE;font-size:large"></div>
+
+
+
+
+
+<script type="text/javascript">
+                    function GenerateCalender() {
+
+
+
+                       
+                            $.ajax({
+                                dataType: "json",
+                                contentType: "application/json",
+                                data: "{}",
+                                url: "/Home/GetEvents",
+                                dataType: "json",
+                                success: function (data) {
+                                    var json = JSON.stringify(data);
+                                    console.log(JSON.stringify(data));
+
+                                    $('#calendar2').fullCalendar({
+                                        header: {
+                                            left: 'prev,next today',
+                                            center: 'title',
+                                            right: 'month,agendaWeek,agendaDay'
+                                        },
+                                        defaultDate: new Date(),
+                                        select: function (start, end) {
+                                            var title = prompt('Event Title:');
+                                            var eventData;
+                                            if (title) {
+                                                eventData = {
+                                                    title: title,
+                                                    start: start,
+                                                    end: end
+                                                };
+                                                $('#calendar2').fullCalendar('renderEvent', eventData, true); // stick? = true
+                                            }
+                                            $('#calendar2').fullCalendar('unselect');
+                                        },
+                                        editable: true,
+                                        eventLimit: true,
+                                        editable: true,
+                                        eventLimit: true, // allow "more" link when too many events
+                                        events: json
+                                    });
+                                },
+                                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                                    $("#cal_error").text(errorThrown); //Handle Error
+                                }
+                            });
+                        
+                        
+                       
+
+                        //$('#calender').fullCalendar('destroy');
+                        //$('#calendar').fullCalendar({
+                        //    contentHeight: 500,
+                        //    defaultDate: new Date(),
+                        //    timeFormat: 'h(:mm)a',
+
+
+                        //    minTime: "06:00:00",
+                        //    maxTime: "21:00:00",
+                        //    header: {
+                        //        left: 'prev,next today',
+                        //        center: 'title',
+                        //        right: 'month,basicWeek,basicDay,agenda'
+                        //    },
+                        //    defaultView: 'month',
+                        //    //eventLimit: true,
+                        //    eventColor: '#378006',
+                        //    events: '/Home/GetEvents/'
+                            
+                        //});
+                    }
+                    GenerateCalender();
+</script>
+

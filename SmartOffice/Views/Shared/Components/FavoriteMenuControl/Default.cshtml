@@ -1,0 +1,189 @@
+﻿@model SmartOffice.Models.ModelSubSystems
+<style>
+        #body-row {
+            margin-left: 0;
+            margin-right: 0;
+        }
+
+        #sidebar-container {
+            /*min-height: 100vh;*/
+            /*background-color: white;*/
+            padding: 20px;
+        }
+
+        /* Sidebar sizes when expanded and expanded */
+        .sidebar-expanded {
+            width: 100vw;
+        }
+
+        .sidebar-collapsed {
+            width: 60px;
+        }
+
+        /* Menu item*/
+        #sidebar-container .list-group a {
+            height: 35px;
+            color: black;
+            background-color: white;
+        }
+
+        /* Submenu item*/
+        #sidebar-container .list-group .sidebar-submenu a {
+            height: 30px;
+            padding-left: 10px;
+        }
+
+        .sidebar-submenu {
+            font-size: 0.9rem;
+            /*color: white;
+            background-color: #040919;*/
+        }
+
+
+
+
+
+        /*
+        Test new effect
+    */
+
+        .var_nav {
+            position: relative;
+            background: #dfdce3;
+            width: 100%;
+            height: 100px;
+            margin-bottom: 5px;
+        }
+
+        .link_bg {
+            width: 80px;
+            height: 100px;
+            position: absolute;
+            background: #F7B733;
+            color: #fff;
+            z-index: 2;
+        }
+
+            .link_bg i {
+                position: relative;
+            }
+
+        .link_title {
+            position: absolute;
+            width: 100%;
+            z-index: 3;
+            color: #fff;
+            font-size: 0.8em;
+        }
+
+            .link_title:hover .icon {
+                -webkit-transform: rotate(360deg);
+                -moz-transform: rotate(360deg);
+                -o-transform: rotate(360deg);
+                -ms-transform: rotate(360deg);
+                transform: rotate(360deg);
+            }
+
+        .var_nav:hover .link_bg {
+            width: 100%;
+            background: #2bbbad;
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .var_nav:hover a {
+            font-weight: bold;
+            -webkit-transition: all .5s ease-in-out;
+            -moz-transition: all .5s ease-in-out;
+            -o-transition: all .5s ease-in-out;
+            transition: all .5s ease-in-out;
+        }
+
+        .link_title .icon {
+            position: relative;
+            width: 80px;
+            height: 80px;
+            text-align: center;
+            color: #fff;
+            -webkit-transition: all .5s ease-in-out;
+            -moz-transition: all .5s ease-in-out;
+            -o-transition: all .5s ease-in-out;
+            float: left;
+            transition: all .5s ease-in-out;
+            float: left;
+        }
+
+            .link_title .icon i {
+                top: 22px;
+                position: relative;
+            }
+</style>
+@{
+    var GroupCateg = "";
+    var GroupSub = "";
+
+}
+
+<section class="call-to-action">
+    <div class="row wow fadeInLeft" id="body-row" style="background-color: rgb(39,54,59);">
+        <div id="sidebar-container" class="sidebar-expanded  d-md-block">
+            <div class="section-header wow fadeIn" data-wow-duration="1s" style="visibility: visible; animation-duration: 1s; animation-name: fadeIn;">
+                <br />
+                <h3 class="section-title" style="color:white">FAVORITE MENU</h3>
+                <span class="section-divider"></span>
+            </div>
+            <nav>
+                <ul style="padding:0">
+                    @foreach (var item in Model.subSystems.Select(x => new { x.GroupCateg, x.GroupName, x.GroupSub }).Distinct().OrderBy(x => x.GroupCateg).ThenBy(x => x.GroupSub))
+                    {
+
+                        @if (item.GroupSub != GroupSub || item.GroupSub == "")
+                        {
+
+                            @foreach (var itemin in Model.subSystems.Where(x => x.GroupSub == item.GroupSub).OrderBy(x => x.DisplayOrder))
+                            {
+
+                                @if (itemin.Action != "" && itemin.Controller != "")
+                                {
+                                    <li class="var_nav" style="list-style-type: none;">
+                                        <div class="link_bg"></div>
+                                        <div class="link_title">
+                                            <div class=icon>
+                                                @Html.Raw(@itemin.IconClass)
+                                            </div>
+                                            <a style="display: block;position: absolute;float: left;font-family: arial;color: #fff;text-decoration: none;width: 100%;height: 100px;text-align: center;color:grey" href="@Url.Action(itemin.Action, null, new {controller = itemin.Controller })">
+                                                <span class="menu-collapsed" style="padding-left:20px;margin-top: 25px; display: block;font-size:small">@itemin.MenuNameE<br />@itemin.MenuNameT<br />@itemin.MenuNameJ</span>
+                                                <h6><span class="@itemin.Badges">@itemin.BadgesName</span></h6>
+                                            </a>
+                                        </div>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li class="var_nav" style="list-style-type: none; ">
+                                        <div class="link_bg"></div>
+                                        <div class="link_title">
+                                            <div class=icon>
+                                                @Html.Raw(@itemin.IconClass)
+                                            </div>
+                                            <a style="display: block;position: absolute;float: left;font-family: arial;color: #fff;text-decoration: none;width: 100%;height: 100px;text-align: center;color:grey" href="@itemin.MenuUrl">
+                                                <span class="menu-collapsed" style="padding-left:20px;margin-top: 25px; display: block;font-size:small">@itemin.MenuNameE<br />@itemin.MenuNameT<br />@itemin.MenuNameJ</span>
+                                                <h6><span class="@itemin.Badges">@itemin.BadgesName</span></h6>
+                                            </a>
+                                        </div>
+                                    </li>
+                                }
+                            }
+                        }
+                        GroupCateg = item.GroupCateg;
+                        GroupSub = item.GroupSub;
+                    }
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+

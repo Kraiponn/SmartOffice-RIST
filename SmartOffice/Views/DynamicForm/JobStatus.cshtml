@@ -1,0 +1,325 @@
+﻿
+@{
+    ViewData["Title"] = "EDashboard";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+
+<script src="~/js/WebIntro/modernizr.js"></script>
+<style>
+    body {
+        background: #1D1F20;
+    }
+
+    /*.chart-container {
+        position: relative;
+        max-width: 800px;
+        margin: auto;
+    }*/
+
+</style>
+
+
+
+
+
+<div class="content-wrapper" style="">
+
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Dashboard Form</h1>
+                </div>
+                <div class="col-sm-6">
+
+                    <div class="input-group">
+                        @*<div class="input-group-prepend">*@
+                        @*<span class="input-group-text">*@
+                        @*<i class="fa fa-calendar"></i>*@
+
+                        @*</span>*@
+
+                        @*</div>*@
+
+                        <input type="text" id="date_rangeh" class="form-control float-right">
+                        <select class="form-control" id="Mode">
+                            <option value="">ALL Document</option>
+                            <option value="I">My Document</option>
+                        </select>
+
+                        <button type="button" class="btn btn-primary" id="btn_search">Search</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="content">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-lg-2 col-6">
+
+                    <div class="small-box " style="background-color:rgb(96,96,96);color:#fff">
+                        <div class="inner">
+                            <h3><span id="TotalForm"></span></h3>
+                            <p>Summary</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-document-text"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+
+                    <div class="small-box " style="background-color:rgb(153, 102, 255);color:#fff">
+                        <div class="inner">
+                            <h3><span id="TotalI"></span></h3>
+                            <p>Issue</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6">
+
+                    <div class="small-box " style="background-color:rgb(54, 162, 235);color:#fff">
+                        <div class="inner">
+                            <h3><span id="TotalP"></span></h3>
+                            <p>Process</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6">
+
+                    <div class="small-box " style="background-color:rgb(75, 192, 192);color:#fff">
+                        <div class="inner">
+                            <h3><span id="TotalCO"></span></h3>
+                            <p>Complete</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </div>
+
+                <div class="col-lg-2 col-6">
+
+                    <div class="small-box " style="background-color:rgb(255, 159, 64);color:#fff">
+                        <div class="inner">
+                            <h3><span id="TotalR"></span></h3>
+                            <p>Reject</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </div>
+                <div class="col-lg-2 col-6">
+
+                    <div class="small-box " style="background-color:rgb(255, 99, 132);color:#fff">
+                        <div class="inner">
+                            <h3><span id="TotalC"></span></h3>
+                            <p>Cancel</p>
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-stats-bars"></i>
+                        </div>
+                        @*<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>*@
+                    </div>
+                </div>
+                @*<div class="col-lg-2 col-6">
+
+            <div class="small-box " style="background-color:rgb(255, 205, 86);color:#fff">
+                <div class="inner">
+                    <h3><span id="TotalA"></span></h3>
+                    <p>Wait Approve</p>
+                </div>
+                <div class="icon">
+                    <i class="ion-checkmark-circled"></i>
+                </div>
+                @*<a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>*@
+                @*</div>*@
+                @*</div>*@
+            </div>
+
+
+            <div class="row">
+
+                <section class="col-lg-6 connectedSortable">
+
+                    <div class="card" style="">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-pie mr-1"></i>
+                                SUMMARY
+                            </h3>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+
+
+                                <canvas id="myChart_form"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="card" style="">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                PROCESS
+                            </h3>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+
+
+                                <canvas id="myChart_P"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                REJECT
+                            </h3>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+
+
+                                <canvas id="myChart_R"></canvas>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+                </section>
+
+                <section class="col-lg-6 connectedSortable">
+
+                    <div class="card" style="">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                ISSUE
+                            </h3>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <canvas id="myChart_I"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                COMPLETE
+                            </h3>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <canvas id="myChart_CO"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card" style="">
+                        <div class="card-header">
+                            <h3 class="card-title">
+                                <i class="fas fa-chart-bar mr-1"></i>
+                                CANCEL
+                            </h3>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="tab-content p-0">
+                                <canvas id="myChart_C"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </section>
+
+            </div>
+
+        </div>
+    </section>
+
+    
+
+    <div id="modal-placeholder">
+        <div class="modal bd-example-modal-xl" id="myModalData" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content pt-5">
+                    <div class="modal-header bg-info">
+                        <h5 class="modal-title" id="ModalHeaderLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-12" style="width:980px">
+
+                                <table class="table" id="TableData"></table>
+                                <div id="jqprocess"></div>
+                            </div>                            
+                        </div>
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @using (Html.BeginForm("index", "DynamicForm", FormMethod.Post, new { @id = "toupdate", @role = "form", @target = "_blank" }))
+    {
+        @Html.Hidden("docno")
+        @Html.Hidden("code")
+        @Html.Hidden("mode")
+        @Html.Hidden("seq")
+    }
+</div>
+<script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Asset/LTE/dist/js/plugins/chartjs2/Chart.js"></script>
+<script src="~/js/View/DynamicFormScript/JobStatus.js"></script>

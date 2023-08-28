@@ -1,0 +1,141 @@
+﻿@model SmartOffice.Models.ModelSubSystems
+@* CSS REFERRENCE WITH FAVERIT MENU *@
+
+@{
+    var GroupCateg = "";
+    var GroupSub = "";
+
+}
+
+<section class="call-to-action">
+
+    <div class="row wow fadeInLeft" id="body-row">
+        <div id="sidebar-container" class="sidebar-expanded d-md-block ">
+            <div class="section-header wow fadeIn" data-wow-duration="1s" style="visibility: visible; animation-duration: 1s; animation-name: fadeIn;">
+                <br />
+                <h3 class="section-title">QUICK LINK</h3>
+                <span class="section-divider"></span>
+            </div>
+
+            <nav>
+                <ul style="padding:0">
+
+                    @foreach (var item in Model.subSystems.Select(x => new { x.GroupCateg, x.GroupName, x.GroupSub }).Distinct().OrderBy(x => x.GroupCateg).ThenBy(x => x.GroupSub))
+                    {
+
+                        @if (item.GroupSub != GroupSub || item.GroupSub == "")
+                        {
+
+                            @foreach (var itemin in Model.subSystems.Where(x => x.GroupSub == item.GroupSub).OrderBy(x => x.DisplayOrder))
+                            {
+
+                                @if (itemin.Action != "" && itemin.Controller != "")
+                                {
+                                    <li class="var_nav" style="list-style-type: none; ">
+                                        <div class="link_bg"></div>
+                                        <div class="link_title">
+                                            <div class=icon>
+                                                <i class="fa-2x fas fa-bowling-ball" style="color:white"></i>
+
+                                            </div>
+                                            <a style="display: block;position: absolute;float: left;font-family: arial;color: #fff;text-decoration: none;width: 100%;height: 100px;text-align: center;color:grey" href="@Url.Action(itemin.Action, null, new {controller = itemin.Controller })">
+                                                <span class="menu-collapsed" style="padding-left:20px;margin-top: 25px; display: block;font-size:small">@itemin.MenuNameE<br />@itemin.MenuNameT<br />@itemin.MenuNameJ</span>
+                                                <h6><span class="@itemin.Badges">@itemin.BadgesName</span></h6>
+                                            </a>
+                                        </div>
+                                    </li>
+
+                                }
+                                else
+                                {
+                                    <li class="var_nav" style="list-style-type: none; ">
+                                        <div class="link_bg"></div>
+                                        <div class="link_title">
+                                            <div class=icon>
+                                                <i class="fa-2x fas fa-bowling-ball" style="color:white"></i>
+                                            </div>
+                                            <a style="display: block;position: absolute;float: left;font-family: arial;color: #fff;text-decoration: none;width: 100%;height: 100px;text-align: center;color:grey" href="@itemin.MenuUrl">
+                                                <span class="menu-collapsed" style="padding-left:20px;margin-top: 25px; display: block;font-size:small">@itemin.MenuNameE<br />@itemin.MenuNameT<br />@itemin.MenuNameJ</span>
+                                                <h6><span class="@itemin.Badges">@itemin.BadgesName</span></h6>
+                                            </a>
+                                        </div>
+                                    </li>
+                                }
+
+
+                            }
+
+                        }
+
+                        GroupCateg = item.GroupCateg;
+                        GroupSub = item.GroupSub;
+                    }
+
+                </ul>
+            </nav>
+        </div>
+    </div>
+</section>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+
+        var limit = 5;
+        var flaghide = true;
+        // hideitem();
+        // Hide submenus
+        $('#body-row .collapse').collapse('hide');
+
+        // Collapse/Expand icon
+        $('#collapse-icon').addClass('fa-angle-double-left');
+
+        // Collapse click
+        $('[data-toggle=sidebar-colapse]').click(function () {
+            SidebarCollapse();
+        });
+
+        function SidebarCollapse() {
+            $('.menu-collapsed').toggleClass('d-none');
+            $('.sidebar-submenu').toggleClass('d-none');
+            $('.submenu-icon').toggleClass('d-none');
+            $('#sidebar-container').toggleClass('sidebar-expanded sidebar-collapsed');
+
+            // Treating d-flex/d-none on separators with title
+            var SeparatorTitle = $('.sidebar-separator-title');
+            if (SeparatorTitle.hasClass('d-flex')) {
+                SeparatorTitle.removeClass('d-flex');
+            } else {
+                SeparatorTitle.addClass('d-flex');
+            }
+
+            // Collapse/Expand icon
+            $('#collapse-icon').toggleClass('fa-angle-double-left fa-angle-double-right');
+        }
+
+
+
+        //function hideitem() {
+        //    $(".list-group-item").each(function (i) {
+        //        if (i <= limit) {
+        //            $(this).addClass('show');
+        //        } else {
+        //            $(this).addClass('add-more');
+        //        }
+        //        $(this).not('.show').hide();
+        //    });
+        //};
+
+
+        //$('.see-emails').click(function () {
+        //    if (flaghide == true) {
+        //        $('.add-more').show();
+        //        flaghide = false;
+        //    } else {
+        //        $('.add-more').hide();
+        //        flaghide = true;
+        //    }
+
+        //});
+    });
+
+</script>

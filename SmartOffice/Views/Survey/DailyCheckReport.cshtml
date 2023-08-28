@@ -1,0 +1,136 @@
+﻿@model System.Data.DataTable
+@using System.Data;
+@{
+    ViewData["Title"] = "DailyCheckReport";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+<style>
+    .dtHorizontalExampleWrapper {
+        max-width: 90vh;
+        margin: 0 auto;
+    }
+
+    #reporttable th, td {
+        white-space: nowrap;
+    }
+
+    table.dataTable thead .sorting:after,
+    table.dataTable thead .sorting:before,
+    table.dataTable thead .sorting_asc:after,
+    table.dataTable thead .sorting_asc:before,
+    table.dataTable thead .sorting_asc_disabled:after,
+    table.dataTable thead .sorting_asc_disabled:before,
+    table.dataTable thead .sorting_desc:after,
+    table.dataTable thead .sorting_desc:before,
+    table.dataTable thead .sorting_desc_disabled:after,
+    table.dataTable thead .sorting_desc_disabled:before {
+        bottom: .5em;
+    }
+</style>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>DailyCheckReport</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="@Url.Action("Index","Survey")">Main</a></li>
+                    <li class="breadcrumb-item active">DailyCheckReport</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+<section class="content">
+
+    <div class="row" style="font-size:10px">
+        <!-- Left col -->
+        <div class="col-xl-12 col-lg-12 col-md-12 p-1">
+
+            <div class="card card-secondary">
+                <!-- /.card-header -->
+                <div class="card-body">
+                    <form role="form" asp-controller="Survey" asp-action="DailyCheckReport" method="post" asp-antiforgery="true">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Division</label>
+                                    @Html.DropDownList("DepName", new SelectList((System.Collections.IEnumerable)ViewData["listitems"], "Value", "Text"), new { @class = "form-control" })
+
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="form-group">
+                                    <label>Department</label>
+                                    @Html.DropDownList("DepName2", new SelectList((System.Collections.IEnumerable)ViewData["listitems2"], "Value", "Text"), new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Section</label>
+                                    @Html.DropDownList("DepName3", new SelectList((System.Collections.IEnumerable)ViewData["listitems3"], "Value", "Text"), new { @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <!-- text input -->
+                                <div class="form-group">
+                                    <label>Employee No.</label>
+                                    @Html.TextBox("Employeeid", "", new { @type = "text", @class = "form-control", @placeholder = "Employee No." })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+
+                            <div class="col-sm-12">
+                                <div class="form-group d-flex justify-content-center">
+                                    <label></label>
+                                    <button type="submit" class="btn btn-info">Search</button>&nbsp;&nbsp;&nbsp;
+                                    <button type="button" onclick="ClearData();" class="btn btn-warning">Clear</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+    </div>
+    <div class="row" style="font-size:10px">
+        <!-- Left col -->
+        <div class="col-xl-12 col-lg-12 col-md-12 p-1">
+            <div class="card card-info">
+
+                <div class="card-body">
+
+                    <table id="reporttable" class="table table-bordered table-sm display nowrap" cellspacing="0" width="100%">
+                        <thead class="thead-dark">
+                            <tr>
+                                @foreach (DataColumn col in Model.Columns)
+                                {
+                                    <th>@col.ColumnName</th>
+                                }
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (DataRow row in Model.Rows)
+                            {
+                                <tr>
+                                    @foreach (DataColumn col in Model.Columns)
+                                    {
+                                        <td>@row[col.ColumnName]</td>
+                                    }
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+<script src="~/js/View/Survey/DailyCheckReport.js"></script>
+}

@@ -1,0 +1,1530 @@
+﻿
+@{
+    ViewData["Title"] = "Docs";
+    Layout = "~/Views/Shared/_LayoutHelpdesk.cshtml";
+}
+
+<div class="plato-body">
+    <div class="container-fluid container-fluid-1400 pt-2">
+        <nav aria-label="breadcrumb" class="mt-3">
+            <ol class="breadcrumb p-0 m-0 bg-transparent col-12"><li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-item">Docs</li></ol>
+        </nav>
+
+        <div class="layout">
+            <div class="layout-header layout-header-sticky" style="height: 109px;">
+                <div class="layout-header-content" style="width: auto;">
+                    <div class="float-right layout-tools">
+
+
+                        <a class="btn btn-primary" title="New Doc"  href="../EHelpdesk/NewDoc">
+                            <i class="fas fa-fw fa-plus"></i>
+                            New Doc
+                        </a>
+
+                    </div>
+                    <div class="layout-header-item">
+
+                        <h4>Docs</h4>
+                        <span class="text-muted">Browse all our product documentation.</span>
+                        <hr>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="layout-body">
+                <div class="row gutter-sm">
+                    <div class="col-lg-3 layout-sidebar layout-sidebar-sticky">
+                        <div class="layout-sidebar-content" style="bottom: 0px; top: auto; width: auto;">
+                            <div class="card">
+                                <div class="card-body p-2">
+                                    <div class="d-block navbar-expand-lg">
+                                        <a href="#" class="w-100 navbar-toggler p-0 border-0 bg-transparent" data-toggle="collapse" data-target="#sidebar-collapse" aria-controls="sidebar-collapse" aria-expanded="fasse" aria-label="Toggle navigation" role="button">
+                                            <span class="btn btn-block btn-primary mb-3">
+                                                <i class="fas fa-bars"></i> Table of contents
+                                            </span>
+                                        </a>
+                                        <div class="navbar-collapse collapse" id="sidebar-collapse" role="navigation">
+
+                                            <div class="mb-2">
+
+                                                <div class="position-absolute" style="right: 0; z-index: 1;">
+                                                    <a class="btn btn-sm text-muted" data-toggle="tooltip" title="" href="/EHelpdesk/NewDoc" data-original-title="New Doc">
+                                                        <i class="fas fa-fw fa-plus"></i>
+                                                    </a>
+                                                </div>
+
+
+                                                <div class="dropdown">
+                                                    <a href="#" class="btn btn-sm" id="allCategoriesDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="fasse" data-display="static">
+                                                        All Categories        <i class="fas fa-chevron-down"></i>
+                                                    </a>
+                                                    <div class="dropdown-menu w-100 anim anim-2x anim-scale-in" aria-labelledby="allCategoriesDropdown">
+                                                        <div class="max-h-300 overflow-auto">
+                                                            <div class="list-group list-group-flush list-group-hover">
+
+
+                                                                <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/docs/categories/53/example-category-257">
+                                                                    Example Category 257
+                                                                </a>
+                                                                <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/docs/categories/54/example-category-1505">
+                                                                    Example Category 1505
+                                                                </a>
+                                                                <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/docs/categories/55/example-category-374">
+                                                                    Example Category 374
+                                                                </a>
+                                                                <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/docs/categories/56/example-category-1956">
+                                                                    Example Category 1956
+                                                                </a>
+                                                                <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/docs/categories/57/example-category-972">
+                                                                    Example Category 972
+                                                                </a>
+
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                            <div>
+                                                <input type="search" class="form-control" data-provide="filter-list" data-filter-list-empty=".no-channel-results" data-filter-list-target=".tree" placeholder="Search docs...">
+                                            </div>
+                                            <div class="mt-2">
+
+
+
+                                                <div class="tree" data-provide="tree">
+                                                    <ul style="display:block" class="list-group list-group-flush"><li id="-node-803" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 364"><div class="tree-row"><div class="tree-left"><a class="toggler" data-node-id="-node-803" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-803"><a href="/docs/d/803/example-doc-364">Example Doc 364</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-857" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 627"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div><a class="toggler" data-node-id="-node-857" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-857"><a href="/docs/d/857/example-doc-627">Example Doc 627</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-1039" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 505"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-1039"><a href="/docs/d/1039/example-doc-505">Example Doc 505</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-977" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1575"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-977"><a href="/docs/d/977/example-doc-1575">Example Doc 1575</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-858" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1142"><div class="tree-row"><div class="tree-left"><a class="toggler" data-node-id="-node-858" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-858"><a href="/docs/d/858/example-doc-1142">Example Doc 1142</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-859" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1157"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div><a class="toggler" data-node-id="-node-859" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-859"><a href="/docs/d/859/example-doc-1157">Example Doc 1157</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-980" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1351"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-980"><a href="/docs/d/980/example-doc-1351">Example Doc 1351</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-978" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1588"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div><a class="toggler" data-node-id="-node-978" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-978"><a href="/docs/d/978/example-doc-1588">Example Doc 1588</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-979" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 44"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-979"><a href="/docs/d/979/example-doc-44">Example Doc 44</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-916" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1268"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-916"><a href="/docs/d/916/example-doc-1268">Example Doc 1268</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-863" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 603"><div class="tree-row"><div class="tree-left"><a class="toggler" data-node-id="-node-863" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-863"><a href="/docs/d/863/example-doc-603">Example Doc 603</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-983" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1159"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-983"><a href="/docs/d/983/example-doc-1159">Example Doc 1159</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-981" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 565"><div class="tree-row"><div class="tree-left"><a class="toggler" data-node-id="-node-981" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-981"><a href="/docs/d/981/example-doc-565">Example Doc 565</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-982" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1602"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-982"><a href="/docs/d/982/example-doc-1602">Example Doc 1602</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li><li id="-node-985" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 368"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-985"><a href="/docs/d/985/example-doc-368">Example Doc 368</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-984" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 877"><div class="tree-row"><div class="tree-left"><a class="toggler" data-node-id="-node-984" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-984"><a href="/docs/d/984/example-doc-877">Example Doc 877</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-1036" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 601"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-1036"><a href="/docs/d/1036/example-doc-601">Example Doc 601</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-1037" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1153"><div class="tree-row"><div class="tree-left"><a class="toggler" data-node-id="-node-1037" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-1037"><a href="/docs/d/1037/example-doc-1153">Example Doc 1153</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-1044" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 421"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div><a class="toggler" data-node-id="-node-1044" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-1044"><a href="/docs/d/1044/example-doc-421">Example Doc 421</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-1096" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1992"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-1096"><a href="/docs/d/1096/example-doc-1992">Example Doc 1992</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-1041" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 575"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-1041"><a href="/docs/d/1041/example-doc-575">Example Doc 575</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-1042" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1739"><div class="tree-row"><div class="tree-left"><a class="toggler" data-node-id="-node-1042" data-toggle="tree" href="#"><i class="fas fa-chevron-right"></i></a></div><div class="tree-body"><label for="-check-1042"><a href="/docs/d/1042/example-doc-1739">Example Doc 1739</a></label></div></div><ul style="display:none" class="list-group list-group-flush"><li id="-node-1101" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 963"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-1101"><a href="/docs/d/1101/example-doc-963">Example Doc 963</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li><li id="-node-1097" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 901"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-1097"><a href="/docs/d/1097/example-doc-901">Example Doc 901</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li><li id="-node-1045" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 84"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-1045"><a href="/docs/d/1045/example-doc-84">Example Doc 84</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li><li id="-node-1099" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 230"><div class="tree-row"><div class="tree-left"><div class="toggler"><i class="fas"></i></div></div><div class="tree-body"><label for="-check-1099"><a href="/docs/d/1099/example-doc-230">Example Doc 230</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul></li><li id="-node-1100" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1082"><div class="tree-row"><div class="tree-left"></div><div class="tree-body"><label for="-check-1100"><a href="/docs/d/1100/example-doc-1082">Example Doc 1082</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li><li id="-node-1102" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1019"><div class="tree-row"><div class="tree-left"></div><div class="tree-body"><label for="-check-1102"><a href="/docs/d/1102/example-doc-1019">Example Doc 1019</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li><li id="-node-1103" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1639"><div class="tree-row"><div class="tree-left"></div><div class="tree-body"><label for="-check-1103"><a href="/docs/d/1103/example-doc-1639">Example Doc 1639</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li><li id="-node-1104" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1459"><div class="tree-row"><div class="tree-left"></div><div class="tree-body"><label for="-check-1104"><a href="/docs/d/1104/example-doc-1459">Example Doc 1459</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li><li id="-node-1105" class="list-group-item list-group-item-action" data-filter-list-value="Example Doc 1433"><div class="tree-row"><div class="tree-left"></div><div class="tree-body"><label for="-check-1105"><a href="/docs/d/1105/example-doc-1433">Example Doc 1433</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li><li id="-node-1147" class="list-group-item list-group-item-action" data-filter-list-value="nbvnvbnvb"><div class="tree-row"><div class="tree-left"></div><div class="tree-body"><label for="-check-1147"><a href="/docs/d/1147/nbvnvbnvb">nbvnvbnvb</a></label></div></div><ul style="display:none" class="list-group list-group-flush"></ul></li></ul>
+                                                </div>
+
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-9 layout-content" style="min-height: 3098px;">
+
+
+                        <div class="card card-body-flush">
+                            <div class="card-header">
+                                <h6 class="card-title d-inline-block">Categories</h6>
+                            </div><div class="card-body">
+                                <div class="list-group list-group-flush list-group-hover">
+                                    <div class="row no-gutters">
+                                        <div class="float-left list-group-item list-group-item-action col-lg-4 col-md-6 col-sm-12 border-0 m-0 p-0">
+
+                                            <a class="list-group-item-action d-block p-3 text-center" href="/docs/categories/53/example-category-257">
+                                                <div class="p-3">
+                                                    <div class="icon-wrapper icon-wrapper-lg" style="background-color: #FF817F; color: #ffffff">
+                                                        <i class="fas fa-user-plus"></i>
+                                                    </div>
+                                                    <h6 class="d-block mt-2">
+                                                        Example Category 257
+                                                    </h6>
+
+                                                    <div class="btn btn-secondary">
+                                                        5 docs
+                                                    </div>
+
+                                                </div>
+                                            </a>
+
+
+                                        </div>
+                                        <div class="float-left list-group-item list-group-item-action col-lg-4 col-md-6 col-sm-12 border-0 m-0 p-0">
+
+                                            <a class="list-group-item-action d-block p-3 text-center" href="/docs/categories/54/example-category-1505">
+                                                <div class="p-3">
+                                                    <div class="icon-wrapper icon-wrapper-lg" style="background-color: #6AC494; color: #ffffff">
+                                                        <i class="fas fa-map-marker"></i>
+                                                    </div>
+                                                    <h6 class="d-block mt-2">
+                                                        Example Category 1505
+                                                    </h6>
+
+                                                    <div class="btn btn-secondary">
+                                                        0 docs
+                                                    </div>
+
+                                                </div>
+                                            </a>
+
+
+                                        </div>
+                                        <div class="float-left list-group-item list-group-item-action col-lg-4 col-md-6 col-sm-12 border-0 m-0 p-0">
+
+                                            <a class="list-group-item-action d-block p-3 text-center" href="/docs/categories/55/example-category-374">
+                                                <div class="p-3">
+                                                    <div class="icon-wrapper icon-wrapper-lg" style="background-color: #00F19A; color: #ffffff">
+                                                        <i class="fas fa-file-word"></i>
+                                                    </div>
+                                                    <h6 class="d-block mt-2">
+                                                        Example Category 374
+                                                    </h6>
+
+                                                    <div class="btn btn-secondary">
+                                                        0 docs
+                                                    </div>
+
+                                                </div>
+                                            </a>
+
+
+                                        </div>
+                                        <div class="float-left list-group-item list-group-item-action col-lg-4 col-md-6 col-sm-12 border-0 m-0 p-0">
+
+                                            <a class="list-group-item-action d-block p-3 text-center" href="/docs/categories/56/example-category-1956">
+                                                <div class="p-3">
+                                                    <div class="icon-wrapper icon-wrapper-lg" style="background-color: #D96EBF; color: #ffffff">
+                                                        <i class="fas fa-hourglass-end"></i>
+                                                    </div>
+                                                    <h6 class="d-block mt-2">
+                                                        Example Category 1956
+                                                    </h6>
+
+                                                    <div class="btn btn-secondary">
+                                                        0 docs
+                                                    </div>
+
+                                                </div>
+                                            </a>
+
+
+                                        </div>
+                                        <div class="float-left list-group-item list-group-item-action col-lg-4 col-md-6 col-sm-12 border-0 m-0 p-0">
+
+                                            <a class="list-group-item-action d-block p-3 text-center" href="/docs/categories/57/example-category-972">
+                                                <div class="p-3">
+                                                    <div class="icon-wrapper icon-wrapper-lg" style="background-color: #ACC759; color: #ffffff">
+                                                        <i class="fas fa-hashtag"></i>
+                                                    </div>
+                                                    <h6 class="d-block mt-2">
+                                                        Example Category 972
+                                                    </h6>
+
+                                                    <div class="btn btn-secondary">
+                                                        0 docs
+                                                    </div>
+
+                                                </div>
+                                            </a>
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+                        <div class="card card-body-flush">
+                            <div class="card-header">
+                                <h6 class="card-title float-left">Docs</h6>
+                                <ul class="nav navbar p-0 float-right">
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link text-muted dropdown-toggle" href="#" id="filterDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="fasse">
+                                            Filter
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right anim anim-2x anim-scale-in" aria-labelledby="filterDropDown">
+                                            <div class="min-w-200 max-h-250 overflow-auto">
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=All">
+                                                    <i class="fas fa-fw fa-check"></i>
+                                                    All
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=Started">
+                                                    <i class="fas fa-fw"></i>
+                                                    Started
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=Participated">
+                                                    <i class="fas fa-fw"></i>
+                                                    Participated
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=Following">
+                                                    <i class="fas fa-fw"></i>
+                                                    Following
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=Starred">
+                                                    <i class="fas fa-fw"></i>
+                                                    Starred
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=Unanswered">
+                                                    <i class="fas fa-fw"></i>
+                                                    Unanswered
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=NoReplies">
+                                                    <i class="fas fa-fw"></i>
+                                                    No Replies
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a class="nav-link text-muted dropdown-toggle" href="#" id="sortByDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="fasse">
+                                            Sort
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right anim anim-2x anim-scale-in" aria-labelledby="sortByDropdown">
+                                            <div class="min-w-200 max-h-250 overflow-auto">
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=LastReply">
+                                                    <i class="fas fa-fw fa-check"></i>
+                                                    Latest
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=Popular">
+                                                    <i class="fas fa-fw"></i>
+                                                    Popular
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=Replies">
+                                                    <i class="fas fa-fw"></i>
+                                                    Comments
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=Views">
+                                                    <i class="fas fa-fw"></i>
+                                                    Views
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=Participants">
+                                                    <i class="fas fa-fw"></i>
+                                                    Participants
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=Reactions">
+                                                    <i class="fas fa-fw"></i>
+                                                    Reactions
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=Follows">
+                                                    <i class="fas fa-fw"></i>
+                                                    Follows
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=Stars">
+                                                    <i class="fas fa-fw"></i>
+                                                    Stars
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=Created">
+                                                    <i class="fas fa-fw"></i>
+                                                    Created
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=Modified">
+                                                    <i class="fas fa-fw"></i>
+                                                    Modified
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=LastReply&amp;opts.order=Desc">
+                                                    <i class="fas fa-fw fa-check"></i>
+                                                    Descending
+                                                </a>
+                                                <a class="dropdown-item px-2" href="/docs?opts.sort=LastReply&amp;opts.order=Asc">
+                                                    <i class="fas fa-fw"></i>
+                                                    Ascending
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div><div class="card-body">
+
+                                <ul data-provide="infiniteScroll" data-infinite-scroll-url="/docs" data-infinite-scroll-offset="0" data-infinite-scroll-row-offset="1" data-infinite-scroll-page="1" data-infinite-scroll-total-pages="4" class="list-group list-group-flush list-group-hover infinite-scroll">
+                                    <li class="list-group-item infinite-scroll-loader" data-type="previous"></li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="1" data-infinite-scroll-highlight="1">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                2 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1147/nbvnvbnvb">nbvnvbnvb</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                vbcvbcvb
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="3/6/2020 9:04:21 AM">22 minutes ago</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span class="badge badge-warning" data-toggle="tooltip" title="" data-original-title="This doc is private and only visible as you are the doc author">Private</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="2" data-infinite-scroll-highlight="2">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                33 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1105/example-doc-1433">Example Doc 1433</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1105/example-doc-1433/28956">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:56:01 PM">11/13/2019 2:56:01 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:56:00 PM">11/13/2019 2:56:00 PM</span>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="3" data-infinite-scroll-highlight="3">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                18 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1104/example-doc-1459">Example Doc 1459</a>
+                                                <span class="pl-2">
+                                                    <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #96B98D; color: #ffffff" href="/docs/label/132/example-label-1498">
+                                                        Example Label 1498
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1104/example-doc-1459/28931">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:56:00 PM">11/13/2019 2:56:00 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:59 PM">11/13/2019 2:55:59 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'webworkers' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1592/webworkers">
+                                                            webworkers
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="4" data-infinite-scroll-highlight="4">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                22 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1103/example-doc-1639">Example Doc 1639</a>
+                                                <span class="pl-2">
+                                                    <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #8D9FF0; color: #ffffff" href="/docs/label/140/example-label-363">
+                                                        Example Label 363
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1103/example-doc-1639/28906">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:59 PM">11/13/2019 2:55:59 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:58 PM">11/13/2019 2:55:58 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'input-validation' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1597/input-validation">
+                                                            input-validation
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="5" data-infinite-scroll-highlight="5">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                25 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1102/example-doc-1019">Example Doc 1019</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1102/example-doc-1019/28881">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:58 PM">11/13/2019 2:55:58 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:57 PM">11/13/2019 2:55:57 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'azure-app-service' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1544/azure-app-service">
+                                                            azure-app-service
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="6" data-infinite-scroll-highlight="6">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                14 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1101/example-doc-963">Example Doc 963</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1101/example-doc-963/28856">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:57 PM">11/13/2019 2:55:57 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 3:01:47 PM">11/13/2019 3:01:47 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'mysql-server' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1554/mysql-server">
+                                                            mysql-server
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="7" data-infinite-scroll-highlight="7">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                22 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1100/example-doc-1082">Example Doc 1082</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1100/example-doc-1082/28831">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:56 PM">11/13/2019 2:55:56 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:55 PM">11/13/2019 2:55:55 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'intel-c++' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1546/intel-c">
+                                                            intel-c++
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="8" data-infinite-scroll-highlight="8">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                16 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1099/example-doc-230">Example Doc 230</a>
+                                                <span class="pl-2">
+                                                    <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #BAC44A; color: #ffffff" href="/docs/label/80/example-label-1410">
+                                                        Example Label 1410
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1099/example-doc-230/28806">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:55 PM">11/13/2019 2:55:55 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 3:03:09 PM">11/13/2019 3:03:09 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'lookahead' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1615/lookahead">
+                                                            lookahead
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="9" data-infinite-scroll-highlight="9">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                14 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1098/example-doc-1319">Example Doc 1319</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1098/example-doc-1319/28781">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:53 PM">11/13/2019 2:55:53 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span>In</span>
+                                                        <a href="/docs/categories/54/example-category-1505">
+                                                            Example Category 1505
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:57:40 PM">11/13/2019 2:57:40 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'slicing' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1540/slicing">
+                                                            slicing
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="10" data-infinite-scroll-highlight="10">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                18 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1097/example-doc-901">Example Doc 901</a>
+                                                <span class="pl-2">
+                                                    <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #7397BE; color: #ffffff" href="/docs/label/137/example-label-1330">
+                                                        Example Label 1330
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1097/example-doc-901/28756">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:52 PM">11/13/2019 2:55:52 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 3:02:09 PM">11/13/2019 3:02:09 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'push-notifications' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1643/push-notifications">
+                                                            push-notifications
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="11" data-infinite-scroll-highlight="11">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                16 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1096/example-doc-1992">Example Doc 1992</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1096/example-doc-1992/28731">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:51 PM">11/13/2019 2:55:51 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/25/2019 4:52:41 PM">3 months ago</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'sql-server' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1538/sql-server">
+                                                            sql-server
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="12" data-infinite-scroll-highlight="12">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                24 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1045/example-doc-84">Example Doc 84</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1045/example-doc-84/27456">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:17 PM">11/8/2019 12:03:17 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 3:02:36 PM">11/13/2019 3:02:36 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'windows-server-2019' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1556/windows-server-2019">
+                                                            windows-server-2019
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="13" data-infinite-scroll-highlight="13">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                21 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1044/example-doc-421">Example Doc 421</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1044/example-doc-421/27431">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:15 PM">11/8/2019 12:03:15 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 3:00:55 PM">11/13/2019 3:00:55 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'powershell' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1579/powershell">
+                                                            powershell
+                                                        </a>
+                                                        <a title="An example desccription for the 'flickr-api' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1588/flickr-api">
+                                                            flickr-api
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="14" data-infinite-scroll-highlight="14">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                21 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1043/example-doc-1218">Example Doc 1218</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1043/example-doc-1218/27406">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:14 PM">11/8/2019 12:03:14 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span>In</span>
+                                                        <a href="/docs/categories/55/example-category-374">
+                                                            Example Category 374
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:57:40 PM">11/13/2019 2:57:40 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'mysql-server' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1554/mysql-server">
+                                                            mysql-server
+                                                        </a>
+                                                        <a title="An example desccription for the 'ptr' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1553/ptr">
+                                                            ptr
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="15" data-infinite-scroll-highlight="15">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                42 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1042/example-doc-1739">Example Doc 1739</a>
+                                                <span class="pl-2">
+                                                    <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #D4503E; color: #ffffff" href="/docs/label/73/example-label-123">
+                                                        Example Label 123
+                                                    </a>
+                                                    <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #6E85D9; color: #ffffff" href="/docs/label/71/example-label-259">
+                                                        Example Label 259
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1042/example-doc-1739/27381">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:13 PM">11/8/2019 12:03:13 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:11 PM">11/8/2019 12:03:11 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'sql' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1537/sql">
+                                                            sql
+                                                        </a>
+                                                        <a title="An example desccription for the 'udf' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1535/udf">
+                                                            udf
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="16" data-infinite-scroll-highlight="16">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                17 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1041/example-doc-575">Example Doc 575</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1041/example-doc-575/27356">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:11 PM">11/8/2019 12:03:11 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 3:01:23 PM">11/13/2019 3:01:23 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'performance-tuning' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1559/performance-tuning">
+                                                            performance-tuning
+                                                        </a>
+                                                        <a title="An example desccription for the 'spark-sql' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1536/spark-sql">
+                                                            spark-sql
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="17" data-infinite-scroll-highlight="17">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                33 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1040/example-doc-658">Example Doc 658</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1040/example-doc-658/27331">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:10 PM">11/8/2019 12:03:10 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span>In</span>
+                                                        <a href="/docs/categories/54/example-category-1505">
+                                                            Example Category 1505
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:05:28 PM">11/8/2019 12:05:28 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'app-store' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1580/app-store">
+                                                            app-store
+                                                        </a>
+                                                        <a title="An example desccription for the 'data-uri-scheme' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1542/data-uri-scheme">
+                                                            data-uri-scheme
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="18" data-infinite-scroll-highlight="18">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                41 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1039/example-doc-505">Example Doc 505</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1039/example-doc-505/27306">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:08 PM">11/8/2019 12:03:08 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/13/2019 3:00:27 PM">11/13/2019 3:00:27 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'php-mysqli' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1557/php-mysqli">
+                                                            php-mysqli
+                                                        </a>
+                                                        <a title="An example desccription for the 'data-uri-scheme' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1542/data-uri-scheme">
+                                                            data-uri-scheme
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="19" data-infinite-scroll-highlight="19">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                21 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1038/example-doc-753">Example Doc 753</a>
+                                                <span class="pl-2">
+                                                    <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #E6DF6B; color: #ffffff" href="/docs/label/78/example-label-672">
+                                                        Example Label 672
+                                                    </a>
+                                                    <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #6E85D9; color: #ffffff" href="/docs/label/74/example-label-1405">
+                                                        Example Label 1405
+                                                    </a>
+                                                </span>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1038/example-doc-753/27281">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:07 PM">11/8/2019 12:03:07 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span>In</span>
+                                                        <a href="/docs/categories/54/example-category-1505">
+                                                            Example Category 1505
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:05:28 PM">11/8/2019 12:05:28 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'udf' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1535/udf">
+                                                            udf
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item list-group-item-action p-0">
+                                        <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="20" data-infinite-scroll-highlight="20">
+
+                                            <div>
+                                                <div class="float-right text-right">
+                                                    <ol class="list-inline text-muted">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Comments">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                21 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+                                                </div>
+                                                <a class="font-weight-bold" href="/docs/d/1037/example-doc-1153">Example Doc 1153</a>
+                                            </div>
+                                            <div class="text-muted">
+                                                Hi There,
+                                                This is just a sample doc to demonstrate how the &amp;quot;Plato.Docs&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Docs works.
+                                                Messages within...
+                                            </div>
+                                            <div>
+
+                                                <ul class="list-inline float-right">
+                                                    <li class="list-inline-item">
+                                                        <a href="/docs/g/1037/example-doc-1153/27256">
+                                                            <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:06 PM">11/8/2019 12:03:06 PM</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <div class="avatar-group">
+                                                        </div>
+                                                    </li>
+
+                                                </ul>
+
+                                                <ul class="list-inline">
+                                                    <li class="list-inline-item">
+                                                        <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:05 PM">11/8/2019 12:03:05 PM</span>
+                                                    </li>
+                                                    <li class="list-inline-item">
+                                                        <a title="An example desccription for the 'percent-encoding' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1534/percent-encoding">
+                                                            percent-encoding
+                                                        </a>
+                                                        <a title="An example desccription for the 'codecs' tag within 'Plato.Docs'." class="btn btn-xs label font-weight-bold" href="/docs/tag/1563/codecs">
+                                                            codecs
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item infinite-scroll-loader" data-type="next"></li>
+                                </ul>
+                            </div>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="layout-footer">
+            </div>
+        </div>
+
+        <footer>
+            <hr class="mb-0">
+            <div class="row py-4">
+                <div class="col-lg-6">
+                    <p>© Plato 2020</p>
+                </div>
+                <div class="col-lg-6 text-lg-right">
+                    <p>
+                        <a href="https://www.instantasp.co.uk/" target="_blank" class="text-muted">
+                            Powered by Plato 1.1.0 Final
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+

@@ -1,0 +1,70 @@
+﻿@model SmartOffice.SurveyApp.ViewModel.FormModel;
+@{
+    ViewData["Title"] = "InputForm";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+
+<section class="content">
+    <div class="container p-3">
+        <div class="row">
+            <div class="col-md-12">
+                @using (Html.BeginForm("SaveForm", "Survey", FormMethod.Post, new { @id = "SaveForm", @role = "form" }))
+                {
+                    @Html.Hidden("ItemCateg", Model.ItemCateg)
+                    @Html.Hidden("OperationCode", Model.OperationCode)
+                    @Html.Hidden("OperationName", Model.OperationName)
+                    @Html.Hidden("OperatorType", Model.OperatorType)
+                    @*@Html.Hidden("KeyTime", Model.KeyTime)*@
+                    <div class="card card-outline card-warning">
+                        <div class="card-header">
+
+                            <h2 class="card-title"> @Model.ItemCategory.ItemCategName </h2>
+                            @{
+                                if (!String.IsNullOrEmpty(Model.ItemCategory.RemarksTitle1))
+                                {
+                                    <br />
+                                    <div style="color:@Model.ItemCategory.RemarksColor1"> @Model.ItemCategory.ItemCategName </div>
+                                }
+                                if (!String.IsNullOrEmpty(Model.ItemCategory.RemarksTitle2))
+                                {
+                                    <div style="color:@Model.ItemCategory.RemarksColor2"> @Model.ItemCategory.ItemCategName </div>
+                                }
+                                if (!String.IsNullOrEmpty(Model.ItemCategory.RemarksTitle3))
+                                {
+                                    <div style="color:@Model.ItemCategory.RemarksColor3"> @Model.ItemCategory.ItemCategName </div>
+                                }
+                                if (!String.IsNullOrEmpty(Model.ItemCategory.RemarksTitle4))
+                                {
+                                    <div style="color:@Model.ItemCategory.RemarksColor4"> @Model.ItemCategory.ItemCategName </div>
+                                }
+                                if (!String.IsNullOrEmpty(Model.ItemCategory.RemarksTitle5))
+                                {
+                                    <div style="color:@Model.ItemCategory.RemarksColor5"> @Model.ItemCategory.ItemCategName </div>
+                                }
+
+                            }
+                            @*<br />
+                            <label>KeyTime</label>
+                            <div class="form-group">
+                                @Html.TextBox("KeyTime", @Model.KeyTime, new { @type = "text", @class = "form-control dateinput", @placeholder = "Your Text" })
+                            </div>*@
+                        </div>
+                    </div>
+
+
+                    @*@await Html.PartialAsync("_HeaderForm", Model.ItemCategory)*@
+                    @await Html.PartialAsync("_FormItems", Model.ItemCategory.InputItems)
+                    <div class="d-flex justify-content-center">
+                        <button type="submit" id="savedata" class="btn btn-success btn-lg">Save</button>&nbsp;&nbsp;
+                        <a href="@Url.Action("index","Survey")" class="btn btn-danger btn-lg">Close</a>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts{
+<script src="~/js/View/Survey/FormInput.js"></script>
+}
+

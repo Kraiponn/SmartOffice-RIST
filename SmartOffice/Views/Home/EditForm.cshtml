@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewData["Title"] = "Update Form";
+}
+<link href="~/lib/formio.full.min.css" rel="stylesheet" />
+<link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<h1>CreateForm</h1>
+
+<div id='builder'></div>
+<div class="col-sm-8">
+    <div id="builder" class="null null formio-form row formbuilder">
+    </div>
+
+</div>
+
+<button type="button" id="saveform" class="btn btn-primary btn-lg btn-block">Update Form</button>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/formio.full.min.js"></script>
+<script type='text/javascript'>
+        var id='@ViewBag.id';
+        var sc='';
+    window.onload = function () {
+
+
+
+         $.get("../GetForm", { id: id })
+            .done(function (json) {
+               
+                Formio.builder(document.getElementById('builder'), json).then(function (builder) {
+                    sc = builder.schema;
+                    builder.on('saveComponent', function () {
+                        console.log(builder);
+                        sc = builder.schema;
+                    });
+                });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var error = textStatus + ", " + error;
+                // warningBR(error, "Request Failed!!");
+
+            });
+            //Formio.builder(document.getElementById('builder'));
+          
+        };
+
+        $("#saveform").on('click', function () {;
+            $.post("../UpdateForm", { jsondata: JSON.stringify(sc),id:id })
+                .done(function (json) {
+
+                })
+                .fail(function (jqxhr, textStatus, error) {
+                    var error = textStatus + ", " + error;
+                    // warningBR(error, "Request Failed!!");
+
+                });
+
+        });
+
+
+
+
+
+</script>

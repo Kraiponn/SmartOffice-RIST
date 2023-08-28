@@ -1,0 +1,109 @@
+﻿@model SmartOffice.eManagement.Models.TupleJournalVoucher
+@{
+    ViewData["Title"] = "JournalVoucher";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+
+    <style>
+        .ui-datepicker-calendar {
+            display: none;
+        }
+    </style>
+}
+<div class="row">
+    <div class="col-md-12">
+        @{Html.BeginForm("Loaddataexport", "JournalVoucher", FormMethod.Post);
+            {
+                <div class="row">
+                    <div class="col-md-4 form-group text-center">
+                        <h5 class="font-weight-bold" style="border:solid;">Journal Voucher</h5><br />
+                        <label>To be submitted to Accounting Division</label><br />
+                        <label>Issuing Section -> Accounting Division</label>
+                    </div>
+                    <div class="col-md-4 form-group text-center">
+                        <label>Month Period</label>
+                        <div class="input-group date" id="divmonthperiod">
+                            <input type="text" id="txtmonthperiod" name="monthperiod" class="form-control date-picker" required/>
+                        </div>
+                    </div>
+                    <div class="col-md-4 form-group text-center">
+                        <label>Section Code</label>
+                        <div class="" id="divsectioncode">
+
+                            @Html.DropDownList("seccode", Model.ddlSectionCodeList, "- Please select -", new { @class = "form-control", @id = "ddlseccode" , required = "required" })
+                            @Html.ValidationMessage("seccode")
+
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="text-center">
+
+                    <button type="button" class="btn btn-outline-danger btnpage" id="btnmaking">
+                        JournalVoucher Making
+                    </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="submit" value="JournalVoucher Export" class="btn btn-outline-primary btnpage" id="btnexport" />
+
+                </div>
+            }
+            Html.EndForm();
+        }
+        <div class="row  card">
+            <div class="form-group" id="divloadmaking">
+                <table class="table table-bordered table-hover table-striped dt-responsive display table-sm" cellspacing="0" style="width:100%" id="tableloadmaking">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>SectionCode</th>
+                            <th>DisplayOrder</th>
+                            <th>Text</th>
+                            <th>Tax Class</th>
+                            <th>Code # of section in charge</th>
+                            <th>Account No.</th>
+                            <th>Account Name</th>
+                            <th>Amount</th>
+                            <th>Remarks</th>
+                            <th>Suspense Account No.</th>
+                            <th>Costomer Supplier Employee Code</th>
+                            <th>Costomer Supplier Employee Name</th>
+                            <th>Resume</th>
+                            <th>TaxEx</th>
+                            <th>TaxArea</th>
+                            <th>SubledgerType</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                    <tfoot>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+    </script>
+
+    <script src="~/js/View/JournalVoucherControl/JournalVoucher.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

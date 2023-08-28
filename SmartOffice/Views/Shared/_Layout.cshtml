@@ -1,0 +1,342 @@
+﻿@{
+
+    var username = "";
+    var Namempe = "";
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        username = User.Claims.FirstOrDefault(c => c.Type == "UserName").Value;
+        Namempe = User.Claims.FirstOrDefault(c => c.Type == "Namempe").Value;
+    }
+    else
+    {
+        username = "000000";
+    }
+    var img = username + ".jpg";
+
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AdmSOffice</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="~/image/Favicons.png" rel="icon">
+    <link href="~/Avilon/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="~/Avilon/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/Avilon/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="~/Avilon/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/Avilon/lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="~/Avilon/css/style.css" rel="stylesheet">
+
+
+    <link href="~/css/fontawesome-free-5.8.1-web/css/all.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/OwlCarousel/dist/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/OwlCarousel/dist/assets/owl.theme.green.min.css" rel="stylesheet" />
+    <link href="~/css/pagination.css" rel="stylesheet" />
+    <link href="~/MDB/css/mdb.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Prompt",-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 0.82rem;
+            font-weight: 400;
+            line-height: 1.4;
+            /*color: #212529;*/
+            text-align: left;
+            background-color: #ffffff;
+        }
+
+        div.ex1 {
+            padding-left: 100px;
+        }
+
+        #aaa {
+            /*background: linear-gradient(45deg, #1de099, #1dc8cd);
+            padding: 20px 0;
+            height: 72px;
+            transition: all 0.5s;
+            padding: 30px 0;*/
+            /*height: 92px;*/
+            position: fixed;
+            left: 0;
+            top: 0;
+            right: 0;
+            transition: all 0.5s;
+            z-index: 997;
+            color: white;
+        }
+
+            #aaa.header-fixed {
+                background: linear-gradient(45deg, #1de099, #1dc8cd);
+                padding: 20px 0;
+                /*height: 72px;*/
+                transition: all 0.5s;
+            }
+
+        /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+        @@media screen and (min-width: 1281px) {
+            .responsFont {
+                font-size: 0.8em
+            }
+        }
+
+        /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+        @@media screen and (max-width: 1280px) {
+            .responsFont {
+                font-size: 0.85em
+            }
+        }
+
+        @@media screen and (max-width:640px) {
+            .responsFont {
+                font-size: 0.6em
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!--==========================
+      Header
+    ============================-->
+
+
+    <nav id="aaa" class="main-header navbar navbar-expand-md navbar-light navbar-white" style="background: linear-gradient(45deg, #1de099, #1dc8cd);">
+
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">
+            <img src="~/image/logo-smart.png" alt="Logo" style="width:250px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+                aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @(await Component.InvokeAsync("MenuCMMHeaderControl", new { newstyle = "Normal" }))
+                </li>
+
+
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item">
+                    @(await Component.InvokeAsync("SmartSearchControl"))
+                </li>
+
+                @if (User.Identity.IsAuthenticated == false)
+                {
+                    <li class="nav-item  ">
+                        <p class="mb-0"><a id="navbar-static-login" asp-area="Identity" asp-page="/Account/login" class="nav-link  waves-effect" style="color:white;"><i class="fas fa-sign-in-alt"></i> Sign In/Register </a></p>
+                    </li>
+
+                }
+                else
+                {
+                    <li class="nav-item dropdown open" style="padding-left: 15px;">
+                        <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false" style="color:white;">
+                            <img src="~/image/User/@img" alt="" style="width:40px" class="rounded-circle">@Namempe
+                        </a>
+                        <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+
+
+                            <a class="dropdown-item" href="../Home/Privacy"><i class="fas fa-user-cog"></i> Profile</a>
+
+
+                            <a href="javascript:$('#logout_form').submit();" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+
+                            <form class="form-inline" id="logout_form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"></form>
+
+
+
+                        </div>
+                    </li>
+                }
+
+
+            </ul>
+        </div>
+
+    </nav>
+    <!-- #header -->
+
+
+    <main id="main">
+        @RenderBody()
+    </main>
+
+    <!--==========================
+      Footer
+    ============================-->
+
+
+    <footer id="contact" style="background-color:#fff">
+
+        @(await Component.InvokeAsync("MenuCMMFooterControl"))
+
+    </footer><!-- #footer -->
+    <!--[if lte IE 9]>
+    <div id="modalBrowserUnsupported" class="modal fade browser-modal-lg" tabindex="-1" role="dialog" aria-labelledby="browserModal" aria-describedby="browserUnsupportedInfo">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body text-center">
+                    <h3>Please update your browser</h3>
+                    <p id="browserUnsupportedInfo">myWebsite is built using the latest web technology. This makes it faster, easier-to-use and also more secure.<br><br>
+                    Unfortunately your browser does not support these technologies.</p>
+                    <h4>Click to download one of these browsers below</h4>
+
+                    <div class="row">
+                        <div class="col-xs-6 col-sm-3">
+
+                            <div class="inner">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0VFRkFCMEJCQUJGMTFFMzk5NjVENjUwNDQ0OEU2MkQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0VFRkFCMENCQUJGMTFFMzk5NjVENjUwNDQ0OEU2MkQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozRUVGQUIwOUJBQkYxMUUzOTk2NUQ2NTA0NDQ4RTYyRCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozRUVGQUIwQUJBQkYxMUUzOTk2NUQ2NTA0NDQ4RTYyRCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgMQyI8AAAv7SURBVHjarFl7jFXF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" alt="Chrome Logo Image">
+                                <strong>Google Chrome</strong>
+                                <span class="btn btn-primary btn-sm">Recommended</span>
+                                <h5>About Chrome</h5>
+                                <p>Great if you use Gmail &amp; Google</p>
+                                <a href="https://www.google.com/chrome" target="_blank">Find out more</a>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+
+                            <div class="inner">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MzYzRjAxQjBCQUJGMTFFM0EzM0ZDMkUzRThDMTE1OEMiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MzYzRjAxQjFCQUJGMTFFM0EzM0ZDMkUzRThDMTE1OEMiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozNjNGMDFBRUJBQkYxMUUzQTMzRkMyRTNFOEMxMTU4QyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozNjNGMDFBRkJBQkYxMUUzQTMzRkMyRTNFOEMxMTU4QyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtBCGUUAAA+ISURBVHjajFlpkB3VeT33dvfb5r03MxqNNBqN0IbQggGJRcjEZTBmCzYVKIqyK4VDxQ5OTKqSIj+cePvp4k9cdspVKbxUKNvxEpuqYCfllAibIZJZJLCQBAIkNFpmNPPmvZl5W+99b87t7pHGwpQZdKv7vdd97+nzfd/5zm3E5CNXY/mflBoWYjy69RfoF1ai7CSwHAuWLWFbEpHWTpxgJQQ+aklxpdJiT5LoSwBR5O0WoKE1Qp57ji2OSaFf8xL9fzrRr0dJ0oqiGAUBRIkD3W7ioeR+rC6/AVW/ASM3fBZh6zmo4DinK6R4bHzAPyHSa3fz7J5E6/uSGOujRCHhUEqnFxBadi3/y456u2WJewqWjITEEX7zw0jhv/i8Jz7ouh8U4FYy9deun3yu78f1XqzgcSWtDdtETnDCEmQ/A6YUeSToRCuEfACLrNcKcteGEWeXLhYfmumG/xrG+t/JUfOPAxTLPmnzT6wVUPMmRDoNubiPWL7Wnveu6PR8tKMEHsEo3mhZBZQZ+qpNoASJ7B9v0il4lcbaPEyCuXYAhzP+2c6RLXKi+s297+COdlt92bH8V0XO/B/6kyriE+eDD7zdUf63XQyu0ZAo2vhSz4++Nz21cMXZU3OYnW6hPd9Bo6Nw1i+jn0QE0odPtmIlsqEJniPm5JEJugHNpFMFidenPPzgyUkM9c/i4Rvi26/ZOvGzI83d/yaQ3Py+DBLUUpYZlA+oyLvHHxj/BWz5l4td958a0y17se0iiCKEjsPCGcDK0hQ+MfQUdgxO43/7d+P14MMY0gkKVsZgRMAmtL5KEHCBhMeS0KjVCzjRiPDFH0/i6/dN4YFrL9vyrPj6lhee8W/9yLXn/kpIa+/FAK2/3T1KXEz0WG3WQfSVsBOPdfvljx8o7/n42+diuzvXQuD10I8EXKeCT9SexD+u+jZuH/4NDi5+CP+5cCcSi8jImQEWGGAJ04BV1GeudhjeuOtD9H2yqbGqYqFcKuOpV+Zx1ehx7Nm5FtOlP62f3P/C7RPi3ZI9Vt2ngiYzzU5JszUnNI/NpN4e9fUWr1NAND8zdN3iNzCxZiPWW5Oo1PuYqY5BSRu3VvdjpLCIA+0r8a0zD2CxXsJQ4jGsVpaHpkiYe6bCPcMeZcXueoi8kOmQoMWcvPvacay75jo8fehVrBv5FW669h48s/jw6Ct7v/q1PcOnG6gVv6MZsZTBv9m1AppPGgX67vasvtNdACqDEltq09glj2It5rAKC9hRmsS28olUnsJiAd+dvR8H4qtRc3oEQ0AEY9gLTFjNMY45LzU0TCB4bobiCFloR4/N4uYrR3Hnh69C6J7CoNiPsQ3X4XirZDnu4c31FTNP+d2Floo6kL0FDTM6c0p6HY2Vq4CRMaZtsYieHiALReZSAV23gl5YgaKgRb6E25DkQvL7Enp9Bz2fzJti81kaQQgZRLA5rDBjIrEtJMxhwWMQa/zL44ew0O1jYuNdnK+PAfUkdt58BYKVm7arpH+3pHQKi/d/Yc8ob2KhC2vP8ArcVq8JMoKs+iRSfTNHSeasIuWgxO/8BCOvnURtIML4wCI212Yx3J1C4EpqnwNpmOOQDK+MDIsxLHPOoyTbJeZss+VBJwH+ZOcmOIUi4s4+1Gp1DI7MQySHKyrq/TdD0Ldro6n2jdiJuBV9VqBHFnJwaYXnQ6sLn8PYwujCND4/+Sglrw5HFTF9ysU/u5/CsUvvYmIHEKa7EIwkrZIhF2akIBPotN0pPP3SKXz65hFs2zzE1LkEOjxFJQgYvXAn9XM962PWVlpSjHGnFce3+C7nJLq0gPTvD/ZSDjJNdhVDNDNXBLnBkApQbAiMbd4GMTUMy/dgUVRTgGQRPRdpwvOjZZFdVngShhA6xtkZD/tffRNbN1a4ZtEIAS/jAyi/opPiDp1YL7NLWXVbRZ+NXd4bZXKoTWu9CCBigosIMjSOQGNwrIrRm27Ayqs2IeQTPX5sBU7bq1B0Xd5rwLEoXIaD+ajZ+xRZ06b7FAppsag4QtB18fLBSXzmthofagZajnDytZA0JcXhZKh/cqXpxXoTke+JPaTsGD+SAjLhNDnIxYSJuQmxaQ8EaA8IrL7UhzNzAofKo/jR2c04ODeMQkGlTsg8oTbFwZxLwgyMoi4aJyN8k9CSoRQYH4pw9M0W+p151MtTzPsiRGk3hLOGXfr0KCI5atuWvkl1dCkJM4CmOKTOWczzLjUr/E2YSPE6WRGobA7xy5cH8cPJDfBLVVQLDJt/vqXzXpWaB00wMQEmIYWazCVcKAgUC6KIL33+euzdux+NJqVmwkvbppDrgeJGzD7buE2WVMvWWu6I2cSTOHcNBhlRCn2hQESm5aD/o3PRqDPv4rrEGyMb0DhZx2qni9iTqeVKTRbniAOKdxhA2llIE58AqZGKAGUUYnqqgzor9OEHb+Fy7HBWPb3GplwIOYGpc0euLSd6wY4jtSYKRWqR0un1harN2oKRGh7IYGsya/4Hh8dRGmLF9ygfYQ8B2MpSLVrq6ezFbjdlTQozN61ZHKYAdWwKKIbf7uHM5CQ++bGr4S2wguURAmMKWB5it4B35wawdiBebStlv5pE0ScTVqixczL3ckgyRimRTGbg1JtcdC7EVG0Vvl++EbIkoe0qHL2Y9uAUoLhg2wx7mgBjw6ipPoJKASYZQM1iivsHeHGbvflNFtRzLKCdnOMU5uc9HGvUseVjrdBWiSUSVqcioDRCVsZeyibXZG5j+m2FxWmNS2jCpuoVtDo1ukWLia65DegjZp4JLANoMFJOVJrAKgWqCQr5MOeKWqr9fXz6/TwuMBrvwqpezztfxOnTTYTlIlZvkGdtFSTrYyMhedXKJIsS1RZm2YDa6HU1RscFhsYd7K7MYWd0Bge7a9J8Td2zsfs0C7GSWYGkRabh0FyIpE+A/VRqUhlIjM6xqplWmn0Y3Srd0hYEi/QI9RnAPwjR7eKujwJVRxylmxG2ya+UNRNZMmirvKJzca6y/Q0y56yywEgpwFe2vIjvnL4cz8+thc/WZqivFzxsWzWPKyZaKFdiHD63EgdOrILP6AiTf3GQyQ9DErBVfmhLCRtYaO7MarqTcYbXhH4fko6HjZUBRINlRIs4Y2tpv0QD8Gl2B5lKjMxlQmQR4X4C1Sorv2QYZp/mD2PlPr66/QCeH53C7xZHMVCOsHtdA1dvbGKgzjZWUyhWJH7+ymY88sQ2tGkmbOWbbGREXHYUgb/73BpcP16Az3yrrzpGYlyEfUYksJEs2AjbrDwHv7XpLn5JLf0idW6tAWhyzoBzTEfJlaNYzjtMnFW1F1qwHY3bxs7itvEpSJoIYyS8to2Fc1ygx7xjjx9zmlhB77ioq2SoxMW78PsxJiYUrt91GLXZAKGa5KRUAvpQ03ZVz4I/S9PR1S9ZA+KkHTS9Bh3GizQd91pmv5obBcOkEWfJkFu2+U6kPVh1jbOhHSvRYUd2+gC6zc7m87dFbo6YRs/MDeEFrMacXaGz1iiii2yTEqeWbPuGDiZWvoPgdAVWKQRrBO58iWnGNVqcuymZBvInuoOe7TXZ3aV4jmbjXpWkwc3A5XtSndeMsevGepmw+/SNipMWqeDmoQKXnrIn8Fa7hGe9FdgXjdJLllBgYpccinUqrDS17MslJ8TN1/VQC4o4x8JykhICestozs60+Bz5nJZzcVHstwpa2+ZL2qLfEkGLgj9i2LMkMk3MQ3xePQjSZuwdMjjTk/jxO4Po+DSgicR84mCKoJqqxPs1hkQv34epVG585lG3G+HqTR5uuTxCuzlAA8sO1iJ8drJ4gfMyQt1JgXPnrIhRiySVJN3VEcQbUur/oVW735gBKXLalgmvPO8hKD9po1e4ZmOIx44N4yTdtBfLVG6KIkitVJTrlmIbirnwZStc2EMJHryxh7VFSQdvIWrHaegVjS5ckXrR3xypYCCJg23DoQp9kQHkwh7n/hGR3htHurzkorFsR2pkR+b7a7MpMi17z4iHnTf4eLtbxBMnq3jh3AC3p0abjSmI4dD/1Vhgu9d5eOiaRZQdhbH13K90mGNzDHlXptKmCKxAoC9MVvDaWQt/fmn/NO9rm72ObYnzJD1fdPBzN8ID7FIZY8s2/EYbhZG8+IKzDpjU3GJg16CHSy4PceO4hxNtBy26GptPs67mY9toiE1DIWq0YgXqaaFMqWky5GdNPmeLm23AWdfGa1MF3Lqup9fU9eP9WDbS9HrmI1vPmxiivCLxxRO9UG+yqXsFAnLMYLXYPNp2NtLctHLvKDPRLDCfBig1KvW2WaEVLJUVLz9IMlmsZgrhzptCk+mbtKWG0KC8FAKBNaVkL6XvL8q2aKQFesfKwQv9k4i3V8qfuaU+9BibkcVORRPKxblhss2wMoBpEVnZMEBTqbEyKcqKLEtak5OGdado2NdpSpuGEvbzFOLTJPSGBmSdN7zVDI9+7/jCp6olcbTqWGm7FBe/ZStIIb+wZvU37hgc/nuXQmiAGZBLDBo2ZQ7SADbnaT2dZzPfDcqs80gn704iYyoJBZZ8hQqVeYGDMp/unYXolS+/Nv3goUX30O+9+rj4ZRLnEK/33X0DwlpzWaG0M1bp5oxPI/K3X7mRzc/1kvvGBYOL3IUj7+lGO41jT/c8qawZ5giWIQ08Ef/6VPenjxyd+Yc3Ov6RZZuOPwjQfC7F1MdDbv9VG7K2rVi+0mh0opeKRqSLLwEz50rln5e2pzrf3yRLpiM7V2mrpK9k1S6yghebAo++1fzmdyfnvtUI4gZ/dbIr3x+gzBtIhVcVDnvuG80odi9xCpcNSru8tD9JAaXWftl7xWVgl0b6XZINNgHuoQQm2wUcaBSx2NZ4aXbh6f9otB7ztern3IbImuLSXvI9AJc6m/meaQ3n3cA//TvXNbZndEQ6QxXaH0HfF5NSs+015kJRbhJzrjIw5lwvPYj5nZbN4jU+ncpxmgIRu+6R9tzzP200v99XapZr0XWa1wbwc4DJ+zGIi3bD6c6kmyRzr/R7h497/kKY6FJByTJztGgWlWxz0uihceTpxp7nfABhTDALwuReRE/Y6qv43Y7XONNrHfnVdONnv252fhIqfSb1/EAnBxguBwfgPVV8cajNm/sKjAoA9PmgkmFifaG4Y0e5fOXWUunSAcuqspqtqmWVarZVIFbdjCLPvOBYjJP+aT9o9BO1wEY/ddz132wnyTucY5ojSH1WNvz0hez58vvjAJczbOXJW8rBmqP5fwS1ipRjBSHqnLHsCFnm5zJ7l2wTGPPR85XqRdALOUPdnKUgH96ynHsPsKW//xdgAPa6wskKncmVAAAAAElFTkSuQmCC" alt="Firefox Logo Image">
+                                <strong>Firefox</strong>
+                                <h5>About Firefox</h5>
+                                <p>Quick &amp; full of features</p>
+                                <a href="https://www.mozilla.org/firefox" target="_blank">Find out more</a>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+
+                            <div class="inner">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QTlFN0RDQTBCQUJGMTFFMzkzQTJDQTk1ODRFM0Q2QUYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QTlFN0RDQTFCQUJGMTFFMzkzQTJDQTk1ODRFM0Q2QUYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpBOUU3REM5RUJBQkYxMUUzOTNBMkNBOTU4NEUzRDZBRiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpBOUU3REM5RkJBQkYxMUUzOTNBMkNBOTU4NEUzRDZBRiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PqgE4N0AABA+SURBVHjarFh5kBzl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" alt="Safari Logo Image">
+                                <strong>Safari</strong>
+                                <h5>About Safari</h5>
+                                <p>Works best if on an Apple Mac</p>
+                                <a href="https://support.apple.com/downloads/#safari" target="_blank">Find out more</a>
+                            </div>
+
+                        </div>
+                        <div class="col-xs-6 col-sm-3">
+
+                            <div class="inner">
+                                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAoCAYAAACM/rhtAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6M0EzOTFGQUZCQUJGMTFFMzg1RkRBNEVDMUYwMDYwRUUiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6M0EzOTFGQjBCQUJGMTFFMzg1RkRBNEVDMUYwMDYwRUUiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDozQTM5MUZBREJBQkYxMUUzODVGREE0RUMxRjAwNjBFRSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDozQTM5MUZBRUJBQkYxMUUzODVGREE0RUMxRjAwNjBFRSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pp7OkSQAAAR5SURBVHjazJh7aE5xGMff9+x1mY3NGCnmUsj9fiu3LKG5m9uEkEQIWSFyyy0trVxTlsuUkeQSGiFNQ/jDXRY2t21uuc1mM98n35dfp3N2fufdu9lTn97b75zzvL/f83x/z/PzxqR/8FSi1Qc9QX/QDjQFEfztDbgJDvH1l3zprQQHa4FBIAHEggYa12wGq0GRL0hOeEEkaAaagNqgELSgY50srskDGeAayOJ3MqtTwDLwDWwq7wzGgNFgGOgCooHhcM07sB6kgC8Wv8ufOwL6gdaBzmBLkAgmKDGka2GMwVvgOig2/S5OzwF35U8bLm9eBywHN8DsAJwTCwXjwFWwBzSyGJPDP9DIjYPNQRrYyHgLRtzOBJdAX35WLVfiWNfBDuAEGFIBWd4anAEjQIgp+18bmvF2GHTk51LwE5QE0ck6XJ1YzqSEgeTHEycHG4IdoL0SwOkM7pAgz2QNirQoQ1vwGbz1OQjsfDCYn1+CJGrbAptrRP3zQTYoAFGM3TBNJ0WmtjBJLsj9yppB0bUVfH8bxINwG+d+gGNgKGgDeoEBoCvFdy54oOnkRC71cQkjOwfrgiUUXVnSONCZAmu2Z2AyGM+xHxmnHsbqC7Ab9OFroYaTkYxBW9WXrB0LToGRys3N9pR6eELjoZ85kztlj9WQNNkiDcNmq5kBMsEYBuxBi3HfQTK46DIZEql9TjZNEsfKwXqc3jhWHik2QZ7JrHNrJbxnvsM4yYF2ZgcNxs1Kvm5Q9E+1Ujr4KUBJOS8i7DBGfBloWMjEK14cz6W2i6eccmjeJxaoTtbdTgdbga0OFcliZm51l86VciLaa4xt5rPZdtYwFu3Mxz/RqoKr8WjzEoewIIj3VA2rZnYwykaM/5upDlYD01n+VBXzqjEomrdU80JpaFLBySAVr1Ym4ZbvU4J+Kssr3Uy8z0KzUpY4go2KroVrykS5zUcnh7KndWM96OS9AJ4bThnzKpWPuV+R71/6uNYJytJls6FOcHiIlF+zKNhubRcYxeeV2qysNPSjxcHG7FM9LIP2k0kaTfhMngpsd+HcJupsTYdxUrAWGaz1wpWeI5Ut3wHNZkceuE6jrI9iTblYw7nH4Ki/5O+rFArSLD+hjCSz5tOJp1Vs5hexfoxgTxPJcxmpju4wEWto3HMtC5K/e6q/PL+gDHrIBydpLp04to39SR6bpjDqq5uC4igr9BK/g/6jh2Key/mtkLHYk42MrtVk6xiIPeJmUaBmS6jikLmIfM8S/UolSF4eN4scczoXKDP4w+YgR/qDyxXoXDabtFtm2REHnyunTvXKuMEE9hLBtgxuFBlWmmgoMyPZNbyMG0mTM8/z52g2GPaV8jSMCWm7F6ex2ZZMW8ipttoS+1CQJU728dQhKwDH5Eh3L5Nvjcf6lPXfnheT/sFglqZwFot51JFJ6YnhthbJfjaJmufvoWPZ3Mve3ITi7TWVZrnUwXPgLBszvYKQZ9TiZDcuYW9FemRZ77JNPO1w4+rUvAaKkyL076gOBYHEwW8BBgA6KfsLBPn/kAAAAABJRU5ErkJggg==" alt="Internet Explorer Logo Image">
+                                <strong>Latest IE</strong>
+                                <h5>About IE</h5>
+                                <p>Default browser for Windows</p>
+                                <a href="https://windows.microsoft.com/en-au/internet-explorer/download-ie" target="_blank">Find out more</a>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <button type="button" id="browser-agree" data-dismiss="modal" class="text-center btn btn-link"><span>Ok! I'm aware that I'm using an older browser.</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <![endif]-->
+
+
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="~/Avilon/lib/jquery/jquery.min.js"></script>
+    <script src="~/Avilon/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="~/Avilon/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Avilon/lib/easing/easing.min.js"></script>
+    <script src="~/Avilon/lib/wow/wow.min.js"></script>
+    <script src="~/Avilon/lib/superfish/hoverIntent.js"></script>
+    <script src="~/Avilon/lib/superfish/superfish.min.js"></script>
+    <script src="~/Avilon/lib/magnific-popup/magnific-popup.min.js"></script>
+
+    <!-- Contact Form JavaScript File -->
+    <script src="~/Avilon/contactform/contactform.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="~/Avilon/js/main.js"></script>
+
+    <script src="~/Asset/LTE/bower_components/OwlCarousel/dist/owl.carousel.min.js"></script>
+    <script src="~/js/pagination.js"></script>
+
+    <script src="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.min.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            //// Chrome 1 - 71
+            //var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+            //console.log('isChrome: ' + isChrome);
+
+            //if (isChrome == false) {
+            //    location.href = "http://rthsrv17/smartoffice/Home/UnSupportPage";
+            //}
+
+            $('html, body').animate({
+                scrollTop: $('#today').offset().top - 50
+            }, 800, "easeOutCubic");
+
+            var owl = $('.owl-carousel');
+            owl.owlCarousel({
+                items: 5,
+                loop: true,
+                margin: 10,
+                autoplay: true,
+                autoplayTimeout: 5000,
+                autoplayHoverPause: true,
+                animateOut: 'fadeOut'
+            });
+
+            $('.owl-carousel1').owlCarousel({
+                animateOut: 'slideOutDown',
+                animateIn: 'flipInX',
+                items: 5,
+                margin: 30,
+                stagePadding: 30,
+                smartSpeed: 200,
+                animateOut: 'fadeOut'
+
+            });
+
+            //$('.owl-carousel').on('mousewheel', '.owl-stage', function (e) {
+            //    if (e.deltaY > 0) {
+            //        owl.trigger('next.owl');
+            //    } else {
+            //        owl.trigger('prev.owl');
+            //    }
+            //    e.preventDefault();
+            //});
+        });
+
+
+
+
+
+    </script>
+
+    @*<script src="~/js/moment.min.js"></script>
+        <script src="~/js/fullcalendar.js"></script>*@
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

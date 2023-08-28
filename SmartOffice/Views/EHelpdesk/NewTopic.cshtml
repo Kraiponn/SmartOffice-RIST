@@ -1,0 +1,366 @@
+﻿
+@{
+    ViewData["Title"] = "NewTopic";
+    Layout = "~/Views/Shared/_LayoutHelpdesk.cshtml";
+}
+<div class="plato-body">
+    <div class="container-fluid container-fluid-1400 pt-2">
+        <div class="layout-body">
+            <div class="row gutter-sm">
+                <div class="col-lg-9 layout-content">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="POST" enctype="multipart/form-data" name="addform" class="form-horizontal" id="addform">
+                                <div class="form-group">
+                                    <label for="title-name" class="col-form-label">Title :</label>
+                                    <input name="title" id="title" type="text" required class="form-control" placeholder="" />
+                                </div>
+                                <div class="form-group" id="topic_type">
+                                    <label class="col-form-label">Type</label><br>
+                                    <div class="form-check">
+                                        <label for="radio2" class="customradio">
+                                            <span class="radiotextsty">File Download</span>
+                                            <input type="radio" id="radio2" name="childtype" value="2" checked="checked" />
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <label for="radio3" class="customradio">
+                                            <span class="radiotextsty">Link</span>
+                                            <input type="radio" id="radio3" name="childtype" value="3" />
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <label for="radio4" class="customradio">
+                                            <span class="radiotextsty">Image Gallery</span>
+                                            <input type="radio" id="radio4" name="childtype" value="4" />
+                                            <span class="checkmark"></span>
+                                        </label>
+
+                                        <label for="radio6" class="customradio">
+                                            <span class="radiotextsty">Information</span>
+                                            <input type="radio" id="radio6" name="childtype" value="6" />
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group" id="rol_news">
+                                    <label class="col-form-label">Display</label><br>
+                                    <div class="form-check">
+                                        <label for="Nrole1" class="customradio">
+                                            <span class="radiotextsty">Private(Only Departmen site)</span>
+                                            <input type="radio" id="Nrole1" name="Disable" value="false" checked="checked" />
+                                            <span class="checkmark"></span>
+                                        </label>
+                                        <label for="Nrole2" class="customradio">
+                                            <span class="radiotextsty">Public(Include Esmart site)</span>
+                                            <input type="radio" id="Nrole2" name="Disable" value="true" />
+                                            <span class="checkmark"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="BadgesName" class="col-form-label">Category</label>
+                                    <select class="input-lg btn btn-default" id="BadgesName" name="BadgesName">
+                                        <option value="" disabled="disabled">Please select a category</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="date_range" class="col-form-label">Display Date Range</label>
+                                    <input type="text" id="date_range" class="form-control float-right">
+                                </div>
+                                <div class="form-group" id="ckedit">
+                                    <label for="txtMessage" class="col-form-label">Detail</label>
+                                    <textarea name="txtMessage" id="txtMessage" class="ckeditor"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="fUpload" class="col-form-label">Attach file</label>
+                                    <input type="file" id="fUpload" name="fUpload" multiple class="form-control" accept=".jpg,.gif,.png,.jpeg,.tiff,.pdf,.docx,.doc,.docm,.dotx,.dotm,
+                                   .xls,.xlsx,.xlsm,.xltx,.xltm,.xlsb,.xlam,.pptx,.pptm,.ppsx,.ppsm,.zip,.7z,.mp4,.avi,.m4v,.mov,.mpg,.mpeg,.swf" />
+                                </div>
+
+                                <div class="form-group" id="Group_picture">
+                                    <label for="tablepicture" class="col-form-label">File</label>
+                                    <table class="table table-striped display responsive" style="width:100%" id="tablepicture">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>partId</th>
+                                                <th>value</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th>itemType</th>
+                                                <th>newDorder</th>
+                                                <th>newHorder</th>
+                                                <th>groupCateg</th>
+                                                <th>showPublic</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="button" class="col btn btn-dark-blue" id="btn" value="Save">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+
+                    </div>
+                <div class="col-lg-3 layout-sidebar">
+
+
+                    <div class="card card-body-flush">
+                        <div class="card-header">
+                            <a data-toggle="tooltip" title="" class="float-right text-muted" href="/issues/categories" data-original-title="All Categories">
+                                <i class="fal fa-ellipsis-h fa-2x"></i>
+                            </a>
+                            <h6 class="card-title float-left">Categories</h6>
+                        </div><div class="card-body">
+                            <div class="list-group list-group-flush list-group-hover">
+                                <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/issues/categories/68/example-category-737">
+                                    <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Issues">
+                                        8
+                                    </span>
+                                    <div class="float-left mr-3">
+                                        <span class="icon-wrapper icon-wrapper-sm" style="background-color: #D1AC5B; color: #ffffff">
+                                            <i class="fal fa-table"></i>
+                                        </span>
+                                    </div>
+                                    Example Category 737
+                                </a>
+                                <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/issues/categories/69/example-category-878">
+                                    <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Issues">
+                                        7
+                                    </span>
+                                    <div class="float-left mr-3">
+                                        <span class="icon-wrapper icon-wrapper-sm" style="background-color: #71BC99; color: #ffffff">
+                                            <i class="fal fa-address-card"></i>
+                                        </span>
+                                    </div>
+                                    Example Category 878
+                                </a>
+                                <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/issues/categories/70/example-category-1207">
+                                    <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Issues">
+                                        3
+                                    </span>
+                                    <div class="float-left mr-3">
+                                        <span class="icon-wrapper icon-wrapper-sm" style="background-color: #92D5B0; color: #ffffff">
+                                            <i class="fal fa-equals"></i>
+                                        </span>
+                                    </div>
+                                    Example Category 1207
+                                </a>
+                                <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/issues/categories/71/example-category-1227">
+                                    <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Issues">
+                                        7
+                                    </span>
+                                    <div class="float-left mr-3">
+                                        <span class="icon-wrapper icon-wrapper-sm" style="background-color: #C66ED9; color: #ffffff">
+                                            <i class="fal fa-file-signature"></i>
+                                        </span>
+                                    </div>
+                                    Example Category 1227
+                                </a>
+                                <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/issues/categories/72/example-category-1856">
+                                    <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Issues">
+                                        4
+                                    </span>
+                                    <div class="float-left mr-3">
+                                        <span class="icon-wrapper icon-wrapper-sm" style="background-color: #D4503E; color: #ffffff">
+                                            <i class="fal fa-envelope"></i>
+                                        </span>
+                                    </div>
+                                    Example Category 1856
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card card-body-flush">
+                        <div class="card-header">
+                            <a data-toggle="tooltip" title="" class="float-right text-muted" href="/issues/labels" data-original-title="All Labels">
+                                <i class="fal fa-ellipsis-h fa-2x"></i>
+                            </a>
+                            <h6 class="card-title">Top Labels</h6>
+                        </div><div class="card-body">
+
+                            <div class="list-group list-group-flush list-group-hover">
+                                <a title="This is just an example label desccription." class="list-group-item list-group-item-action" href="/issues/label/102/example-label-242">
+                                    <span class="btn btn-sm label font-weight-bold" style="background-color: #D5E09E; color: #ffffff">
+                                        Example Label 242
+                                    </span>
+                                    <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Issues">
+                                        7
+                                    </span>
+                                </a>
+                                <a title="This is just an example label desccription." class="list-group-item list-group-item-action" href="/issues/label/103/example-label-625">
+                                    <span class="btn btn-sm label font-weight-bold" style="background-color: #ACC759; color: #ffffff">
+                                        Example Label 625
+                                    </span>
+                                    <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Issues">
+                                        5
+                                    </span>
+                                </a>
+                                <a title="This is just an example label desccription." class="list-group-item list-group-item-action" href="/issues/label/105/example-label-1832">
+                                    <span class="btn btn-sm label font-weight-bold" style="background-color: #7397BE; color: #ffffff">
+                                        Example Label 1832
+                                    </span>
+                                    <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Issues">
+                                        5
+                                    </span>
+                                </a>
+                                <a title="This is just an example label desccription." class="list-group-item list-group-item-action" href="/issues/label/167/example-label-1396">
+                                    <span class="btn btn-sm label font-weight-bold" style="background-color: #59C7AE; color: #ffffff">
+                                        Example Label 1396
+                                    </span>
+                                    <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Issues">
+                                        4
+                                    </span>
+                                </a>
+                                <a title="This is just an example label desccription." class="list-group-item list-group-item-action" href="/issues/label/165/example-label-844">
+                                    <span class="btn btn-sm label font-weight-bold" style="background-color: #5BBC36; color: #ffffff">
+                                        Example Label 844
+                                    </span>
+                                    <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Issues">
+                                        3
+                                    </span>
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <a data-toggle="tooltip" title="" class="float-right text-muted" href="/issues/tags" data-original-title="All Tags">
+                                <i class="fal fa-ellipsis-h fa-2x"></i>
+                            </a>
+                            <h6 class="card-title">Top Tags</h6>
+                        </div><div class="card-body">
+
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2192/udf">
+                                    udf
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2202/icpc">
+                                    icpc
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2200/watir-webdriver">
+                                    watir-webdriver
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2193/sparksql">
+                                    spark-sql
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2197/slicing">
+                                    slicing
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2191/percent-encoding">
+                                    percent-encoding
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2199/data-uri-scheme">
+                                    data-uri-scheme
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2195/sql-server">
+                                    sql-server
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2196/uriencoding">
+                                    uriencoding
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2207/.net-core">
+                                    .net-core
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2204/c">
+                                    c++
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2205/intel">
+                                    intel
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2215/intellij">
+                                    intellij
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2217/bug">
+                                    bug
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2221/cookies">
+                                    cookies
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2224/drscheme">
+                                    drscheme
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2211/mysql-server">
+                                    mysql-server
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2208/ef6">
+                                    ef6
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2194/sql">
+                                    sql
+                                </a>
+                            </div>
+                            <div class="btn-group my-1">
+                                <a class="btn btn-sm label" href="/issues/tag/2198/array-slice">
+                                    array-slice
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Asset/LTE/bower_components/ckeditor/ckeditor.js"></script>
+<script src="~/Asset/LTE/bower_components/ckeditor/Config.js"></script>
+<script src="~/js/View/NewsScript/NewsManage.js"></script>
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap.min.js"></script>
+<script src="~/Asset/LTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="~/lib/bootstrap4-toggle/bootstrap4-toggle.min.js"></script>
+<script src="~/lib/sweetalert/sweetalert.min.js"></script>
+<script src="~/Asset/LTE/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+

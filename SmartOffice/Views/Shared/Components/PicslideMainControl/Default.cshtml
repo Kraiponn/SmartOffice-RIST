@@ -1,0 +1,260 @@
+﻿
+
+@model SmartOffice.Models.ImgSlideSetupmaster
+<style type="text/css">
+
+    .carousel-inner .imgOverlay {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(6, 28, 38, 0.2);
+    }
+
+    .carousel-inner img {
+        width: 100%;
+    }
+
+    .carousel-control {
+        width: auto;
+    }
+
+    body {
+        /*padding-top: 50px;*/
+    }
+
+    #themeSlider .carousel-caption {
+        left: 0;
+        right: 0;
+        bottom: 0;
+        text-align: left;
+        padding: 30px;
+        background: rgba(0,0,0,0.6);
+        text-shadow: none;
+    }
+
+
+    p.ex1 {
+        /*border: 1px solid red;*/
+        padding-left: 8.5em;
+    }
+
+    h3.ex1 {
+        /*border: 1px solid red;*/
+        padding-left: 4em;
+    }
+
+    /*.fontIcon {
+        height: 50px;
+        width: 50px;
+        background-color: black;
+        border-radius: 15px;*/
+</style>
+
+<div class="pt-md-5 back-test text-light testimonials">
+    <div id="themeSlider" class="carousel slide bg-inverse  ml-auto mr-auto pt-md-4" data-ride="carousel" data-interval="10000">
+
+        <ol class="carousel-indicators">
+            @{
+                var i = -1;
+            }
+            @foreach (var item in Model.imgHeaders.OrderByDescending(x => x.ImgActive).ThenByDescending(x=>x.UpdateDate))
+            {
+                i += 1;
+                var active = @item.ImgActive == true ? "active" : "";
+                if (Model.imgHeaders.Where(j=>j.ImgActive==true).Count()==0)
+                {
+                    active = "active";
+                }
+                <li data-target="#themeSlider" data-slide-to=@i class="@active.Trim()"></li>
+            }
+
+        </ol>
+        <div class="carousel-inner">
+            @foreach (var item in Model.imgHeaders.OrderByDescending(x => x.ImgActive).ThenByDescending(x => x.UpdateDate))
+            {
+                var GroupCateg = item.GroupCateg;
+
+                var path = "~/File/" + GroupCateg + "/Header/";
+                var active = @item.ImgActive == true ? "active" : "";
+
+                if (item.ImgType == "FULL")
+                {
+
+                    <div class="carousel-item @active.Trim() ">
+                        @*<div class="imgOverlay"></div>*@
+                        @{
+                            var filetype = item.ImgPath.Split(".").Last();
+                        }
+
+                        @if (filetype == "mp4")
+                        {
+                            <video height="auto" width="100%" loop autoplay muted id="vid">
+                                <source src="@Url.Content("~/image/" + GroupCateg + "/Header/" + item.ImgPath)" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        }
+                        else
+                        {
+                            <img class="img-fluid" src='@Url.Content("~/image/" + GroupCateg + "/Header/" + item.ImgPath)' style="max-height:617px">
+                        }
+
+
+                        <div class="container">
+                            <div class="carousel-caption">
+                                @foreach (var itemtexth in Model.imgTextHeaders.Where(x => x.ImgOrder == item.ImgOrder && x.GroupCateg == item.GroupCateg && x.PartId == item.PartId).OrderBy(x => x.TextHorder))
+                                {
+
+
+                                    @if (itemtexth.Link == true && itemtexth.Download == false)
+                                    {
+                                        <a href=@itemtexth.LinkPath target="_blank">
+                                            @Html.Raw(@itemtexth.TextH)
+                                        </a>
+                                    }
+                                    else if (itemtexth.Download == true && itemtexth.Link == false)
+                                    {
+
+
+                                        <a href="@Url.Content(@path + @itemtexth.LinkPath)" download target="_self">
+                                            @Html.Raw(@itemtexth.TextH)
+                                        </a>
+                                    }
+                                    else if (itemtexth.Download == true && itemtexth.Link == true)
+                                    {
+                                        <a href="@Url.Content(@path + @itemtexth.LinkPath)" target="_blank">
+                                            @Html.Raw(@itemtexth.TextH)
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span>@Html.Raw(@itemtexth.TextH)</span>
+                                    }
+
+                                    <span>
+                                        @Html.Raw(@itemtexth.TextD)
+                                    </span>
+
+                                }
+                                @if (@item.Link == true && item.Download == false)
+                                {
+                                    <div class="row justify-content-center">
+                                        <a href=@item.LinkPath target="_blank" class="btn btn-outline-success btn-rounded waves-effect">
+                                            @item.LinkName
+                                        </a>
+                                    </div>
+
+                                }
+                                else if (item.Download == true && item.Link == false)
+                                {
+                                    <div class="row justify-content-center">
+                                        <a href="@Url.Content(@path + @item.LinkPath)" download target="_self" class="btn btn-outline-success btn-rounded waves-effect">
+                                            @item.LinkName
+                                        </a>
+                                    </div>
+                                }
+                                else if (item.Download == true && item.Link == true)
+                                {
+                                    <div class="row justify-content-center">
+                                        <a href="@Url.Content(@path + @item.LinkPath)" target="_blank" class="btn btn-outline-success btn-rounded waves-effect">
+                                            @item.LinkName
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+
+                }
+                if (item.ImgType != "FULL")
+                {
+                    <div class="carousel-item   @active.Trim()">
+                        <div class="row justify-content-end text-center">
+
+                            <div class="col-lg-4 col-md-12 col-sm-12 align-self-center ml-lg-4 pr-2 pb-sm-3 pt-5 ">
+
+                                @foreach (var itemtexth in Model.imgTextHeaders.Where(x => x.ImgOrder == item.ImgOrder && x.GroupCateg == item.GroupCateg && x.PartId == item.PartId).OrderBy(x => x.TextHorder))
+                                {
+
+
+                                    @if (itemtexth.Link == true && itemtexth.Download == false)
+                                    {
+                                        <a href=@itemtexth.LinkPath target="_blank">
+                                            @Html.Raw(@itemtexth.TextH)
+                                        </a>
+                                    }
+                                    else if (itemtexth.Download == true && itemtexth.Link == false)
+                                    {
+
+                                        <a href="@Url.Content(@path + @itemtexth.LinkPath)" download target="_self">
+                                            @Html.Raw(@itemtexth.TextH)
+                                        </a>
+                                    }
+                                    else if (itemtexth.Download == true && itemtexth.Link == true)
+                                    {
+                                        <a href="@Url.Content(@path + @itemtexth.LinkPath)" target="_blank">
+                                            @Html.Raw(@itemtexth.TextH)
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <span>@Html.Raw(@itemtexth.TextH)</span>
+                                    }
+
+                                    <span>@Html.Raw(@itemtexth.TextD)</span>
+
+                                }
+                                @if (@item.Link == true && item.Download == false)
+                                {
+                                    <div class="row justify-content-center">
+                                        <a href=@item.LinkPath target="_blank" class="btn btn-outline-success btn-rounded waves-effect">
+                                            @item.LinkName
+                                        </a>
+                                    </div>
+
+                                }
+                                else if (item.Download == true && item.Link == false)
+                                {
+                                    <div class="row justify-content-center">
+                                        <a href="@Url.Content(@path + @item.LinkPath)" download target="_self" class="btn btn-outline-success btn-rounded waves-effect">
+                                            @item.LinkName
+                                        </a>
+                                    </div>
+                                }
+                                else if (item.Download == true && item.Link == true)
+                                {
+                                    <div class="row justify-content-center">
+                                        <a href="@Url.Content(@path + @item.LinkPath)" target="_blank" class="btn btn-outline-success btn-rounded waves-effect">
+                                            @item.LinkName
+                                        </a>
+                                    </div>
+                                }
+                            </div>
+
+
+
+                            <div class="col-lg-7 col-md-12 col-sm-12 justify-content-center">
+                                @*<h4 class="w-50 position-absolute text-danger mt-4 mr-5 pr-5">This is also<br>available on your mobilefgdfgdfgdfgdfgsrdtdrgdthgtyjkyukildrtgasdrfsdfasfasegterhyerhyrthrth.</h4>*@
+                                <img class="" src='@Url.Content("~/image/" + GroupCateg + "/Header/" + item.ImgPath)'>
+
+
+                            </div>
+
+
+                        </div>
+                    </div>
+                }
+            }
+        </div>
+        <a class="carousel-control-prev" href="#themeSlider" role="button" data-slide="prev" style="width:100px">
+            <span class="carousel-control-prev-icon fontIcon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#themeSlider" role="button" data-slide="next" style="width:100px">
+            <span class="carousel-control-next-icon fontIcon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</div>
+<script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+

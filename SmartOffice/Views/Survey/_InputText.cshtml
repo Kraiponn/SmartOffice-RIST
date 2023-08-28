@@ -1,0 +1,24 @@
+﻿@model SmartOffice.SurveyApp.ViewModel.ViewInputItem;
+<div class="card card-outline">
+    <div class="card-body">
+        <label>@Model.ItemName</label>
+        <div class="form-group">
+            @{
+                switch (Model.DataType)
+                {
+                    case "number":
+                        @*<input type="number" class="form-control" id="@Model.ItemCode" placeholder="Your Value">*@
+                        @Html.TextBox(@Model.ItemCode, @Model.FinalResult, new { @type = "number", @min = "0", @step = "0.01", @value = "0", @class = "form-control", @placeholder = "Your Value" })
+                        break;
+                    case "string":
+                        @*<input type="text" class="form-control" id="@Model.ItemCode" placeholder="Your Text">*@
+                        @Html.TextBox(@Model.ItemCode, @Model.FinalResult, new { @type = "text", @class = "form-control", @placeholder = "Your Text" })
+                        break;
+                    default:
+                        //Console.WriteLine("Default case");
+                        break;
+                }
+            }
+        </div>
+    </div>
+</div>

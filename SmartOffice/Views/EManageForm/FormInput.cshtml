@@ -1,0 +1,1002 @@
+﻿@model SmartOffice.eManagement.Models.TupleForm;
+@{
+    ViewData["Title"] = "InputForm";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+    var _strObj = @ViewBag.strObj;
+    var _OperationCode = @ViewBag.OperationCode;
+    var _OpeGroupCateg = @ViewBag.OpeGroupCateg;
+    var _InputKind = @ViewBag.InputKind;
+    var _OperationNo = @ViewBag.OperationNo;
+    var _checktable = "";
+}
+
+<link href="~/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+<link href="~/css/chosen/chosen.css" rel="stylesheet" type="text/css" />
+@*<link href="~/signature_pad/css/signature-pad.css" rel="stylesheet" />*@
+<link rel="stylesheet" href="~/jquery.Thailand.js/dist/jquery.Thailand.min.css">
+
+<style>
+    .select2-container--default .select2-selection--multiple {
+        background-color: #141463;
+    }
+
+    input[type="text"].textsplit {
+        /*border: solid 1px dimgrey;*/
+        /*width: 400px;*/
+        background: repeating-linear-gradient(90deg, #ffffff 0px, #ffffff 19px, #000000 20px);
+        color: dimgrey;
+        font-family: monospace;
+        letter-spacing: 13px;
+        padding-left: 0.6ch;
+    }
+
+        input[type="text"].textsplit:focus {
+            outline: none;
+            color: dodgerblue;
+        }
+
+    .float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        top: 40px;
+        left: 40px;
+        background-color: #0C9;
+        color: #FFF;
+        border-radius: 50px;
+        /*font-size: 10px;*/
+        text-align: center;
+        box-shadow: 2px 2px 3px #999;
+    }
+
+    .my-float {
+        margin-top: 10px;
+    }
+
+    .box {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .box > * {
+            flex: 1 1 33%;
+        }
+
+
+    @@keyframes click-wave {
+        0% {
+            height: 25px;
+            width: 25px;
+            opacity: 0.35;
+            position: relative;
+        }
+
+        100% {
+            height: 200px;
+            width: 200px;
+            margin-left: -80px;
+            margin-top: -80px;
+            opacity: 0;
+        }
+    }
+
+    .option-input {
+        font-family: 'Roboto', sans-serif;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        position: relative;
+        /*top: 13.33333px;*/
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        transition: all 0.15s ease-out 0s;
+        background: #cbd1d8;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 0.5rem;
+        outline: none;
+        position: relative;
+        z-index: 1000;
+    }
+
+        .option-input:hover {
+            background: #9faab7;
+        }
+
+        .option-input:checked {
+            background: #40e0d0;
+        }
+
+            .option-input:checked::before {
+                height: 25px;
+                width: 25px;
+                position: absolute;
+                content: '✔';
+                display: inline-block;
+                font-size: 22.66667px;
+                text-align: center;
+                line-height: 25px;
+            }
+
+            .option-input:checked::after {
+                -webkit-animation: click-wave 0.65s;
+                -moz-animation: click-wave 0.65s;
+                animation: click-wave 0.65s;
+                background: #18bc9c;
+                content: '';
+                display: block;
+                position: relative;
+                z-index: 100;
+            }
+
+        .option-input.radio {
+            border-radius: 50%;
+        }
+
+            .option-input.radio::after {
+                border-radius: 50%;
+            }
+
+    .table {
+        /*font-size: 10px;*/
+    }
+
+    .inputsm {
+        font-size: 10px;
+    }
+
+    .form-control {
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        color: #555;
+        display: block;
+        /*font-size: 9px;*/
+        width: 100%;
+    }
+
+    .select[readonly] {
+        opacity: 0.7; /* not necessary */
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    input[type="radio"][readonly] {
+        opacity: 0.7; /* not necessary */
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    input[type="checkbox"][readonly] {
+        opacity: 0.7; /* not necessary */
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    input[type="datetime"][readonly] {
+        opacity: 0.7; /* not necessary */
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    .inputtable[readonly] {
+        opacity: 0.7; /* not necessary */
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    div.scrollmenu {
+        /*background-color: #333;*/
+        overflow: auto;
+        /*white-space: nowrap;*/
+    }        
+</style>
+
+
+<div class="content" style="background-color:#e3e3e6;min-height:100vh">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1></h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item">
+                            <a asp-area="" asp-controller="EManageForm" asp-action="FormList" class="nav-link "
+                               asp-route-strObj="@ViewBag.strObj" asp-route-OperationCode="@ViewBag.OperationCode"
+                               asp-route-OpeGroupCateg="@ViewBag.OpeGroupCateg" asp-route-InputKind="@ViewBag.InputKind" asp-route-OperationNo="">
+                                <i class="fas fa-caret-square-left"></i> Back
+                            </a>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <!-- Main content -->
+    <section class="content">
+
+        <div class="row">
+            @*<div class="col-2">
+                </div>*@
+            <div class="col-12">
+                <div class="card">
+                    <form method="post" class="form-horizontal" id="forminput">
+                        <div id="divinput" class="card-body">
+                            <fieldset>
+                                @{
+                                    var ItemCateg = "";
+                                    var all = new List<string>
+                                        ();
+                                    var rowood = 0;
+                                    var checkrow = "";
+                                    List<string>
+                                        alltype = new List<string>
+                                            (new string[] { "text", "textsplit", "date", "time", "memo", "combo", "datedef", "dateres", "datemm", "dateyy",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     "amphoe1","amphoe2","amphoe3","amphoe4","amphoe5","amphoe6","amphoe7","amphoe8","amphoe9","amphoe10",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     "district1","district2","district3","district4","district5","district6","district7","district8","district9","district10",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     "province1","province2","province3","province4","province5","province6","province7","province8","province9","province10",
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     "zipcode1","zipcode2","zipcode3","zipcode4","zipcode5","zipcode6","zipcode7","zipcode8","zipcode9","zipcode10"});
+
+                                    @*------------------------start Dynamic------------------------------------------------*@
+
+                                    var formOperationItemListscount = Model.formOperationItemLists.Count();
+
+                                    @for (var item = 0; item < formOperationItemListscount; item++)
+                                    {
+
+                                        checkrow = Model.formOperationItemLists[item].DetailOption;
+                                        if (Model.formOperationItemLists[item].DefaultValue != null && Model.formOperationItemLists[item].DefaultValue != "" && Model.formOperationItemLists[item].OperationNo == "")
+                                        {
+
+                                            Model.formOperationItemLists[item].ValueCode = Model.formOperationItemLists[item].DefaultValue;
+
+
+                                        }
+                                        if (item == 0)
+                                        {
+
+                                            <div class="center-block text-center  bg-dark-gradient">
+                                                <div class="card-body">
+                                                    <h6 class="card-title">@Model.formOperationItemLists[item].OperationName</h6>
+                                                </div>
+                                            </div>
+                                        }
+
+
+
+                                        var v = @Model.formOperationItemLists[item].ItemCateg;
+                                        if (ItemCateg != v)
+                                        {
+                                            if (ItemCateg != "")
+                                            {
+                                                rowood = 0;
+                                                @Html.Raw("</div>");
+                                                @Html.Raw("</div></div>");
+
+                                            };
+
+
+
+                                            @Html.Raw("<div class='card'>");
+                                            @if (Model.formOperationItemLists[item].ItemCategName != "-")
+                                            {
+
+                                                @Html.Raw(@Model.formOperationItemLists[item].ItemCategName)
+                                                @Html.Raw(@Model.formOperationItemLists[item].Remarks1)
+                                                @Html.Raw(@Model.formOperationItemLists[item].Remarks2)
+                                                @Html.Raw(@Model.formOperationItemLists[item].Remarks3)
+                                                @Html.Raw(@Model.formOperationItemLists[item].Remarks4)
+                                                @Html.Raw(@Model.formOperationItemLists[item].Remarks5)
+                                                @Html.Raw(@Model.formOperationItemLists[item].RemarksTitle1)
+                                                @Html.Raw(@Model.formOperationItemLists[item].RemarksTitle2)
+                                                @Html.Raw(@Model.formOperationItemLists[item].RemarksTitle3)
+                                                @Html.Raw(@Model.formOperationItemLists[item].RemarksTitle4)
+                                                @Html.Raw(@Model.formOperationItemLists[item].RemarksTitle5)
+                                                @Html.Raw(@Model.formOperationItemLists[item].RemarksColor1)
+                                                @Html.Raw(@Model.formOperationItemLists[item].RemarksColor2)
+                                                @Html.Raw(@Model.formOperationItemLists[item].RemarksColor3)
+                                                @Html.Raw(@Model.formOperationItemLists[item].RemarksColor4)
+                                                @Html.Raw(@Model.formOperationItemLists[item].RemarksColor5)
+
+                                                @*<h2 class="card-title text-center" style="background-color:#dfdce3"> @Model.formOperationItemLists[item].ItemCategName</h2>
+                                                <div class="text-info p-3 font-weight-bold" style="color:@Model.formOperationItemLists[item].RemarksColor1;font-size: 20px;"> @Model.formOperationItemLists[item].Remarks1 </div>
+                                                <div style="color:@Model.formOperationItemLists[item].RemarksColor1"> @Model.formOperationItemLists[item].RemarksTitle1 </div>
+                                                <div style="color:@Model.formOperationItemLists[item].RemarksColor2"> @Model.formOperationItemLists[item].Remarks2 </div>
+                                                <div style="color:@Model.formOperationItemLists[item].RemarksColor2"> @Model.formOperationItemLists[item].RemarksTitle2 </div>
+                                                <div style="color:@Model.formOperationItemLists[item].RemarksColor3"> @Model.formOperationItemLists[item].Remarks3 </div>
+                                                <div style="color:@Model.formOperationItemLists[item].RemarksColor3"> @Model.formOperationItemLists[item].RemarksTitle3 </div>
+                                                <div style="color:@Model.formOperationItemLists[item].RemarksColor4"> @Model.formOperationItemLists[item].Remarks4 </div>
+                                                <div style="color:@Model.formOperationItemLists[item].RemarksColor4"> @Model.formOperationItemLists[item].RemarksTitle4 </div>
+                                                <div style="color:@Model.formOperationItemLists[item].RemarksColor5"> @Model.formOperationItemLists[item].Remarks5 </div>
+                                                <div style="color:@Model.formOperationItemLists[item].RemarksColor5"> @Model.formOperationItemLists[item].RemarksTitle5 </div>*@
+
+                                            }
+                                            @Html.Raw("<div class='card-body'>");
+                                        }
+
+                                        var Dropdowndata = from m in Model.formGroupdropdown
+                                                           where m.Code.Trim() == @Model.formOperationItemLists[item].valueold.Trim() &&
+                                                           m.OperationCode.Trim() == @Model.formOperationItemLists[item].OperationCode.Trim() &&
+                                                           m.ItemCateg.Trim() == @Model.formOperationItemLists[item].ItemCateg.Trim() &&
+                                                           m.ItemCode.Trim() == @Model.formOperationItemLists[item].ItemCode.Trim()
+                                                           select m;
+
+
+
+                                        /////////////////////////////////////////////////////////////check  row
+                                        var checktype = alltype.Contains(Model.formOperationItemLists[item].InputType.ToLower().Trim());
+
+                                        if ((rowood >= 2 && rowood % 2 == 0 && ItemCateg == v) || (checktype == false && ItemCateg == v) || (checkrow == "1" && ItemCateg == v))
+                                        {
+                                            if (checkrow == "1")
+                                            {
+                                                rowood = 3;
+                                            }
+
+                                        };
+
+                                        if (rowood == 0)
+                                        {
+
+                                            @Html.Raw("<div class='form-row'>");
+                                        };
+
+                                        /////////////////////////////////////////////////////////////check  row end
+
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].OperationNo)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].OperationCode)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].OperationName)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].OperationDisplayOrder)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].InputKind)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RoleID)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].OpeGroupCode)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].OpeGroupName)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].OpeGroupCateg)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].DisplayPriority)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].SpecialOperate)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].CategInputOption)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].CategDisplayOrder)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].ItemCateg)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].ItemCategName)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Remarks1)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Remarks2)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Remarks3)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Remarks4)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Remarks5)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RemarksTitle1)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RemarksTitle2)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RemarksTitle3)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RemarksTitle4)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RemarksTitle5)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RemarksColor1)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RemarksColor2)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RemarksColor3)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RemarksColor4)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].RemarksColor5)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].ItemCode)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].ItemName)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].InputType)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].DataType)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].DecimalNo)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Required)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Minlength)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Maxlength)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Min)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Max)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Step)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].Unit)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].valueold)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].InputOptionItem)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].DefaultValue)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].ReadOnly)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].DetailOption)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].ItemListDisplayOrder)
+                                        @Html.HiddenFor(x => Model.formOperationItemLists[item].FinalResult)
+
+
+                                        if (checkrow == "9")
+                                        {
+                                            @Html.Raw(" <div class='form-group col-md-9'>");
+                                        }
+                                        else if (checkrow == "8")
+                                        {
+                                            @Html.Raw(" <div class='form-group col-md-8'>");
+                                        }
+                                        else if (checkrow == "7")
+                                        {
+                                            @Html.Raw("<div class='form-group col-md-7'>");
+                                        }
+                                        else if (checkrow == "6")
+                                        {
+                                            @Html.Raw("<div class='form-group col-md-6'>");
+                                        }
+                                        else if (checkrow == "5")
+                                        {
+                                            @Html.Raw(" <div class='form-group col-md-5'>");
+                                        }
+                                        else if (checkrow == "4")
+                                        {
+                                            @Html.Raw(" <div class='form-group col-md-4'>");
+                                        }
+                                        else if (checkrow == "3")
+                                        {
+                                            @Html.Raw(" <div class='form-group col-md-3'>");
+                                        }
+                                        else if (checkrow == "2")
+                                        {
+                                            @Html.Raw(" <div class='form-group col-md-2'>");
+                                        }
+                                        else
+                                        {
+                                            if (!alltype.Contains(Model.formOperationItemLists[item].InputType.ToLower()) || checkrow == "1")
+                                            {
+
+                                                @Html.Raw("<div class='form-group col-md-12 py-0'>");
+
+                                            }
+                                            else
+                                            {
+                                                @Html.Raw(" <div class='form-group col-md-6 py-0'>");
+                                            }
+                                        }
+
+                                        var htmlAttributes = new Dictionary<string, object>
+                                            ();
+                                        htmlAttributes.Add("id", Model.formOperationItemLists[item].ItemCode);
+                                        htmlAttributes.Add("name", Model.formOperationItemLists[item].ItemCode);
+                                        htmlAttributes.Add("type", Model.formOperationItemLists[item].DataType);
+                                        htmlAttributes.Add("placeholder", "");
+                                        if (Model.formOperationItemLists[item].InputType == "datetime")
+                                        {
+                                            if (Model.formOperationItemLists[item].OperationNo == "")
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm datetime1 float-right");
+                                            }
+                                            else
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm datetimeE1 float-right");
+                                            }
+                                        }
+                                        else if (Model.formOperationItemLists[item].InputType == "date")
+                                        {
+                                            if (Model.formOperationItemLists[item].OperationNo == "")
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm datetime2 float-right");
+                                            }
+                                            else
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm datetimeE2 float-right");
+                                            }
+                                        }
+                                        else if (Model.formOperationItemLists[item].InputType == "datedef")
+                                        {
+                                            if (Model.formOperationItemLists[item].OperationNo == "")
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm datedef float-right");
+                                            }
+                                            else
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm datedefE float-right");
+                                            }
+                                        }
+                                        else if (Model.formOperationItemLists[item].InputType == "datecomm")
+                                        {
+                                            if (Model.formOperationItemLists[item].OperationNo == "")
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm datecomm float-right");
+                                            }
+                                            else
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm datedefE float-right");
+                                            }
+                                        }
+                                        else if (Model.formOperationItemLists[item].InputType == "dateres")
+                                        {
+                                            if (Model.formOperationItemLists[item].OperationNo == "")
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm dateres float-right");
+                                            }
+                                            else
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm dateresE float-right");
+                                            }
+                                        }
+
+                                        else if (Model.formOperationItemLists[item].InputType == "dateyy")
+                                        {
+                                            if (Model.formOperationItemLists[item].OperationNo == "")
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm dateYY float-right");
+                                            }
+                                            else
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm dateYYE float-right");
+                                            }
+                                        }
+
+                                        else if (Model.formOperationItemLists[item].InputType == "datemm")
+                                        {
+                                            if (Model.formOperationItemLists[item].OperationNo == "")
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm dateMM float-right");
+                                            }
+                                            else
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm dateMME float-right");
+                                            }
+                                        }
+
+                                        else if (Model.formOperationItemLists[item].InputType == "time")
+                                        {
+                                            if (Model.formOperationItemLists[item].OperationNo == "")
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm datetime3 float-right");
+                                            }
+                                            else
+                                            {
+                                                htmlAttributes.Add("class", "form-control input-sm datetimeE3 float-right");
+                                            }
+                                        }
+                                        else if (Model.formOperationItemLists[item].InputType == "text")
+                                        {
+                                            @if (Model.formOperationItemLists[item].DataType == "number" && Model.formOperationItemLists[item].DecimalNo == "1")
+                                            {
+
+                                                htmlAttributes.Add("onmousemove", "return auto0(event, " + Model.formOperationItemLists[item].Step + ",$(this).val(),$(this).attr('id'));");
+                                                htmlAttributes.Add("onChange", "return auto0(event, " + Model.formOperationItemLists[item].Step + ",$(this).val(),$(this).attr('id'));");
+                                            }
+
+                                            htmlAttributes.Add("class", "form-control");
+
+                                        }
+                                        else if (Model.formOperationItemLists[item].InputType == "memo")
+                                        {
+                                            htmlAttributes.Add("class", "form-control memo");
+                                        }
+                                        else if (Model.formOperationItemLists[item].InputType == "combo")
+                                        {
+
+                                            htmlAttributes.Add("class", "btn btn-info btn-sm dropdown-toggle w-100 select");
+                                        }
+
+                                        else if (Model.formOperationItemLists[item].InputType == "textsplit")
+                                        {
+                                            htmlAttributes.Add("class", "form-control textsplit");
+                                        }
+                                        else if (Model.formOperationItemLists[item].InputType.Contains("district") || Model.formOperationItemLists[item].InputType.Contains("amphoe")
+                                            || Model.formOperationItemLists[item].InputType.Contains("province") || Model.formOperationItemLists[item].InputType.Contains("zipcode"))
+                                        {
+                                            htmlAttributes.Add("class", "form-control " + Model.formOperationItemLists[item].InputType);
+                                        }
+
+
+                                        ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                        if (Model.formOperationItemLists[item].InputType == "textsplit" && Model.formOperationItemLists[item].Maxlength != "" && Model.formOperationItemLists[item].Maxlength != null)
+                                        {
+
+                                            htmlAttributes.Add("style", "width:" + ((int.Parse(Model.formOperationItemLists[item].Maxlength)) * 20 + 10) + "px;");
+
+                                        }
+                                        if (Model.formOperationItemLists[item].ReadOnly.ToLower() == "true" && Model.formOperationItemLists[item].InputType != "textsplit")
+                                        {
+
+                                            htmlAttributes.Add("readonly", "readonly");
+
+                                            htmlAttributes.Add("style", "pointer-events: none;");
+
+                                        }
+                                        if (Model.formOperationItemLists[item].ReadOnly.ToLower() == "true" && Model.formOperationItemLists[item].InputType == "textsplit")
+                                        {
+
+                                            htmlAttributes.Add("readonly", "readonly");
+
+                                        }
+                                        if (Model.formOperationItemLists[item].Required.ToLower() == "true")
+                                        {
+                                            htmlAttributes.Add("required", "required");
+                                        }
+                                        if (Model.formOperationItemLists[item].Maxlength != "" && Model.formOperationItemLists[item].Maxlength != null)
+                                        {
+                                            htmlAttributes.Add("maxlength", Model.formOperationItemLists[item].Maxlength);
+                                        }
+                                        if (Model.formOperationItemLists[item].Minlength != "" && Model.formOperationItemLists[item].Minlength != null)
+                                        {
+                                            htmlAttributes.Add("minlength", Model.formOperationItemLists[item].Minlength);
+                                        }
+                                        if (Model.formOperationItemLists[item].Max != "" && Model.formOperationItemLists[item].Max != null)
+                                        {
+                                            htmlAttributes.Add("max", Model.formOperationItemLists[item].Max);
+                                        }
+                                        if (Model.formOperationItemLists[item].Min != "" && Model.formOperationItemLists[item].Min != null)
+                                        {
+                                            htmlAttributes.Add("min", Model.formOperationItemLists[item].Min);
+                                        }
+                                        if (Model.formOperationItemLists[item].Step != "" && Model.formOperationItemLists[item].Step != null)
+                                        {
+                                            htmlAttributes.Add("step", Model.formOperationItemLists[item].Step);
+                                        }
+
+
+                                        @switch (Model.formOperationItemLists[item].InputType.ToLower())
+                                        {
+                                            case "text":
+                                            case string district when district.Contains("district"):
+                                            case string amphoe when amphoe.Contains("amphoe"):
+                                            case string province when province.Contains("province"):
+                                            case string zipcode when zipcode.Contains("zipcode"):
+
+                                                <label class="col-form-label text-dark">@Html.Raw(@Model.formOperationItemLists[item].ItemName)</label>
+                                                <div class="input-group input-group-sm">
+                                                    @Html.TextBoxFor(model => Model.formOperationItemLists[item].ValueCode, "", htmlAttributes) <label>@Model.formOperationItemLists[item].Unit</label>
+                                                    @Html.ValidationMessageFor(m => m.formOperationItemLists[item].ValueCode, "", new { @class = "text-danger" })
+                                                </div>
+                                                break;
+                                            case "texthidden":
+                                                @Html.HiddenFor(model => Model.formOperationItemLists[item].ValueCode)
+                                                break;
+                                            case "textsplit":
+
+                                                <label class="col-form-label text-dark">@Html.Raw(@Model.formOperationItemLists[item].ItemName)</label>
+                                                <div>
+                                                    @Html.TextBoxFor(model => Model.formOperationItemLists[item].ValueCode, "", htmlAttributes)<label>@Model.formOperationItemLists[item].Unit</label>
+                                                    @Html.ValidationMessageFor(m => m.formOperationItemLists[item].ValueCode, "", new { @class = "text-danger" })
+                                                </div>
+                                                break;
+                                            case "memo":
+                                                <label class="col-12  col-form-label">@Html.Raw(@Model.formOperationItemLists[item].ItemName)</label>
+                                                @Html.TextAreaFor(model => Model.formOperationItemLists[item].ValueCode, 5, 1, htmlAttributes)<label>@Model.formOperationItemLists[item].Unit</label>
+                                                @Html.ValidationMessageFor(m => m.formOperationItemLists[item].ValueCode, "", new { @class = "text-danger" })
+                                                break;
+                                            case "datetime":
+                                            case "date":
+                                            case "datedef":
+                                            case "dateres":
+                                            case "dateyy":
+                                            case "datemm":
+                                            case "datecomm":
+
+                                                <label class="col-form-label text-dark">@Html.Raw(@Model.formOperationItemLists[item].ItemName)</label>
+                                                <div>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="far fa-calendar-alt fa-xs"></i></span>
+                                                        </div>
+
+                                                        @Html.TextBoxFor(model => Model.formOperationItemLists[item].ValueCode, "", htmlAttributes)<label>@Model.formOperationItemLists[item].Unit</label>
+                                                        @Html.ValidationMessageFor(m => m.formOperationItemLists[item].ValueCode, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                break;
+                                            case "time":
+                                                <label class="col-form-label text-dark">@Html.Raw(@Model.formOperationItemLists[item].ItemName)</label>
+                                                <div>
+                                                    <div class="input-group input-group-sm">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="far fa-clock fa-xs"></i></span>
+                                                        </div>
+
+                                                        @Html.TextBoxFor(model => Model.formOperationItemLists[item].ValueCode, "", htmlAttributes)<label>@Model.formOperationItemLists[item].Unit</label>
+                                                        @Html.ValidationMessageFor(m => m.formOperationItemLists[item].ValueCode, "", new { @class = "text-danger" })
+                                                    </div>
+                                                </div>
+                                                break;
+                                            case "combo":
+                                                <label class="col-form-label text-dark">@Html.Raw(@Model.formOperationItemLists[item].ItemName)</label>
+                                                <div>
+                                                    @Html.DropDownListFor(model => Model.formOperationItemLists[item].ValueCode, new List<SelectListItem> { new SelectListItem { Value = "", Text = "--Select--" }}
+                                                    .Concat(Dropdowndata.Select(x => new SelectListItem { Text = x.Text.Trim(), Value = x.Value.Trim() })), htmlAttributes)<label>@Model.formOperationItemLists[item].Unit</label>
+                                                    @Html.ValidationMessageFor(m => m.formOperationItemLists[item].ValueCode, "", new { @class = "text-danger" })
+                                                </div>
+
+                                                break;
+                                            case "checkbox":
+
+                                                <label class="col-form-label text-dark">@Html.Raw(@Model.formOperationItemLists[item].ItemName)</label>
+
+                                                var GroupcheckboxCount = Model.formGroupcheckbox.Count();
+                                                <div>
+                                                    <div class="input-group input-group-sm">
+
+                                                        @for (var i = 0; i < GroupcheckboxCount; i++)
+                                                        {
+                                                            var CountValueItem = Model.formGroupcheckbox.Where(aa => aa.ValueCode.Trim() == Model.formOperationItemLists[item].valueold.Trim()).Count();
+                                                            var checkboxcol = 4;
+                                                            if (CountValueItem == 1)
+                                                            {
+                                                                checkboxcol = 12;
+                                                            }
+
+
+                                                            if (@Model.formOperationItemLists[item].valueold.Trim() == Convert.ToString(@Model.formGroupcheckbox[i].ValueCode.Trim()) &&
+                                                            @Model.formOperationItemLists[item].OperationCode.Trim() == @Model.formGroupcheckbox[i].OperationCode.Trim() &&
+                                                            @Model.formOperationItemLists[item].ItemCateg.Trim() == @Model.formGroupcheckbox[i].ItemCateg.Trim() &&
+                                                            @Model.formOperationItemLists[item].ItemCode.Trim() == @Model.formGroupcheckbox[i].ItemCode.Trim())
+                                                            {
+                                                                <div class="form-check form-check-inline col-xs-12 col-sm-12 col-md-12 col-lg-@checkboxcol col-xl-@checkboxcol">
+                                                                    @Html.HiddenFor(x => Model.formGroupcheckbox[i].ValueCode)
+                                                                    @Html.HiddenFor(x => Model.formGroupcheckbox[i].OperationCode)
+                                                                    @Html.HiddenFor(x => Model.formGroupcheckbox[i].ItemCateg)
+                                                                    @Html.HiddenFor(x => Model.formGroupcheckbox[i].OperationName)
+                                                                    @Html.HiddenFor(x => Model.formGroupcheckbox[i].ItemCode)
+                                                                    @Html.HiddenFor(x => Model.formGroupcheckbox[i].ItemName)
+                                                                    @Html.HiddenFor(x => Model.formGroupcheckbox[i].ID)
+                                                                    @Html.HiddenFor(x => Model.formGroupcheckbox[i].Display)
+                                                                    <div class="custom-control custom-checkbox">
+
+                                                                        <label for="@Model.formGroupcheckbox[i].ID" style="font-style:italic;font-weight:500;">
+                                                                            @Html.CheckBoxFor(x => Model.formGroupcheckbox[i].IsChecked, new { @class = "form-check-input option-input checkbox", @Id = @Model.formGroupcheckbox[i].ID })
+                                                                            @Model.formGroupcheckbox[i].Display
+
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                                break;
+                                            case "radio":
+
+                                                <label class="col-form-label text-dark">@Html.Raw(@Model.formOperationItemLists[item].ItemName)</label>
+
+                                                var itemchk = "";
+
+                                                <div>
+                                                    <div class="input-group input-group-sm">
+
+                                                        @{
+                                                            var GroupradioCount = Model.formGroupradio.Count();
+                                                        }
+
+                                                        @for (var i = 0; i < GroupradioCount; i++)
+                                                        {
+                                                            if (@Model.formOperationItemLists[item].valueold.Trim() == Convert.ToString(Model.formGroupradio[i].ValueCode.Trim()) &&
+                                                            @Model.formOperationItemLists[item].OperationCode.Trim() == Model.formGroupradio[i].OperationCode.Trim() &&
+                                                            @Model.formOperationItemLists[item].ItemCateg.Trim() == Model.formGroupradio[i].ItemCateg.Trim() &&
+                                                            @Model.formOperationItemLists[item].ItemCode.Trim() == Model.formGroupradio[i].ItemCode.Trim())
+                                                            {
+                                                                var checkboxcol = 4;
+                                                                if (@Model.formOperationItemLists[item].DetailOption == "1")
+                                                                {
+                                                                    checkboxcol = 1;
+                                                                }
+                                                                <div class="form-check form-check-inline col-xs-12 col-sm-12 col-md-12 col-lg-@checkboxcol col-xl-@checkboxcol">
+
+                                                                    @Html.HiddenFor(x => x.formGroupradio[i].ValueCode)
+                                                                    @Html.HiddenFor(x => x.formGroupradio[i].OperationCode)
+                                                                    @Html.HiddenFor(x => x.formGroupradio[i].ItemCateg)
+                                                                    @Html.HiddenFor(x => x.formGroupradio[i].OperationName)
+                                                                    @Html.HiddenFor(x => x.formGroupradio[i].ItemCode)
+                                                                    @Html.HiddenFor(x => x.formGroupradio[i].ItemName)
+                                                                    @Html.HiddenFor(x => Model.formGroupradio[i].ID)
+                                                                    @Html.HiddenFor(x => Model.formGroupradio[i].Order)
+                                                                    @Html.HiddenFor(x => Model.formGroupradio[i].Display)
+                                                                    @Html.HiddenFor(x => Model.formGroupradio[i].IsChecked)
+
+                                                                    <div class="custom-control custom-radio">
+
+                                                                        <label for="@Model.formGroupradio[i].ID" style="font-style:italic;font-weight:500">
+                                                                            @if (@Model.formOperationItemLists[item].OperationNo == "")
+                                                                            {
+                                                                                @if (itemchk.Trim() != Model.formGroupradio[i].ItemCode.Trim())
+                                                                                {
+                                                                                    @Html.RadioButton(Model.formGroupradio[i].ItemCode, Model.formGroupradio[i].ID, true, new { @class = "option-input radio", @Id = @Model.formGroupradio[i].ID })
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    @Html.RadioButton(Model.formGroupradio[i].ItemCode, Model.formGroupradio[i].ID, false, new { @class = "option-input radio", @Id = @Model.formGroupradio[i].ID })
+                                                                                }
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                @Html.RadioButton(Model.formGroupradio[i].ItemCode, Model.formGroupradio[i].ID, Model.formGroupradio[i].IsChecked, new { @class = "option-input radio", @Id = @Model.formGroupradio[i].ID })
+                                                                            }
+                                                                            @Html.DisplayFor(x => Model.formGroupradio[i].Display)
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                itemchk = Model.formGroupradio[i].ItemCode;
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                                break;
+                                            case "checkspe":
+
+                                                <label class="col-form-label text-dark">@Html.Raw(@Model.formOperationItemLists[item].ItemName)</label>
+                                                var itemchks = "";
+                                                <div>
+                                                    <div class="input-group input-group-sm">
+                                                        @{
+                                                            var GroupspecialCount = Model.formGroupspecial.Count();
+                                                        }
+
+                                                        @for (var i = 0; i < GroupspecialCount; i++)
+                                                        {
+                                                            if (@Model.formOperationItemLists[item].valueold.Trim() == Convert.ToString(Model.formGroupspecial[i].ValueCode.Trim()) &&
+                                                            @Model.formOperationItemLists[item].OperationCode.Trim() == Model.formGroupspecial[i].OperationCode.Trim() &&
+                                                            @Model.formOperationItemLists[item].ItemCateg.Trim() == Model.formGroupspecial[i].ItemCateg.Trim() &&
+                                                            @Model.formOperationItemLists[item].ItemCode.Trim() == Model.formGroupspecial[i].ItemCode.Trim())
+                                                            {
+                                                                <div class="form-check col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+
+                                                                    @Html.HiddenFor(x => x.formGroupspecial[i].ValueCode)
+                                                                    @Html.HiddenFor(x => x.formGroupspecial[i].OperationCode)
+                                                                    @Html.HiddenFor(x => x.formGroupspecial[i].ItemCateg)
+                                                                    @Html.HiddenFor(x => x.formGroupspecial[i].OperationName)
+                                                                    @Html.HiddenFor(x => x.formGroupspecial[i].ItemCode)
+                                                                    @Html.HiddenFor(x => x.formGroupspecial[i].ItemName)
+                                                                    @Html.HiddenFor(x => Model.formGroupspecial[i].ID)
+                                                                    @Html.HiddenFor(x => Model.formGroupspecial[i].Order)
+                                                                    @Html.HiddenFor(x => Model.formGroupspecial[i].Display)
+                                                                    @Html.HiddenFor(x => Model.formGroupspecial[i].IsChecked)
+
+                                                                    <div class="custom-control custom-radio">
+
+                                                                        <label for="@Model.formGroupspecial[i].ID" style="font-style:italic;font-weight:500">
+                                                                            @if (@Model.formOperationItemLists[item].OperationNo == "")
+                                                                            {
+                                                                                @if (itemchks.Trim() != Model.formGroupspecial[i].ItemCode.Trim())
+                                                                                {
+                                                                                    @Html.RadioButton(Model.formGroupspecial[i].ItemCode, Model.formGroupspecial[i].ID, true, new { @class = "option-input radio", @Id = @Model.formGroupspecial[i].ID })
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                    @Html.RadioButton(Model.formGroupspecial[i].ItemCode, Model.formGroupspecial[i].ID, false, new { @class = "option-input radio", @Id = @Model.formGroupspecial[i].ID })
+                                                                                }
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                @Html.RadioButton(Model.formGroupspecial[i].ItemCode, Model.formGroupspecial[i].ID, Model.formGroupspecial[i].IsChecked, new { @class = "option-input radio", @Id = @Model.formGroupspecial[i].ID })
+                                                                            }
+                                                                            @Html.DisplayFor(x => Model.formGroupspecial[i].Display)
+                                                                        </label>
+                                                                    </div>
+                                                                </div>
+                                                                itemchk = Model.formGroupspecial[i].ItemCode;
+                                                            }
+                                                        }
+                                                    </div>
+                                                </div>
+                                                break;
+                                            case "table":
+                                                _checktable = "T";
+                                                var divid = "D" + @Model.formOperationItemLists[item].ItemCode.Trim();
+                                                var spacial = "";
+                                                if (@Model.formOperationItemLists[item].DataType == "loopemp")
+                                                {
+                                                    spacial = "tableloopemp";
+                                                }
+
+                                                <div class="form-group" style="font-size:0.9em">
+                                                    <label class="col-form-label text-dark">@Html.Raw(@Model.formOperationItemLists[item].ItemName)</label>
+                                                    <div class="row">
+                                                        <div class="col-5">
+                                                            <select class="js-example-basic-single" multiple="multiple" style="width:100%;"></select>
+                                                        </div>
+                                                        <div class="col-1 text-center">
+                                                            <i class="fas fa-arrow-alt-circle-right fa-3x" style="color:blue"></i>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="input-group mb-3">
+                                                                <div class="input-group-prepend">
+                                                                    <span class="input-group-text" id="basic-addon1">TABLE FILTER</span>
+                                                                </div>
+                                                                <input type="text" class="form-control" id="myInput" placeholder="" aria-describedby="basic-addon1">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="scrollmenu">
+                                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 inputtable @spacial" id="@divid">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                break;
+
+
+                                        } //Close switch
+
+                                        @Html.Raw("</div>");
+
+                                        if (item == formOperationItemListscount)
+                                        {
+                                            @Html.Raw("</div>");
+
+
+                                        }
+                                        rowood = rowood + 1;
+                                        if (checktype == false)
+                                        {
+                                            rowood = rowood + 1;
+                                        }
+                                        ItemCateg = v;
+
+                                    }
+
+                                    @*------------------------End Dynamic------------------------------------------------*@
+                                }
+                            </fieldset>
+                        </div>
+                        <div class="card-footer text-center">
+                            <button id="savedata" type="button" name="Save" class="btn btn-success btn-sm btnpage">Save</button>&nbsp;&nbsp;
+                            <a href="@Url.Action("FormList","EManageForm", new { strObj = _strObj, OperationCode=_OperationCode,OpeGroupCateg=_OpeGroupCateg,InputKind=_InputKind,OperationNo=""})"
+                               class="btn btn-dark btn-sm">Go to the report page</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            @*<div class="col-2">
+                </div>*@
+        </div>
+    </section>
+</div>
+
+
+@section Scripts{
+
+    <script src="~/js/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="~/js/bootstrap-multiselect.js" type="text/javascript"></script>
+    <script src="~/Asset/LTE/bower_components/jquery/dist/jquery.serializejson.min.js"></script>
+    <!-- dependencies for zip mode -->
+    <script type="text/javascript" src="~/jquery.Thailand.js/dependencies/zip.js/zip.js"></script>
+    <!-- / dependencies for zip mode -->
+    <script type="text/javascript" src="~/jquery.Thailand.js/dependencies/JQL.min.js"></script>
+    <script type="text/javascript" src="~/jquery.Thailand.js/dependencies/typeahead.bundle.js"></script>
+    <script type="text/javascript" src="~/jquery.Thailand.js/src/jquery.Thailand.js"></script>
+
+
+    <script type="text/javascript">
+
+        var _strObj = "@ViewBag.strObj";
+        var _OperationCode = "@ViewBag.OperationCode";
+        var _OpeGroupCateg = "@ViewBag.OpeGroupCateg";
+        var _InputKind = "@ViewBag.InputKind";
+        var _OperationNo = "@ViewBag.OperationNo";
+        var _table = "@_checktable";
+
+
+        $(function () {
+            $('.listbox').chosen({
+                width: "100%"
+            });
+        });
+
+        function auto0(event, step, value, id) {
+            //console.log(event);
+            //console.log(id);
+            //console.log(value);
+            if (step != null && step != "") {
+                var decimalRegex = /(\d{0,})(\.(\d{1,})?)?/g
+                var decimalPartMatches = decimalRegex.exec(step);
+                var decimalPart = "";
+                if (decimalPartMatches[2]) {
+                    decimalPart = decimalPartMatches[2];
+                }
+                //console.log(decimalPart);
+
+                if (value != "" && decimalPart != "") {
+                    value = parseFloat(value.replace(/,/g, ""))
+                        .toFixed(decimalPart.length - 1)
+                        .toString();
+                    document.getElementById(id).value = value;
+                }
+            }
+            return true;
+        }
+
+    </script>
+    <script src="~/js/View/EManageForm/FormInput.js"></script>
+    <script src="~/js/View/EManageForm/FormCondittion.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}
+

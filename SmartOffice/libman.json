@@ -1,0 +1,44 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "font-awesome@4.7.0",
+      "destination": "wwwroot/lib/font-awesome",
+      "files": [
+        "css/font-awesome.min.css",
+        "fonts/fontawesome-webfont.eot",
+        "fonts/fontawesome-webfont.svg",
+        "fonts/fontawesome-webfont.ttf",
+        "fonts/fontawesome-webfont.woff",
+        "fonts/fontawesome-webfont.woff2",
+        "fonts/FontAwesome.otf"
+      ]
+    },
+    {
+      "provider": "unpkg",
+      "library": "@aspnet/signalr@1.1.4",
+      "destination": "wwwroot/lib/@aspnet/signalr/"
+    },
+    {
+      "library": "datatable@2.0.1",
+      "destination": "wwwroot/lib/datatable/"
+    },
+    {
+      "library": "kendo-ui-core@2014.1.416",
+      "destination": "wwwroot/kendo-ui-core/"
+    },
+    {
+      "library": "datatables@1.10.19",
+      "destination": "wwwroot/datatables/"
+    },
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "wwwroot/lib/jqueryui/"
+    },
+    {
+      "library": "select2@4.0.6",
+      "destination": "wwwroot/lib/select2/"
+    }
+  ]
+}

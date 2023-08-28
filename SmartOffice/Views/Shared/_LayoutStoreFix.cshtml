@@ -1,0 +1,497 @@
+﻿@inject SmartOffice.Class.MenuMasterService2 menus
+@{
+    var Allmenu = new SmartOffice.Models.MasterMenuMaster();
+    var GroupMenu = new SmartOffice.eManagement.Models.TupleUser();
+    var GroupCateg = "";
+    var dept = "";
+    var dept2 = "";
+    var dept3 = "";
+    var Section = "";
+    var Division = "";
+    var username = "";
+    var Namempe = "";
+    var userid = "";
+    var Categ = "";
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        Categ = User.Claims.FirstOrDefault(c => c.Type == "GroupCateg").Value;
+        GroupCateg = User.Claims.FirstOrDefault(c => c.Type == "GroupCateg").Value;
+        dept = User.Claims.FirstOrDefault(c => c.Type == "Department").Value;
+        dept2 = User.Claims.FirstOrDefault(c => c.Type == "Department2").Value;
+        dept3 = User.Claims.FirstOrDefault(c => c.Type == "Department3").Value;
+        username = User.Claims.FirstOrDefault(c => c.Type == "UserName").Value;
+        Namempe = User.Claims.FirstOrDefault(c => c.Type == "Namempe").Value;
+        userid = User.Claims.FirstOrDefault(c => c.Type == "Id").Value;
+        Division = User.Claims.FirstOrDefault(c => c.Type == "Division").Value;
+        Section = User.Claims.FirstOrDefault(c => c.Type == "Section").Value;
+
+    }
+    else
+    {
+
+        username = "000000";
+        userid = "000000";
+    }
+
+    GroupMenu = menus.GetGroup1("U", Division, Section, dept, dept2, dept3, username, "");
+    var GroupMenu2 = new SmartOffice.eManagement.Models.TupleUser();
+    var img = username + ".jpg";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="~/image/Favicons.png" rel="icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdmSOffice</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+    <!-- Bootstrap -->
+    <link href="~/gentelella/vendors/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/css/fontawesome-free-5.8.1-web/css/all.min.css" rel="stylesheet" />
+
+
+    <link href="~/Asset/LTE/dist/css/adminlte.css" rel="stylesheet" />
+    <link href="~/gentelella/build/css/custom.css" rel="stylesheet">
+
+    <style>
+        .divmenu {
+            left: 100%;
+            position: absolute;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            z-index: 4000;
+            background: #fff;
+        }
+
+            .divmenu ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            .divmenu li {
+                float: left;
+                width: 100%;
+            }
+
+                .divmenu li a {
+                    display: block;
+                    color: black;
+                    text-align: left;
+                    padding: 16px;
+                    text-decoration: none;
+                }
+
+                    .divmenu li a:hover {
+                        background-color: #fff;
+                    }
+
+
+
+        .box {
+            padding: 60px 0px;
+        }
+
+        .box-part {
+            background: #FFF;
+            border-radius: 0;
+            padding: 60px 10px;
+            margin: 30px 0px;
+        }
+
+        .front {
+            z-index: 2000 !important;
+        }
+
+        .back {
+            z-index: 0 !important;
+        }
+
+        .search-field {
+            position: relative;
+            margin: auto;
+            width: 70%;
+        }
+
+        .searchinput {
+            /*background: none;*/
+            outline: none;
+            display: inline-block;
+            width: 100%;
+            margin: 8px 0;
+            padding: 13px 15px;
+            padding-right: 42.5px;
+            border: 1px solid #1dd5b1;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: medium;
+        }
+
+        .clear {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 13px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="sidebar-collapse nav-sm">
+    <div class="container1 body">
+        <div class="main_container">
+            <!-- top navigation -->
+            <!--Navbar -->
+            <nav class="navbar navbar-expand-md navbar-light navbar-white front" style="background: linear-gradient(45deg, #1de099, #1dc8cd);">
+                <div class="container-fluid">
+
+                    <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                        <img src="~/image/logo-smart.png" alt="Logo" style="width:250px;">
+                    </a>
+
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+                            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                @(await Component.InvokeAsync("MenuCMMHeaderControl", new { newstyle = "Normal" }))
+                            </li>
+
+
+                        </ul>
+                        <ul class="navbar-nav ml-auto nav-flex-icons">
+                            <li class="nav-item">
+                                @(await Component.InvokeAsync("SmartSearchControl"))
+                            </li>
+
+                            @if (User.Identity.IsAuthenticated == false)
+                            {
+                                <li class="nav-item  ">
+                                    <p class="mb-0"><a id="navbar-static-login" asp-area="Identity" asp-page="/Account/login" class="nav-link  waves-effect" style="color:white"><i class="fas fa-sign-in-alt"></i> Sign In/Register </a></p>
+                                </li>
+
+                            }
+                            else
+                            {
+                                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                    <a href="javascript:;" class=" dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false">
+                                        <img src="~/image/User/@img" alt="" style="width:40px" class="rounded-circle">@Namempe
+                                    </a>
+                                    <div id="xx" class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+
+
+                                        <a class="dropdown-item" href="../Home/Privacy"><i class="fas fa-user-cog"></i> Profile</a>
+
+
+                                        <a href="javascript:$('#logout_form').submit();" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+
+                                        <form class="form-inline" id="logout_form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"></form>
+
+
+
+                                    </div>
+                                </li>
+                            }
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!--/.Navbar -->
+            <!-- /top navigation -->
+
+
+            @*<div class="col-md-3 left_col back">
+                <div class="left_col scroll-view">
+                    
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="">
+                            @{
+                                var checkdefault = "";
+                            }
+                            <ul class="nav nav-pills flex-column side-menu" id="myTab" role="tablist">
+
+                                @{
+
+                                    var no = 0;
+                                    foreach (var itemG1 in GroupMenu.userOperationGroups)
+                                    {
+
+                                        var activedefault = "";
+                                        if (no == 0)
+                                        {
+                                            activedefault = "active";
+                                            checkdefault = @itemG1.OperationCode;
+                                            no++;
+                                        }
+                                        <li class="nav-item clickli">
+                                            <a href="#@itemG1.OperationCode" class="nav-link @activedefault" data-toggle="tab" role="tab" aria-controls="@itemG1.OperationCode" aria-selected="false">@Html.Raw(@itemG1.OperationName)</a>
+                                        </li>
+
+                                    }
+                                }
+
+                            </ul>
+
+
+                            <div class="tab-content">
+
+                                @{
+
+                                    foreach (var itemG1 in GroupMenu.userOperationGroups)
+                                    {
+
+                                        GroupMenu2 = menus.GetGroup2(itemG1.strObj, itemG1.OperationCode, itemG1.OpeGroupCateg, itemG1.InputKind, "", username);
+
+                                        var chkactive = "";
+
+                                        var showdefault1 = "";
+                                        var activedefault1 = "";
+                                        if (checkdefault == @itemG1.OperationCode)
+                                        {
+                                            showdefault1 = "show";
+                                            activedefault1 = "active";
+                                        }
+
+                                        <div class="tab-pane fade divmenu @showdefault1 @activedefault1" id="@itemG1.OperationCode" style="width:93vw; height:auto; min-height:100vh; background-color:#f5fdfb">
+                                            <div class="row pt-3">
+                                                <div class="col-md-3">
+                                                    <h6 class="pl-3 font-weight-bold" style="color:#006972"><i class="fab fa-app-store"></i> @GroupMenu2.userOperationItems.Select(x => x.ItemCategName).FirstOrDefault()</h6>
+                                                    <ul class="nav nav-pills">
+                                                        @{
+                                                            var num = 0;
+                                                        }
+                                                        @foreach (var itemG2 in GroupMenu2.userOperationItems)
+                                                        {
+                                                            var active = "";
+                                                            if (num == 0 && itemG2.InputType.Contains("link"))
+                                                            {
+                                                                active = "active";
+                                                                chkactive = "O" + @itemG1.OperationCode + @itemG2.ItemCode;
+                                                                num++;
+                                                            }
+                                                            if (itemG2.InputType == "search")
+                                                            {
+                                                                var idd = "S" + @itemG1.OperationCode;
+                                                                <li>
+                                                                    <div class="text-center">
+                                                                        <div class="form-group  search-field">
+                                                                            <input id="@idd" class="form-control searchli searchinput" type="text" placeholder="Search" onkeyup="myFunction(this)">
+                                                                            <span class="clear"><i class="far fa-times-circle fa-2x" style="color:#1dd5b1"></i></span>
+                                                                        </div>
+                                                                    </div>
+                                                                </li>
+                                                            }
+                                                            else if (itemG2.InputType.Contains("link"))
+                                                            {
+                                                                var idd = "O" + @itemG1.OperationCode + @itemG2.ItemCode;
+
+                                                                <li>
+
+                                                                    <a class="nav-link @active" id="@idd-tab" data-toggle="tab" href="#@idd" aria-controls="@idd" aria-selected="false">@itemG2.ItemName</a>
+
+                                                                </li>
+                                                            }
+
+                                                        }
+                                                    </ul>
+                                                </div>
+                                                <div class="col-md-9">
+                                                    <div class="tab-content">
+
+                                                        @foreach (var itemG3H in GroupMenu2.userOperationItems.Where(x => x.InputType.Contains("link") && x.OperationCode == @itemG1.OperationCode))
+                                                        {
+                                                            var idd = "O" + @itemG1.OperationCode + @itemG3H.ItemCode;
+                                                            var active = "";
+                                                            var show = "";
+                                                            if (chkactive == idd)
+                                                            {
+                                                                active = "active";
+                                                                show = "show";
+                                                            }
+                                                            <div class=" tab-pane fade divlim @active @show" id="@idd">
+                                                                <div class="row">
+                                                                    @foreach (var itemG3 in GroupMenu2.userMenulists.Where(x => x.No == @idd && x.UserId == userid))
+                                                                    {
+
+                                                                        @if (@itemG3.MenuUrl != "")
+                                                                        {
+                                                                            <div class="animated flipInY col-lg-3 col-md-3 col-sm-9 divli">
+                                                                                <div class="tile-stats card border-info mx-sm-1 p-1">
+                                                                                    
+                                                                                    <div class="">
+                                                                                        @Html.Raw(@itemG3.IconClass) <span class="@itemG3.Badges">@itemG3.BadgesName</span>
+                                                                                    </div>
+
+
+                                                                                    <a href="@itemG3.MenuUrl" class=" nav-link" target="_blank">
+
+                                                                                        <p class="  mt-1">@itemG3.MenuNameT</p>
+                                                                                        <p class="  mt-1">@itemG3.MenuNameE</p>
+                                                                                        <p class="  mt-1">@itemG3.MenuNameJ</p>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            var chkblank = "";
+                                                                            if (@itemG3.Param != "")
+                                                                            {
+                                                                                chkblank = "_blank";
+                                                                            }
+                                                                            <div class="animated flipInY col-lg-3 col-md-3 col-sm-9 divli">
+                                                                                <div class="tile-stats card border-info mx-sm-1 p-1">
+                                                                                    
+                                                                                    <div class="">
+                                                                                        @Html.Raw(@itemG3.IconClass) <span class="@itemG3.Badges">@itemG3.BadgesName</span>
+                                                                                    </div>
+
+
+                                                                                    <a asp-area="" asp-controller=@itemG3.Controller asp-action=@itemG3.Action class=" nav-link" target="@chkblank" asp-route-code="@itemG3.Param" asp-route-docno=" " asp-route-mode=" ">
+
+                                                                                        <p class="  mt-1">@itemG3.MenuNameT</p>
+                                                                                        <p class="  mt-1">@itemG3.MenuNameE</p>
+                                                                                        <p class="  mt-1">@itemG3.MenuNameJ</p>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        }
+
+                                                                    }
+
+                                                                    @if (itemG3H.InputType == "linknews")
+                                                                    {
+                                                                        <div>
+                                                                            @(await Component.InvokeAsync("NewsControl", new { DeptType = itemG3H.DataType, newstyle = "Normal" }))
+                                                                        </div>
+                                                                    }
+                                                                    @if (itemG3H.InputType == "linksurvey")
+                                                                    {
+                                                                        <div style="width:100%">
+                                                                            @{
+                                                                                var model = menus.GetGroup3("Q", Division, Section, dept, dept2, dept3, username, itemG3H.DataType);
+
+                                                                            }
+
+                                                                            @await Html.PartialAsync("~/Views/EManageForm/FormIndex.cshtml", model)
+                                                                        </div>
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        }
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+            <!-- page content -->
+            <div class="content-wrapper" role="main">
+                @*style="margin-left:6vw"*@
+                @RenderBody()
+            </div>
+            <!-- /page content -->
+
+        </div>
+    </div>
+
+
+    <script src="~/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/fullcalendar/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="~/gentelella/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <!-- AdminLTE App -->
+    <script src="~/Asset/LTE/dist/js/adminlte.min.js"></script>
+
+
+
+
+    <script>
+        //$(document).on('click', '.nav-link.active', function () {
+        //    var href = $(this).attr('href').substring(1);
+        //    //alert(href);
+        //    $(this).removeClass('active');
+        //    $('.tab-pane[id="' + href + '"]').removeClass('active');
+        //})
+
+        //clear filter
+
+        //// Chrome 1 - 71
+        //var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+        ////console.log('isChrome: ' + isChrome);
+
+        //if (isChrome == false) {
+        //    location.href = "http://rthsrv17/smartoffice/Home/UnSupportPage";
+        //}
+
+        $(".clickli").on("click", function () {
+
+            $(".divlim *").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf("") > -1)
+            });
+
+            $(".searchli").val(null);
+        });
+
+        //filter
+        function myFunction(val) {
+            var value = document.getElementById(val.id).value.toLowerCase();
+            //$(".divli *").filter(function () {
+
+            //    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            //});
+
+            $('.divli').each(function () {
+                if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) != -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+
+        }
+
+        //$("ul.nav-pills a").click(function (e) {
+        //    e.preventDefault();
+        //    $(this).tab('show');
+        //});
+
+        Array.from(document.querySelectorAll('.search-field')).forEach(field => {
+            field.querySelector('.clear').addEventListener('click', e => {
+                field.querySelector('.searchinput').value = '';
+
+                $('.divli').each(function () {
+                    if ($(this).text().toLowerCase().indexOf('') != -1) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+    </script>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

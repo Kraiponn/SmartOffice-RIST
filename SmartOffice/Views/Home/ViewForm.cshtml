@@ -1,0 +1,51 @@
+﻿
+@{
+    ViewData["Title"] = "Form";
+}
+<link href="~/lib/formio.full.min.css" rel="stylesheet" />
+<link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/formio.full.min.js"></script>
+<script type='text/javascript'>
+        var sc = "";
+    
+ 
+    window.onload = function () {
+        $.get("../GetForm", { id: '@ViewBag.id' })
+            .done(function (json) {
+             
+               // Formio.createForm(document.getElementById('formio'), json);
+
+                Formio.createForm(document.getElementById('formio'), json, {
+                   //readOnly: true
+                }).then(function (form) {
+                    form.on('submit', (submission) => {
+                        $.post("../SaveRequest", { jsondata: JSON.stringify(submission.data)})
+                        console.log(submission.data);
+                    });
+                    form.on('error', (errors) => {
+                        console.log('We have errors!');
+                    })
+                });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var error = textStatus + ", " + error;
+                // warningBR(error, "Request Failed!!");
+
+            });
+               
+                // Formio.createForm(document.getElementById('formio'), "http://localhost:57377/Home/GetForm?id=@ViewBag.id");
+                //Formio.createForm(document.getElementById('formio'), 'https://examples.form.io/example');
+            };
+    
+
+</script>
+
+
+<h1>Form</h1>
+<div class="col-sm-12">
+    <div id='formio'></div>
+</div>
+
+
+

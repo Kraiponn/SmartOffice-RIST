@@ -1,0 +1,78 @@
+﻿@using System.Text;
+@model SmartOffice.Models.OrgModel
+@{
+    ViewData["Title"] = "Organization";
+}
+<link href="~/lib/OrgChart/css/jquery.orgchart.css" rel="stylesheet" />
+<h1>Organization</h1>
+@functions {
+
+public string ShowMasterItems(SmartOffice.Models.OrgModel category)
+{
+    StringBuilder output = new StringBuilder();
+    if (category != null)
+    {
+        if (category != null)
+        {
+            output.Append("<ul id='ul-data'>");
+            output.Append("<li>");
+            output.Append("<div class='title'>");
+            output.Append(category.Name);
+            output.Append("</div>");
+            output.Append("<div class='content'>");
+            output.Append(category.Title);
+            output.Append("</div>");
+            output.Append(ShowSubItems(category));
+            output.Append("</li>");
+
+            output.Append("</ul>");
+        }
+    }
+    return output.ToString();
+}
+
+}
+@functions {
+
+public string ShowSubItems(SmartOffice.Models.OrgModel category)
+{
+    StringBuilder output = new StringBuilder();
+    if (category.Children != null)
+    {
+
+        if (category.Children.Count > 0)
+        {
+            output.Append("<ul>");
+
+            foreach (SmartOffice.Models.OrgModel child in category.Children)
+            {
+                output.Append("<li>");
+                output.Append("<div class='title'>");
+                output.Append(child.Name);
+                output.Append("</div>");
+                output.Append("<div class='content'>");
+                output.Append(child.Title);
+                output.Append("</div>");
+                output.Append(ShowSubItems(child));
+                output.Append("</li>");
+            }
+            output.Append("</ul>");
+        }
+    }
+    return output.ToString();
+}
+
+}
+@Html.Raw(ShowMasterItems(Model))
+<input type="hidden" id="DocCode" name="DocCode" value="@ViewData["DocCode"]">
+<div class="row" style="background-color:#fafafa;height:100vh">
+    <div class="col-12">
+        <div id="chart-container"></div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/lib/OrgChart/js/jquery.orgchart.js"></script>
+    <script src="~/js/View/HomeScript/OrganizationScript.js"></script>
+}

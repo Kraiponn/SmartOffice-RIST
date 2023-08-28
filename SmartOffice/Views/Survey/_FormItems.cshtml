@@ -1,0 +1,26 @@
+﻿@model ICollection<SmartOffice.SurveyApp.ViewModel.ViewInputItem>;
+
+
+@{
+    foreach (var item in Model)
+    {
+        switch (item.InputType)
+        {
+            case "text":
+                @await Html.PartialAsync("_InputText", item)
+                break;
+            case "date":
+            case "datetime":
+            case "time":
+                @await Html.PartialAsync("_InputDate", item)
+                break;
+            case "combo":
+                @await Html.PartialAsync("_InputCombo", item)
+                break;
+            default:
+                Console.WriteLine("Default case");
+                break;
+        }
+    }
+
+}

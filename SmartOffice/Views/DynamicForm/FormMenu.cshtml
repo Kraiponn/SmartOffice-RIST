@@ -1,0 +1,345 @@
+﻿@*@model SmartOffice.ModelsForm.ModelFormMenu*@
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+
+<style>
+    /*.accordion .card-header:after {
+            font-family: 'FontAwesome';
+            content: "\f068";
+            float: right;
+        }
+        .accordion .card-header.collapsed:after {
+
+            content: "\f067";
+        }
+        .accordion2 .card-header:after {
+            font-family: 'FontAwesome';
+            content: "\f068";
+            float: right;
+        }
+        .accordion2 .card-header.collapsed:after {
+
+            content: "\f067";
+        }*/
+    .dataTables_filter {
+        display: none;
+    }
+
+    .searchbar {
+        margin-bottom: auto;
+        margin-top: auto;
+        height: 60px;
+        background-color: #1d3047;
+        border-radius: 30px;
+        padding: 10px;
+    }
+
+    .search_input {
+        color: white;
+        border: 0;
+        outline: 0;
+        background: none;
+        width: 0;
+        caret-color: transparent;
+        line-height: 40px;
+        transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_input {
+        padding: 0 10px;
+        width: 450px;
+        caret-color: green;
+        transition: width 0.4s linear;
+    }
+
+    .searchbar:hover > .search_icon {
+        background: white;
+        color: #1ddca3;
+    }
+
+    .search_icon {
+        height: 40px;
+        width: 40px;
+        float: right;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        color: white;
+        text-decoration: none;
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    .zoom {
+        /*padding: 50px;*/
+        /*background-color: green;*/
+        /*transition: transform .2s;*/
+        /*width: 200px;
+            height: 200px;*/
+        /*margin: 0 auto;*/
+    }
+
+        .zoom:hover {
+            -ms-transform: scale(3.3); /* IE 9 */
+            -webkit-transform: scale(3.3); /* Safari 3-8 */
+            transform: scale(3.3);
+        }
+
+    .imgs {
+        border: 1px solid #ddd;
+        /*border-radius: 4px;*/
+        /*padding: 5px;*/
+        border-color: #1d3047;
+    }
+
+    .mytooltip {
+        display: inline;
+        position: relative;
+        z-index: 999
+    }
+
+        .mytooltip .tooltip-item {
+            /*background: rgba(0, 0, 0, 0.1);*/
+            cursor: pointer;
+            display: inline-block;
+            font-weight: 500;
+            padding: 0 10px
+        }
+
+        .mytooltip .tooltip-content {
+            position: absolute;
+            z-index: 9999;
+            width: auto;
+            left: -120px;
+            margin: 0 0 20px -180px;
+            bottom: 100%;
+            text-align: left;
+            font-size: 14px;
+            line-height: 30px;
+            -webkit-box-shadow: -5px -5px 15px rgba(48, 54, 61, 0.2);
+            box-shadow: -5px -5px 15px rgba(48, 54, 61, 0.2);
+            background: #2b2b2b;
+            opacity: 0;
+            cursor: default;
+            pointer-events: none;
+            top: -5px;
+        }
+
+            .mytooltip .tooltip-content::after {
+                content: '';
+                top: 100%;
+                left: 50%;
+                border: solid transparent;
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+                border-color: #2a3035 transparent transparent;
+                border-width: 10px;
+                margin-left: -10px
+            }
+
+            .mytooltip .tooltip-content img {
+                position: relative;
+                height: 140px;
+                display: block;
+                float: left;
+                /*margin-right: 1em*/
+            }
+
+        .mytooltip .tooltip-item::after {
+            content: '';
+            position: absolute;
+            width: 360px;
+            height: 20px;
+            bottom: 100%;
+            left: 50%;
+            pointer-events: none;
+            -webkit-transform: translateX(-50%);
+            transform: translateX(-50%)
+        }
+
+        .mytooltip:hover .tooltip-item::after {
+            pointer-events: auto
+        }
+
+        .mytooltip:hover .tooltip-content {
+            pointer-events: auto;
+            opacity: 1;
+            -webkit-transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0deg);
+            transform: translate3d(0, 0, 0) rotate3d(0, 0, 0, 0deg)
+        }
+
+        .mytooltip:hover .tooltip-content2 {
+            opacity: 1;
+            font-size: 18px
+        }
+
+        .mytooltip .tooltip-text {
+            font-size: 14px;
+            line-height: 24px;
+            display: block;
+            padding: 1.31em 1.21em 1.21em 0;
+            color: #fff
+        }
+</style>
+
+<div>
+    <br />
+    <div class="d-flex justify-content-center h-100">
+        <div class="searchbar">
+            <input id="myFilter" class="search_input" type="text" name="" placeholder="Search...">
+            <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped table-hover table-sm w-responsive display" cellpadding="0" cellspacing="0" border="0" style="width:100% ;" id="TableMenu">
+                <thead class="" style="background-color:#1dccc3">
+                    <tr>
+
+                        <th>Code</th>
+                        <th>Dept.</th>
+                        <th>Form</th>
+                        <th>Name</th>
+                        <th>Responsible person</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+    </div>
+
+
+</div>
+
+@using (Html.BeginForm("index", "DynamicForm", FormMethod.Post, new { @id = "toupdate", @role = "form", @target = "_blank" }))
+{
+    @Html.Hidden("docno")
+    @Html.Hidden("code")
+    @Html.Hidden("mode")
+    @Html.Hidden("seq")
+}
+
+
+
+
+
+@*<div id="accordion" class="accordion">
+        <div class="card mb-3">
+            @{
+                var num = 0;
+                var numC = 0;
+            }
+            @foreach (var item in Model.formMenus.Select(x => new { x.GroupCateg, x.GroupName }).Distinct().OrderBy(x => x.GroupName))
+            {
+
+                <div class="card-header collapsed text-light" data-toggle="collapse" data-parent="#accordion" href="#@num" style="background: #bdc3c7;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #2c3e50, #bdc3c7);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #2c3e50, #bdc3c7); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */">
+                    <a class="card-title">
+                        <i class="fas fa-folder-plus" style="color:#FFD151"></i> @item.GroupName
+
+                    </a>
+                </div>
+                <div id="@num" class="card-body collapse" data-parent="#accordion" style="background: #8e9eab;  /* fallback for old browsers */
+        background: -webkit-linear-gradient(to bottom, #eef2f3, #8e9eab);  /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to bottom, #eef2f3, #8e9eab); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */">
+
+                    <div class="card">
+
+                        @foreach (var menuNames in Model.formMenus.Where(x => x.GroupCateg == item.GroupCateg).OrderBy(x => x.MenuIdentityParent).ThenBy(x => x.DisplayOrder).ThenBy(x => x.MenuNameT).ThenBy(x => x.MenuNameE).ThenBy(x => x.MenuNameJ))
+                        {
+
+                            var chkmainnotchild = Model.formMenus.Where(x => x.GroupCateg == item.GroupCateg && x.MenuIdentity == menuNames.MenuIdentityParent).ToList();
+                            if (chkmainnotchild.Count == 0)
+                            {
+                                var chkchildadd = Model.formMenus.Where(x => x.GroupCateg == item.GroupCateg && x.MenuIdentityParent == menuNames.MenuIdentity).OrderBy(x => x.DisplayOrder).ThenBy(x => x.MenuNameT).ThenBy(x => x.MenuNameE).ThenBy(x => x.MenuNameJ).ToList();
+
+                                if (chkchildadd.Count == 0)
+                                {
+                                    var chkblank = "";
+                                    if (@menuNames.Param != "")
+                                    {
+                                        chkblank = "_blank";
+                                    }
+                                    <a asp-area="" asp-controller=@menuNames.Controller asp-action=@menuNames.Action class="nav-link text-dark text-bold" target="@chkblank"
+                                       asp-route-code="@menuNames.Param" asp-route-docno=" " asp-route-mode=" ">
+                                        @Html.Raw(@menuNames.IconClass) @menuNames.MenuNameT     @menuNames.MenuNameE    @menuNames.MenuNameJ
+                                        @if (menuNames.Badges != "")
+                                        {
+                                            <span class="@menuNames.Badges">@menuNames.BadgesName</span>
+                                        }
+
+                                    </a>
+                                }
+                                else
+                                {
+                                    var id = "C" + numC;
+                                    <div id="accordion2" class="accordion2">
+
+                                        <div class="card-header collapsed  bg-gray" data-toggle="collapse" data-parent="#accordion2" href="#@id">
+                                            <a class="card-title">
+                                                <i class="fas fa-folder-plus" style="color:#8e9eab"></i> @menuNames.MenuNameT     @menuNames.MenuNameE    @menuNames.MenuNameJ
+
+                                            </a>
+                                        </div>
+                                        <div id="@id" class="card-body collapse bg-light-gradient" data-parent="#accordion2">
+
+                                            @foreach (var child in chkchildadd.OrderBy(x => x.DisplayOrder).ThenBy(x => x.MenuNameT).ThenBy(x => x.MenuNameE).ThenBy(x => x.MenuNameJ))
+                                            {
+                                                var chkblank = "";
+                                                if (@child.Param != "")
+                                                {
+                                                    chkblank = "_blank";
+                                                }
+                                                <a asp-area="" asp-controller=@child.Controller asp-action=@child.Action class="nav-link text-dark text-bold" target="@chkblank"
+                                                   asp-route-code="@child.Param" asp-route-docno=" " asp-route-mode=" ">
+                                                    @Html.Raw(@child.IconClass) @child.MenuNameT    @child.MenuNameE    @child.MenuNameJ
+                                                    @if (child.Badges != "")
+                                                    {
+                                                        <span class="@child.Badges">@child.BadgesName</span>
+                                                    }
+                                                </a>
+                                            }
+                                        </div>
+                                    </div>
+                                    numC++;
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+                num++;
+            }
+        </div>
+    </div>*@
+
+
+
+@section Scripts{
+    <script type="text/javascript">
+        $('[data-toggle="tooltip"]').tooltip({
+            animated: 'fade',
+            placement: 'bottom',
+            html: true
+            //content: '<img src="../../image/advanced-feature-1.jpg" />'
+        });
+    </script>
+
+
+
+    <script src="~/js/View/DynamicFormScript/FormMenu.js"></script>
+
+
+
+
+}
+
+
+

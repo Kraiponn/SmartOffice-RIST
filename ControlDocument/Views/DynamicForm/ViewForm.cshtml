@@ -1,0 +1,103 @@
+﻿
+@{
+    ViewData["Title"] = "Form";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<link href="~/lib/formio.full.min.css" rel="stylesheet" />
+<link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/formio.full.min.js"></script>
+<script type='text/javascript'>
+        var sc = "";
+
+    var formid = "@ViewBag.id";
+    window.onload = function () {
+
+        $.get("../GetForm", { id: formid })
+            .done(function (json) {
+
+               // Formio.createForm(document.getElementById('formio'), json);
+
+                Formio.createForm(document.getElementById('formio'), json, {
+                   //readOnly: true
+                }).then(function (form) {
+                    form.nosubmit = true;
+                
+                    form.on('submit', (submission) => {                     
+                        alert('Submission sent to custom endpoint. See developer console.');
+                        var jsondata = JSON.stringify(submission);
+                        $.post("../SaveRequest1", { id: formid,jsondata: JSON.stringify(submission.data)})
+                        //$.ajax({
+                        //    url: "../SaveRequest",
+                        //    type: "POST",
+                        //    contentType: "application/json",
+                        //    dataType: "json",
+                        //    data: JSON.stringify(submission.data),
+
+                        //    success: function (result) {
+                        //        console.log(result);
+                        //    },
+
+                        //    error: function (xhr, resp, text) {
+                        //        console.log(xhr, resp, text);
+                        //    }
+                        //});
+                        console.log(submission.data);
+                    });
+                    form.on('error', (errors) => {
+                        console.log('We have errors!');
+                    })
+                });
+            })
+            .fail(function (jqxhr, textStatus, error) {
+                var error = textStatus + ", " + error;
+                // warningBR(error, "Request Failed!!");
+
+            });
+
+                // Formio.createForm(document.getElementById('formio'), "http://localhost:57377/Home/GetForm?id=@ViewBag.id");
+                //Formio.createForm(document.getElementById('formio'), 'https://examples.form.io/example');
+            };
+
+
+</script>
+<section class="content-header">
+    <h1>
+        SmartOffice
+        <small>Edit Form</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/DynamicForm/index"><i class="fa fa-dashboard"></i> Home</a></li>
+        <li><a href="/DynamicForm/index">List Form</a></li>
+        <li class="active">View Form</li>
+    </ol>
+</section>
+<section class="content">
+    <section class="content">
+        <div class="row">
+            <section class="col-lg-8 col-md-12 connectedSortable">
+                <div class="box box-primary">
+                    <div class="box-header with-border">
+                        <i class="fa fa-file-text" aria-hidden="true"></i>
+                        <h3 class="box-title">Form</h3>
+                    </div>
+                    <!-- /.box-header -->
+                    <div class="box-body">
+                        <div id='formio'></div>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+
+            </section>
+        </div>
+
+    </section>
+    
+
+</section>
+
+
+
+
+
+

@@ -1,0 +1,304 @@
+﻿<style>
+      .h1,
+      .h2,
+      .h3,
+      .h4,
+      .h5,
+      .h6 {
+          color: #3e4555;
+          font-family: "Prompt";
+      }
+
+      .font-weight-medium {
+          font-size: 2em;
+          font-weight: 200;
+          color: #00532a;
+      }
+
+      .bg-light {
+          background-color: #f4f8fa !important;
+      }
+
+      .subtitle {
+          color: #8d97ad;
+          line-height: 24px;
+      }
+
+      .font-14 {
+          font-size: 14px;
+      }
+
+      .font-13 {
+          font-size: 13px;
+          color: #00532a;
+      }
+
+      .card.card-shadow {
+          -webkit-box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
+          box-shadow: 0px 0px 30px rgba(115, 128, 157, 0.1);
+      }
+
+      .text-success {
+          color: #2cdd9b !important;
+      }
+
+      .price small {
+          color: #8d97ad;
+          font-size: 16px;
+      }
+
+      h5 {
+          line-height: 22px;
+          font-size: 18px;
+      }
+
+      .btn-danger-gradiant {
+          background: #ff4d7e;
+          background: -webkit-linear-gradient(legacy-direction(to right), #ff4d7e 0%, #ff6a5b 100%);
+          background: -webkit-gradient(linear, left top, right top, from(#ff4d7e), to(#ff6a5b));
+          background: -webkit-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+          background: -o-linear-gradient(left, #ff4d7e 0%, #ff6a5b 100%);
+          background: linear-gradient(to right, #ff4d7e 0%, #ff6a5b 100%);
+      }
+
+          .btn-danger-gradiant:hover {
+              background: #ff6a5b;
+              background: -webkit-linear-gradient(legacy-direction(to right), #ff6a5b 0%, #ff4d7e 100%);
+              background: -webkit-gradient(linear, left top, right top, from(#ff6a5b), to(#ff4d7e));
+              background: -webkit-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+              background: -o-linear-gradient(left, #ff6a5b 0%, #ff4d7e 100%);
+              background: linear-gradient(to right, #ff6a5b 0%, #ff4d7e 100%);
+          }
+
+      .btn-md {
+          padding: 10px 25px;
+          font-size: 16px;
+      }
+
+      .truncate-overflow {
+          --max-lines: 2;
+          position: relative;
+          max-height: 35px;
+          overflow: hidden;
+          padding-right: 1rem; /* space for ellipsis */
+      }
+
+          .truncate-overflow::before {
+              position: absolute;
+              content: "...";
+              /* tempting... but shows when lines == content */
+              /* top: calc(var(--lh) * (var(--max-lines) - 1)); */
+              /*
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    */
+              bottom: 0;
+              right: 0;
+          }
+
+          .truncate-overflow::after {
+              content: "";
+              position: absolute;
+              /*
+    inset-inline-end: 0;
+    */
+              right: 0;
+              /* missing bottom on purpose*/
+              width: 1rem;
+              height: 1rem;
+              background: white;
+          }
+</style>
+<div class="px-5">
+    <div class="d-flex bd-highlight">
+        <div class="p-2 bd-highlight font-weight-medium">คอร์สใหม่ล่าสุด</div>
+        <div class="p-2 bd-highlight"></div>
+        <div class="ml-auto p-2 bd-highlight">
+            <a href="/section/latest">ดูทั้งหมด</a>
+        </div>
+    </div>
+    <div id="owl-demo" class="owl-carousel owl-theme">
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="px-5">
+    <div class="d-flex bd-highlight">
+        <div class="p-2 bd-highlight font-weight-medium">คอร์สยอดนิยม</div>
+        <div class="p-2 bd-highlight"></div>
+        <div class="ml-auto p-2 bd-highlight">
+            <a href="/section/latest">ดูทั้งหมด</a>
+        </div>
+    </div>
+    <div id="owl-demo1" class="owl-carousel owl-theme">
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+        <div class="item">
+            <div class="card mb-4">
+                <img alt="img" src="https://skilllane.s3.amazonaws.com/courses/highlight_imgs/000/002/435/large/Skillane_Course_Card_660_x_390_px.jpg?1595169115">
+                <div class="card-body">
+                    <p class="truncate-overflow font-13">Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <script type="text/javascript">
+
+    </script>
+}

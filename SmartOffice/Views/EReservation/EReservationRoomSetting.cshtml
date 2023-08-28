@@ -1,0 +1,652 @@
+﻿@model SmartOffice.eReservation.Models.TupleEReservationRoom
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <style>
+        nav > .nav.nav-tabs {
+            border: none;
+            color: #fff;
+            background: #272e38;
+            border-radius: 0;
+        }
+
+        nav > div a.nav-item.nav-link,
+        nav > div a.nav-item.nav-link.active {
+            border: none;
+            padding: 18px 25px;
+            color: #fff;
+            background: #272e38;
+            border-radius: 0;
+        }
+
+            nav > div a.nav-item.nav-link.active:after {
+                content: "";
+                position: relative;
+                bottom: -60px;
+                left: -10%;
+                border: 15px solid transparent;
+                border-top-color: #e74c3c;
+            }
+
+            /*.tab-content {
+            background: #fdfdfd;
+            line-height: 25px;
+            border: 1px solid #ddd;
+            border-top: 5px solid #e74c3c;
+            border-bottom: 5px solid #e74c3c;
+            padding: 30px 25px;
+        }*/
+
+            nav > div a.nav-item.nav-link:hover,
+            nav > div a.nav-item.nav-link:focus {
+                border: none;
+                background: #e74c3c;
+                color: #fff;
+                border-radius: 0;
+                transition: background 0.20s linear;
+            }
+
+        .modal-open .modal {
+            overflow: hidden;
+        }
+
+        .modal-body {
+            height: calc(100vh - 126px);
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-12 ">
+            <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link" id="nav-Location-tab" data-toggle="tab" href="#nav-Location" role="tab" aria-controls="nav-Location" aria-selected="true">Location Master</a>
+
+                    <a class="nav-item nav-link active" id="nav-Room-tab" data-toggle="tab" href="#nav-Room" role="tab" aria-controls="nav-Room" aria-selected="false">Room Management</a>
+
+                </div>
+            </nav>
+            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+
+                <!--------------------------------------------------------Table Location ---------------------------------------------------------------------->
+                <div class="tab-pane fade" id="nav-Location" role="tabpanel" aria-labelledby="nav-Location-tab">
+                    <h5 class="card-title">Location Master</h5>
+                    <hr COLOR="#FF0000" SIZE="3" />
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group mr-1">
+                                    <button type="button" class="btn btn-orange-moon" aria-label="Left Align" onclick="AddMasterLocation();"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>New Location</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <table class="table table-striped display responsive" style="width:100%" id="TableMasterLocation">
+                        <thead class="btn-dark-moon">
+                            <tr>
+                                <th></th>
+                                <th>Location ID</th>
+                                <th>Location Name</th>
+                                <th>Location Code</th>
+                                <th>Add Date</th>
+                                <th>Update Date</th>
+                                <th>User</th>
+                                <th>Computer</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+                <!--------------------------------------------------------Table Room ---------------------------------------------------------------------->
+
+
+
+                <div class="tab-pane fade show active" id="nav-Room" role="tabpanel" aria-labelledby="nav-Room-tab">
+                    <h5 class="card-title">Room Management</h5>
+                    <hr COLOR="#FF0000" SIZE="3" />
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group mr-1">
+                                    <button type="button" class="btn btn-orange-moon" aria-label="Left Align" onclick="AddMasterRoom();"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>New Room</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div> <!-- End row -->
+                    <br>
+                    <table class="table table-striped display responsive" style="width:100%" id="TableMasterRoom">
+                        <thead class="btn-dark-moon">
+                            <tr>
+                                <th></th>
+                                <th>Room ID</th>
+                                <th>Room Name</th>
+                                <th>Description</th>
+                                <th>Location ID</th>
+                                <th>Location Name</th>
+                                <th>Room Image(Main)</th>
+                                <th>Using</th>
+                                <th>Add Date</th>
+                                <th>Update Date</th>
+                                <th>User</th>
+                                <th>Computer</th>
+                                <th>ResponsibleBy</th>
+                                <th>ResponsibleName</th>
+                                <th>ResponsibleTelNo</th>
+                                <th>ResponsibleEmail</th>
+                                <th>NumberOfSeats</th>
+                                <th>Projector</th>
+                                <th>Computer</th>
+                                <th>TVConferenceIP</th>
+                                <th>Code</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------------------Modal Location ---------------------------------------------------------------------->
+    <div id="modal-placeholder">
+        <div class="modal fade bd-example-modal-lg" id="myModalMasterLocation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content pt-5">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Location Master</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="Building" class="col-form-label">Location</label>
+                                <div class="input-group">
+                                    <input type="text" id="txtBuilding" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="Code" class="col-form-label">Location Code</label>
+                                <div class="input-group">
+                                    <input type="text" id="txtCode" class="form-control">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="button" class="col btn btn-success" id="btn_addlocationmaster" value="Add Location">
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------------------------------------Modal Room ---------------------------------------------------------------------->
+    <div id="modal-placeholder">
+        <div class="modal fade bd-example-modal-xl" id="myModalMasterRoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content pt-5">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Room Management</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data" class="form-horizontal">
+
+                            <div class="row">
+                                <div class="col-8 card" id="divroom">
+                                    <div class="card-header bg-danger">Room</div>
+                                    <div class="card-body">
+                                        <div class="row">
+                                            <div class="col-6">
+
+                                                @*-----------------RoomId----------------*@
+                                                <input type="hidden" id="hdRoomId" name="RoomId">
+
+                                                @*-----------------Name----------------*@
+                                                <div class="form-group">
+                                                    <label for="txtName">Room Name:</label>
+                                                    <input type="text" class="form-control" id="txtName">
+                                                </div>
+
+                                                @*---------------Description------------------*@
+                                                <div class="form-group">
+                                                    <label for="txtDescription">Description:</label>
+                                                    <textarea class="form-control" rows="2" id="txtDescription"></textarea>
+                                                </div>
+
+
+                                                @*---------------LocationId------------------*@
+
+                                                <div class="form-group">
+                                                    <label>Location:</label>
+                                                    <div>
+                                                        @Html.DropDownList("location", Model.ddlLocationList, "- Please select -", new { @class = "form-control", @id = "ddllocation", required = "required" })
+                                                        @Html.ValidationMessage("location")
+                                                    </div>
+                                                </div>
+
+                                                @*---------------Image------------------*@
+                                                <label>Room Image(Main):</label>
+                                                <div class="input-group input-group-sm">
+
+                                                    <input type="file" id="RoomUpload" name="RoomUpload" class="form-control" accept=".jpg" onchange="RoomreadURL(this);" />
+                                                </div>
+                                                <table class="table table-striped table-bordered">
+                                                    <thead class="btn-dark-moon">
+                                                        <tr>
+
+                                                            <th>New</th>
+                                                            <th>Current</th>
+                                                        </tr>
+                                                    </thead>
+
+                                                    <tbody>
+                                                        <tr>
+
+                                                            <td width="30%">
+                                                                <div class="form-group">
+                                                                    <img id="newroom" class="img-thumbnail" width="100%" />
+                                                                </div>
+                                                            </td>
+                                                            <td width="30%">
+                                                                <div class="form-group">
+                                                                    <img id="currentroom" class="img-thumbnail" width="100%" />
+
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+
+                                                    </tbody>
+                                                </table>
+
+                                                @*---------------NumberOfSeats------------------*@
+                                                <div class="form-group">
+                                                    <label for="txtNumberOfSeats">Number Of Seats:</label>
+                                                    <input type="number" class="form-control" id="txtNumberOfSeats">
+                                                </div>
+                                                <div class="form-row">
+                                                    @*----------------Projector-----------------*@
+                                                    <div class="form-group col-6">
+                                                        <div class="form-check-inline">
+                                                            <label for="rdoProjector" class="customradio">
+                                                                <span class="rdoProjector">Projector</span>
+                                                                <input type="checkbox" id="rdoProjector" name="rdoProjector" />
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                    @*----------------Computer-----------------*@
+                                                    <div class="form-group col-6">
+                                                        <div class="form-check-inline">
+                                                            <label for="rdoComputer" class="customradio">
+                                                                <span class="rdoComputer">Computer</span>
+                                                                <input type="checkbox" id="rdoComputer" name="rdoComputer" />
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @*---------------TVConferenceIP------------------*@
+                                                <div class="form-group">
+                                                    <label for="txtTVConferenceIP">TV Conference IP:</label>
+                                                    <input type="text" class="form-control" id="txtTVConferenceIP">
+                                                </div>
+
+                                            </div>
+                                            <div class="col-6">
+
+
+                                                @*---------------ResponsibleBy------------------*@
+                                                <div class="form-group">
+                                                    <label for="txtResponsibleBy">Responsible By:</label>
+                                                    <input type="text" class="form-control" id="txtResponsibleBy">
+                                                </div>
+
+
+                                                @*---------------ResponsibleName------------------*@
+                                                <div class="form-group">
+                                                    <label for="txtResponsibleName">Responsible Name:</label>
+                                                    <input type="text" class="form-control" id="txtResponsibleName">
+                                                </div>
+
+
+                                                @*---------------ResponsibleTelNo------------------*@
+                                                <div class="form-group">
+                                                    <label for="txtResponsibleTelNo">Responsible Tel No:</label>
+                                                    <input type="text" class="form-control" id="txtResponsibleTelNo">
+                                                </div>
+
+
+                                                @*---------------ResponsibleEmail------------------*@
+                                                <div class="form-group">
+                                                    <label for="txtResponsibleEmail">Responsible Email:</label>
+                                                    <textarea class="form-control" rows="3" id="txtResponsibleEmail"></textarea>
+                                                </div>
+
+                                                @*----------------Disable-----------------*@
+                                                <div class="form-group">
+                                                    <div class="form-check-inline">
+                                                        <label for="rdoDisable" class="customradio">
+                                                            <span class="rdoDisable">Using</span>
+                                                            <input type="checkbox" id="rdoDisable" name="rdoDisable" />
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <input type="button" class="col btn btn-outline-danger" id="btn_Room" value="Add Room">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--------------------------------------------------------Table Layout ---------------------------------------------------------------------->
+                                <div class="col-4">
+                                    <!--------------------------------------------------------Table Image ---------------------------------------------------------------------->
+                                    <div class="card" id="divimage">
+                                        <div class="card-header bg-danger">
+                                            More Room Image
+                                        </div>
+
+                                        <div class="card-body">
+
+                                            <div class="col-12">
+                                                <div class="btn-toolbar" role="toolbar">
+                                                    <div class="btn-group mr-1">
+                                                        <button type="button" class="btn btn-orange-moon" aria-label="Left Align" onclick="AddImage();"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>New Image</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group table-responsive" id="Group_Text ">
+
+                                                <table class="table table-striped " id="TableRoomImage" style=" word-wrap: break-word">
+
+                                                    <thead class="btn-dark-moon">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Room ID</th>
+                                                            <th>No.</th>
+                                                            <th>Image</th>
+                                                            <th>Description</th>
+                                                            <th>Add Date</th>
+                                                            <th>Update Date</th>
+                                                            <th>User</th>
+                                                            <th>Computer</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--------------------------------------------------------Table Layout ---------------------------------------------------------------------->
+                                    <div class="card" id="divlayout">
+                                        <div class="card-header bg-danger">Room Layout</div>
+                                        <div class="card-body">
+                                            <div class="col-12">
+                                                <div class="btn-toolbar" role="toolbar">
+                                                    <div class="btn-group mr-1">
+                                                        <button type="button" class="btn btn-orange-moon" aria-label="Left Align" onclick="AddLayout();"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>New Layout</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group table-responsive" id="Group_Text ">
+
+                                                <table class="table table-striped " id="TableRoomLayout" style=" word-wrap: break-word">
+
+                                                    <thead class="btn-dark-moon">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th>Layout ID</th>
+                                                            <th>Room ID</th>
+                                                            <th>No.</th>
+                                                            <th>Image</th>
+                                                            <th>Description</th>
+                                                            <th>Using</th>
+                                                            <th>Add Date</th>
+                                                            <th>Update Date</th>
+                                                            <th>User</th>
+                                                            <th>Computer</th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------------------Modal Image ---------------------------------------------------------------------->
+    <div id="modal-placeholder">
+        <div class="modal fade bd-example-modal-lg" id="myModalImage" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content pt-5">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">More Room Image</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data" class="form-horizontal">
+
+
+                            <div class="card">
+                                <div class="card-header btn-orange-moon">Image</div>
+                                <div class="card-body">
+                                    @*-----------------RoomId----------------*@
+                                    <input type="hidden" id="hdImageRoomId" name="hdImageRoomId">
+
+                                    @*-----------------DisplayOrder----------------*@
+                                    <div class="form-group">
+                                        <label for="txtImageOrder">No.:</label>
+                                        <input type="number" class="form-control" id="txtImageOrder">
+                                    </div>
+
+                                    @*---------------Image------------------*@
+                                    <label>Room Image:</label>
+                                    <table class="table table-striped table-bordered">
+                                        <thead class="btn-dark-moon">
+                                            <tr>
+                                                <th>Upload</th>
+                                                <th>New</th>
+                                                <th>Current</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group">
+
+                                                        <input type="file" id="ImageRoomUpload" name="ImageRoomUpload" class="form-control" accept=".jpg" onchange="ImagereadURL(this);" />
+                                                    </div>
+                                                </td>
+                                                <td width="30%">
+                                                    <div class="form-group">
+                                                        <img id="Imagenewroom" class="img-thumbnail" width="100%" />
+                                                    </div>
+                                                </td>
+                                                <td width="30%">
+                                                    <div class="form-group">
+
+                                                        <img id="Imagecurrentroom" class="img-thumbnail" width="100%" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                    @*---------------Description------------------*@
+                                    <div class="form-group">
+                                        <label for="txtImageDescription">Description:</label>
+                                        <textarea class="form-control" rows="2" id="txtImageDescription"></textarea>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <input type="button" class="col btn btn-outline-danger" id="btn_ImageRoom" value="Add Image">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--------------------------------------------------------Modal Layout ---------------------------------------------------------------------->
+    <div id="modal-placeholder">
+        <div class="modal fade bd-example-modal-lg" id="myModalLayout" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content pt-5">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Room Layout</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data" class="form-horizontal">
+
+
+                            <div class="card">
+                                <div class="card-header btn-orange-moon">Layout</div>
+                                <div class="card-body">
+                                    @*-----------------Layout_ID----------------*@
+                                    <input type="hidden" id="hdLayoutId" name="hdLayoutId">
+
+                                    @*-----------------RoomId----------------*@
+                                    <input type="hidden" id="hdLayoutRoomId" name="hdLayoutRoomId">
+
+                                    @*-----------------DisplayOrder----------------*@
+                                    <div class="form-group">
+                                        <label for="txtLayoutOrder">No.:</label>
+                                        <input type="number" class="form-control" id="txtLayoutOrder">
+                                    </div>
+
+
+
+                                    @*---------------Image------------------*@
+                                    <label>Layout Image:</label>
+                                    <table class="table table-striped table-bordered">
+                                        <thead class="btn-dark-moon">
+                                            <tr>
+                                                <th>Upload</th>
+                                                <th>New</th>
+                                                <th>Current</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="form-group">
+
+                                                        <input type="file" id="LayoutRoomUpload" name="LayoutRoomUpload" class="form-control" accept=".jpg" onchange="LayoutreadURL(this);" />
+                                                    </div>
+                                                </td>
+                                                <td width="30%">
+                                                    <div class="form-group">
+                                                        <img id="Layoutnewroom" class="img-thumbnail" width="100%" />
+                                                    </div>
+                                                </td>
+                                                <td width="30%">
+                                                    <div class="form-group">
+
+                                                        <img id="Layoutcurrentroom" class="img-thumbnail" width="100%" />
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+                                        </tbody>
+                                    </table>
+
+                                    @*---------------Description------------------*@
+                                    <div class="form-group">
+                                        <label for="txtLayoutDescription">Description:</label>
+                                        <textarea class="form-control" rows="2" id="txtLayoutDescription"></textarea>
+                                    </div>
+
+                                    @*----------------Disable-----------------*@
+                                    <div class="form-group">
+                                        <div class="form-check-inline">
+                                            <label for="rdoLayoutDisable" class="customradio">
+                                                <span class="rdoLayoutDisable">Using</span>
+                                                <input type="checkbox" id="rdoLayoutDisable" name="rdoLayoutDisable" value="1" />
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <input type="button" class="col btn btn-outline-danger" id="btn_LayoutRoom" value="Add Layout">
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+@section scripts {
+
+    <script type="text/javascript">
+
+    </script>
+    <script src="~/js/View/eReservationControl/EReservationRoomSetting.js"></script>
+
+}
+
+
+
+
+
+

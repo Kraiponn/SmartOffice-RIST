@@ -1,0 +1,575 @@
+﻿@model SmartOffice.Models.ViewModel.ViewNewsModel
+@using System.Text.RegularExpressions;
+
+@{
+    var DeptType = ViewBag.DeptType;
+}
+<style type="text/css">
+
+    /*haber akışı list*/
+    ul.timeline {
+        list-style-type: none;
+        position: relative;
+    }
+
+        ul.timeline:before {
+            content: ' ';
+            background: #d4d9df;
+            display: inline-block;
+            position: absolute;
+            left: 29px;
+            width: 2px;
+            height: 100%;
+            z-index: 400;
+        }
+
+        ul.timeline > li {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+            ul.timeline > li:before {
+                content: ' ';
+                background: white;
+                display: inline-block;
+                position: absolute;
+                border-radius: 50%;
+                border: 3px solid #cd2147;
+                left: 20px;
+                width: 20px;
+                height: 20px;
+                z-index: 400;
+            }
+    /*vertical carousel*/
+    .vert .carousel-item-next.carousel-item-left,
+    .vert .carousel-item-prev.carousel-item-right {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+
+    .vert .carousel-item-next,
+    .vert .active.carousel-item-right {
+        -webkit-transform: translate3d(0, 100%, 0);
+        transform: translate3d(0, 100% 0);
+    }
+
+    .vert .carousel-item-prev,
+    .vert .active.carousel-item-left {
+        -webkit-transform: translate3d(0,-100%, 0);
+        transform: translate3d(0,-100%, 0);
+    }
+
+    ul.timeline {
+        list-style-type: none;
+        position: relative;
+    }
+
+        ul.timeline:before {
+            content: ' ';
+            background: #d4d9df;
+            display: inline-block;
+            position: absolute;
+            left: 29px;
+            width: 2px;
+            height: 100%;
+            z-index: 400;
+        }
+
+        ul.timeline > li {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+            ul.timeline > li:before {
+                content: ' ';
+                background: white;
+                display: inline-block;
+                position: absolute;
+                border-radius: 50%;
+                border: 3px solid #22c0e8;
+                left: 20px;
+                width: 20px;
+                height: 20px;
+                z-index: 400;
+            }
+
+    .wrapper1 {
+        display: block;
+        display: -webkit-box;
+        height: 50px;
+        margin: 3px auto;
+        font-size: 18px;
+        line-height: 1.4;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+        .wrapper1 > p {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+
+
+    .wrapper2 {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .wrapper2:after {
+            content: '';
+            display: block;
+            padding-top: 75%;
+        }
+
+        .wrapper2 img {
+            width: auto;
+            height: 100%;
+            max-width: none;
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translateX(-50%);
+        }
+
+
+    figure.snip1208 {
+        color: #fff;
+        position: relative;
+        overflow: hidden;
+        margin: 5px;
+        /*min-width: 220px;
+        max-width: 310px;*/
+        width: 100%;
+        background-color: #ffffff;
+        color: #000000;
+        text-align: left;
+        font-size: 16px;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        border: 0px solid #ddd;
+        margin-top: 0px;
+        /*margin-left:30px;*/
+        -webkit-box-shadow: 0 6px 6px rgba(0,0,0,.175);
+        opacity: 0.97;
+        filter: alpha(opacity=97);
+    }
+
+        figure.snip1208 * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+
+        figure.snip1208 img {
+            max-width: 100%;
+            vertical-align: top;
+            -webkit-transform-origin: 50% 100%;
+            transform-origin: 50% 100%;
+            -webkit-transition: all 0.4s ease;
+            transition: all 0.4s ease;
+        }
+
+        figure.snip1208 figcaption {
+            padding: 25px;
+            position: relative;
+        }
+
+        figure.snip1208 .date,
+        figure.snip1208 i {
+            background-color: #1abc9c;
+            top: 25px;
+            color: #fff;
+            right: 25px;
+            min-height: 60px;
+            min-width: 60px;
+            position: absolute;
+            text-align: center;
+        }
+
+        figure.snip1208 .date {
+            -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+            font-size: 12px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+            figure.snip1208 .date span {
+                display: block;
+                line-height: 30px;
+            }
+
+            figure.snip1208 .date .month {
+                font-size: 10px;
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+
+        figure.snip1208 i {
+            line-height: 60px;
+            font-size: 30px;
+            -webkit-transform: rotateY(-90deg);
+            transform: rotateY(-90deg);
+            -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+        }
+
+        figure.snip1208 h3,
+        figure.snip1208 p {
+            margin: 0;
+            padding: 0;
+            height: 70px;
+        }
+
+        figure.snip1208 h3 {
+            margin-bottom: 10px;
+            display: inline-block;
+            font-weight: 600;
+            color: #333333;
+            text-transform: uppercase;
+        }
+
+        figure.snip1208 p {
+            font-size: 0.8em;
+            margin-bottom: 20px;
+            line-height: 1.6em;
+            color: gray;
+        }
+
+        figure.snip1208 button {
+            border: medium none;
+            padding: 10px 20px;
+            background-color: #1abc9c;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.8em;
+        }
+
+        figure.snip1208 a {
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            position: absolute;
+            z-index: 1;
+        }
+
+        figure.snip1208:hover img,
+        figure.snip1208.hover img {
+            -webkit-transform: scale(1.1);
+            transform: scale(1.1);
+        }
+
+        figure.snip1208:hover .date,
+        figure.snip1208.hover .date {
+            -webkit-transform: rotateY(90deg);
+            transform: rotateY(90deg);
+            -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+        }
+
+        figure.snip1208:hover i,
+        figure.snip1208.hover i {
+            -webkit-transform: rotateY(0);
+            transform: rotateY(0);
+            -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+        }
+
+        figure.snip1208:hover button,
+        figure.snip1208.hover button {
+            background-color: #117964;
+        }
+
+
+    .box-bttm {
+        font-size: 18pt;
+        font-weight: bold;
+        text-align: center;
+        text-transform: none;
+        height: 30px;
+        line-height: 1.2em;
+        transform: scale(1, 0.85);
+    }
+
+    .cube {
+        position: relative;
+        margin: auto;
+        width: 110px;
+        transform-style: preserve-3d;
+    }
+
+        .cube div {
+            position: absolute;
+            width: 110px
+        }
+
+    /* Safari 4.0 - 8.0 */
+    @@-webkit-keyframes mymove {
+        from {
+            left: 100%
+        }
+
+        to {
+            left: -10000px;
+        }
+    }
+
+    @@keyframes mymove {
+        from {
+            left: 100%
+        }
+
+        to {
+            left: -10000px;
+        }
+    }
+
+    /* Safari 4.0 - 8.0 */
+    @@-webkit-keyframes urmove {
+        from {
+            right: 0;
+        }
+
+        to {
+            right: -140px;
+        }
+    }
+
+    @@keyframes urmove {
+        from {
+            right: 0;
+        }
+
+        to {
+            right: -140px;
+        }
+    }
+
+
+    @@keyframes early {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    .bottom {
+        background: linear-gradient(90deg, #400, #800, #400);
+        box-shadow: 0 6px 6px #400 inset;
+        width: 100%;
+        height: 20px;
+    }
+
+    .scroll-left {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        height: 4rem;
+        background-color: #000;
+        box-sizing: content-box;
+        white-space: nowrap;
+    }
+
+        .scroll-left p {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            line-height: 50px;
+            text-align: center;
+            /* Starting position */
+            -moz-transform: translateX(100%);
+            -webkit-transform: translateX(100%);
+            transform: translateX(100%);
+            /* Apply animation to this element */
+            -moz-animation: scroll-left 30s linear infinite;
+            -webkit-animation: scroll-left 30s linear infinite;
+            animation: scroll-left 30s linear infinite;
+            font-size: 1.5rem;
+            color: #fff;
+        }
+    /* Move it (define the animation) */
+    @@-moz-keyframes scroll-left {
+        0% {
+            -moz-transform: translateX(100%);
+        }
+
+        100% {
+            -moz-transform: translateX(-100%);
+        }
+    }
+
+    @@-webkit-keyframes scroll-left {
+        0% {
+            -webkit-transform: translateX(100%);
+        }
+
+        100% {
+            -webkit-transform: translateX(-100%);
+        }
+    }
+
+    @@keyframes scroll-left {
+        0% {
+            -moz-transform: translateX(100%); /* Browser bug fix */
+            -webkit-transform: translateX(100%); /* Browser bug fix */
+            transform: translateX(100%);
+        }
+
+        100% {
+            -moz-transform: translateX(-100%); /* Browser bug fix */
+            -webkit-transform: translateX(-100%); /* Browser bug fix */
+            transform: translateX(-100%);
+        }
+    }
+</style>
+
+@if (Model.News.Count() != 0)
+{
+
+    @*<div class="d-flex bd-highlight p-2">
+            <div class="mr-auto text-danger flex-grow-1 bd-highlight"><h3><i class="far fa-newspaper"></i> NEWS UPDATE </h3></div>
+            <div class="p-2 bd-highlight"><a href='@Url.Action("ViewAll", "News",new {newstyle = "ViewAll",DeptType ="Mainnews"})' class="text-secondary" target="_blank"><i class="fas fa-angle-right fa-3x" style="position:relative"></i><i class="fas fa-angle-right fa-3x" style="position:relative"></i></a></div>
+        </div>*@
+
+
+    @*<div class="d-flex bd-highlight px-3">
+            <div class="mr-auto section-title">
+                <h3>
+                    <i class="fas fa-newspaper" style="color:#2bbbad"></i> NEWS UPDATE
+                </h3>
+            </div>
+            <div class="p-2 bd-highlight"><a href='@Url.Action("ViewAll", "News", new { newstyle = "ViewAll", DeptType = "Mainnews" })' class="text-secondary" target="_blank"><i class="fas fa-angle-right fa-3x" style="position:relative"></i><i class="fas fa-angle-right fa-3x" style="position:relative"></i></a></div>
+        </div>*@
+
+    var checknewsupdate = Model.News.Where(i => i.UpdateDate.Value.Date == DateTime.Now.Date || i.CreatedDate.Value.Date == DateTime.Now.Date).FirstOrDefault();
+
+    if (checknewsupdate != null)
+    {
+        var allruntext = Model.News.Where(i => i.UpdateDate.Value.Date == DateTime.Now.Date || i.CreatedDate.Value.Date == DateTime.Now.Date).ToList();
+        var txtrun = "";
+        foreach (var item in allruntext)
+        {
+            if (!string.IsNullOrEmpty(item.Title2))
+            {
+                if (item.Title2.Length <= 1500)
+                {
+                    txtrun = txtrun + item.Title2 + ">>                 Next             >>";
+                }
+
+            }
+        }
+        string noHTML = Regex.Replace(txtrun, @"<[^>]+>*|&nbsp;", "").Trim();
+        string noHTMLNormalised = Regex.Replace(noHTML, @"\s{2,}", " ");
+
+        <br />
+        <div class="d-flex bd-highlight">
+            <div class="mr-auto section-title px-3">
+                <h3>
+                    <i class="fas fa-newspaper" style="color:#2bbbad"></i> NEWS UPDATE
+                </h3>
+            </div>
+            <div class="p-2 bd-highlight"><a href='@Url.Action("ViewAll", "News", new { newstyle = "ViewAll", DeptType = DeptType })' class="text-secondary" target="_blank"><i class="fas fa-angle-right fa-3x" style="position:relative"></i><i class="fas fa-angle-right fa-3x" style="position:relative"></i></a></div>
+        </div>
+
+        <div class="scroll-left">
+            <p>@noHTMLNormalised</p>
+        </div>
+
+        <div class='bottom'></div>
+        <br />
+    }
+    else
+    {
+        <br />
+        <div class="d-flex bd-highlight">
+            <div class="mr-auto section-title px-3">
+                <h3>
+                    <i class="fas fa-newspaper" style="color:#2bbbad"></i> NEWS UPDATE
+                </h3>
+
+            </div>
+            <div class="p-2 bd-highlight"><a href='@Url.Action("ViewAll", "News", new { newstyle = "ViewAll", DeptType = DeptType })' class="text-secondary" target="_blank"><i class="fas fa-angle-right fa-3x" style="position:relative"></i><i class="fas fa-angle-right fa-3x" style="position:relative"></i></a></div>
+        </div>
+        <hr />
+    }
+
+
+    <div class="row px-5 py-1 ">
+
+        @foreach (var item in Model.News)
+        {
+            var linkimage = "";
+            @if (item.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").Count() != 0)
+            {
+                linkimage = "~/image/" + item.GroupCateg + "/News/" + item.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").LastOrDefault().Value;
+
+            }
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 col-xs-12 flex-column h-100 divli">
+                <figure class="snip1208">
+
+                    @if (linkimage != "")
+                    {
+                        @if (item.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").LastOrDefault().ItemType == "video")
+                        {
+
+
+                            <div class="video-frame">
+                                <video height:auto;" style="width: 100%;object-fit: cover;" controls>
+                                    <source src="@Url.Content(linkimage)" />
+                                </video>
+                            </div>
+
+
+                        }
+                        else if (item.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").LastOrDefault().ItemType == "image")
+                        {
+                            <img src="@Url.Content(linkimage)">
+                        }
+                        else if (item.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").LastOrDefault().ItemType == "document")
+                        {
+
+
+                            <div class="file">
+                                <a href="@Url.Content(linkimage)">
+                                    <span class="corner"></span>
+
+                                    <div class="icon">
+                                        <i class="fa fa-file" style="font-size:100px; color:darkgrey"></i>
+                                    </div>
+                                </a>
+                            </div>
+                        }
+                    }
+                    @{
+                        if ((item.CreatedDate.Value.Date == DateTime.Now.Date) || (item.UpdateDate.Value.Date == DateTime.Now.Date))
+                        {
+                            <div class="date"><span class="day">Latest</span><span class="month">News</span></div><i class="ion-film-marker"></i>
+                        }
+                    }
+
+                    <figcaption>
+                        <p>
+                            @item.Title1                            
+                        </p>
+                        
+                        <button>Read More</button> <span style="color:dimgrey; float:right"><small>@item.CountRead  Views</small></span>
+
+                    </figcaption><a href='@Url.Action("Index", "News",new {DocCat = item.GroupCateg,NewsOrder=item.NewHorder})' target="_blank"></a>
+                </figure>
+            </div>
+        }
+
+    </div><!-- Row end -->
+
+}

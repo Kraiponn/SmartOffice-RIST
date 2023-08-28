@@ -1,0 +1,341 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutStoreAppointment.cshtml";
+}
+
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+    }
+    .my-select {
+        background-color: #cae8d5;
+        color: black;
+        border: 0 none;
+        border-radius: 20px;
+        padding: 6px 20px;
+    }
+</style>
+
+
+<div id='top' style='display:none'>
+
+    <div class='left'>
+
+        <div id='theme-system-selector' class='selector'>
+            Theme System:
+
+            <select>
+                <option value='bootstrap4' selected>Bootstrap 4</option>
+                <option value='bootstrap3'>Bootstrap 3</option>
+                <option value='jquery-ui'>jQuery UI</option>
+                <option value='standard'>unthemed</option>
+            </select>
+        </div>
+
+        <div data-theme-system="bootstrap3" class='selector'>
+            Theme Name:
+
+            <select>
+                <option value='' selected>Default</option>
+                <option value='cosmo'>Cosmo</option>
+                <option value='cyborg'>Cyborg</option>
+                <option value='darkly'>Darkly</option>
+                <option value='flatly'>Flatly</option>
+                <option value='journal'>Journal</option>
+                <option value='lumen'>Lumen</option>
+                <option value='paper'>Paper</option>
+                <option value='readable'>Readable</option>
+                <option value='sandstone'>Sandstone</option>
+                <option value='simplex'>Simplex</option>
+                <option value='slate'>Slate</option>
+                <option value='solar'>Solar</option>
+                <option value='spacelab'>Spacelab</option>
+                <option value='superhero'>Superhero</option>
+                <option value='united'>United</option>
+                <option value='yeti'>Yeti</option>
+            </select>
+        </div>
+
+        <div data-theme-system="bootstrap4" class='selector'>
+            Theme Name:
+
+            <select>
+                <option value=''>Default</option>
+                <option value='cerulean'>Cerulean</option>
+                <option value='cosmo'>Cosmo</option>
+                <option value='cyborg'>Cyborg</option>
+                <option value='darkly' >Darkly</option>
+                <option value='flatly'>Flatly</option>
+                <option value='journal'>Journal</option>
+                <option value='litera' selected>Litera</option>
+                <option value='lumen'>Lumen</option>
+                <option value='lux'>Lux</option>
+                <option value='materia'>Materia</option>
+                <option value='minty'>Minty</option>
+                <option value='pulse'>Pulse</option>
+                <option value='sandstone'>Sandstone</option>
+                <option value='simplex'>Simplex</option>
+                <option value='sketchy'>Sketchy</option>
+                <option value='slate'>Slate</option>
+                <option value='solar'>Solar</option>
+                <option value='spacelab'>Spacelab</option>
+                <option value='superhero'>Superhero</option>
+                <option value='united'>United</option>
+                <option value='yeti'>Yeti</option>
+            </select>
+        </div>
+
+        <div data-theme-system="jquery-ui" class='selector'>
+            Theme Name:
+
+            <select>
+                <option value='black-tie'>Black Tie</option>
+                <option value='blitzer'>Blitzer</option>
+                <option value='cupertino' selected>Cupertino</option>
+                <option value='dark-hive'>Dark Hive</option>
+                <option value='dot-luv'>Dot Luv</option>
+                <option value='eggplant'>Eggplant</option>
+                <option value='excite-bike'>Excite Bike</option>
+                <option value='flick'>Flick</option>
+                <option value='hot-sneaks'>Hot Sneaks</option>
+                <option value='humanity'>Humanity</option>
+                <option value='le-frog'>Le Frog</option>
+                <option value='mint-choc'>Mint Choc</option>
+                <option value='overcast'>Overcast</option>
+                <option value='pepper-grinder'>Pepper Grinder</option>
+                <option value='redmond'>Redmond</option>
+                <option value='smoothness'>Smoothness</option>
+                <option value='south-street'>South Street</option>
+                <option value='start'>Start</option>
+                <option value='sunny'>Sunny</option>
+                <option value='swanky-purse'>Swanky Purse</option>
+                <option value='trontastic'>Trontastic</option>
+                <option value='ui-darkness'>UI Darkness</option>
+                <option value='ui-lightness'>UI Lightness</option>
+                <option value='vader'>Vader</option>
+            </select>
+        </div>
+
+        <span id='loading' style='display:none'>loading theme...</span>
+
+    </div>
+
+    @*<div class='right'>
+            <span class='credits' data-credit-id='bootstrap-standard' style='display:none'>
+                <a href='https://getbootstrap.com/docs/3.3/' target='_blank'>Theme by Bootstrap</a>
+            </span>
+            <span class='credits' data-credit-id='bootstrap-custom' style='display:none'>
+                <a href='https://bootswatch.com/' target='_blank'>Theme by Bootswatch</a>
+            </span>
+            <span class='credits' data-credit-id='jquery-ui' style='display:none'>
+                <a href='http://jqueryui.com/themeroller/' target='_blank'>Theme by jQuery UI</a>
+            </span>
+        </div>*@
+
+    <div class='clear'></div>
+</div>
+
+<div class="row">
+    <div class="col-md-3 ">
+        <div class="sticky-top p-0">
+            <div class="card p-0">
+                @*<div class="card-header">
+                        <a href='@Url.Action("NewAppoint", "EAppointment")' class="btn btn-outline-secondary"><i class="fas fa-plus"></i> New Appointment</a>
+                        <a href='@Url.Action("Index", "Home")' class="btn btn-orange-moon" data-dismiss="modal"><i class="fas fa-sign-out-alt"></i> Exit</a>
+
+                    </div>*@
+                <div class="card-body">
+                    <div id="CalendarListContainer">
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-body p-0">
+                <div id='calendar' style="width: 95%; display: inline-block;"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="modal-placeholder">
+    <div class="modal fade bd-example-modal-lg" id="modalnewevent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#1dc9cb">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Record</h5>
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>*@
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex  flex-row-reverse bg-secondary text-white">
+                            <div class="btn-group">
+                                <button type="button" id="btnSave" class="btn btn-green-moon"><i class="fas fa-save"></i> Save</button>
+                                <button type="button" id="btnDelete" class="btn btn-orange-moon"><i class="fas fa-save"></i> Delete</button>
+                                <button type="button" id="btnClose" class="btn btn-dark" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-body">
+                    
+                    <div class="card">
+                        <!-- Modal Footer -->
+
+                        <div class="card-body">
+                            <form role="form">
+
+                                <div class="input-group" id="carduploadfile">
+                                    <div class="custom-file">
+                                        <input type="file" id="fUpload" name="fUpload" multiple class="form-control" />
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group" id="Group_picture">
+                                    <table class="table table-bordered table-hover dt-responsive display table-sm" cellspacing="0" style="width:100%" id="tablefile">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>FileName</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-4" id="divinput">
+                                        <div class="form-group">
+                                            <label>Type</label>
+                                            <select id="ddType" class="browser-default custom-select custom-select-md mb-3 my-select">
+                                                <option value="Appointment" selected>Appointment (นัดประชุมกลุ่ม)</option>
+                                                <option value="Events">Events (เหตุการณ์ทั่วไป สาธารณะ)</option>
+                                                <option value="Reminder">Reminder (บันทึกส่วนตัว)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" id="hdEventID" class="form-control" />
+                                            <label>Subject</label>
+                                            <textarea type="text" id="txtSubject" class="form-control" rows="2"></textarea>
+                                        </div>
+
+                                        @*<div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label>Theme Color</label>
+                                        <select id="ddThemeColor" class="form-control">
+                                            <option value="">Default</option>
+                                            <option value="lightblue" style="background-color:lightblue">LightBlue</option>
+                                            <option value="lightpink" style="background-color:LightPink">LightPink</option>
+                                            <option value="lightgreen" style="background-color:LightGreen">LightGreen</option>
+                                            <option value="lightcoral" style="background-color:LightCoral">LightCoral</option>
+                                            <option value="lightyellow" style="background-color:LightYellow">LightYellow</option>
+                                            <option value="lightsteelblue" style="background-color:LightSteelBlue">LightSteelBlue</option>
+                                            <option value="lightsalmon" style="background-color:LightSalmon">LightSalmon</option>
+                                            <option value="lavender" style="background-color:Lavender">Lavender</option>
+                                        </select>
+
+                                    </div>
+                                </div>*@
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea id="txtDescription" rows="5" class="form-control"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Start</label>
+                                            <div class="input-group date" id="dtp1">
+                                                <input type="text" id="txtStart" class="form-control datetime" readonly />
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="chkIsFullDay" style="transform:scaleX(2) scaleY(2)" />
+                                                <label class="form-check-label" for="chkIsFullDay">&nbsp;&nbsp;Full Day</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group" id="divEndDate">
+                                            <label>End</label>
+                                            <div class="input-group date" id="dtp2">
+                                                <input type="text" id="txtEnd" class="form-control datetime" readonly />
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="col-7" id="divuser">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3 class="card-title"><i class="fas fa-users"></i> Invite people to join</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <select class="js-example-basic-multiple" id="Invitepeople" name="InvitePeople[]" multiple="multiple" style="width:100%;"></select>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                @*<div class="row">
+                                            <div class="col-12">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="Sendemail" style="transform:scaleX(2) scaleY(2)" />
+                                                    <label class="form-check-label" for="Sendemail"> &nbsp;&nbsp;  Send Email invite?</label>
+                                                </div>
+                                            </div>
+                                        </div>*@
+                                                <table class="table table-striped display responsive table-sm" style="width:100%" id="TableInvitepeople">
+                                                    <thead class="bg-light">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts {
+
+    <script type="text/javascript">
+
+            var _user =  "@ViewBag.user";
+
+    </script>
+
+  
+    <script src="~/js/View/CalendarMainControl/_Fullcalendar.js"></script>
+
+}

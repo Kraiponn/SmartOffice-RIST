@@ -1,0 +1,123 @@
+﻿@model SmartOffice.ModelsForm.Tuple1;
+
+
+@{
+    if (Model.UserFlowByRole.Count() > 0)
+    {
+        <div class="card">
+            <div class="card-body">
+                <h6 class="text-danger"> <i class="fas fa-check-square"></i> Select user approve flow</h6>
+
+                @for (var i = 0; i < Model.UserFlowByRole.Count(); i++)
+                {
+                    var labelid = "lblselectuser" + @Model.UserFlowByRole[i].SeqNo;
+                    <div class="form-group">
+                        
+                        <label id="@labelid">
+                            @{
+
+                                var Lang = Model.vewDocumentItemList.Select(x => x.Language).FirstOrDefault();
+                                string[] words2 = Lang.Split(',');
+                                foreach (string word in words2)
+                                {
+                                    var W = word.Trim().ToUpper();
+                                    if (W.Contains("T"))
+                                    {
+
+                                        @Model.UserFlowByRole[i].ApprovalItemNameT
+                                    }
+                                    else if (W.Contains("E"))
+                                    {
+
+                                        @Model.UserFlowByRole[i].ApprovalItemNameE
+                                    }
+                                    else if (W.Contains("J"))
+                                    {
+
+                                        @Model.UserFlowByRole[i].ApprovalItemNameJ
+                                    }
+                                }
+                            }
+                        </label>
+                        @{
+
+                            @Html.HiddenFor(x => Model.UserFlowByRole[i].FlowID)
+
+                            @Html.HiddenFor(x => Model.UserFlowByRole[i].RoleID)
+
+                            @Html.HiddenFor(x => Model.UserFlowByRole[i].SeqNo)
+                            @Html.HiddenFor(x => Model.UserFlowByRole[i].ApprovalItemNameT)
+                            @Html.HiddenFor(x => Model.UserFlowByRole[i].ApprovalItemNameE)
+                            @Html.HiddenFor(x => Model.UserFlowByRole[i].ApprovalItemNameJ)
+
+                            var checkuserlist = Model.UserFlow.Where(x => x.RoleID == Model.UserFlowByRole[i].RoleID && x.CODEMPID != null && x.CODEMPID != "").ToList();
+
+                            if (checkuserlist.Count() <= 0) //All user
+                            {
+                                @Html.ListBoxFor(model => Model.UserFlowByRole[i].SelectedValues, new List<SelectListItem> { }
+                                .Concat(Model.HrmsEmployees.Select(x => new SelectListItem { Text = x.Text.Trim(), Value = x.Value.Trim() })),
+                                new { @class = "form-control listbox", multiple = "multiple",id="Seq"+Model.UserFlowByRole[i].SeqNo})
+
+
+                            }
+                            else //operator in role
+                            {
+                                if (Model.UserFlowByRole[i].RoleID.Trim() == "ALL00")
+                                {
+                                    var UserSelect = Model.UserFlow.Where(x => x.RoleID == Model.UserFlowByRole[i].RoleID && int.Parse(x.SeqNo) == Model.UserFlowByRole[i].SeqNo);
+
+
+                                    var QSOuterJoin = (from ord in Model.HrmsEmployees
+                                                       join detail in UserSelect on ord.Value equals detail.Value into temp
+                                                       from detail in temp.DefaultIfEmpty()
+                                                       select new
+                                                       {
+                                                           ord.Text
+                                                         ,
+                                                           ord.Value
+                                                         ,
+                                                           checkselect = detail == null ? String.Empty : detail.checkselect
+                                                         ,
+                                                           Id = detail == null ? 0 : detail.Id
+                                                       });
+
+
+                                    @Html.ListBoxFor(model => Model.UserFlowByRole[i].SelectedValues, new List<SelectListItem> { }
+                                                         .Concat(QSOuterJoin.OrderByDescending(x => x.checkselect).ThenBy(x => x.Id).Select(x => new SelectListItem { Text = x.Text.Trim(), Value = x.Value.Trim() })),
+                                                         new { @class = "form-control listbox", multiple = "multiple",id="Seq"+Model.UserFlowByRole[i].SeqNo})
+                                }
+                                else
+                                {
+                                    //var xx = Model.UserFlow.Where(x => x.RoleID == Model.UserFlowByRole[i].RoleID && int.Parse(x.SeqNo) == Model.UserFlowByRole[i].SeqNo).OrderByDescending(x => x.checkselect).ThenBy(x => x.Id).Select(x=> new {x.Text ,x.Value }).Distinct().Select(x => new SelectListItem { Text = x.Text.Trim(), Value = x.Value.Trim() });
+
+                                    var qq = Model.UserFlow.Where(x => x.RoleID == Model.UserFlowByRole[i].RoleID && int.Parse(x.SeqNo) == Model.UserFlowByRole[i].SeqNo && x.RequirementRemark.Contains("AUTO")).OrderBy(x => x.Id).Select(x => x.Value.Trim()).ToArray();
+
+                                    if (Model.UserFlowByRole[i].SelectedValues == null)
+                                    {
+                                        if (qq.Count() > 0)
+                                        {
+                                            Model.UserFlowByRole[i].SelectedValues = qq;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (Model.UserFlowByRole[i].SelectedValues.Count() == 0 && qq.Count() > 0)
+                                        {
+                                            Model.UserFlowByRole[i].SelectedValues = qq;
+                                        }
+                                    }
+
+
+                                    @Html.ListBoxFor(model => Model.UserFlowByRole[i].SelectedValues, new List<SelectListItem> { }
+                                                 .Concat(Model.UserFlow.Where(x => x.RoleID == Model.UserFlowByRole[i].RoleID && int.Parse(x.SeqNo) == Model.UserFlowByRole[i].SeqNo).OrderByDescending(x=>x.checkselect).ThenBy(x=>x.Id).Select(x => new { x.Text, x.Value }).Distinct().Select(x => new SelectListItem { Text = x.Text.Trim(), Value = x.Value.Trim() })),
+                                                 new { @class = "form-control listbox", multiple = "multiple",id = "Seq" + Model.UserFlowByRole[i].SeqNo })
+                                }
+
+
+                            }
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    } }

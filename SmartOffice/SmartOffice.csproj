@@ -1,0 +1,179 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+         <AspNetCoreHostingModel>OutOfProcess</AspNetCoreHostingModel>
+    <AspNetCoreModuleName>AspNetCoreModule</AspNetCoreModuleName>
+    <TypeScriptToolsVersion>3.1</TypeScriptToolsVersion>
+    <StartupObject></StartupObject>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE</DefineConstants>
+    <DebugType>portable</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="Logs\**" />
+    <Compile Remove="Views\Account\**" />
+    <Compile Remove="wwwroot\Asset\**" />
+    <Compile Remove="wwwroot\Attach\**" />
+    <Compile Remove="wwwroot\Avilon\**" />
+    <Compile Remove="wwwroot\css\**" />
+    <Compile Remove="wwwroot\datatables\**" />
+    <Compile Remove="wwwroot\ExcelTemplate\**" />
+    <Compile Remove="wwwroot\File\**" />
+    <Compile Remove="wwwroot\fonts\**" />
+    <Compile Remove="wwwroot\gentelella\**" />
+    <Compile Remove="wwwroot\half\**" />
+    <Compile Remove="wwwroot\images\**" />
+    <Compile Remove="wwwroot\image\**" />
+    <Compile Remove="wwwroot\InternalTelephone\**" />
+    <Compile Remove="wwwroot\jquery.Thailand.js\**" />
+    <Compile Remove="wwwroot\js\**" />
+    <Compile Remove="wwwroot\lib\**" />
+    <Compile Remove="wwwroot\MDB\**" />
+    <Compile Remove="wwwroot\MultipleDatesPickerjQueryUI\**" />
+    <Compile Remove="wwwroot\Ring\**" />
+    <Compile Remove="wwwroot\signature_pad\**" />
+    <Compile Remove="wwwroot\Template\**" />
+    <Compile Remove="wwwroot\TheEvent\**" />
+    <Compile Remove="wwwroot\Video\**" />
+    <Compile Remove="wwwroot\world\**" />
+    <Content Remove="Logs\**" />
+    <Content Remove="Views\Account\**" />
+    <Content Remove="wwwroot\Asset\**" />
+    <Content Remove="wwwroot\Attach\**" />
+    <Content Remove="wwwroot\Avilon\**" />
+    <Content Remove="wwwroot\css\**" />
+    <Content Remove="wwwroot\datatables\**" />
+    <Content Remove="wwwroot\ExcelTemplate\**" />
+    <Content Remove="wwwroot\File\**" />
+    <Content Remove="wwwroot\fonts\**" />
+    <Content Remove="wwwroot\gentelella\**" />
+    <Content Remove="wwwroot\half\**" />
+    <Content Remove="wwwroot\images\**" />
+    <Content Remove="wwwroot\image\**" />
+    <Content Remove="wwwroot\InternalTelephone\**" />
+    <Content Remove="wwwroot\jquery.Thailand.js\**" />
+    <Content Remove="wwwroot\js\**" />
+    <Content Remove="wwwroot\lib\**" />
+    <Content Remove="wwwroot\MDB\**" />
+    <Content Remove="wwwroot\MultipleDatesPickerjQueryUI\**" />
+    <Content Remove="wwwroot\Ring\**" />
+    <Content Remove="wwwroot\signature_pad\**" />
+    <Content Remove="wwwroot\Template\**" />
+    <Content Remove="wwwroot\TheEvent\**" />
+    <Content Remove="wwwroot\Video\**" />
+    <Content Remove="wwwroot\world\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <EmbeddedResource Remove="Views\Account\**" />
+    <EmbeddedResource Remove="wwwroot\Asset\**" />
+    <EmbeddedResource Remove="wwwroot\Attach\**" />
+    <EmbeddedResource Remove="wwwroot\Avilon\**" />
+    <EmbeddedResource Remove="wwwroot\css\**" />
+    <EmbeddedResource Remove="wwwroot\datatables\**" />
+    <EmbeddedResource Remove="wwwroot\ExcelTemplate\**" />
+    <EmbeddedResource Remove="wwwroot\File\**" />
+    <EmbeddedResource Remove="wwwroot\fonts\**" />
+    <EmbeddedResource Remove="wwwroot\gentelella\**" />
+    <EmbeddedResource Remove="wwwroot\half\**" />
+    <EmbeddedResource Remove="wwwroot\images\**" />
+    <EmbeddedResource Remove="wwwroot\image\**" />
+    <EmbeddedResource Remove="wwwroot\InternalTelephone\**" />
+    <EmbeddedResource Remove="wwwroot\jquery.Thailand.js\**" />
+    <EmbeddedResource Remove="wwwroot\js\**" />
+    <EmbeddedResource Remove="wwwroot\lib\**" />
+    <EmbeddedResource Remove="wwwroot\MDB\**" />
+    <EmbeddedResource Remove="wwwroot\MultipleDatesPickerjQueryUI\**" />
+    <EmbeddedResource Remove="wwwroot\Ring\**" />
+    <EmbeddedResource Remove="wwwroot\signature_pad\**" />
+    <EmbeddedResource Remove="wwwroot\Template\**" />
+    <EmbeddedResource Remove="wwwroot\TheEvent\**" />
+    <EmbeddedResource Remove="wwwroot\Video\**" />
+    <EmbeddedResource Remove="wwwroot\world\**" />
+    <None Remove="Logs\**" />
+    <None Remove="Views\Account\**" />
+    <None Remove="wwwroot\Asset\**" />
+    <None Remove="wwwroot\Attach\**" />
+    <None Remove="wwwroot\Avilon\**" />
+    <None Remove="wwwroot\css\**" />
+    <None Remove="wwwroot\datatables\**" />
+    <None Remove="wwwroot\ExcelTemplate\**" />
+    <None Remove="wwwroot\File\**" />
+    <None Remove="wwwroot\fonts\**" />
+    <None Remove="wwwroot\gentelella\**" />
+    <None Remove="wwwroot\half\**" />
+    <None Remove="wwwroot\images\**" />
+    <None Remove="wwwroot\image\**" />
+    <None Remove="wwwroot\InternalTelephone\**" />
+    <None Remove="wwwroot\jquery.Thailand.js\**" />
+    <None Remove="wwwroot\js\**" />
+    <None Remove="wwwroot\lib\**" />
+    <None Remove="wwwroot\MDB\**" />
+    <None Remove="wwwroot\MultipleDatesPickerjQueryUI\**" />
+    <None Remove="wwwroot\Ring\**" />
+    <None Remove="wwwroot\signature_pad\**" />
+    <None Remove="wwwroot\Template\**" />
+    <None Remove="wwwroot\TheEvent\**" />
+    <None Remove="wwwroot\Video\**" />
+    <None Remove="wwwroot\world\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="ModelEHelpdesk\Message.cs" />
+    <Compile Remove="ModelEHelpdesk\Room.cs" />
+    <Compile Remove="Models\SmartOfficeContext.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="Views\Home\WorkAreaM.cshtml" />
+    <Content Remove="Views\Shared\_LayoutAdminM.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Ducksoft.NetCore.Razor.Sitemap" Version="1.0.103" />
+    <PackageReference Include="IdentityServer4" Version="2.3.2" />
+    <PackageReference Include="IdentityServer4.AspNetIdentity" Version="2.3.0" />
+    <PackageReference Include="IdentityServer4.EntityFramework" Version="2.3.2" />
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
+    <PackageReference Include="FastReport.OpenSource" Version="2019.4.0" />
+    <PackageReference Include="FastReport.OpenSource.Web" Version="2019.4.0" />
+    <PackageReference Include="FontAwesome" Version="4.7.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.24" />
+    <PackageReference Include="IdentityServer4" Version="2.5.4" />
+    <PackageReference Include="iTextSharp.LGPLv2.Core" Version="1.6.7" />
+    <PackageReference Include="jQuery.Fullcalendar" Version="3.9.0" />
+    <PackageReference Include="Microsoft.AspNet.SignalR" Version="2.4.1" />
+    <PackageReference Include="Microsoft.AspNet.SignalR.Client" Version="2.4.1" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.4" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.EntityFrameworkCore" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.Extensions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Language" Version="2.2.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Runtime" Version="2.2.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.1.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Log4Net.AspNetCore" Version="2.2.12" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.3" />
+    <PackageReference Include="Moment.js" Version="2.24.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
+    <PackageReference Include="QRCoder" Version="1.4.3" />
+    <PackageReference Include="SqlTableDependency" Version="7.1.0" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmailCore\SmartOffice.EmailCore.csproj" />
+    <ProjectReference Include="..\SmartOffice.eAppointment\SmartOffice.eAppointment.csproj" />
+    <ProjectReference Include="..\SmartOffice.eManagement\SmartOffice.eManagement.csproj" />
+    <ProjectReference Include="..\SmartOffice.eReservation\SmartOffice.eReservation.csproj" />
+    <ProjectReference Include="..\SurveyApp\SmartOffice.SurveyApp.csproj" />
+  </ItemGroup>
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JSONSchema="" /></VisualStudio></ProjectExtensions>
+</Project>

@@ -1,0 +1,127 @@
+﻿@model SmartOffice.Models.ViewModel.ViewNewsModel
+@using System.Text.RegularExpressions;
+
+
+        @if (Model.News.Count() != 0)
+        {
+
+            var checknewsupdate = Model.News.Where(i => i.UpdateDate.Value.Date == DateTime.Now.Date || i.CreatedDate.Value.Date == DateTime.Now.Date).FirstOrDefault();
+            var linkimage = "";
+
+            @foreach (var item in Model.News.Take(1))
+            {
+                @if (item.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").Count() != 0)
+                {
+
+                    //background - image: url('../../wwwroot/image/sec-000005/news/nd-2019-07-000000010.jpg');
+
+                    if (Model.News.First() == item)
+                    {
+                        linkimage = "~/image/" + item.GroupCateg + "/News/" + item.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").LastOrDefault().Value;
+                        <a href='@Url.Action("Index", "News",new {DocCat = item.GroupCateg,NewsOrder=item.NewHorder})' target="_blank">
+                            <div class="vel" style="background: url(@Url.Content(linkimage))no-repeat center center;-webkit-background-size: cover;-moz-background-size: cover;-o-background-size: cover;background-size: cover;">
+
+                                <div class="dno">
+                                    <h1> @item.Title1</h1>
+
+                                </div>
+
+                            </div>
+                        </a>
+                    }
+
+                }
+
+            }
+
+
+            <div class="interv">
+                <div class="traka">
+                    <h1>NEWS UPDATE</h1>
+                </div>
+                <ul>
+                    @foreach (var item2 in Model.News.Skip(1))
+                    {
+
+
+                        if (item2.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").Count() != 0)
+                        {
+
+                            //background - image: url('../../wwwroot/image/sec-000005/news/nd-2019-07-000000010.jpg');
+
+
+                            linkimage = "~/image/" + item2.GroupCateg + "/News/" + item2.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").LastOrDefault().Value;
+
+                            <li>
+                                <div class="video">
+                                    <div class="slika4" style="background: url(@Url.Content(linkimage))no-repeat; height: 120px;width: 195px;background-size: contain;border-radius: 7px">
+
+                                    </div>
+                                    <a href='@Url.Action("Index", "News",new {DocCat = item2.GroupCateg,NewsOrder=item2.NewHorder})' target="_blank"><h2>@item2.Title1</h2></a>
+                                   
+                                </div>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+            @*<div class="col-xl-4 col-lg-3 col-md-6 col-sm-6 col-xs-12">
+                <figure class="snip1208">
+
+                    @if (linkimage != "")
+                    {
+                        @if (item.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").LastOrDefault().ItemType == "video")
+                        {
+
+
+                            <div class="video-frame">
+                                <video height:auto;" style="width: 100%;object-fit: cover;" controls>
+                                    <source src="@Url.Content(linkimage)" />
+                                </video>
+                            </div>
+
+
+                        }
+                        else if (item.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").LastOrDefault().ItemType == "image")
+                        {
+                            <img src="@Url.Content(linkimage)">
+                        }
+                        else if (item.NnewsDetail.Where(i => i.ItemType == "image" || i.ItemType == "video").LastOrDefault().ItemType == "document")
+                        {
+
+
+                            <div class="file">
+                                <a href="@Url.Content(linkimage)">
+                                    <span class="corner"></span>
+
+                                    <div class="icon">
+                                        <i class="fa fa-file" style="font-size:100px; color:darkgrey"></i>
+                                    </div>
+                                </a>
+                            </div>
+
+
+                        }
+                    }
+                    @{
+                        if ((item.CreatedDate.Value.Date == DateTime.Now.Date) || (item.UpdateDate.Value.Date == DateTime.Now.Date))
+                        {
+                            <div class="date"><span class="day">Latest</span><span class="month">News</span></div><i class="ion-film-marker"></i>
+                        }
+                    }
+
+                    <figcaption>
+                        <p>
+                            @item.Title1
+                        </p>
+                        <button>Read More</button>
+
+                    </figcaption><a href='@Url.Action("Index", "News",new {DocCat = item.GroupCateg,NewsOrder=item.NewHorder})' target="_blank"></a>
+                </figure>
+            </div>*@
+        }
+
+
+
+
+

@@ -1,0 +1,81 @@
+﻿
+@{   
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+<style>
+    /* Ensure that the demo table scrolls */
+    th, td {
+        white-space: nowrap;
+    }
+
+    div.dataTables_wrapper {
+        margin: 0 auto;
+    }
+
+    div.container {
+        width: 80%;
+    }
+</style>
+<section class="content">
+    <div class="container-fuild">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12">
+                <h4 class="p-3 font-weight-bold" style="color:#006988">
+                    <i class="fas fa-database"></i> Inquiry Document
+                </h4>    
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h4 class="card-title">Fillter data</h4>
+                        </div>
+                        <div class="card-body text-secondary">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="dd_dept">Department</label>
+                                    <select id="dd_dept" class="form-control input-sm">
+                                        <option value="">Select department</option>
+                                    </select>
+                                </div>
+                                @*</div>
+        <div class="form-row">*@
+                                <div class="form-group col-md-6">
+                                    <label for="dd_docname">Document name</label>
+                                    <select id="dd_docname" class="form-control input-sm">
+                                        <option value="">Select document</option>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-12">
+                                    <label for="inputEmail4">Date range</label>
+                                    <input type="text" id="date_rangeh" class="form-control float-right input-sm">
+                                </div>
+                            </div>                          
+                            <div class="form-row">
+                                <div class="form-group col-md-12">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="GetData();">Search</button>
+                                </div>
+                            </div>
+                          
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-header">
+                            <h4 class="card-title">Result</h4>
+                        </div>
+                        <div class="card-body">
+                            <table class="table stripe row-border order-column" style="width:100%" id="tbdata">
+                                <thead>
+                                <tr>
+                                    <th>Default</th>                                  
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>                          
+            </div>
+        </div>
+    </div>
+
+    </section>
+    @section Scripts{
+        <script src="~/js/View/InquiryData/InquiryData.js"></script>
+    }

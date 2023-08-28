@@ -1,0 +1,109 @@
+﻿<style>
+    .boxSearch {
+        margin: auto;
+        width: auto;
+        height: 35px;
+    }
+
+    .container-2 {
+        width: auto;     
+        white-space: nowrap;
+        position: relative;
+    }
+
+        .container-2 input#txtsearch_data {
+            /*width: 50px;*/
+            /*height: 35px;*/
+            background-color: rgba(216,217,219, 0.8);
+            border: none;
+            font-size: 10pt;
+            /*float: left;*/
+            color: #262626;
+            padding-left: 10px;
+            -webkit-border-radius: 5px;
+            -moz-border-radius: 5px;
+            border-radius: 5px;
+            color: #000000;
+            -webkit-transition: width .55s ease;
+            -moz-transition: width .55s ease;
+            -ms-transition: width .55s ease;
+            -o-transition: width .55s ease;
+            transition: width .55s ease;
+        }
+
+            /*.container-2 input#txtsearch_data::-webkit-input-placeholder {
+                color: #65737e;
+            }
+
+            .container-2 input#txtsearch_data:-moz-placeholder { 
+                color: #65737e;
+            }
+
+            .container-2 input#txtsearch_data::-moz-placeholder { 
+                color: #65737e;
+            }
+
+            .container-2 input#txtsearch_data:-ms-input-placeholder {
+                color: #65737e;
+            }
+
+        .container-2 .icon {
+            position: absolute;
+            top: 50%;
+            margin-left: 17px;
+            margin-top: 10px;
+            z-index: 1;
+            color: #4f5b66;
+        }
+
+        .container-2 input#txtsearch_data:focus, .container-2 input#search:active {
+            outline: none;
+            width: 300px;
+        }
+
+        .container-2:hover input#search {
+            width: 300px;
+        }
+
+        .container-2:hover .icon {
+            color: #93a2ad;
+        }*/
+
+    input[type=search] {
+        /*background: #555 url(http://hp-proliant.co.uk/qual_images/mob-search-icon.png) no-repeat 9px center;*/
+        border: solid 1px #ccc;
+        padding: 9px 10px 9px 32px;
+        width: 100px;
+    }
+
+        input[type=search]:focus {
+            width: 300px;
+            background-color: #ccc;
+            border-color: #333;
+            border: solid 1px #fff;
+        }
+</style>
+<div class="boxSearch">
+    <div class="container-2">
+        @using (Html.BeginForm("SearchResultPage", "Home", FormMethod.Post, new { @id = "form_smart_search", @role = "form" }))
+        {
+            @*<span class="icon"><i class="fa fa-search"></i></span>
+            <input type="text" id="txtsearch_data" name="txtsearch_data" placeholder="    Search...">*@
+            @*<div class="search"></div>*@
+            @*<a href="#" onclick="SubmitToGetDataSearch();" class="search_icon"><i class="fas fa-search"></i></a>*@
+
+            <div class="text-center">
+                <div class="form-group has-search">
+                    @*<span class="fas fa-search form-control-feedback"></span>*@
+                    <input id="txtsearch_data" name="txtsearch_data" class="form-control" type="search" placeholder="Search" aria-label="Search">
+                </div>
+            </div>
+        }
+
+    </div>
+</div>
+
+    @*<script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>*@
+    <script src="~/js/View/HomeScript/Home.js"></script>
+
+    @*@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}*@

@@ -1,0 +1,1025 @@
+﻿@model SmartOffice.Models.ModelSubSystems
+<style>
+    .rgba-gradient {
+        background: -moz-linear-gradient(45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+        background: -webkit-linear-gradient(45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+        background: linear-gradient(to 45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+        box-shadow: 5px 5px 20px 7px rgba(0,0,0,0.25), -5px -5px 20px 7px rgba(0,0,0,0.22);
+    }
+
+    * {
+        box-sizing: border-box;
+    }
+
+    a {
+        color: #333;
+    }
+
+    .menu-container {
+        width: 100%;
+     
+    }
+
+    .menu-mobile {
+        display: none;
+        padding: 20px;
+    }
+
+        .menu-mobile:after {
+            content: "\f394";
+            font-family: "Ionicons";
+            font-size: 2.5rem;
+            padding: 0;
+            float: right;
+            position: relative;
+            top: 50%;
+            transform: translateY(-25%);
+        }
+
+    .menu-dropdown-icon:before {
+        content: "\f489";
+        font-family: "Ionicons";
+        display: none;
+        cursor: pointer;
+        float: right;
+        padding: 1.5em 2em;
+        background: #fff;
+        color: #333;
+    }
+
+    .menu > ul {
+        margin: 0 auto;
+        width: 100%;       
+        list-style: none;
+        padding: 0;
+        position: relative;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+  
+    }
+
+        .menu > ul:before, .menu > ul:after {
+            content: "";
+            display: table;
+        }
+
+        .menu > ul:after {
+            clear: both;
+        }
+
+        .menu > ul > li {
+            float: left;         
+            padding: 0;
+            margin: 0;
+        }
+
+            .menu > ul > li a {
+                text-decoration: none;
+                padding: 1.5em 2em;
+                display: block;
+            }
+
+            .menu > ul > li:hover {
+                color: rgba(43,187,173, 1);
+                font-weight:bold;
+            }
+
+            .menu > ul > li > ul {
+                display: none;
+                width: 100%;
+                background-color: rgba(0,0,0, .94);
+                padding: 20px;
+                position: absolute;
+                z-index: 99;
+                left: 0;
+                margin: 0;
+                list-style: none;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+            }
+
+                .menu > ul > li > ul:before, .menu > ul > li > ul:after {
+                    content: "";
+                    display: table;
+                }
+
+                .menu > ul > li > ul:after {
+                    clear: both;
+                }
+
+                .menu > ul > li > ul > li {
+                    margin: 0;
+                    padding-bottom: 0;
+                    list-style: none;
+                    width: 25%;
+                    background: none;
+                    float: left;
+                    font-size: 1em;
+                    padding:0;
+                }
+                    
+                    .menu > ul > li > ul > li a {
+                        color: lightgray;
+                        padding: 0;
+                        width: 95%;
+                        display: block;
+                        border-bottom: 1px solid #ccc;
+                    }
+                   
+                    .menu > ul > li > ul > li a:hover {
+                        color: white;                           
+                         
+                        }
+
+                    .menu > ul > li > ul > li > ul {
+                        display: block;
+                        padding: 0;                     
+                        margin: 10px 0 0;
+                        list-style: none;
+                        -webkit-box-sizing: border-box;
+                        -moz-box-sizing: border-box;
+                        box-sizing: border-box;
+                    }
+
+                        .menu > ul > li > ul > li > ul:before, .menu > ul > li > ul > li > ul:after {
+                            content: "";
+                            display: table;
+                        }
+
+                        .menu > ul > li > ul > li > ul:after {
+                            clear: both;
+                        }
+
+                        .menu > ul > li > ul > li > ul > li {
+                            float: left;
+                            width: 100%;
+                            padding: 8px 0;
+                            margin: 0;
+                            font-size: .8em;
+                        }
+
+                            .menu > ul > li > ul > li > ul > li > ul > li {
+                                float: left;
+                                width: 100%;
+                                padding: 8px 0;
+                                margin: 0;
+                                font-size: .8em;                            
+                            }
+
+                            .menu > ul > li > ul > li > ul > li a {
+                                border: 0;
+                                color: lightgray;
+                                font-size:1.2em;
+                            }
+                            .menu > ul > li > ul > li > ul > li a:hover {                             
+                                color: white;                               
+                            }
+                .menu > ul > li > ul.normal-sub {
+                    width: 300px;
+                    left: auto;
+                    padding: 10px 20px;
+                }
+
+                    .menu > ul > li > ul.normal-sub > li {
+                        width: 100%;
+                    }
+
+                        .menu > ul > li > ul.normal-sub > li a {
+                            border: 0;
+                            padding: 1em 0;
+                        }
+
+    @@media only screen and (max-width: 959px) {
+        .menu-container {
+            width: 100%;
+        }
+
+        .menu-mobile {
+            display: block;
+        }
+
+        .menu-dropdown-icon:before {
+            display: block;
+        }
+
+        .menu > ul {
+            display: none;
+        }
+
+            .menu > ul > li {
+                width: 100%;
+                float: none;
+                display: block;
+                background-color: rgba(255, 255, 255, 0.6);
+            }
+
+                .menu > ul > li a {
+                    padding: 1.5em;
+                    width: 100%;
+                    display: block;
+                }
+
+                .menu > ul > li > ul {
+                    position: relative;
+                }
+
+                    .menu > ul > li > ul.normal-sub {
+                        width: 100%;
+                    }
+
+                    .menu > ul > li > ul > li {
+                        float: none;
+                        width: 100%;
+                        margin-top: 20px;
+                    }
+
+                        .menu > ul > li > ul > li:first-child {
+                            margin: 0;
+                        }
+
+                        .menu > ul > li > ul > li > ul {
+                            position: relative;
+                        }
+
+                            .menu > ul > li > ul > li > ul > li {
+                                float: none;
+                            }
+
+        .menu .show-on-mobile {
+            display: block;
+        }
+    }
+
+
+
+
+    .containerfav {
+        position: relative;
+        margin: 0px auto;
+        padding: 0px 0;
+        clear: both;
+    }
+
+    @@media only screen and (min-width: 1200px) {
+        .container {
+            width: 1210px;
+        }
+    }
+
+    @@media only screen and (min-width: 960px) and (max-width: 1199px) {
+        .container {
+            width: 1030px;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) and (max-width: 959px) {
+        .container {
+            width: 682px;
+        }
+    }
+
+    @@media only screen and (min-width: 480px) and (max-width: 767px) {
+        .container {
+            width: 428px;
+            margin: 0 auto;
+        }
+    }
+
+    @@media only screen and (max-width: 479px) {
+        .container {
+            width: 320px;
+            margin: 0 auto;
+        }
+    }
+
+    .mcd-menu {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        background: #FFF;
+        height: 80px;
+        border-radius: 10px;
+        -moz-border-radius: 2px;
+        -webkit-border-radius: 2px;
+        padding-left: 50px;
+    }
+
+        .mcd-menu li {
+            float: left;
+            position: relative;
+        }
+
+            .mcd-menu li a {
+                display: block;
+                text-decoration: none;
+                padding: 12px 20px;
+                text-align: center;
+                color: #777;
+                border-right: 1px solid #E7E7E7;
+            }
+
+                .mcd-menu li a i {
+                    display: block;
+                    font-size: 30px;
+                    margin-bottom: 10px;
+                }
+
+            .mcd-menu li ul li a {
+                font-size: 15px;
+                font-weight: 400;
+            }
+
+            .mcd-menu li a strong {
+                display: block;
+                text-transform: uppercase;
+            }
+
+            .mcd-menu li:hover > a i {
+                opacity: 1;
+                -webkit-animation: moveFromTop 300ms ease-in-out;
+                -moz-animation: moveFromTop 300ms ease-in-out;
+                -ms-animation: moveFromTop 300ms ease-in-out;
+                -o-animation: moveFromTop 300ms ease-in-out;
+                animation: moveFromTop 300ms ease-in-out;
+            }
+
+            .mcd-menu li:hover a strong {
+                opacity: 1;
+                -webkit-animation: moveFromLeft 300ms ease-in-out;
+                -moz-animation: moveFromLeft 300ms ease-in-out;
+                -ms-animation: moveFromLeft 300ms ease-in-out;
+                -o-animation: moveFromLeft 300ms ease-in-out;
+                animation: moveFromLeft 300ms ease-in-out;
+            }
+
+            .mcd-menu li:hover > a {
+                color: #fc4a1a;
+            }
+
+            .mcd-menu li a.active {
+                position: relative;
+                color: #e67e22;
+                border: 0;
+                border-top: 4px solid #e67e22;
+                border-bottom: 4px solid #e67e22;
+                margin-top: -4px;
+                box-shadow: 0 0 5px #DDD;
+                -moz-box-shadow: 0 0 5px #DDD;
+                -webkit-box-shadow: 0 0 5px #DDD;
+            }
+
+                .mcd-menu li a.active:before {
+                    content: "";
+                    position: absolute;
+                    top: 0;
+                    left: 45%;
+                    border-top: 5px solid #e67e22;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                }
+
+    @@-webkit-keyframes moveFromTop {
+        from {
+            opacity: 0;
+            -webkit-transform: translateY(200%);
+            -moz-transform: translateY(200%);
+            -ms-transform: translateY(200%);
+            -o-transform: translateY(200%);
+            transform: translateY(200%);
+        }
+
+        to {
+            opacity: 1;
+            -webkit-transform: translateY(0%);
+            -moz-transform: translateY(0%);
+            -ms-transform: translateY(0%);
+            -o-transform: translateY(0%);
+            transform: translateY(0%);
+        }
+    }
+
+    @@-webkit-keyframes moveFromLeft {
+        from {
+            opacity: 0;
+            -webkit-transform: translateX(200%);
+            -moz-transform: translateX(200%);
+            -ms-transform: translateX(200%);
+            -o-transform: translateX(200%);
+            transform: translateX(200%);
+        }
+
+        to {
+            opacity: 1;
+            -webkit-transform: translateX(0%);
+            -moz-transform: translateX(0%);
+            -ms-transform: translateX(0%);
+            -o-transform: translateX(0%);
+            transform: translateX(0%);
+        }
+    }
+
+    @@-webkit-keyframes moveFromRight {
+        from {
+            opacity: 0;
+            -webkit-transform: translateX(-200%);
+            -moz-transform: translateX(-200%);
+            -ms-transform: translateX(-200%);
+            -o-transform: translateX(-200%);
+            transform: translateX(-200%);
+        }
+
+        to {
+            opacity: 1;
+            -webkit-transform: translateX(0%);
+            -moz-transform: translateX(0%);
+            -ms-transform: translateX(0%);
+            -o-transform: translateX(0%);
+            transform: translateX(0%);
+        }
+    }
+
+    .mcd-menu li ul,
+    .mcd-menu li ul li ul {
+        position: absolute;
+        height: auto;
+        min-width: 300px;
+        padding: 0;
+        margin: 0;
+        /*background: #FFF;*/
+        background-color: rgba(255,255,255, 0.95);
+        border-top: 4px solid #e67e22;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 300ms linear;
+        -o-transition: all 300ms linear;
+        -moz-transition: all 300ms linear;
+        -webkit-transition: all 300ms linear;
+        top: 130px;
+        z-index: 1000;
+    }
+
+        .mcd-menu li ul:before {
+            content: "";
+            position: absolute;
+            top: -8px;
+            left: 23%;
+            border-bottom: 5px solid #e67e22;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+        }
+
+        .mcd-menu li:hover > ul,
+        .mcd-menu li ul li:hover > ul {
+            display: block;
+            opacity: 1;
+            visibility: visible;
+            top: 100px;
+        }
+
+        .mcd-menu li ul li {
+            float: none;
+        }
+
+            .mcd-menu li ul li a {
+                padding: 10px;
+                text-align: left;
+                border: 0;
+                border-bottom: 1px solid #EEE;
+            }
+
+                .mcd-menu li ul li a i {
+                    font-size: 16px;
+                    display: inline-block;
+                    margin: 0 10px 0 0;
+                }
+
+            .mcd-menu li ul li ul {
+                left: 230px;
+                top: 0;
+                border: 0;
+                border-left: 4px solid #e67e22;
+            }
+
+                .mcd-menu li ul li ul:before {
+                    content: "";
+                    position: absolute;
+                    top: 15px;
+                    left: -14px;
+                    border-right: 5px solid #e67e22;
+                    border-bottom: 5px solid transparent;
+                    border-top: 5px solid transparent;
+                }
+
+            .mcd-menu li ul li:hover > ul {
+                top: 0px;
+                left: 200px;
+            }
+
+    .mcd-menu li.float {
+        float: right;
+    }
+
+    .mcd-menu li a.search {
+        padding: 29px 20px 30px 10px;
+    }
+
+        .mcd-menu li a.search i {
+            margin: 0;
+            display: inline-block;
+            font-size: 18px;
+        }
+
+        .mcd-menu li a.search input {
+            border: 1px solid #EEE;
+            padding: 10px;
+            background: #FFF;
+            outline: none;
+            color: #777;
+        }
+
+        .mcd-menu li a.search button {
+            border: 1px solid #e67e22;
+            padding: 10px;
+            background: #e67e22;
+            outline: none;
+            color: #FFF;
+            margin-left: -4px;
+        }
+
+        .mcd-menu li a.search input:focus {
+            border: 1px solid #e67e22;
+        }
+
+    .search-mobile {
+        display: none !important;
+        background: #e67e22;
+        border-left: 1px solid #e67e22;
+        border-radius: 0 3px 3px 0;
+    }
+
+        .search-mobile i {
+            color: #FFF;
+            margin: 0 !important;
+        }
+
+    @@media only screen and (min-width: 960px) and (max-width: 1199px) {
+        .mcd-menu li a.search input {
+            width: 100px;
+        }
+    }
+
+    @@media only screen and (min-width: 768px) and (max-width: 959px) {
+        .mcd-menu {
+            height: 85px;
+        }
+
+            .mcd-menu li a {
+                padding: 12px;
+            }
+
+                .mcd-menu li a i {
+                    font-size: 22px;
+                }
+
+                .mcd-menu li a strong {
+                    font-size: 12px;
+                }
+
+        .search-mobile {
+            display: block !important;
+            margin: 20px;
+            border-radius: 3px;
+            -moz-border-radius: 3px;
+            -webkit-border-radius: 3px;
+        }
+
+        .mcd-menu li:hover > ul {
+            top: 85px;
+            min-width: 180px;
+        }
+
+        .mcd-menu li ul li > ul {
+            min-width: 150px;
+            left: 200px;
+            top: 0;
+        }
+
+        .mcd-menu li ul li:hover > ul {
+            min-width: 150px;
+            left: 180px;
+            top: 0;
+        }
+
+        .mcd-menu li ul li ul li ul {
+            min-width: 150px;
+            left: 25px !important;
+            top: 54px;
+            border: 0;
+            border-top: 3px solid #e67e22;
+        }
+
+        .mcd-menu li ul li ul li:hover ul {
+            top: 35px;
+        }
+
+        .mcd-menu li ul li ul li ul:before {
+            border: 0;
+            border-bottom: 5px solid #e67e22;
+            border-left: 5px solid transparent;
+            border-right: 5px solid transparent;
+            left: 10%;
+            top: -8px;
+        }
+
+        .mcd-menu li:hover ul a {
+            font-size: 12px;
+        }
+
+            .mcd-menu li:hover ul a i {
+                font-size: 14px;
+            }
+    }
+
+    @@media only screen and (min-width: 480px) and (max-width: 767px) {
+        .mcd-menu {
+            height: 42px;
+            position: relative;
+        }
+
+            .mcd-menu li a {
+                padding: 12px 17.7px;
+            }
+
+                .mcd-menu li a i {
+                    margin: 0;
+                    font-size: 18px;
+                }
+
+            .mcd-menu li {
+                position: static;
+            }
+
+                .mcd-menu li ul {
+                    min-width: 100%;
+                    left: 0;
+                    top: 50px;
+                }
+
+                .mcd-menu li:hover > ul {
+                    top: 42px;
+                }
+
+                .mcd-menu li > ul:before {
+                    border: 0;
+                }
+
+                .mcd-menu li ul > li {
+                    position: relative;
+                }
+
+                .mcd-menu li ul li:hover > ul {
+                    left: 34px;
+                }
+
+                .mcd-menu li a {
+                    position: relative;
+                    font-size: 12px;
+                }
+
+                    .mcd-menu li a:hover strong, .mcd-menu li a.active strong {
+                        display: block;
+                        font-size: 10px;
+                        padding: 3px 0;
+                        position: absolute;
+                        top: -20px;
+                        left: 0;
+                        background: #e67e22;
+                        color: #FFF;
+                        min-width: 100%;
+                        text-transform: lowercase;
+                        font-weight: normal;
+                    }
+
+                    .mcd-menu li a.active:before {
+                        left: 40%;
+                    }
+
+                .mcd-menu li ul li > ul {
+                    min-width: 200px;
+                    left: 200px;
+                }
+
+                .mcd-menu li ul li:hover ul {
+                    left: 180px;
+                }
+
+                .mcd-menu li ul li ul:before {
+                    left: -9px;
+                }
+
+                .mcd-menu li ul li ul li ul {
+                    min-width: 200px;
+                    border: 0;
+                    border-top: 3px solid #e67e22;
+                    left: 25px !important;
+                    top: 45px;
+                }
+
+                .mcd-menu li ul li ul li:hover ul {
+                    top: 40px;
+                }
+
+                .mcd-menu li ul li ul li ul:before {
+                    border: 0;
+                    border-bottom: 5px solid #e67e22;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    left: 10%;
+                    top: -8px;
+                }
+    }
+
+    @@media only screen and (max-width: 479px) {
+        .mcd-menu {
+            height: 42px;
+            position: relative;
+        }
+
+            .mcd-menu li a {
+                padding: 12px 13.8px;
+                font-size: 12px;
+            }
+
+                .mcd-menu li a i {
+                    margin: 0;
+                    font-size: 18px;
+                }
+
+            .mcd-menu li {
+                position: static;
+            }
+
+                .mcd-menu li ul {
+                    min-width: 100%;
+                    left: 0;
+                    top: 50px;
+                }
+
+                .mcd-menu li:hover > ul {
+                    top: 42px;
+                }
+
+                .mcd-menu li > ul:before {
+                    border: 0;
+                }
+
+                .mcd-menu li ul > li {
+                    position: relative;
+                }
+
+                .mcd-menu li ul li:hover > ul {
+                    left: 34px;
+                }
+
+                .mcd-menu li a {
+                    position: relative;
+                }
+
+                    .mcd-menu li a:hover strong, .mcd-menu li a.active strong {
+                        display: block;
+                        font-size: 10px;
+                        padding: 3px 0;
+                        position: absolute;
+                        top: -20px;
+                        left: 0;
+                        background: #e67e22;
+                        color: #FFF;
+                        min-width: 100%;
+                        text-transform: lowercase;
+                        font-weight: normal;
+                    }
+
+                    .mcd-menu li a.active:before {
+                        left: 40%;
+                    }
+
+                .mcd-menu li ul li > ul {
+                    min-width: 150px;
+                    left: 160px;
+                }
+
+                .mcd-menu li ul li:hover ul {
+                    left: 120px;
+                }
+
+                .mcd-menu li ul li ul:before {
+                    left: -9px;
+                }
+
+                .mcd-menu li ul li ul li ul {
+                    min-width: 160px;
+                    left: 25px !important;
+                    top: 39px;
+                    border: 0;
+                    border-top: 3px solid #e67e22;
+                }
+
+                .mcd-menu li ul li ul li:hover ul {
+                    top: 39px;
+                }
+
+                .mcd-menu li ul li ul li ul:before {
+                    border: 0;
+                    border-bottom: 5px solid #e67e22;
+                    border-left: 5px solid transparent;
+                    border-right: 5px solid transparent;
+                    left: 10%;
+                    top: -8px;
+                }
+    }
+</style>
+
+
+<div>
+    <div style="background-color:#d8d9db">
+        <div class="menu-container">
+            <div class="menu">
+                <ul>
+                    @{
+                        var all_group = Model.subSystems.Where(i => i.MenuIdentityParent == 195).OrderBy(i => i.DisplayOrder).ToList();
+                        var childs_list = Model.subSystems.Where(i => i.MenuIdentityParent != 195).OrderBy(i => i.DisplayOrder).ToList();
+                    }
+                    @foreach (var item in all_group)
+                    {
+                        <li>
+
+
+                            @* Top Nav menu *@
+                            <a href="@Url.Action(item.Action, null, new { controller = item.Controller })">
+                                @Html.Raw(item.IconClass)
+                                @item.MenuNameE
+                                @if (item.Badges != "")
+                                {
+                                    <span class="@item.Badges">@item.BadgesName</span>
+                                }
+                            </a>
+
+
+                            @* level1 menu *@
+                            @if (childs_list.Where(i => i.MenuIdentityParent == item.MenuIdentity).Count() > 0)
+                            {
+                                var childs_list1 = childs_list.Where(i => i.MenuIdentityParent == item.MenuIdentity).OrderBy(i => i.DisplayOrder).ToList();
+
+                                <ul>
+                                    @foreach (var itemin in childs_list1)
+                                    {
+                                        <li>
+                                            @if (itemin.Action != "" && itemin.Controller != "")
+                                            {
+                                            <a href="@Url.Action(itemin.Action, null, new { controller = itemin.Controller })">
+                                                @Html.Raw(itemin.IconClass)
+                                                @itemin.MenuNameE
+                                                @if (itemin.Badges != "")
+                                                {
+                                                    <span class="@itemin.Badges">@itemin.BadgesName</span>
+                                                }
+                                            </a>
+
+
+                                            }
+                                            else
+                                            {
+
+                                            <a href="@itemin.MenuUrl">
+                                                @Html.Raw(itemin.IconClass)
+                                                @itemin.MenuNameE
+                                                @if (itemin.Badges != "")
+                                                {
+                                                    <span class="@itemin.Badges">@itemin.BadgesName</span>
+                                                }
+                                            </a>
+
+                                            }
+
+
+
+
+                                            @* level2 menu *@
+                                            @{
+                                                var childs_list2 = childs_list.Where(i => i.MenuIdentityParent == itemin.MenuIdentity).OrderBy(i => i.DisplayOrder).ToList();
+                                            }
+
+
+                                            @if (childs_list2.Count() > 0)
+                                            {
+                                                var childs_list3 = childs_list2.Where(i => i.MenuIdentityParent == itemin.MenuIdentity).OrderBy(i => i.DisplayOrder).ToList();
+
+                                                <ul>
+                                                    @foreach (var itemin1 in childs_list3)
+                                                    {
+                                                        <li>
+                                                            @if (itemin1.Action != "" && itemin1.Controller != "" && itemin1.Image != "")
+                                                            {
+
+                                                                <a href="@Url.Action(itemin1.Action, null, new { controller = itemin1.Controller })">
+                                                                    <span class="@itemin1.IconClass"></span>
+                                                                    @itemin1.MenuNameE
+                                                                    @if (itemin1.Badges != "")
+                                                                    {
+                                                                        <span class="@itemin1.Badges">@itemin1.BadgesName</span>
+                                                                    }
+                                                                </a>
+
+
+                                                            }
+                                                            else
+                                                            {
+
+                                                                <a href="@itemin1.MenuUrl">
+                                                                    <span class="@itemin1.IconClass"></span>
+                                                                    @itemin1.MenuNameE
+                                                                    @if (itemin1.Badges != "")
+                                                                    {
+                                                                        <span class="@itemin1.Badges">@itemin1.BadgesName</span>
+                                                                    }
+                                                                </a>
+
+                                                            }
+
+
+                                                            @* level3 menu *@
+                                                            @{
+                                                                var childs_list4 = childs_list.Where(i => i.MenuIdentityParent == itemin1.MenuIdentity).OrderBy(i => i.DisplayOrder).ToList();
+                                                            }
+
+
+                                                            @if (childs_list4.Count() > 0)
+                                                            {
+                                                                //var childs_list5 = childs_list.Where(i => i.MenuIdentityParent == itemin1.MenuIdentity).OrderBy(i => i.DisplayOrder).ToList();
+
+                                                                <ul>
+                                                                    @foreach (var itemin2 in childs_list4)
+                                                                    {
+                                                                        <li>
+                                                                            @if (itemin2.Action != "" && itemin2.Controller != "" && itemin2.Image != "")
+                                                                            {
+
+                                                                                <a href="@Url.Action(itemin2.Action, null, new { controller = itemin2.Controller })">
+                                                                                    <span class="@itemin2.IconClass"></span>
+                                                                                    @itemin2.MenuNameE
+                                                                                    @if (itemin2.Badges != "")
+                                                                                    {
+                                                                                        <span class="@itemin2.Badges">@itemin2.BadgesName</span>
+                                                                                    }
+                                                                                </a>
+
+
+                                                                            }
+                                                                            else
+                                                                            {
+
+                                                                                <a href="@itemin2.MenuUrl">
+                                                                                    <span class="@itemin2.IconClass"></span>
+                                                                                    @itemin2.MenuNameE
+                                                                                    @if (itemin1.Badges != "")
+                                                                                    {
+                                                                                        <span class="@itemin2.Badges">@itemin2.BadgesName</span>
+                                                                                    }
+                                                                                </a>
+
+                                                                            }
+
+                                                                        </li>
+                                                                    }
+                                                                </ul>
+                                                            }
+
+
+
+                                                        </li>
+                                                    }
+                                                </ul>
+                                            }
+
+                                            @* end loop2 *@
+
+                                        </li>
+                                    }
+                                </ul>
+                            }
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/View/SubMenuCompnentScript/SubMenu.js"></script>
+
+
+
+
+

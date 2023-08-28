@@ -1,0 +1,103 @@
+﻿
+
+@model SmartOffice.eManagement.Models.TupleForm;
+@{
+
+
+    ViewData["Title"] = "IndexAsync";
+
+    var OperationGroups = Model.formOperationGroups
+        .Select(x => new { x.OpeGroupName, x.OpeGroupCode, x.DisplayPriority, x.SpecialGroup }).OrderBy(x => x.DisplayPriority).Distinct();
+
+
+   
+        Layout = null;
+    
+}
+
+<style>
+</style>
+
+<div class="card card-primary card-outline card-tabs">
+    <div class="card-header p-0 pt-1" style="background-color:#ededed">        
+            <ul class="nav nav-tabs" id="custom-tabs-one-tab" role="tablist">
+                @{
+                    var inumitem = 0;
+
+                }
+                @foreach (var item in OperationGroups)
+                {
+                    var activeitem = "";
+                    if (inumitem == 0)
+                    {
+                        activeitem = "active";
+                    }
+                    <li class="nav-item">
+                        <a class="nav-link @activeitem" style="font-size:medium" id="custom-tabs-one-@inumitem@item.SpecialGroup-tab" 
+                           data-toggle="pill" href="#custom-tabs-one-@inumitem@item.SpecialGroup" role="tab" 
+                           aria-controls="custom-tabs-one-@inumitem@item.SpecialGroup" aria-selected="true">@item.OpeGroupName</a>
+                    </li>
+                    inumitem++;
+                }
+            </ul>
+        </div>
+        <div class="">
+            <div class="tab-content" id="custom-tabs-one-tabContent">
+
+                @{
+                    var inum = 0;
+
+                }
+                @foreach (var item in OperationGroups)
+                {
+                    var activeitem = "";
+                    if (inum == 0)
+                    {
+                        activeitem = "show active";
+                    }
+                    <div  class="tab-pane fade @activeitem" id="custom-tabs-one-@inum@item.SpecialGroup" role="tabpanel" aria-labelledby="custom-tabs-one-@inum@item.SpecialGroup-tab">
+                        <div class="row">
+                            @foreach (var itemlist in Model.formOperationGroups.Where(x => x.OpeGroupCode == item.OpeGroupCode).OrderBy(x => x.DisplayOrder))
+                            {
+
+                                <div class="col-lg-3 col-6 divli">
+                                    <!-- small box -->
+                                    <div class="small-box bg-primary">
+                                        <div class="inner">
+                                            <h6>@itemlist.OpeGroupName</h6>
+                                        </div>
+                                        <div class="icon">
+                                            <i class="fas fa-file-alt"></i>
+                                        </div>
+                                        <a asp-area="" asp-controller="EManageForm" asp-action="FormInput" class="nav-link small-box-footer"
+                                           asp-route-strObj="@itemlist.strObj" asp-route-OperationCode="@itemlist.OperationCode"
+                                           asp-route-OpeGroupCateg="@itemlist.OpeGroupCateg" asp-route-InputKind="@itemlist.InputKind" asp-route-OperationNo="">
+
+                                            <div class="inner">
+                                                <h6>@itemlist.OperationName</h6>
+                                            </div>
+                                            <br />
+                                            More info <i class="fas fa-arrow-circle-right"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                    inum++;
+                }
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+
+
+@section scripts {
+
+    <script type="text/javascript">
+
+
+    </script>
+
+
+}

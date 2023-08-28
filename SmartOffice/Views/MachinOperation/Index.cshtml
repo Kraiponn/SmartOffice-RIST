@@ -1,0 +1,202 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+<style>
+    .section-title {
+        text-transform: uppercase;
+        color: rgb(170, 170, 170);
+        letter-spacing: 1.25px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+
+    #one {
+        margin-top: 50px;
+        box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+    }
+
+    .it .btn-orange {
+        background-color: transparent;
+        border-color: #777 !important;
+        color: #777;
+        text-align: left;
+        width: 100%;
+    }
+
+    .it input.form-control {
+        height: 54px;
+        border: none;
+        margin-bottom: 0px;
+        border-radius: 0px;
+        border-bottom: 1px solid #ddd;
+        box-shadow: none;
+    }
+
+    .it .form-control:focus {
+        border-color: #ff4d0d;
+        box-shadow: none;
+        outline: none;
+    }
+
+    .fileUpload {
+        position: relative;
+        overflow: hidden;
+    }
+
+        .fileUpload input.upload {
+            position: absolute;
+            top: 0;
+            right: 0;
+            margin: 0;
+            padding: 0;
+            font-size: 18px;
+            cursor: pointer;
+            opacity: 0;
+            filter: alpha(opacity=0);
+        }
+
+    .it .btn-new, .it .btn-next {
+        margin: 30px 0px;
+        border-radius: 0px;
+        background-color: #333;
+        color: #f5f5f5;
+        font-size: 16px;
+        width: 155px;
+    }
+
+    .it .btn-next {
+        background-color: #ff4d0d;
+        color: #fff;
+    }
+
+    .it .btn-check {
+        cursor: pointer;
+        line-height: 54px;
+        color: red;
+    }
+
+    .it .uploadDoc {
+        margin-bottom: 20px;
+    }
+
+    .it .uploadDoc {
+        margin-bottom: 20px;
+    }
+
+    .it .btn-orange img {
+        width: 30px;
+    }
+
+
+
+    .it #uploader .docErr {
+        position: absolute;
+        right: auto;
+        left: 10px;
+        top: -56px;
+        padding: 10px;
+        font-size: 15px;
+        background-color: #fff;
+        color: red;
+        box-shadow: 0px 0px 7px 2px rgba(0,0,0,0.2);
+        display: none;
+    }
+
+        .it #uploader .docErr:after {
+            content: '\f0d7';
+            display: inline-block;
+            font-family: FontAwesome;
+            font-size: 50px;
+            color: #fff;
+            position: absolute;
+            left: 30px;
+            bottom: -40px;
+            text-shadow: 0px 3px 6px rgba(0,0,0,0.2);
+        }
+</style>
+
+
+
+<section class="content">
+    <div class="container">
+        <div class="row it">
+            <div class="col-sm-offset-1 col-sm-12 p-3" id="one">
+                <p style="color:black;font-size:16px;text-align: center;margin: 30px 0px;">
+                    Please upload documents only in 'xlsx', 'xls' format.
+                </p><br>
+                <div class="row">
+                    <div class="col-sm-offset-6 col-sm-6 form-group">
+                        <h3 class="text-center section-title">Machine Operatioin Report (Upload Data)</h3>
+                    </div><!--form-group-->
+                </div><!--row-->
+                <div id="uploader">
+                    <div class="row uploadDoc">
+                        <div class="col-sm-6">
+                            <div class="docErr">Please upload valid file</div><!--error-->
+                            <div class="fileUpload btn btn-orange">
+                                <i class="fas fa-file fa-2x icon" style="color:orchid"></i>
+                                <span class="upl" id="upload">Upload document</span>
+                                <input type="file" class="upload up btn-check" id="fileUpload" name="fileUpload" />
+                                <div id="progressbar-5" class="progress-bar bg-primary progress-bar-striped" role="progressbar">
+                                    <div class="sr-only">
+                                    </div>
+                                </div>
+                                <div class="progress-bar bg-primary progress-bar-striped" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 40%">
+                                    <span class="sr-only">40% Complete (success)</span>
+                                </div>
+                                @*<input type="file" id="fileUpload" name="fileUpload" class="form-control" />*@
+                            </div><!-- btn-orange -->
+                        </div><!-- col-3 -->
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                                </div>
+                                <input type="text" class="form-control dateinput" name="datereturn" id="datereturn" placeholder="Date Return to Accounting">
+                            </div>
+
+                        </div><!--col-8-->
+
+                    </div><!--row-->
+                </div><!--uploader-->
+                <div class="text-center">
+                    <button class="btn btn-next" id="btnUpload"><i class="fa fa-paper-plane"></i> Submit</button>
+                </div>
+            </div><!--one-->
+        </div><!-- row -->
+        <div class="row it">
+            <div class="col-sm-offset-1 col-sm-12 p-3" id="one">
+                <p style="font-size:16px;text-align: center;margin: 30px 0px;" class="section-title">
+                    MACHINE OPERATION REPORT
+                </p><br>
+                <div id="uploader">
+                    <div class="row uploadDoc">
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                @Html.DropDownList("Deptcode", new SelectList((System.Collections.IEnumerable)ViewData["section"], "Value", "Text"), new { @class = "form-control" })
+                            </div>
+                            <div class="text-center p-2">
+                                <button class="btn btn-info" id="ExportByDept"><i class="fa fa-paper-plane"></i> Export To Excel </button>
+                            </div>
+                        </div><!-- col-3 -->
+                        <div class="col-sm-6">
+                            <div class="input-group">
+                                @Html.DropDownList("ResponseUser", new SelectList((System.Collections.IEnumerable)ViewData["responseUser"], "Value", "Text"), new { @class = "form-control" })
+                            </div>
+                            <div class="text-center p-2">
+                                <button class="btn btn-info" id="ExportByUser"><i class="fa fa-paper-plane"></i> Export To Excel </button>
+                            </div>
+                        </div><!--col-8-->
+
+                    </div><!--row-->
+                </div><!--uploader-->
+
+            </div><!--one-->
+        </div><!-- row -->
+    </div><!-- container -->
+</section>
+
+@section Scripts{
+    <script src="~/js/View/MachineOperation/Index.js"></script>
+}

@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.489
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOffice", "SmartOffice\SmartOffice.csproj", "{117CD02B-7054-4D95-BCE4-88B038F0AC76}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8755E506-6425-4102-928C-0334FE290F87} = {8755E506-6425-4102-928C-0334FE290F87}
+		{037FB814-ED04-4167-9CF0-025B17B27D6D} = {037FB814-ED04-4167-9CF0-025B17B27D6D}
+		{7A0291D7-8CCE-451A-BBBD-0ADCF1120A74} = {7A0291D7-8CCE-451A-BBBD-0ADCF1120A74}
+		{966CC7DC-8521-410C-882E-D92E8CCE9398} = {966CC7DC-8521-410C-882E-D92E8CCE9398}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOffice.EmailCore", "EmailCore\SmartOffice.EmailCore.csproj", "{8755E506-6425-4102-928C-0334FE290F87}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOffice.eAppointment", "SmartOffice.eAppointment\SmartOffice.eAppointment.csproj", "{966CC7DC-8521-410C-882E-D92E8CCE9398}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOffice.eReservation", "SmartOffice.eReservation\SmartOffice.eReservation.csproj", "{95BE03DC-0F31-4D59-8CCD-20A49F15E1A8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOffice.eManagement", "SmartOffice.eManagement\SmartOffice.eManagement.csproj", "{037FB814-ED04-4167-9CF0-025B17B27D6D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartOffice.SurveyApp", "SurveyApp\SmartOffice.SurveyApp.csproj", "{7A0291D7-8CCE-451A-BBBD-0ADCF1120A74}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{117CD02B-7054-4D95-BCE4-88B038F0AC76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{117CD02B-7054-4D95-BCE4-88B038F0AC76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{117CD02B-7054-4D95-BCE4-88B038F0AC76}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{117CD02B-7054-4D95-BCE4-88B038F0AC76}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{8755E506-6425-4102-928C-0334FE290F87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8755E506-6425-4102-928C-0334FE290F87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8755E506-6425-4102-928C-0334FE290F87}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{8755E506-6425-4102-928C-0334FE290F87}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{966CC7DC-8521-410C-882E-D92E8CCE9398}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{966CC7DC-8521-410C-882E-D92E8CCE9398}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{966CC7DC-8521-410C-882E-D92E8CCE9398}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{966CC7DC-8521-410C-882E-D92E8CCE9398}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{95BE03DC-0F31-4D59-8CCD-20A49F15E1A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95BE03DC-0F31-4D59-8CCD-20A49F15E1A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95BE03DC-0F31-4D59-8CCD-20A49F15E1A8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{95BE03DC-0F31-4D59-8CCD-20A49F15E1A8}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{037FB814-ED04-4167-9CF0-025B17B27D6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{037FB814-ED04-4167-9CF0-025B17B27D6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{037FB814-ED04-4167-9CF0-025B17B27D6D}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{037FB814-ED04-4167-9CF0-025B17B27D6D}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{7A0291D7-8CCE-451A-BBBD-0ADCF1120A74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0291D7-8CCE-451A-BBBD-0ADCF1120A74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A0291D7-8CCE-451A-BBBD-0ADCF1120A74}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A0291D7-8CCE-451A-BBBD-0ADCF1120A74}.Release|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1FD3B2F-66A1-4D5E-A908-D7B80F378DC5}
+	EndGlobalSection
+EndGlobal

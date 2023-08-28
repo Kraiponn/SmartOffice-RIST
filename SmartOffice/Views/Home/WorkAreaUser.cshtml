@@ -1,0 +1,490 @@
+﻿
+@{
+    ViewData["Title"] = "WorkArea";
+    Layout = null;
+
+    var dept = "";
+    var username = "";
+
+
+    if (User.Identity.IsAuthenticated)
+    {
+
+        dept = User.Claims.FirstOrDefault(c => c.Type == "Department").Value;
+        username = User.Claims.FirstOrDefault(c => c.Type == "UserName").Value;
+    }
+
+    var img = username + ".jpg";
+}
+
+
+<style>
+
+    .float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        top: 80px;
+        right: 40px;
+        background-color: rgba(247,183,51,0.7);
+        color: #FFF;
+        border-radius: 50px;
+        font-size: 10px;
+        text-align: center;
+        box-shadow: 2px 2px 3px #999;
+        z-index: 5000;
+    }
+
+    .my-float {
+        margin-top: 10px;
+    }
+
+    .box {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .box > * {
+            flex: 1 1 33%;
+        }
+
+    .control-sidebar, .control-sidebar:before {
+        width: 780px;
+        right: -780px;
+        bottom: 0;
+        transition: right 0.3s ease-in-out;
+    }
+    /*.ui-jqgrid .ui-jqgrid-labels th.ui-th-column {
+            background-color: #415463;
+            color:white;
+            background-image: none
+        }*/
+
+
+    .group::after, .tabBlock-tabs::after {
+        clear: both;
+        content: "";
+        display: table;
+    }
+
+
+    .unstyledList, .tabBlock-tabs {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .tabBlock {
+        margin: 0 0 0rem;
+    }
+
+    .tabBlock-tab {
+        background-color: #fff;
+        border-color: #d8d8d8;
+        border-left-style: solid;
+        border-top: solid;
+        border-width: 2px;
+        color: #98babe;
+        cursor: pointer;
+        display: inline-block;
+        font-weight: 600;
+        float: left;
+        padding: 0.625rem 1.25rem;
+        position: relative;
+        -webkit-transition: 0.1s ease-in-out;
+        transition: 0.1s ease-in-out;
+    }
+
+        .tabBlock-tab:last-of-type {
+            border-right-style: solid;
+        }
+
+        .tabBlock-tab::before, .tabBlock-tab::after {
+            content: "";
+            display: block;
+            height: 4px;
+            position: absolute;
+            -webkit-transition: 0.1s ease-in-out;
+            transition: 0.1s ease-in-out;
+        }
+
+        .tabBlock-tab::before {
+            background-color: #98babe;
+            left: -2px;
+            right: -2px;
+            top: -2px;
+        }
+
+        .tabBlock-tab::after {
+            background-color: transparent;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+        }
+
+    @@media screen and (min-width: 700px) {
+        .tabBlock-tab {
+            padding-left: 2.5rem;
+            padding-right: 2.5rem;
+        }
+    }
+
+    .tabBlock-tab.is-active {
+        position: relative;
+        color: #167c75;
+        z-index: 1;
+    }
+
+        .tabBlock-tab.is-active::before {
+            background-color: #1cb398;
+        }
+
+        .tabBlock-tab.is-active::after {
+            background-color: #fff;
+        }
+
+    .tabBlock-content {
+        background-color: #fff;
+        border: 2px solid #d8d8d8;
+        padding: 1.25rem;
+    }
+
+    .tabBlock-pane > :last-child {
+        margin-bottom: 0;
+    }
+</style>
+
+@if (User.Identity.IsAuthenticated)
+{
+
+
+    <figure class="tabBlock">
+        <ul class="tabBlock-tabs">
+            <li class="tabBlock-tab is-active">Waiting Approve</li>
+            <li class="tabBlock-tab">Edit Doc</li>
+            <li class="tabBlock-tab">My Issue Doc</li>
+            <li class="tabBlock-tab">Group Doc</li>
+            <li class="tabBlock-tab">My Approved/Reject</li>
+            <li class="tabBlock-tab">Appointment</li>
+        </ul>
+        <div class="tabBlock-content p-0">
+
+            <div class="tabBlock-pane">
+                <div id="NoWaiting" style="visibility:hidden">
+                    <div class="d-flex justify-content-center">
+                        <img src="~/image/icons/5545.jpg" style="width:500px" />
+                    </div>
+                    <div class="d-flex justify-content-center">
+                        <h5>No job waiting for approve.</h5>
+                    </div>
+                </div>
+                @*table approve*@
+                <div id="cardapprove">
+                    <table id="tableApproveDoc"></table>
+                    <div id="jqprocess"></div>
+                </div>
+            </div>
+            <div class="tabBlock-pane">
+                @*table Edit*@
+                <div id="cardMyRequest">
+                    <table id="tableEditDoc"></table>
+                    <div id="jqrequest"></div>
+                </div>
+            </div>
+            <div class="tabBlock-pane">
+                @*table My Issue*@
+                <div id="cardDraft">
+                    <table id="tableMyIssueDoc"></table>
+                    <div id="jqissue"></div>
+                </div>
+            </div>
+            <div class="tabBlock-pane">
+                @*table Group*@
+                <div id="cardissuegroup">
+                    <table id="tableGroupIssueDoc"></table>
+                    <div id="jqgroupissue"></div>
+                </div>
+            </div>
+            <div class="tabBlock-pane">
+                @*table My Approved*@
+                <div id="cardDraft">
+                    <table id="tableMyApproved"></table>
+                    <div id="jqappr"></div>
+                </div>
+            </div>
+            <div class="tabBlock-pane">
+
+                @*table calendar*@
+                <div id="cardcalendar">
+                    <table id="tablecalendar"></table>
+                    <div id="jqcalendar"></div>
+                </div>
+            </div>
+        </div>
+    </figure>
+
+    <a class="nav-link float" data-widget="control-sidebar" data-slide="true" href="#">
+        <i class="fas fa-tasks fa-3x my-float"></i>
+    </a>
+
+
+    @using (Html.BeginForm("index", "DynamicForm", FormMethod.Post, new { @id = "toupdate", @role = "form", @target = "_blank" }))
+    {
+        @Html.Hidden("docno")
+        @Html.Hidden("code")
+        @Html.Hidden("mode")
+        @Html.Hidden("seq")
+    }
+
+
+    <aside class="control-sidebar control-sidebar-light" width="800px" style="position: fixed; overflow-x: hidden;">
+
+        <div class="row p-2">
+            <div class="col-12">
+                <!-- Profile Image -->
+                <div class="card card-info card-outline" style="background-color:#a1dccf">
+                    <div class="card-body box-profile">
+                        <div class="text-center">
+                            <img class="profile-user-img img-fluid img-circle"
+                                 src="~/image/User/@img"
+                                 alt="User profile picture">
+                        </div>
+                        <h3 class="profile-username text-center text-white">Total Job Status</h3>
+                        @*<p class="text-muted text-center">Software Engineer</p>*@
+                        <div class="row">
+                            <div class="col-6" style="background-color:#1dccc3">
+                                <br />
+                                <h6 class="text-light" style="text-align:center">Approve</h6>
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item pl-2 pr-2">
+                                        <a>
+                                            Pending <span class="float-right badge bg-primary" id="noti_pending"></span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item pl-2 pr-2">
+                                        <a>
+                                            Reject <span class="float-right badge bg-info" id="noti_reject"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="list-group-item pl-2 pr-2">
+                                        <a>
+                                            Over time Process <span class="float-right badge bg-danger" id="noti_overtime"></span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="col-6" style="background-color:#1dccc3">
+                                <br />
+                                <h6 class="text-light" style="text-align:center">My Issue</h6>
+                                <ul class="list-group list-group-unbordered mb-3">
+                                    <li class="list-group-item pl-2 pr-2">
+                                        <a>
+                                            Pending <span class="float-right badge bg-primary" id="mynoti_pending"></span>
+                                        </a>
+                                    </li>
+                                    <li class="list-group-item pl-2 pr-2">
+                                        <a>
+                                            Reject <span class="float-right badge bg-info" id="mynoti_reject"></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="list-group-item pl-2 pr-2">
+                                        <a>
+                                            Over time Process <span class="float-right badge bg-danger" id="mynoti_overtime"></span>
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                <!-- /.card -->
+                @*<div class="card">
+                    <div class="card-body p-0">
+                        <div id="CalendarListContainer">*@
+                @*@(await Component.InvokeAsync("CalendarList"))*@
+                @*</div>*@
+
+                @*<div id="CalendarMainUserControlContainer">*@
+                @*@(await Component.InvokeAsync("CalendarMainUserControl"))*@
+                @*</div>
+
+
+                        </div>
+                    </div>*@
+            </div>
+
+        </div>
+
+    </aside>
+
+}
+<!------------------------------------------------------------------------------------- End Modal header --------------------------------------------------->
+<!-- Modal Footer -->
+<div id="modal-placeholder">
+    <div class="modal fade bd-example-modal-xl" id="modalnewevent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header" style="background-color:#1dc9cb">
+                    <h5 class="modal-title text-white" id="exampleModalLabel">Record</h5>
+                    @*<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>*@
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="d-flex  flex-row-reverse bg-secondary text-white">
+                            <div class="btn-group">
+                                <button type="button" id="btnSave" class="btn btn-success"><i class="fas fa-save"></i> Save</button>
+                                <button type="button" id="btnDelete" class="btn btn-danger"><i class="fas fa-save"></i> Delete</button>
+                                <button type="button" id="btnClose" class="btn btn-dark" data-dismiss="modal"><i class="fas fa-times"></i> Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-body">
+                    <div class="card">
+                        <div class="card-body">
+                            <form role="form">
+
+                                <div class="input-group" id="carduploadfile">
+                                    <div class="custom-file">
+                                        <input type="file" id="fUpload" name="fUpload" multiple class="form-control" />
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-group" id="Group_picture">
+                                    <table class="table table-bordered table-hover dt-responsive display table-sm" cellspacing="0" style="width:100%" id="tablefile">
+                                        <thead class="thead-dark">
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>FileName</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-4" id="divinput">
+                                        <div class="form-group">
+                                            <label>Type</label>
+                                            <select id="ddType" class="browser-default custom-select custom-select-md mb-3 my-select">
+                                                <option value="Appointment" selected>Appointment (นัดประชุมกลุ่ม)</option>
+                                                <option value="Events">Events (เหตุการณ์ทั่วไป สาธารณะ)</option>
+                                                <option value="Reminder">Reminder (บันทึกส่วนตัว)</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="hidden" id="hdEventID" class="form-control" />
+                                            <label>Subject</label>
+                                            <textarea type="text" id="txtSubject" class="form-control" rows="2"></textarea>
+                                        </div>
+
+                                        @*<div class="col-sm-6">
+                                                <div class="form-group">
+                                                    <label>Theme Color</label>
+                                                    <select id="ddThemeColor" class="form-control">
+                                                        <option value="">Default</option>
+                                                        <option value="lightblue" style="background-color:lightblue">LightBlue</option>
+                                                        <option value="lightpink" style="background-color:LightPink">LightPink</option>
+                                                        <option value="lightgreen" style="background-color:LightGreen">LightGreen</option>
+                                                        <option value="lightcoral" style="background-color:LightCoral">LightCoral</option>
+                                                        <option value="lightyellow" style="background-color:LightYellow">LightYellow</option>
+                                                        <option value="lightsteelblue" style="background-color:LightSteelBlue">LightSteelBlue</option>
+                                                        <option value="lightsalmon" style="background-color:LightSalmon">LightSalmon</option>
+                                                        <option value="lavender" style="background-color:Lavender">Lavender</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>*@
+                                        <div class="form-group">
+                                            <label>Description</label>
+                                            <textarea id="txtDescription" rows="5" class="form-control"></textarea>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Start</label>
+                                            <div class="input-group date" id="dtp1">
+                                                <input type="text" id="txtStart" class="form-control datetime" readonly />
+                                                @*<span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>*@
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="chkIsFullDay" style="transform:scaleX(2) scaleY(2)" />
+                                                <label class="form-check-label" for="chkIsFullDay">&nbsp;&nbsp;Full Day</label>
+                                            </div>
+
+                                        </div>
+                                        <div class="form-group" id="divEndDate">
+                                            <label>End</label>
+                                            <div class="input-group date" id="dtp2">
+                                                <input type="text" id="txtEnd" class="form-control datetime" readonly />
+                                                @*<span class="input-group-addon">
+                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                    </span>*@
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+
+
+                                    <div class="col-7" id="divuser">
+                                        <div class="card">
+                                            <div class="card-header">
+                                                <h3 class="card-title"><i class="fas fa-users"></i> Invite people to join</h3>
+                                            </div>
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <div class="col-12">
+                                                        <select class="js-example-basic-multiple" id="Invitepeople" name="InvitePeople[]" multiple="multiple" style="width:100%;"></select>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                @*<div class="row">
+                                                        <div class="col-12">
+                                                            <div class="form-check">
+                                                                <input type="checkbox" class="form-check-input" id="Sendemail" style="transform:scaleX(2) scaleY(2)" />
+                                                                <label class="form-check-label" for="Sendemail"> &nbsp;&nbsp;  Send Email invite?</label>
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                                <table class="table table-striped display responsive table-sm" style="width:100%" id="TableInvitepeople">
+                                                    <thead class="bg-light">
+                                                        <tr>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                            <th></th>
+                                                        </tr>
+                                                    </thead>
+                                                </table>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*@section Scripts{
+
+        <script src="~/js/View/DynamicFormScript/WorkArea.js?version=1.51"></script>
+    }*@

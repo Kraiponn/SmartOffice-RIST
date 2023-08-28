@@ -1,0 +1,76 @@
+﻿@model IEnumerable<SmartOffice.Models.FormTemplate>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0 text-dark">Dashboard</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/DynamicForm/index"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li class="breadcrumb-item active">List Form</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+<section class="content">
+    <div class="row">
+        <section class="col-lg-8 col-md-12 connectedSortable">
+            <div class="box box-primary">
+                <div class="box-header with-border">
+                    <i class="fa fa-file-text" aria-hidden="true"></i>
+                    <h3 class="box-title">Form</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <p>
+                        <a asp-action="CreateForm" asp-controller="DynamicForm" class="btn btn-primary"><i class="fa fa-plus-circle" aria-hidden="true"></i>Create New</a>
+                    </p>
+                    <div class="panel-default">
+                        <table class="table table-bordered table-striped table-condensed">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.FormId)
+                                    </th>
+
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FormId)
+                                        </td>
+
+                                        <td>
+                                            <a asp-action="ViewForm" asp-controller="DynamicForm" asp-route-id="@item.FormId"><i class="fa fa fa-file" aria-hidden="true"></i></a> |
+                                            <a asp-action="EditForm" asp-controller="DynamicForm" asp-route-id="@item.FormId"><i class="fa fa-pencil-square" aria-hidden="true" style="color:orange"></i></a> |
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+                <!-- /.box-body -->
+            </div>
+
+        </section>
+    </div>
+
+</section>
+
+
+

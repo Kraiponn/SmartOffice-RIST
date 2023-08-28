@@ -1,0 +1,163 @@
+﻿
+<link href="~/css/calendar.css" rel="stylesheet" />
+<div class="mobile-wrapper">
+
+
+    <!--======= Today =======-->
+
+    <section class="today-box" id="today-box" style="background-color:#17a2b8">
+        <h3 class="date-title text-center" style="color:#fff" id="datetitle"></h3>      
+    </section>
+
+    <!--======= Upcoming Events =======-->
+
+    <section class="upcoming-events">
+        <div class="container">
+            <h3>
+                <i class="fas fa-user-clock fa-lg" style="color:lightseagreen"> TODAY</i>
+                @*<a href="#" onclick="NewEvent();"><i class="fa fa-plus-circle fa-2x" style="color:lightseagreen"></i></a>*@
+            </h3>
+            
+            <div class="events-wrapper" id="evensall">
+                @*<div class="event">
+                        <i class="ion ion-ios-flame hot"></i>
+                        <h4 class="event__point">11:00 am</h4>
+                        <span class="event__duration">in 30 minutes.</span>
+                        <p class="event__description">
+                            Monday briefing with the team (...).
+                        </p>
+                    </div>
+                    <div class="event">
+                        <i class="ion ion-ios-flame done"></i>
+                        <h4 class="event__point">12:00 pm</h4>
+                        <span class="event__duration">in 1 hour.</span>
+                        <p class="event__description">
+                            Lunch with Paul Mccartney @@Burgers House!
+                        </p>
+                    </div>
+                    <div class="event active">
+                        <i class="ion ion-ios-radio-button-on icon-in-active-mode"></i>
+                        <h4 class="event__point">14:00 pm</h4>
+                        <p class="event__description">
+                            Meet clients from project.
+                        </p>
+                    </div>
+                    <div class="event">
+                        <i class="ion ion-ios-flame-outline upcoming"></i>
+                        <h4 class="event__point">20:45 pm</h4>
+                        <span class="event__duration">in 45 minutes.</span>
+                        <p class="event__description">
+                            Watch sci-fi series.
+                        </p>
+                    </div>
+                    <div class="event">
+                        <i class="ion ion-ios-flame-outline upcoming"></i>
+                        <h4 class="event__point">23:15 pm</h4>
+                        <span class="event__duration">in 20 minutes.</span>
+                        <p class="event__description">
+                            Customer dialog on Skype.
+                        </p>
+                    </div>*@
+            </div>
+        </div>
+    </section>
+</div>
+
+@*<script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Asset/LTE/bower_components/jquery-ui/jquery-ui.min.js"></script>*@
+<script type="text/javascript">
+        $(document).ready(function () {
+            function isInRange(value, range) {
+                return value >= range[0] && value <= range[1];
+            }
+            //function formatAMPM(date) {
+            //    var hours = date.getHours();
+            //    var minutes = date.getMinutes();
+            //    var ampm = hours >= 12 ? 'pm' : 'am';
+            //    hours = hours % 12;
+            //    hours = hours ? hours : 12; // the hour '0' should be '12'
+            //    minutes = minutes < 10 ? '0' + minutes : minutes;
+            //    var strTime = hours + ':' + minutes + ' ' + ampm;
+            //    return strTime;
+            //}
+            function getCurrentTime(datein) {
+                var date = new Date(datein);
+                var hh = date.getHours();
+                var mm = date.getMinutes();
+
+                hh = hh < 10 ? '0' + hh : hh;
+                mm = mm < 10 ? '0' + mm : mm;
+
+                curr_time = hh + ':' + mm;
+                return curr_time;
+            }
+            function diff(start, end) {
+                console.log(start);
+                start = start.split(":");
+                end = end.split(":");
+                var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+
+                var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+                console.log(startDate);
+                var diff = endDate.getTime() - startDate.getTime();
+                var hours = Math.floor(diff / 1000 / 60 / 60);
+                diff -= hours * 1000 * 60 * 60;
+                var minutes = Math.floor(diff / 1000 / 60);
+
+                // If using time pickers with 24 hours format, add the below line get exact hours
+                if (hours < 0)
+                    hours = hours + 24;
+
+                return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+            }
+            $.ajax({
+                type: 'GET',
+                url: '@Url.RouteUrl(new{ action= "GetEventsDay", controller= "EAppointment" })',
+                success: function (data) {
+                    var datetoday = new Date();
+                    $("#datetitle").text(moment(datetoday).format('MMMM Do YYYY'));
+                    var htmldata = "";
+                    for (var i = 0; i < data.length; i++) {
+                        var dt = new Date(data[i].start + "Z");
+                        var dte = new Date(data[i].end + "Z");
+                        var timestart = getCurrentTime(data[i].startDate);
+                        var timeend = getCurrentTime(data[i].endDate);
+                        var range = [timestart, timeend];
+                        var inRange = isInRange(getCurrentTime(datetoday), range);                        
+                        $("#evensall").html("");
+                        if (inRange == true) {
+                            htmldata = htmldata + "<div class='event active p-2'>";
+                            htmldata = htmldata + "<ion ion-ios-radio-button-on icon-in-active-mode'></i>";
+                            htmldata = htmldata + "<h4 class='event__point'>" + moment(data[i].startDate).format(' HH:mm') + "</h4>";
+                            htmldata = htmldata + "<span class='event__duration'>in " + diff(timestart, timeend) + " Hours.</span>";
+                            htmldata = htmldata + "<p class='event__description'>";
+                            htmldata = htmldata + data[i].subject + "</p></div >";
+                            $("#evensall").append(htmldata);
+                        } else {
+                            if (timestart > getCurrentTime(datetoday)) {
+                                htmldata = htmldata + "<div class='event'>";
+                                htmldata = htmldata + "<i class='ion ion-ios-flame-outline upcoming'></i>";
+                                htmldata = htmldata + "<h4 class='event__point'>" + moment(data[i].startDate).format(' HH:mm') + "</h4>";
+                                htmldata = htmldata + "<span class='event__duration'>in " + diff(timestart, timeend) + " Hours.</span>";
+                                htmldata = htmldata + "<p class='event__description'>";
+                                htmldata = htmldata + data[i].subject + "</p></div >";
+                                $("#evensall").append(htmldata);
+                            } else {
+                                htmldata = htmldata + "<div class='event'>";
+                                htmldata = htmldata + " <i class='fas fa-bell' style='color:#919294'></i>";
+                                htmldata = htmldata + "<h4 class='event__point'>" + moment(data[i].startDate).format(' HH:mm') + "</h4>";
+                                htmldata = htmldata + "<span class='event__duration'>in " + diff(timestart, timeend) + " Hours.</span>";
+                                htmldata = htmldata + "<p class='event__description'>";
+                                htmldata = htmldata + data[i].subject + "</p></div >";
+                                $("#evensall").append(htmldata);
+                            }
+                           
+                        }
+                        
+                    }
+                },
+            });
+
+        });
+</script>
+

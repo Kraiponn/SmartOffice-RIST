@@ -1,0 +1,243 @@
+﻿@model SmartOffice.ModelsForm.Tuple1
+<link href="~/css/GradientScrollbar.css" rel="stylesheet" />
+<link href="~/css/Timeline.css" rel="stylesheet" />
+@{
+    ViewBag.Title = "Timeline";
+    Layout = null;
+   
+}
+<style>
+
+
+    .dropdown:hover > .dropdown-menu {
+        display: block;
+    }
+
+    .dropdown > .dropdown-toggle:active {
+        /*Without this, clicking will make it sticky*/
+        pointer-events: none;
+    }
+    .section-title {
+        text-transform: uppercase;
+        color: rgb(170, 170, 170);
+        letter-spacing: 1.25px;
+        font-size: 15px;
+        margin-bottom: 10px;
+    }
+</style>
+@{
+
+    @if (Model.Flows.Count > 0)
+    {
+
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary">
+                    <h5 class="card-header">
+                        <a data-toggle="collapse" href="#collapse-example1" aria-expanded="true" aria-controls="collapse-example1" id="heading-example1" class="d-block">
+                            <i class="fa fa-chevron-down pull-right"></i>
+                            <i class="fas fa-chart-line"></i> Timeline
+                        </a>
+                    </h5>
+                    <div id="collapse-example1" class="collapse show" aria-labelledby="heading-example1">
+                        <div class="card-body" style="background-image: linear-gradient(to right top, #e9afd0, #ddacd6, #cfaadc, #bda8e1, #a8a8e5, #96b0ee, #81b7f5, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1);">
+                            <div class="row p-0">
+                                <div class="col-md-12">
+                                    <div class="page-header text-center text-bold text-sm p-0">
+                                        @{
+                                            var flow = Model.Flows.FirstOrDefault();
+                                            var NewUserFlow = Model.Flows.Select(x => new
+                                            {                                                
+                                                x.ApprovalItemNameT,
+                                                x.ApprovalItemNameE,
+                                                x.ApprovalItemNameJ,
+                                                x.RequirementRemark,
+                                                x.checkmin,
+                                                x.SeqNo,
+                                                x.SkipFlag,
+                                                x.Judge,
+                                                x.ApprovalDate,
+                                                x.ApproverOperatorID,
+                                                x.ApproverOperatorName,                                               
+                                                x.Comment,
+                                                x.AssignFlag
+                                            }).Distinct().OrderBy(i=>i.SeqNo).ToList();
+                                        }
+                                        <span style=""><mark class="bg-dark">No. @flow.DocumentNo</mark></span>
+
+
+                                        &nbsp; &nbsp; &nbsp;
+                                        <span style=""><mark class="bg-dark">Status: @flow.DocumentStatus</mark></span>
+                                    </div>
+                                    <div style="display:inline-block;width:100%;overflow-y:auto;padding:0px" class="scrollbar-deep-blue p-0">
+                                        <ul class="timeline timeline-horizontal p-1">
+                                          
+                                            @foreach (var timeline in NewUserFlow)
+                                            {
+                                                if (timeline.SkipFlag == true )
+                                                {
+                                                    <li class="timeline-item p-1">
+                                                        <div class="dropdown">
+                                                            <button class="timeline-badge dark btn btn-outline-primary  btn-sm dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="fas fa-user-slash"><span class="badge badge-warning">@timeline.SeqNo</span></i>
+                                                            </button>
+                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                @if (timeline.AssignFlag == "1")
+                                                                {
+                                                                    @foreach (var timelinein in Model.Flows.Where(x => x.SeqNo == timeline.SeqNo))
+                                                                    {
+
+                                                                        <a style=""><small class="dropdown-item"><i class="fas fa-user"></i> @timelinein.NAMEMPEU</small></a>
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    @foreach (var timelinein in Model.Flows.Where(x => x.SeqNo == timeline.SeqNo && x.CODEMPIDU.Trim() == @timeline.ApproverOperatorID.Trim()))
+                                                                    {
+                                                                        <a style=""><small class="dropdown-item"><i class="fas fa-user"></i> @timelinein.NAMEMPEU</small></a>
+                                                                    }
+                                                                }
+
+                                                                </div>
+
+                                                            <div class="timeline-panel bg-dark">
+                                                                <div class="timeline-heading text-bold" style="">
+                                                                
+                                                                    <p class="timeline-title"><u><em>@timeline.ApprovalItemNameT</em></u></p>
+                                                                    <p class="timeline-title"><u><em>@timeline.ApprovalItemNameE</em></u></p>
+                                                                    <p class="timeline-title"><u><em>@timeline.ApprovalItemNameJ</em></u></p>
+                                                                    <p class="timeline-title"><u><em>@timeline.RequirementRemark</em></u></p>
+                                                                </div>
+                                                                <div class="timeline-body">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                }
+                                                else if (timeline.SkipFlag == false && timeline.checkmin == "2")
+                                                {
+                                                    <li class="timeline-item p-1">
+                                                        <div class="dropdown">
+                                                            <button class="timeline-badge dark btn btn-outline-primary  btn-sm dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                <i class="fas fa-user-slash"><span class="badge badge-warning">@timeline.SeqNo</span></i>
+                                                            </button>
+                                                            
+                                                            <div class="timeline-panel bg-gray">
+                                                                <div class="timeline-heading text-bold" style="">
+                                                                    
+                                                                    <p class="timeline-title"><u><em>@timeline.ApprovalItemNameT</em></u></p>
+                                                                    <p class="timeline-title"><u><em>@timeline.ApprovalItemNameE</em></u></p>
+                                                                    <p class="timeline-title"><u><em>@timeline.ApprovalItemNameJ</em></u></p>
+                                                                    <p class="timeline-title"><u><em>@timeline.RequirementRemark</em></u></p>
+                                                                </div>
+                                                                <div class="timeline-body">
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                }
+                                                else
+                                                {
+                                                    <li class="timeline-item p-1">
+                                                        <div class="dropdown">
+
+                                                            @if (timeline.checkmin == "1")
+                                                            {
+                                                                <button class="timeline-badge warning btn btn-outline-primary  btn-sm dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fas fa-user-edit"> <span class="badge badge-warning">@timeline.SeqNo</span></i>
+                                                                </button>
+                                                            }
+                                                            else if (timeline.Judge == "OK" && timeline.ApprovalDate != "")
+                                                            {
+                                                                <button class="timeline-badge success btn btn-outline-primary  btn-sm dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fas fa-user-check"><span class="badge badge-warning">@timeline.SeqNo</span></i>
+                                                                </button>
+                                                            }
+                                                            else if (timeline.Judge == "NG")
+                                                            {
+                                                                <button class="timeline-badge danger btn btn-outline-primary  btn-sm dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fas fa-user-times"><span class="badge badge-warning">@timeline.SeqNo</span></i>
+                                                                </button>
+                                                            }
+                                                            else
+                                                            {
+                                                                <button class="timeline-badge dark btn btn-outline-primary  btn-sm dropdown-toggle " type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fas fa-user-minus"><span class="badge badge-warning">@timeline.SeqNo</span></i>
+                                                                </button>
+                                                            }
+
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                    @if (timeline.AssignFlag == "1")
+                                                                    {
+                                                                        @foreach (var timelinein in Model.Flows.Where(x => x.SeqNo == timeline.SeqNo))
+                                                                        {
+
+                                                                            <a style=""><small class="dropdown-item"><i class="fas fa-user"></i> @timelinein.NAMEMPEU</small></a>
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @foreach (var timelinein in Model.Flows.Where(x => x.SeqNo == timeline.SeqNo && x.CODEMPIDU.Trim() == @timeline.ApproverOperatorID.Trim()))
+                                                                        {
+                                                                            <a style=""><small class="dropdown-item"><i class="fas fa-user"></i> @timelinein.NAMEMPEU</small></a>
+                                                                        }
+                                                                    }
+                                                                </div>
+
+                                                                <div class="timeline-panel">
+                                                                    
+                                                                    <div class="timeline-heading text-bold" style="">
+
+                                                                     
+                                                                        <p class="timeline-title"><u><em>@timeline.ApprovalItemNameT</em></u></p>
+                                                                        <p class="timeline-title"><u><em>@timeline.ApprovalItemNameE</em></u></p>
+                                                                        <p class="timeline-title"><u><em>@timeline.ApprovalItemNameJ</em></u></p>
+                                                                        <p class="timeline-title"><u><em>@timeline.RequirementRemark</em></u></p>
+
+                                                                    </div>
+                                                                    <div class="timeline-body text-center p-0">
+                                                                        <a>@timeline.ApprovalDate</a><br />
+                                                                        <a>@timeline.ApproverOperatorName</a><br />
+                                                                        <div class="text-center">
+                                                                            <br />
+                                                                            <a>@timeline.Judge</a><br />
+                                                                            <a>@timeline.Comment</a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                        </div>
+                                                    </li>
+                                                }
+
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+
+}
+@section Scripts{
+    <script type="text/javascript">
+
+
+    </script>
+    <!-- jQuery 3 -->
+    <script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/jquery-migrate-3.0.0.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Asset/LTE/bower_components/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <!-- Bootstrap 3.3.7 -->
+    <script src="~/lib/select2/js/select2.min.js"></script>
+    <script src="~/Asset/LTE/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

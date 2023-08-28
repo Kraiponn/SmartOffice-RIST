@@ -1,0 +1,115 @@
+﻿@{
+    ViewData["Title"] = "WorkArea";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+
+
+}
+<link href="~/css/slide.css" rel="stylesheet" />
+<style>
+   
+</style>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <!-- A -->
+            <div class="card shadow-none mt-3 border border-light">
+                <div class="card-header bg-primary"><h5>Current Day</h5></div>
+                <div class="card-body">
+                    <table class="table table-striped display responsive" style="width:100%" id="tablePRA">
+                        <thead>
+                            <tr>
+                                <th>Buyer Code</th>
+                                <th>Buyer Name</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <!-- B -->
+            <div class="card shadow-none mt-3 border border-light">
+                <div class="card-header bg-primary"><h5>Level 90 (Purchase) Waiting Approve</h5></div>
+                <div class="card-body">
+
+                    <table class="table table-striped display responsive" style="width:100%" id="tablePRB">
+                        <thead>
+                            <tr>
+                                <th>Buyer Code</th>
+                                <th>Buyer Name</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <!-- C -->
+            <div class="card shadow-none mt-3 border border-light">
+                <div class="card-header bg-primary"><h5>Level 91 (Section purchase Mrg.) Waiting Approve</h5></div>
+                <div class="card-body">
+
+                    <table class="table table-striped display responsive" style="width:100%" id="tablePRC">
+                        <thead>
+                            <tr>
+                                <th>Buyer Code</th>
+                                <th>Buyer Name</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    
+        <div class="col-md-6">
+            <!-- D -->
+            <div class="card shadow-none mt-3 border border-light">
+                <div class="card-header bg-primary"><h5>Level 92 (Divition Mgr.) Waiting Approve</h5></div>
+                <div class="card-body">
+
+                    <table class="table table-striped display responsive" style="width:100%" id="tablePRD">
+                        <thead>
+                            <tr>
+                                <th>Buyer Code</th>
+                                <th>Buyer Name</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <!-- E -->
+            <div class="card shadow-none mt-3 border border-light">
+                <div class="card-header bg-primary"><h5>Level 96 Gen POISSUE</h5></div>
+                <div class="card-body">
+
+                    <table class="table table-striped display responsive" style="width:100%" id="tablePRE">
+                        <thead>
+                            <tr>
+                                <th>Buyer Code</th>
+                                <th>Buyer Name</th>
+                                <th>Count</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+@section Scripts{
+    <script src="~/js/View/PRMainControl/PR.js"></script>
+}

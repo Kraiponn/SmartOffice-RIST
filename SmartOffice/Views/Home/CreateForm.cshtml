@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewData["Title"] = "CreateForm";
+}
+<link href="~/lib/formio.full.min.css" rel="stylesheet" />
+<link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+
+<h1>CreateForm</h1>
+
+<div id='builder'></div>
+<div class="col-sm-8">
+    <div id="builder" class="null null formio-form row formbuilder">
+    </div>
+
+</div>
+
+    <button type="button" id="saveform" class="btn btn-primary btn-lg btn-block">Save Form</button>
+
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/formio.full.min.js"></script>
+    <script type='text/javascript'>
+        var sc = "";
+        (function () {
+            document.querySelector("#cookieConsent button[data-cookie-string]").addEventListener("click", function (el) {
+                document.cookie = el.target.dataset.cookieString;
+                document.querySelector("#cookieConsent").classList.add("hidden");
+            }, false);
+        })();
+        window.onload = function () {
+            //Formio.builder(document.getElementById('builder'));
+            Formio.builder(document.getElementById('builder'), {}).then(function (builder) {
+                builder.on('saveComponent', function () {
+                    console.log(builder);
+                    sc = builder.schema;
+                });
+            });
+        };
+
+        $("#saveform").on('click', function () {
+            $.post("../Home/CreateForm", { jsondata: JSON.stringify(sc) })
+                .done(function (json) {
+
+                })
+                .fail(function (jqxhr, textStatus, error) {
+                    var error = textStatus + ", " + error;
+                    // warningBR(error, "Request Failed!!");
+
+                });
+
+        });
+
+
+        
+
+
+    </script>

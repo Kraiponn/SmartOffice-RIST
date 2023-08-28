@@ -1,0 +1,400 @@
+﻿
+@{
+    ViewData["Title"] = "EDashboard";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+
+<script src="~/js/WebIntro/modernizr.js"></script>
+<style>
+    .Title-Page {
+        padding: 15px 15px 15px 30px;
+        background: #fefefe;
+    }
+
+    .Dashboard-Submanu {
+        border-bottom: 1px solid #BFBFBF;
+    }
+
+    .tab-Dashboard-Submanu {
+        border-right: 1px solid #BFBFBF;
+    }
+
+    .btn-Dashboard-Submanu {
+        color: #000;
+    }
+
+        .btn-Dashboard-Submanu:hover {
+            color: #01E87B;
+        }
+
+    .Actives {
+        color: #01E87B;
+    }
+
+    .col-Catg {
+        border-right: 2px solid #01E87B;
+        width: 10vw;
+    }
+
+    .btn-export {
+        background-color: #01E87B;
+        color: #fff;
+    }
+
+        .btn-export:hover {
+            background-color: #5f010a;
+            color: #f0f0f0;
+        }
+
+    .body-dashboard {
+        background-color: #000;
+    }
+
+    .card-chart {
+        border: 1px solid #BFBFBF;
+    }
+
+    .card-chart-header {
+        background-color: #0099cc;
+    }
+
+    .back-chart {
+        position: relative;
+        text-align: center;
+        color: white;
+    }
+
+    .text-top-left {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        z-index: 99;
+    }
+
+    .bg-text-top-left {
+        position: absolute;
+        top: 8px;
+        left: 16px;
+        z-index: 97;
+        background: #fff;
+        opacity: 0.2;
+    }
+</style>
+<div class="dashboard">
+    <div class="container Title-Page">
+        <div class="row mb-3">
+            <div class="col-auto">
+                <h3 class="">Hi,Welcome Back</h3>
+                <span>Your web analytics dashboard template</span>
+            </div>
+            <div class="col">
+                <div class="float-lg-right">
+                    <div class="row">
+                        <div class="col col-Catg">
+                            <span class="p-1 text-black-50 small"><b> START DATE</b></span><br />
+                            <input type="text" class="btn btn-light w-100 p-1 text-dark" value="2020/02/01" placeholder="StartTime" />
+                        </div>
+                        <div class="col col-Catg">
+                            <span class="p-1 text-black-50 small"><b>END DATE</b></span><br />
+                            <input type="text" class="btn btn-light w-100 p-1 text-dark" value="2020/02/29" placeholder="EndTime" />
+                        </div>
+                        <div class="col col-Catg">
+                            <span class="p-1 text-black-50 small"><b>EVENT CATEGORY</b></span><br />
+                            @Html.DropDownList("ddlProcess", new MultiSelectList(string.Empty, "Value", "Text"), new { @id = "ddlProcess", @class = "btn btn-light w-100 p-1 text-dark" })
+                        </div>
+                        <div class="col ">
+                            <span class="p-1 text-black-50 small"><b>Click for search</b></span><br />
+                            <button class="p-1 btn btn-block btn-export"> Export</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row Dashboard-Submanu mb-3">
+            <div class="col-auto tab-Dashboard-Submanu">
+                <button class="btn btn-link btn-Dashboard-Submanu  Actives  "><span class="p-1  small">Overview</span></button>
+            </div>
+            <div class="col-auto tab-Dashboard-Submanu">
+                <button class="btn btn-link btn-Dashboard-Submanu"><span class="p-1  small">Demographics</span></button>
+            </div>
+            <div class="col-auto tab-Dashboard-Submanu ">
+                <button class="btn btn-link btn-Dashboard-Submanu"><span class="p-1  small">More</span></button>
+            </div>
+            <div class="col">
+                <div class="float-lg-right">
+                    <div class="row">
+                        <div class="col-auto tab-Dashboard-Submanu">
+                            <button class="btn btn-link btn-Dashboard-Submanu"><i class="far fa-save"></i><span class="p-1  small"> Save Report</span></button>
+                        </div>
+                        <div class="col-auto tab-Dashboard-Submanu">
+                            <button class="btn btn-link btn-Dashboard-Submanu"><i class="far fa-file-pdf"></i><span class="p-1  small"> Export to PDF</span></button>
+                        </div>
+                        <div class="col-auto tab-Dashboard-Submanu ">
+                            <button class="btn btn-link btn-Dashboard-Submanu"><i class="far fa-envelope"></i><span class="p-1  small"> Send Mail</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="col-lg-7">
+                <div class="card card-chart">
+                    @*<div class="card-header">
+                        <div class="row">
+
+
+                            <div class="col">
+                                <h6> All Document sheet in System.</h6>
+                                <span class="small"> The document is in the current date range.</span>
+                            </div>
+                            <div class="colfloat-right">
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-export btn-sm">DAY</button>
+                                    <button type="button" class="btn btn-light btn-sm">WEEK</button>
+                                    <button type="button" class="btn btn-light btn-sm">MONTH</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="card-body ">
+                        <div class="bg-text-top-left" style="width:100% ; height:100px"></div>
+                        <div class=" text-top-left">
+                            <h6><b> All Department</b></h6>
+
+                            <h4 class=" "><span id="spcntAllDoc"></span> Documents</h4>
+                            <i class="fas fa-arrow-up text-success "></i><small class=" text-success">2.41%</small><br />
+                            <span class="text-wrap text-black-50 small">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc.</span>
+                        </div>
+                        <div class="back-chart">
+                            @*@(await Component.InvokeAsync("SmartChartControl"))*@
+                            <canvas id="myChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-5 ">
+
+                <div class="row">
+                    <div class="col-lg-6 ">
+                        <div class="card card-chart">
+                            <div class="card-body" style=" height:20vh">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3><span class="spProcess"></span> Sheets</h3>
+                                        <span class="pcProcess currency text-black-50 p-2"></span>%
+                                    </div>
+                                    <div class="col text-xl-center"><h1 class="fas fa-arrow-up text-success "></h1></div>
+                                </div>
+                                <span>Total Processing</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-6 ">
+                        <div class="card card-chart">
+                            <div class="card-body" style="height:20vh">
+                                <div class="row">
+                                    <div class="col">
+                                        <h3><span class="spComplet"></span> Sheets</h3>
+                                        <span class="pcComplet currency text-black-50 p-2"></span>%
+                                    </div>
+                                    <div class="col text-xl-center"><h1 class="fas fa-arrow-down text-danger "></h1></div>
+                                </div>
+                                <span>Total Completed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg">
+                        <div class="card card-chart">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-lg">
+                                        <ul class="list-group">
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a href="#">First Step</a>
+                                                    </div>
+                                                    <div class="col ">
+                                                        <div class="float-lg-right ">
+                                                            <b><span id="spDraft"></span> Sheets</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="small">Drafting</span>
+                                                    </div>
+                                                    <div class="col ">
+                                                        <div class="float-lg-right ">
+                                                            <small class="text-black-50"><span id="pcDraft" class="currency"></span>%</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a href="#">Second Step</a>
+                                                    </div>
+                                                    <div class="col ">
+                                                        <div class="float-lg-right ">
+                                                            <b><span id="spProcess"></span> Sheets</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="small">Processing</span>
+                                                    </div>
+                                                    <div class="col ">
+                                                        <div class="float-lg-right ">
+                                                            <small class="text-black-50"><span class="pcProcess currency"></span>%</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a href="#">Third Step</a>
+                                                    </div>
+                                                    <div class="col ">
+                                                        <div class="float-lg-right ">
+                                                            <b><span class="spComplet"></span> Sheets</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="small">Completed</span>
+                                                    </div>
+                                                    <div class="col ">
+                                                        <div class="float-lg-right ">
+                                                            <small class="text-black-50"><span class="pcComplet currency"></span>%</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                            <li class="list-group-item">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <a href="#">Fourth item</a>
+                                                    </div>
+                                                    <div class="col ">
+                                                        <div class="float-lg-right ">
+                                                            <b>0 Sheets</b>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <span class="small text-danger">Reject</span>
+                                                    </div>
+                                                    <div class="col ">
+                                                        <div class="float-lg-right ">
+                                                            <small class="text-black-50">0%</small>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul> 
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row  "  >
+            <div class="col-5">
+                <div class=" card card-chart">
+                    <div class="card-header">
+                        <h6>All Sheet in system this month. <kbd> 202002 </kbd></h6>
+                        <small>This report is based on 100% of... </small>
+                    </div>
+                    <div class="card-body">
+                         <canvas id="myChart1" ></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class=" col-7 ">
+                <div class=" card card-chart">
+                    <div class="card-header">
+                        <h6>All Document in System </h6>
+                        <small>This report is based on 100% of system </small>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-lg-5">
+
+                            </div>
+                            <div class="col-lg-7">
+                                <canvas id="myChart6" height="200"></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid ">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class=" card card-chart">
+                        <div class="card-body">
+                            <b class="mb-3">INFORMATION SYSTEM</b>
+                            <canvas id="myChart2"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class=" card card-chart">
+                        <div class="card-body">
+                            <b class="mb-3">ACCOUNT</b>
+                            <canvas id="myChart3"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class=" card card-chart">
+
+                        <div class="card-body">
+                            <b class="mb-3">FACILITY</b>
+                            <canvas id="myChart4"></canvas>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class=" card card-chart">
+
+                        <div class="card-body">
+                            <b class="mb-3">PURCHASE & BOI</b>
+                            <canvas id="myChart5"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+                <div class="col-md-3"></div>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<script src="~/Asset/LTE/dist/js/plugins/chartjs2/Chart.js"></script>
+<script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/js/View/HomeScript/Home.js"></script>
+<script src="~/js/View/DashBoard/GetChart.js"></script>

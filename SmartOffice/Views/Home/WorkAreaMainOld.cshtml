@@ -1,0 +1,83 @@
+﻿@{
+    ViewData["Title"] = "WorkArea";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+
+
+    var GroupCategclick = User.Claims.FirstOrDefault(c => c.Type == "GroupCategclick").Value;
+}
+
+
+<link href="~/css/slide.css" rel="stylesheet" />
+<style>
+    tr.odd td:first-child,
+    tr.even td:first-child {
+        padding-left: 4em;
+    }
+
+    .moonrise-gradient {
+        background: #DAD299; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #B0DAB9, #DAD299); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #B0DAB9, #DAD299); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+    .black-gradient {
+        background-color: #2d3436;
+        background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
+        box-shadow: 5px 5px 20px 7px rgba(0,0,0,0.25), -5px -5px 20px 7px rgba(0,0,0,0.22);
+    }
+    .title i {
+        margin-left: 57px;
+        color: #309b63;
+    }
+
+    a {
+        text-decoration: none;
+        color: #309b63;
+    }
+
+    .title {
+        font-size: 14px;
+        color: #309b63;
+        text-transform: uppercase;
+        font-weight: bold;
+        font-family: Arial;
+    }
+
+       .title:hover {
+            background: transparent;
+        }
+</style>
+<div>
+    
+    @(await Component.InvokeAsync("PicslideControl", new { GroupCateg = GroupCategclick, newstyle = "Normal" }))
+        
+
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="row pl-2">
+                <div class="col-12">
+                    @(await Component.InvokeAsync("FooterDeptControl", new { DeptType = GroupCategclick, newstyle = "Footer" }))
+                    <div class="card">
+                        <div class="card-body">
+                            @(await Component.InvokeAsync("NewsControl", new { DeptType = GroupCategclick, newstyle = "Normal" }))
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            @*<div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            @(await Component.InvokeAsync("SubSystemsControl", new { newstyle = "Normal" }))
+                        </div>
+                    </div>
+                </div>*@
+        </div>
+        <div class="col-sm-4" style="background-color:lightgray">
+            @(await Component.InvokeAsync("NewsControl", new { DeptType = GroupCategclick, newstyle = "Slide" }))
+        </div>
+    </div>
+
+</div>
+
+

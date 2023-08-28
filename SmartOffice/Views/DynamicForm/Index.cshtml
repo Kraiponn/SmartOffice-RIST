@@ -1,0 +1,1616 @@
+﻿@model SmartOffice.ModelsForm.Tuple1
+
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_LayoutAdminblank.cshtml";
+    string code = ViewBag.code == null ? "" : ViewBag.code;
+    string docno = ViewBag.docno == null ? "" : ViewBag.docno;
+    string mode = ViewBag.mode == null ? "" : ViewBag.mode;
+    var divid = "";
+    var Lang = Model.vewDocumentItemList.Select(x => x.Language).FirstOrDefault();
+
+
+    <link href="~/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/chosen/chosen.css" rel="stylesheet" type="text/css" />
+    @*<link href="~/signature_pad/css/signature-pad.css" rel="stylesheet" />*@
+    <link rel="stylesheet" href="~/jquery.Thailand.js/dist/jquery.Thailand.min.css">
+
+}
+
+<style>
+
+    input[type="text"].textsplit {
+        /*border: solid 1px dimgrey;*/
+        /*width: 400px;*/
+        background: repeating-linear-gradient(90deg, #ffffff 0px, #ffffff 19px, #000000 20px);
+        color: dimgrey;
+        font-family: monospace;
+        letter-spacing: 13px;
+        padding-left: 0.6ch;
+    }
+
+        input[type="text"].textsplit:focus {
+            outline: none;
+            color: dodgerblue;
+        }
+
+    .float {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        top: 40px;
+        left: 40px;
+        background-color: #0C9;
+        color: #FFF;
+        border-radius: 50px;
+        /*font-size: 10px;*/
+        text-align: center;
+        box-shadow: 2px 2px 3px #999;
+    }
+    .float2 {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        top: 120px;
+        left: 40px;
+        background-color: #0C9;
+        color: #FFF;
+        border-radius: 50px;
+        /*font-size: 10px;*/
+        text-align: center;
+        box-shadow: 2px 2px 3px #999;
+    }
+    .float3 {
+        position: fixed;
+        width: 60px;
+        height: 60px;
+        top: 200px;
+        left: 40px;
+        background-color: #0C9;
+        color: #FFF;
+        border-radius: 50px;
+        font-size: 10px;
+        text-align: center;
+        box-shadow: 2px 2px 3px #999;
+    }    
+    .my-float {
+        margin-top: 10px;
+    }
+
+    .box {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
+        .box > * {
+            flex: 1 1 33%;
+        }
+
+
+    @@keyframes click-wave {
+        0% {
+            height: 25px;
+            width: 25px;
+            opacity: 0.35;
+            position: relative;
+        }
+
+        100% {
+            height: 200px;
+            width: 200px;
+            margin-left: -80px;
+            margin-top: -80px;
+            opacity: 0;
+        }
+    }
+
+    .option-input {
+        font-family: 'Roboto', sans-serif;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        position: relative;
+        /*top: 13.33333px;*/
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 25px;
+        width: 25px;
+        transition: all 0.15s ease-out 0s;
+        background: #cbd1d8;
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 0.5rem;
+        outline: none;
+        position: relative;
+        z-index: 1000;
+    }
+
+        .option-input:hover {
+            background: #9faab7;
+        }
+
+        .option-input:checked {
+            background: #40e0d0;
+        }
+
+            .option-input:checked::before {
+                height: 25px;
+                width: 25px;
+                position: absolute;
+                content: '✔';
+                display: inline-block;
+                font-size: 22.66667px;
+                text-align: center;
+                line-height: 25px;
+            }
+
+            .option-input:checked::after {
+                -webkit-animation: click-wave 0.65s;
+                -moz-animation: click-wave 0.65s;
+                animation: click-wave 0.65s;
+                background: #18bc9c;
+                content: '';
+                display: block;
+                position: relative;
+                z-index: 100;
+            }
+
+        .option-input.radio {
+            border-radius: 50%;
+        }
+
+            .option-input.radio::after {
+                border-radius: 50%;
+            }
+
+    .table {
+        /*font-size: 10px;*/
+    }
+
+    .inputsm {
+        /*font-size: 12px;*/
+    }
+
+    .form-control {
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+        color: #555;
+        display: block;
+        /*font-size: 9px;*/
+        width: 100%;
+    }
+
+    .select[readonly] {
+        opacity: 0.7; /* not necessary */
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    input[type="radio"][readonly] {
+        opacity: 0.7; /* not necessary */
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    input[type="checkbox"][readonly] {
+        opacity: 0.7; /* not necessary */
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    input[type="datetime"][readonly] {
+        opacity: 0.7; /* not necessary */
+        pointer-events: none;
+        touch-action: none;
+    }
+
+    .inputtable[readonly] {
+        opacity: 0.7; /* not necessary */
+        pointer-events: none;
+        touch-action: none;
+    }
+    .ui-progressbar {
+        position: relative;
+        color: #000;
+        /*width: 650px;*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .progress-label {
+        position: absolute;
+        left: 5%;
+        /*top: 4px;*/
+        font-weight: bold;
+        /*text-shadow: 1px 1px 0 #fff;*/
+        margin-left: -20px;
+    }
+
+    .ui-widget-header {
+        border: 1px solid #E8D1CF;
+        background: #f6c23e url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") 50% 50% repeat-x;
+        font-weight: bold;
+        margin-left: -20px;
+    }
+</style>
+
+@{
+
+    var ItemCateg = "";
+    var all = new List<string>();
+    var rowood = 0;
+    var checkrow = "";
+    List<string> alltype = new List<string>(new string[] { "text", "textsplit", "date", "time", "memo", "combo", "datedef", "dateres", "datemm", "dateyy",
+"amphoe1","amphoe2","amphoe3","amphoe4","amphoe5","amphoe6","amphoe7","amphoe8","amphoe9","amphoe10",
+"district1","district2","district3","district4","district5","district6","district7","district8","district9","district10",
+"province1","province2","province3","province4","province5","province6","province7","province8","province9","province10",
+"zipcode1","zipcode2","zipcode3","zipcode4","zipcode5","zipcode6","zipcode7","zipcode8","zipcode9","zipcode10"});
+
+@*------------------------Start Timeline------------------------------------------------*@
+<div id="myPartialViewContainer">
+    @await Html.PartialAsync("../DynamicForm/_Timeline", Model)
+    @*<partial name="../DynamicForm/_Timeline" Model="Model" />*@
+</div>
+@*------------------------End Timeline------------------------------------------------*@
+
+
+<div class="row">
+    <div class="col-md-12">
+        @*------------------------Start Attach file------------------------------------------------*@
+        @await Html.PartialAsync("../DynamicForm/_AttachfileParcial")
+
+        @*------------------------End Attach file------------------------------------------------*@
+
+        <div id="collapse-collapsed2" class="collapse show" aria-labelledby="heading-collapsed2">
+            <div id="cardedit">
+
+                <form method="post" class="form-horizontal" id="forminput">
+
+                    @*------------------------Start button------------------------------------------------*@
+                    <div class="card bg-light">
+
+                        <div class="col-md-12 center-block text-center card-body">
+                            @{
+                                var commentdata = Model.Language.Where(x => x.GroupCode == "frmDynamicBtnInput");
+                            }
+
+                            @foreach (var tblcomment in commentdata)
+                            {
+                                if ((ViewBag.docno == null ? "" : ViewBag.docno) != "" && (ViewBag.docno == null ? "" : ViewBag.docno).Substring(0, 1) != "D")
+                                {
+                                    if (tblcomment.Value2 != "D")
+                                    {
+                                        <button type="button" class="btn btn-dark-blue btnpage" id="@tblcomment.Code.Trim()" name="@tblcomment.Value1" value="@tblcomment.Value2"><i class="fas fa-save"> </i> @tblcomment.Value1</button>
+
+                                    }
+                                }
+                                else
+                                {
+                                    <button type="button" class="btn btn-dark-blue btnpage" id="@tblcomment.Code.Trim()" name="@tblcomment.Value1" value="@tblcomment.Value2"><i class="fas fa-save"> </i> @tblcomment.Value1</button>
+                                }
+                            }
+
+                        </div>
+                    </div>
+                    @*------------------------End button------------------------------------------------*@
+                    <div id="divinput">
+                        <fieldset>
+                            <div class="row">
+                                @*------------------------Start Skip Flow------------------------------------------------*@
+                                <div class="col-md-6" id="cardflow">
+
+                                    @{
+                                        var chkskip = Model.CheckBoxFlows.Where(x => x.Requirement == "0").FirstOrDefault();
+                                    }
+                                    @if (chkskip != null)
+                                    {
+
+                                        var Chkstepactive = Model.Flows.Where(x => x.checkmin == "1").FirstOrDefault();
+                                        if (Chkstepactive != null || @docno == "" || @docno.Substring(0, 1) == "D")
+                                        {
+                                            <div class="card" style="max-height:600px;overflow:scroll">
+                                                <div class="card-body">
+                                                    <h6 class="text-danger"> <i class="fas fa-check-square"></i>   Skip approve flow</h6>
+                                                    <table class="table table-sm">
+                                                        @{
+                                                            var CheckBoxFlowscount = Model.CheckBoxFlows.Count();
+
+                                                        }
+                                                        @for (var i = 0; i < CheckBoxFlowscount; i++)
+                                                        {
+
+                                                            var id = "F" + Convert.ToString(Model.CheckBoxFlows[i].SeqNo);
+
+                                                            <tr class="row-sm">
+
+                                                                @Html.HiddenFor(x => Model.CheckBoxFlows[i].FlowID)
+                                                                @Html.HiddenFor(x => Model.CheckBoxFlows[i].SeqNo)
+                                                                @Html.HiddenFor(x => Model.CheckBoxFlows[i].RoleID)
+                                                                @Html.HiddenFor(x => Model.CheckBoxFlows[i].ApprovalItemCode)
+                                                                @Html.HiddenFor(x => Model.CheckBoxFlows[i].ApprovalItemNameE)
+                                                                @Html.HiddenFor(x => Model.CheckBoxFlows[i].ApprovalItemNameT)
+                                                                @Html.HiddenFor(x => Model.CheckBoxFlows[i].ApprovalItemNameJ)
+                                                                @Html.HiddenFor(x => Model.CheckBoxFlows[i].ApprovalDate)
+
+                                                                @{
+                                                                    var ApprovalItemName = "";
+                                                                    string[] words = Lang.Split(',');
+                                                                    foreach (string word in words)
+                                                                    {
+                                                                        var W = word.Trim().ToUpper();
+                                                                        if (W.Contains("T"))
+                                                                        {
+                                                                            ApprovalItemName = ApprovalItemName + Model.CheckBoxFlows[i].ApprovalItemNameT;
+                                                                        }
+                                                                        else if (W.Contains("E"))
+                                                                        {
+                                                                            ApprovalItemName = ApprovalItemName + Model.CheckBoxFlows[i].ApprovalItemNameE;
+
+                                                                        }
+                                                                        else if (W.Contains("J"))
+                                                                        {
+                                                                            ApprovalItemName = ApprovalItemName + Model.CheckBoxFlows[i].ApprovalItemNameJ;
+
+                                                                        }
+                                                                    }
+                                                                }
+
+
+                                                                @if (Model.Flows.Count > 0)
+                                                                {
+                                                                    if (Chkstepactive != null)
+                                                                    {
+                                                                        @if (Model.CheckBoxFlows[i].Requirement == "1" || (Convert.ToInt16(Model.CheckBoxFlows[i].SeqNo) <= Convert.ToInt16(Chkstepactive.SeqNo)))
+                                                                        {
+                                                                            <td>
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    @Html.CheckBoxFor(x => Model.CheckBoxFlows[i].SkipFlag, new { @class = "custom-control-input", @Id = @id, @onclick = "return false" })
+                                                                                    <label class="custom-control-label text-secondary" for="@id" style="font-style:italic;font-weight:500;">
+                                                                                        @ApprovalItemName
+                                                                                        <a class="text-danger">
+                                                                                            @Model.CheckBoxFlows[i].RequirementRemark
+                                                                                        </a>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </td>
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <td style="background-color:#B9D6F3">
+                                                                                <div class="custom-control custom-checkbox">
+                                                                                    @Html.CheckBoxFor(x => Model.CheckBoxFlows[i].SkipFlag, new { @class = "custom-control-input", @Id = @id })
+                                                                                    <label class="custom-control-label text-secondary" for="@id" style="font-style:italic;font-weight:500;">
+                                                                                        @ApprovalItemName
+                                                                                        <a class="text-danger">
+                                                                                            @Model.CheckBoxFlows[i].RequirementRemark
+                                                                                        </a>
+                                                                                    </label>
+                                                                                </div>
+                                                                            </td>
+                                                                        }
+                                                                    }
+                                                                }
+                                                                else
+                                                                {
+                                                                    @if (Model.CheckBoxFlows[i].Requirement == "1")
+                                                                    {
+                                                                        <td>
+                                                                            <div class="custom-control custom-checkbox">
+                                                                                @Html.CheckBoxFor(x => Model.CheckBoxFlows[i].SkipFlag, new { @class = "custom-control-input", @Id = @id, @onclick = "return false" })
+                                                                                <label class="custom-control-label text-secondary" for="@id" style="font-style:italic;font-weight:500;">
+                                                                                    @ApprovalItemName
+                                                                                    <a class="text-danger">
+                                                                                        @Model.CheckBoxFlows[i].RequirementRemark
+                                                                                    </a>
+                                                                                </label>
+                                                                            </div>
+                                                                        </td>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <td style="background-color:#B9D6F3">
+                                                                            <div class="custom-control custom-checkbox">
+                                                                                @Html.CheckBoxFor(x => Model.CheckBoxFlows[i].SkipFlag, new { @class = "custom-control-input", @Id = @id })
+                                                                                <label class="custom-control-label text-secondary" for="@id" style="font-style:italic;font-weight:500;">
+                                                                                    @ApprovalItemName
+                                                                                    <a class="text-danger">
+                                                                                        @Model.CheckBoxFlows[i].RequirementRemark
+                                                                                    </a>
+                                                                                </label>
+                                                                            </div>
+                                                                        </td>
+                                                                    }
+                                                                }
+
+                                                            </tr>
+                                                        }
+                                                    </table>
+
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                @*------------------------End  Skip Flow------------------------------------------------*@
+
+                                @*------------------------Start  select user Flow------------------------------------------------*@
+                                <div class="col-md-6" id="userflow">
+                                    @*@if (docno == "" || docno.Substring(0, 1) == "D")
+                {*@
+                                    @await Html.PartialAsync("../DynamicForm/_UserFlowParcial", @Model)
+                                    @*}*@
+                                </div>
+                                @*------------------------End  select user Flow------------------------------------------------*@
+                            </div>
+
+                            @*------------------------start Dynamic------------------------------------------------*@
+                            @{
+                                var vewDocumentItemListcount = Model.vewDocumentItemList.Count();
+                            }
+
+
+                            @for (var item = 0; item < vewDocumentItemListcount; item++)
+                            {
+                                checkrow = Model.vewDocumentItemList[item].DetailOption;
+                                if (Model.vewDocumentItemList[item].DefaultValue != null && Model.vewDocumentItemList[item].DefaultValue != "" && docno == "")
+                                {
+                                    if (User.Claims.FirstOrDefault(c => c.Type == Model.vewDocumentItemList[item].DefaultValue.Trim())?.Value != null)
+                                    {
+                                        Model.vewDocumentItemList[item].ValueCode = User.Claims.FirstOrDefault(c => c.Type == Model.vewDocumentItemList[item].DefaultValue.Trim()).Value;
+                                    }
+                                    else if (Model.vewDocumentItemList[item].DefaultValue != null && Model.vewDocumentItemList[item].DefaultValue != "" && docno == "")
+                                    {
+                                        Model.vewDocumentItemList[item].ValueCode = Model.vewDocumentItemList[item].DefaultValue.Trim();
+
+                                    }
+                                }
+                                if (item == 0)
+                                {
+
+                                    <div class="center-block text-center  bg-dark-gradient">
+                                        <div class="card-body">
+
+                                            @{
+                                                string[] words = Lang.Split(',');
+                                                foreach (string word in words)
+                                                {
+                                                    var W = word.Trim().ToUpper();
+                                                    if (W.Contains("T"))
+                                                    {
+                                                        <h6 class="card-title">@Model.vewDocumentItemList[item].DocumentNameT</h6>
+                                                    }
+                                                    else if (W.Contains("E"))
+                                                    {
+                                                        <h6 class="card-title">@Model.vewDocumentItemList[item].DocumentNameE</h6>
+
+                                                    }
+                                                    else if (W.Contains("J"))
+                                                    {
+                                                        <h6 class="card-title">@Model.vewDocumentItemList[item].DocumentNameJ</h6>
+
+                                                    }
+                                                }
+                                            }
+                                        </div>
+                                    </div>
+                                }
+
+
+
+                                var v = @Model.vewDocumentItemList[item].ItemCateg;
+                                if (ItemCateg != v)
+                                {
+                                    if (ItemCateg != "")
+                                    {
+                                        rowood = 0;
+                                        @Html.Raw("</div>");
+                                        @Html.Raw("</div></div>");
+
+                                    };
+
+                                    //  ItemCategNameT Title
+
+                                    @Html.Raw("<div class='card' id="+ @v.Trim() + ">");
+                                    @if (Model.vewDocumentItemList[item].ItemCategNameT != "-" || Model.vewDocumentItemList[item].ItemCategNameE != "-" || Model.vewDocumentItemList[item].ItemCategNameJ != "-")
+                                    {
+                                        @Html.Raw("<div class='p-3'>");
+                                        string[] words = Lang.Split(',');
+                                        foreach (string word in words)
+                                        {
+                                            var W = word.Trim().ToUpper();
+                                            if (W.Contains("T"))
+                                            {
+                                                @Html.Raw(@Model.vewDocumentItemList[item].ItemCategNameT);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleT1);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleT2);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleT3);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleT4);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleT5);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleT6);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleT7);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleT8);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleT9);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleT10);
+                                            }
+                                            else if (W.Contains("E"))
+                                            {
+                                                @Html.Raw(@Model.vewDocumentItemList[item].ItemCategNameE);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleE1);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleE2);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleE3);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleE4);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleE5);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleE6);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleE7);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleE8);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleE9);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleE10);
+
+                                            }
+                                            else if (W.Contains("J"))
+                                            {
+                                                @Html.Raw(@Model.vewDocumentItemList[item].ItemCategNameJ);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleJ1);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleJ2);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleJ3);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleJ4);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleJ5);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleJ6);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleJ7);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleJ8);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleJ9);
+                                                @Html.Raw(@Model.vewDocumentItemList[item].RemarksTitleJ10);
+
+                                            }
+                                        }
+                                        @Html.Raw("</div>");
+                                    }
+                                    @Html.Raw("<div class='card-body'>");
+                                }
+
+                                var Dropdowndata = from m in Model.GroupDopdown
+                                                   where m.Code.Trim() == @Model.vewDocumentItemList[item].valueold.Trim() &&
+                                                   m.DocumentCode.Trim() == @Model.vewDocumentItemList[item].DocumentCode.Trim() &&
+                                                   m.ItemCateg.Trim() == @Model.vewDocumentItemList[item].ItemCateg.Trim() &&
+                                                   m.ItemCode.Trim() == @Model.vewDocumentItemList[item].ItemCode.Trim()
+                                                   select m;
+
+
+
+                                /////////////////////////////////////////////////////////////check  row
+                                var checktype = alltype.Contains(Model.vewDocumentItemList[item].InputType.ToLower().Trim());
+
+                                if ((rowood >= 2 && rowood % 2 == 0 && ItemCateg == v) || (checktype == false && ItemCateg == v) || (checkrow == "1" && ItemCateg == v))
+                                {
+                                    if (checkrow == "1")
+                                    {
+                                        rowood = 3;
+                                    }
+
+                                };
+
+                                if (rowood == 0)
+                                {
+
+                                    @Html.Raw("<div class='form-row'>");
+                                };
+
+                                /////////////////////////////////////////////////////////////check  row end
+                                <input id="@("vewDocumentItemList_"+item+"__DocumentCode")" name="@("vewDocumentItemList["+item+"].DocumentCode")" type="hidden" value="@Model.vewDocumentItemList[item].DocumentCode">
+                                <input id="@("vewDocumentItemList_"+item+"__ItemCateg")" name="@("vewDocumentItemList["+item+"].ItemCateg")" type="hidden" value="@Model.vewDocumentItemList[item].ItemCateg">
+                                <input id="@("vewDocumentItemList_"+item+"__InputOption")" name="@("vewDocumentItemList["+item+"].InputOption")" type="hidden" value="@Model.vewDocumentItemList[item].InputOption">
+                                @Html.HiddenFor(x => Model.vewDocumentItemList[item].DisplayOrder)
+                                <input id="@("vewDocumentItemList_"+item+"__DocumentGroupCode")" name="@("vewDocumentItemList["+item+"].DocumentGroupCode")" type="hidden" value="@Model.vewDocumentItemList[item].DocumentGroupCode">
+                                <input id="@("vewDocumentItemList_"+item+"__DocumentNameE")" name="@("vewDocumentItemList["+item+"].DocumentNameE")" type="hidden" value="@Model.vewDocumentItemList[item].DocumentNameE">
+                                <input id="@("vewDocumentItemList_"+item+"__DocumentNameT")" name="@("vewDocumentItemList["+item+"].DocumentNameT")" type="hidden" value="@Model.vewDocumentItemList[item].DocumentNameT">
+                                <input id="@("vewDocumentItemList_"+item+"__DocumentNameJ")" name="@("vewDocumentItemList["+item+"].DocumentNameJ")" type="hidden" value="@Model.vewDocumentItemList[item].DocumentNameJ">
+                                <input id="@("vewDocumentItemList_"+item+"__DocumentKind")" name="@("vewDocumentItemList["+item+"].DocumentKind")" type="hidden" value="@Model.vewDocumentItemList[item].DocumentKind">
+                                <input id="@("vewDocumentItemList_"+item+"__OpeGroupCateg")" name="@("vewDocumentItemList["+item+"].OpeGroupCateg")" type="hidden" value="@Model.vewDocumentItemList[item].OpeGroupCateg">
+
+                                <input id="@("vewDocumentItemList_"+item+"__AttachedFile")" name="@("vewDocumentItemList["+item+"].AttachedFile")" type="hidden" value="@Model.vewDocumentItemList[item].AttachedFile">
+                                <input id="@("vewDocumentItemList_"+item+"__EmailSend")" name="@("vewDocumentItemList["+item+"].EmailSend")" type="hidden" value="@Model.vewDocumentItemList[item].EmailSend">
+                                <input id="@("vewDocumentItemList_"+item+"__ItemCategNameT")" name="@("vewDocumentItemList["+item+"].ItemCategNameT")" type="hidden" value="@Model.vewDocumentItemList[item].ItemCategNameT">
+                                <input id="@("vewDocumentItemList_"+item+"__ItemCategNameE")" name="@("vewDocumentItemList["+item+"].ItemCategNameE")" type="hidden" value="@Model.vewDocumentItemList[item].ItemCategNameE">
+                                <input id="@("vewDocumentItemList_"+item+"__ItemCategNameJ")" name="@("vewDocumentItemList["+item+"].ItemCategNameJ")" type="hidden" value="@Model.vewDocumentItemList[item].ItemCategNameJ">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleT1")" name="@("vewDocumentItemList["+item+"].RemarksTitleT1")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleT1">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleT2")" name="@("vewDocumentItemList["+item+"].RemarksTitleT2")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleT2">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleT3")" name="@("vewDocumentItemList["+item+"].RemarksTitleT3")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleT3">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleT4")" name="@("vewDocumentItemList["+item+"].RemarksTitleT4")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleT4">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleT5")" name="@("vewDocumentItemList["+item+"].RemarksTitleT5")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleT5">
+
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleT6")" name="@("vewDocumentItemList["+item+"].RemarksTitleT6")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleT6">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleT7")" name="@("vewDocumentItemList["+item+"].RemarksTitleT7")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleT7">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleT8")" name="@("vewDocumentItemList["+item+"].RemarksTitleT8")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleT8">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleT9")" name="@("vewDocumentItemList["+item+"].RemarksTitleT9")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleT9">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleT10")" name="@("vewDocumentItemList["+item+"].RemarksTitleT10")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleT10">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleE1")" name="@("vewDocumentItemList["+item+"].RemarksTitleE1")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleE1">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleE2")" name="@("vewDocumentItemList["+item+"].RemarksTitleE2")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleE2">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleE3")" name="@("vewDocumentItemList["+item+"].RemarksTitleE3")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleE3">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleE4")" name="@("vewDocumentItemList["+item+"].RemarksTitleE4")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleE4">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleE5")" name="@("vewDocumentItemList["+item+"].RemarksTitleE5")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleE5">
+
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleE6")" name="@("vewDocumentItemList["+item+"].RemarksTitleE6")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleE6">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleE7")" name="@("vewDocumentItemList["+item+"].RemarksTitleE7")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleE7">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleE8")" name="@("vewDocumentItemList["+item+"].RemarksTitleE8")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleE8">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleE9")" name="@("vewDocumentItemList["+item+"].RemarksTitleE9")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleE9">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleE10")" name="@("vewDocumentItemList["+item+"].RemarksTitleE10")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleE10">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleJ1")" name="@("vewDocumentItemList["+item+"].RemarksTitleJ1")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleJ1">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleJ2")" name="@("vewDocumentItemList["+item+"].RemarksTitleJ2")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleJ2">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleJ3")" name="@("vewDocumentItemList["+item+"].RemarksTitleJ3")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleJ3">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleJ4")" name="@("vewDocumentItemList["+item+"].RemarksTitleJ4")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleJ4">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleJ5")" name="@("vewDocumentItemList["+item+"].RemarksTitleJ5")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleJ5">
+
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleJ6")" name="@("vewDocumentItemList["+item+"].RemarksTitleJ6")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleJ6">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleJ7")" name="@("vewDocumentItemList["+item+"].RemarksTitleJ7")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleJ7">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleJ8")" name="@("vewDocumentItemList["+item+"].RemarksTitleJ8")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleJ8">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleJ9")" name="@("vewDocumentItemList["+item+"].RemarksTitleJ9")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleJ9">
+                                <input id="@("vewDocumentItemList_"+item+"__RemarksTitleJ10")" name="@("vewDocumentItemList["+item+"].RemarksTitleJ10")" type="hidden" value="@Model.vewDocumentItemList[item].RemarksTitleJ10">
+                                <input id="@("vewDocumentItemList_"+item+"__InputItemListItemCateg")" name="@("vewDocumentItemList["+item+"].InputItemListItemCateg")" type="hidden" value="@Model.vewDocumentItemList[item].InputItemListItemCateg">
+                                <input id="@("vewDocumentItemList_"+item+"__ItemCode")" name="@("vewDocumentItemList["+item+"].ItemCode")" type="hidden" value="@Model.vewDocumentItemList[item].ItemCode">
+                                <input id="@("vewDocumentItemList_"+item+"__InputItemListDisplayOrder")" name="@("vewDocumentItemList["+item+"].InputItemListDisplayOrder")" type="hidden" value="@Model.vewDocumentItemList[item].InputItemListDisplayOrder">
+                                <input id="@("vewDocumentItemList_"+item+"__ItemNameE")" name="@("vewDocumentItemList["+item+"].ItemNameE")" type="hidden" value="@Model.vewDocumentItemList[item].ItemNameE">
+                                <input id="@("vewDocumentItemList_"+item+"__ItemNameT")" name="@("vewDocumentItemList["+item+"].ItemNameT")" type="hidden" value="@Model.vewDocumentItemList[item].ItemNameT">
+
+                                <input id="@("vewDocumentItemList_"+item+"__ItemNameJ")" name="@("vewDocumentItemList["+item+"].ItemNameJ")" type="hidden" value="@Model.vewDocumentItemList[item].ItemNameJ">
+                                <input id="@("vewDocumentItemList_"+item+"__InputItemCode")" name="@("vewDocumentItemList["+item+"].InputItemCode")" type="hidden" value="@Model.vewDocumentItemList[item].InputItemCode">
+                                <input id="@("vewDocumentItemList_"+item+"__InputType")" name="@("vewDocumentItemList["+item+"].InputType")" type="hidden" value="@Model.vewDocumentItemList[item].InputType">
+                                <input id="@("vewDocumentItemList_"+item+"__DataType")" name="@("vewDocumentItemList["+item+"].DataType")" type="hidden" value="@Model.vewDocumentItemList[item].DataType">
+                                <input id="@("vewDocumentItemList_"+item+"__DecimalNo")" name="@("vewDocumentItemList["+item+"].DecimalNo")" type="hidden" value="@Model.vewDocumentItemList[item].DecimalNo">
+                                <input id="@("vewDocumentItemList_"+item+"__Unit")" name="@("vewDocumentItemList["+item+"].Unit")" type="hidden" value="@Model.vewDocumentItemList[item].Unit">
+                                <input id="@("vewDocumentItemList_"+item+"__InputItemOption")" name="@("vewDocumentItemList["+item+"].InputItemOption")" type="hidden" value="@Model.vewDocumentItemList[item].InputItemOption">
+                                <input id="@("vewDocumentItemList_"+item+"__DefaultValue")" name="@("vewDocumentItemList["+item+"].DefaultValue")" type="hidden" value="@Model.vewDocumentItemList[item].DefaultValue">
+                                @Html.HiddenFor(x => Model.vewDocumentItemList[item].ReadOnly)
+                                @Html.HiddenFor(x => Model.vewDocumentItemList[item].Required)
+                                <input id="@("vewDocumentItemList_"+item+"__Maxlength")" name="@("vewDocumentItemList["+item+"].Maxlength")" type="hidden" value="@Model.vewDocumentItemList[item].Maxlength">
+                                <input id="@("vewDocumentItemList_"+item+"__Minlength")" name="@("vewDocumentItemList["+item+"].Minlength")" type="hidden" value="@Model.vewDocumentItemList[item].Minlength">
+                                <input id="@("vewDocumentItemList_"+item+"__Max")" name="@("vewDocumentItemList["+item+"].Max")" type="hidden" value="@Model.vewDocumentItemList[item].Max">
+                                <input id="@("vewDocumentItemList_"+item+"__Min")" name="@("vewDocumentItemList["+item+"].Min")" type="hidden" value="@Model.vewDocumentItemList[item].Min">
+                                <input id="@("vewDocumentItemList_"+item+"__Step")" name="@("vewDocumentItemList["+item+"].Step")" type="hidden" value="@Model.vewDocumentItemList[item].Step">
+                                <input id="@("vewDocumentItemList_"+item+"__valueold")" name="@("vewDocumentItemList["+item+"].valueold")" type="hidden" value="@Model.vewDocumentItemList[item].valueold">
+                                <input id="@("vewDocumentItemList_"+item+"__Language")" name="@("vewDocumentItemList["+item+"].Language")" type="hidden" value="@Model.vewDocumentItemList[item].Language">
+                                <input id="@("vewDocumentItemList_"+item+"__AttachedFile1")" name="@("vewDocumentItemList["+item+"].AttachedFile1")" type="hidden" value="@Model.vewDocumentItemList[item].AttachedFile1">
+                                <input id="@("vewDocumentItemList_"+item+"__AttachedFile2")" name="@("vewDocumentItemList["+item+"].AttachedFile2")" type="hidden" value="@Model.vewDocumentItemList[item].AttachedFile2">
+                                <input id="@("vewDocumentItemList_"+item+"__StandardNo")" name="@("vewDocumentItemList["+item+"].StandardNo")" type="hidden" value="@Model.vewDocumentItemList[item].StandardNo">
+
+                                <input id="@("vewDocumentItemList_"+item+"__ReviseNo")" name="@("vewDocumentItemList["+item+"].ReviseNo")" type="hidden" value="@Model.vewDocumentItemList[item].ReviseNo">
+                                <input id="@("vewDocumentItemList_"+item+"__Remark")" name="@("vewDocumentItemList["+item+"].Remark")" type="hidden" value="@Model.vewDocumentItemList[item].Remark">
+                                <input id="@("vewDocumentItemList_"+item+"__DetailOption")" name="@("vewDocumentItemList["+item+"].DetailOption")" type="hidden" value="@Model.vewDocumentItemList[item].DetailOption">
+
+                                if (checkrow == "9")
+                                {
+                                    @Html.Raw(" <div class='form-group col-md-9'>");
+                                }
+                                else if (checkrow == "8")
+                                {
+                                    @Html.Raw(" <div class='form-group col-md-8'>");
+                                }
+                                else if (checkrow == "7")
+                                {
+                                    @Html.Raw("<div class='form-group col-md-7'>");
+                                }
+                                else if (checkrow == "6")
+                                {
+                                    @Html.Raw("<div class='form-group col-md-6'>");
+                                }
+                                else if (checkrow == "5")
+                                {
+                                    @Html.Raw(" <div class='form-group col-md-5'>");
+                                }
+                                else if (checkrow == "4")
+                                {
+                                    @Html.Raw(" <div class='form-group col-md-4'>");
+                                }
+                                else if (checkrow == "3")
+                                {
+                                    @Html.Raw(" <div class='form-group col-md-3'>");
+                                }
+                                else if (checkrow == "2")
+                                {
+                                    @Html.Raw(" <div class='form-group col-md-2'>");
+                                }
+                                else
+                                {
+                                    if (!alltype.Contains(Model.vewDocumentItemList[item].InputType.ToLower()) || checkrow == "1")
+                                    {
+
+                                        @Html.Raw("<div class='form-group col-md-12 py-0'>");
+
+                                    }
+                                    else
+                                    {
+                                        @Html.Raw(" <div class='form-group col-md-6 py-0'>");
+                                    }
+                                }
+
+                                var htmlAttributes = new Dictionary<string, object>
+                                    ();
+                                htmlAttributes.Add("id", Model.vewDocumentItemList[item].ItemCode);
+                                htmlAttributes.Add("name", Model.vewDocumentItemList[item].ItemCode);
+                                htmlAttributes.Add("type", Model.vewDocumentItemList[item].DataType);
+                                htmlAttributes.Add("placeholder", "");
+                                if (Model.vewDocumentItemList[item].InputType == "datetime")
+                                {
+                                    if (docno == "")
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm datetime1 float-right");
+                                    }
+                                    else
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm datetimeE1 float-right");
+                                    }
+                                }
+                                else if (Model.vewDocumentItemList[item].InputType == "date")
+                                {
+                                    if (docno == "")
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm datetime2 float-right");
+                                    }
+                                    else
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm datetimeE2 float-right");
+                                    }
+                                }
+                                else if (Model.vewDocumentItemList[item].InputType == "datedef")
+                                {
+                                    if (docno == "")
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm datedef float-right");
+                                    }
+                                    else
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm datedefE float-right");
+                                    }
+                                }
+                                else if (Model.vewDocumentItemList[item].InputType == "datecomm")
+                                {
+                                    if (docno == "")
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm datecomm float-right");
+                                    }
+                                    else
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm datedefE float-right");
+                                    }
+                                }
+                                else if (Model.vewDocumentItemList[item].InputType == "dateres")
+                                {
+                                    if (docno == "")
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm dateres float-right");
+                                    }
+                                    else
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm dateresE float-right");
+                                    }
+                                }
+
+                                else if (Model.vewDocumentItemList[item].InputType == "dateyy")
+                                {
+                                    if (docno == "")
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm dateYY float-right");
+                                    }
+                                    else
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm dateYYE float-right");
+                                    }
+                                }
+
+                                else if (Model.vewDocumentItemList[item].InputType == "datemm")
+                                {
+                                    if (docno == "")
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm dateMM float-right");
+                                    }
+                                    else
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm dateMME float-right");
+                                    }
+                                }
+
+                                else if (Model.vewDocumentItemList[item].InputType == "time")
+                                {
+                                    if (docno == "")
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm datetime3 float-right");
+                                    }
+                                    else
+                                    {
+                                        htmlAttributes.Add("class", "form-control input-sm datetimeE3 float-right");
+                                    }
+                                }
+                                else if (Model.vewDocumentItemList[item].InputType == "text")
+                                {
+                                    @if (Model.vewDocumentItemList[item].DataType == "number" && Model.vewDocumentItemList[item].DecimalNo == "1")
+                                    {
+
+                                        htmlAttributes.Add("onmousemove", "return auto0(event, " + Model.vewDocumentItemList[item].Step + ",$(this).val(),$(this).attr('id'));");
+                                        htmlAttributes.Add("onChange", "return auto0(event, " + Model.vewDocumentItemList[item].Step + ",$(this).val(),$(this).attr('id'));");
+                                    }
+
+                                    htmlAttributes.Add("class", "form-control");
+
+                                }
+                                else if (Model.vewDocumentItemList[item].InputType == "memo")
+                                {
+                                    htmlAttributes.Add("class", "form-control memo");
+                                }
+                                else if (Model.vewDocumentItemList[item].InputType == "combo")
+                                {
+
+                                    htmlAttributes.Add("class", "w-100 select valid chosen-select");
+                                }
+
+                                else if (Model.vewDocumentItemList[item].InputType == "textsplit")
+                                {
+                                    htmlAttributes.Add("class", "form-control textsplit");
+                                }
+                                else if (Model.vewDocumentItemList[item].InputType.Contains("district") || Model.vewDocumentItemList[item].InputType.Contains("amphoe")
+                                    || Model.vewDocumentItemList[item].InputType.Contains("province") || Model.vewDocumentItemList[item].InputType.Contains("zipcode"))
+                                {
+                                    htmlAttributes.Add("class", "form-control " + Model.vewDocumentItemList[item].InputType);
+                                }
+
+
+                                ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+                                if (Model.vewDocumentItemList[item].InputType == "textsplit" && Model.vewDocumentItemList[item].Maxlength != "" && Model.vewDocumentItemList[item].Maxlength != null)
+                                {
+
+                                    htmlAttributes.Add("style", "width:" + ((int.Parse(Model.vewDocumentItemList[item].Maxlength)) * 20 + 10) + "px;");
+
+                                }
+                                if (Model.vewDocumentItemList[item].ReadOnly && Model.vewDocumentItemList[item].InputType != "textsplit")
+                                {
+
+                                    htmlAttributes.Add("readonly", "readonly");
+
+                                    htmlAttributes.Add("style", "pointer-events: none;");
+
+                                }
+                                if (Model.vewDocumentItemList[item].ReadOnly && Model.vewDocumentItemList[item].InputType == "textsplit")
+                                {
+
+                                    htmlAttributes.Add("readonly", "readonly");
+
+                                }
+                                if (Model.vewDocumentItemList[item].Required)
+                                {
+                                    htmlAttributes.Add("required", "required");
+                                }
+                                if (Model.vewDocumentItemList[item].Maxlength != "" && Model.vewDocumentItemList[item].Maxlength != null)
+                                {
+                                    htmlAttributes.Add("maxlength", Model.vewDocumentItemList[item].Maxlength);
+                                }
+                                if (Model.vewDocumentItemList[item].Minlength != "" && Model.vewDocumentItemList[item].Minlength != null)
+                                {
+                                    htmlAttributes.Add("minlength", Model.vewDocumentItemList[item].Minlength);
+                                }
+                                if (Model.vewDocumentItemList[item].Max != "" && Model.vewDocumentItemList[item].Max != null)
+                                {
+                                    htmlAttributes.Add("max", Model.vewDocumentItemList[item].Max);
+                                }
+                                if (Model.vewDocumentItemList[item].Min != "" && Model.vewDocumentItemList[item].Min != null)
+                                {
+                                    htmlAttributes.Add("min", Model.vewDocumentItemList[item].Min);
+                                }
+                                if (Model.vewDocumentItemList[item].Step != "" && Model.vewDocumentItemList[item].Step != null)
+                                {
+                                    htmlAttributes.Add("step", Model.vewDocumentItemList[item].Step);
+                                }
+
+
+
+                                string text = "";
+                                string[] wordsitem = Lang.Split(',');
+                                var num = 0;
+                                foreach (string word in wordsitem)
+                                {
+                                    var W = word.Trim().ToUpper();
+                                    if (W.Contains("T") && @Model.vewDocumentItemList[item].ItemNameT != "")
+                                    {
+                                        if (num == 0)
+                                        {
+                                            text = @Model.vewDocumentItemList[item].ItemNameT;
+                                        }
+                                        else
+                                        {
+                                            text = text + "<br />" + @Model.vewDocumentItemList[item].ItemNameT;
+                                        }
+
+                                    }
+                                    else if (W.Contains("E") && @Model.vewDocumentItemList[item].ItemNameE != "")
+                                    {
+                                        if (num == 0)
+                                        {
+                                            text = @Model.vewDocumentItemList[item].ItemNameE;
+                                        }
+                                        else
+                                        {
+                                            text = text + "<br />" + @Model.vewDocumentItemList[item].ItemNameE;
+                                        }
+
+                                    }
+                                    else if (W.Contains("J") && @Model.vewDocumentItemList[item].ItemNameJ != "")
+                                    {
+                                        if (num == 0)
+                                        {
+                                            text = @Model.vewDocumentItemList[item].ItemNameJ;
+                                        }
+                                        else
+                                        {
+                                            text = text + "<br />" + @Model.vewDocumentItemList[item].ItemNameJ;
+                                        }
+
+                                    }
+
+                                    num++;
+                                }
+
+
+                                @switch (Model.vewDocumentItemList[item].InputType.ToLower())
+                                {
+                                    case "text":
+                                    case string district when district.Contains("district"):
+                                    case string amphoe when amphoe.Contains("amphoe"):
+                                    case string province when province.Contains("province"):
+                                    case string zipcode when zipcode.Contains("zipcode"):
+
+                                        <label class="col-form-label text-dark">@Html.Raw(text)</label>
+                                        <div class="input-group input-group-sm">
+                                            @Html.TextBoxFor(model => Model.vewDocumentItemList[item].ValueCode, "", htmlAttributes) <label>@Model.vewDocumentItemList[item].Unit</label>
+                                            @Html.ValidationMessageFor(m => m.vewDocumentItemList[item].ValueCode, "", new { @class = "text-danger" })
+                                        </div>
+                                        break;
+                                    case "textsplit":
+
+                                        <label class="col-form-label text-dark">@Html.Raw(text)</label>
+                                        <div>
+                                            @Html.TextBoxFor(model => Model.vewDocumentItemList[item].ValueCode, "", htmlAttributes)<label>@Model.vewDocumentItemList[item].Unit</label>
+                                            @Html.ValidationMessageFor(m => m.vewDocumentItemList[item].ValueCode, "", new { @class = "text-danger" })
+                                        </div>
+                                        break;
+                                    case "memo":
+                                        <label class="col-12  col-form-label">@Html.Raw(text)</label>
+                                        @Html.TextAreaFor(model => Model.vewDocumentItemList[item].ValueCode, 5, 1, htmlAttributes)<label>@Model.vewDocumentItemList[item].Unit</label>
+                                        @Html.ValidationMessageFor(m => m.vewDocumentItemList[item].ValueCode, "", new { @class = "text-danger" })
+                                        break;
+                                    case "datetime":
+                                    case "date":
+                                    case "datedef":
+                                    case "dateres":
+                                    case "dateyy":
+                                    case "datemm":
+                                    case "datecomm":
+
+                                        <label class="col-form-label text-dark">@Html.Raw(text)</label>
+                                        <div>
+                                            <div class="input-group input-group-sm">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="far fa-calendar-alt fa-xs"></i></span>
+                                                </div>
+
+                                                @Html.TextBoxFor(model => Model.vewDocumentItemList[item].ValueCode, "", htmlAttributes)<label>@Model.vewDocumentItemList[item].Unit</label>
+                                                @Html.ValidationMessageFor(m => m.vewDocumentItemList[item].ValueCode, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        break;
+                                    case "time":
+                                        <label class="col-form-label text-dark">@Html.Raw(text)</label>
+                                        <div>
+                                            <div class="input-group input-group-sm">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="far fa-clock fa-xs"></i></span>
+                                                </div>
+
+                                                @Html.TextBoxFor(model => Model.vewDocumentItemList[item].ValueCode, "", htmlAttributes)<label>@Model.vewDocumentItemList[item].Unit</label>
+                                                @Html.ValidationMessageFor(m => m.vewDocumentItemList[item].ValueCode, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        break;
+                                    case "combo":
+                                        <label class="col-form-label text-dark">@Html.Raw(text)</label>
+                                        <div>
+                                            @Html.DropDownListFor(model => Model.vewDocumentItemList[item].ValueCode, new List<SelectListItem> { new SelectListItem { Value = "", Text = "--Select--" }}
+                                            .Concat(Dropdowndata.Select(x => new SelectListItem { Text = x.Text.Trim(), Value = x.Value.Trim() })), htmlAttributes)<label>@Model.vewDocumentItemList[item].Unit</label>
+                                            @Html.ValidationMessageFor(m => m.vewDocumentItemList[item].ValueCode, "", new { @class = "text-danger" })
+                                        </div>
+
+                                        break;
+                                    case "checkbox":
+
+                                        <label class="col-form-label text-dark">@Html.Raw(text)</label>
+
+                                        var GroupcheckboxCount = Model.Groupcheckbox.Count();
+                                        <div>
+                                            <div class="input-group input-group-sm">
+
+                                                @for (var i = 0; i < GroupcheckboxCount; i++)
+                                                {
+                                                    var CountValueItem = Model.Groupcheckbox.Where(aa => aa.ValueCode.Trim() == Model.vewDocumentItemList[item].valueold.Trim()).Count();
+                                                    var checkboxcol = 4;
+                                                    if (CountValueItem == 1)
+                                                    {
+                                                        checkboxcol = 12;
+                                                    }
+
+
+                                                    if (@Model.vewDocumentItemList[item].valueold.Trim() == Convert.ToString(@Model.Groupcheckbox[i].ValueCode.Trim()) &&
+                                                    @Model.vewDocumentItemList[item].DocumentCode.Trim() == @Model.Groupcheckbox[i].DocumentCode.Trim() &&
+                                                    @Model.vewDocumentItemList[item].ItemCateg.Trim() == @Model.Groupcheckbox[i].ItemCateg.Trim() &&
+                                                    @Model.vewDocumentItemList[item].ItemCode.Trim() == @Model.Groupcheckbox[i].ItemCode.Trim())
+                                                    {
+                                                        <div class="form-check form-check-inline col-xs-12 col-sm-12 col-md-12 col-lg-@checkboxcol col-xl-@checkboxcol">
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].ValueCode)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].DocumentCode)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].ItemCateg)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].DocumentNameE)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].DocumentNameT)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].DocumentNameJ)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].ItemCode)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].ItemNameE)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].ItemNameT)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].ItemNameJ)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].ID)
+                                                            @Html.HiddenFor(x => Model.Groupcheckbox[i].Display)
+                                                            <div class="custom-control custom-checkbox">
+
+                                                                <label for="@Model.Groupcheckbox[i].ID" style="font-style:italic;font-weight:500;">
+                                                                    @Html.CheckBoxFor(x => Model.Groupcheckbox[i].IsChecked, new { @class = "form-check-input option-input checkbox", @Id = @Model.Groupcheckbox[i].ID })
+                                                                    @Model.Groupcheckbox[i].Display
+
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                        break;
+                                    case "radio":
+
+                                        <label class="col-form-label text-dark">@Html.Raw(text)</label>
+
+                                        var itemchk = "";
+
+                                        <div>
+                                            <div class="input-group input-group-sm">
+
+                                                @{
+                                                    var GroupradioCount = Model.Groupradio.Count();
+                                                }
+
+                                                @for (var i = 0; i < GroupradioCount; i++)
+                                                {
+                                                    if (@Model.vewDocumentItemList[item].valueold.Trim() == Convert.ToString(Model.Groupradio[i].ValueCode.Trim()) &&
+                                                    @Model.vewDocumentItemList[item].DocumentCode.Trim() == Model.Groupradio[i].DocumentCode.Trim() &&
+                                                    @Model.vewDocumentItemList[item].ItemCateg.Trim() == Model.Groupradio[i].ItemCateg.Trim() &&
+                                                    @Model.vewDocumentItemList[item].ItemCode.Trim() == Model.Groupradio[i].ItemCode.Trim())
+                                                    {
+                                                        <div class="form-check form-check-inline col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+
+                                                            @Html.HiddenFor(x => x.Groupradio[i].ValueCode)
+                                                            @Html.HiddenFor(x => x.Groupradio[i].DocumentCode)
+                                                            @Html.HiddenFor(x => x.Groupradio[i].ItemCateg)
+                                                            @Html.HiddenFor(x => x.Groupradio[i].DocumentNameE)
+                                                            @Html.HiddenFor(x => x.Groupradio[i].DocumentNameT)
+                                                            @Html.HiddenFor(x => x.Groupradio[i].DocumentNameJ)
+                                                            @Html.HiddenFor(x => x.Groupradio[i].ItemCode)
+                                                            @Html.HiddenFor(x => x.Groupradio[i].ItemNameE)
+                                                            @Html.HiddenFor(x => x.Groupradio[i].ItemNameT)
+                                                            @Html.HiddenFor(x => x.Groupradio[i].ItemNameJ)
+                                                            @Html.HiddenFor(x => Model.Groupradio[i].ID)
+                                                            @Html.HiddenFor(x => Model.Groupradio[i].Order)
+                                                            @Html.HiddenFor(x => Model.Groupradio[i].Display)
+                                                            @Html.HiddenFor(x => Model.Groupradio[i].IsChecked)
+
+                                                            <div class="custom-control custom-radio">
+
+                                                                <label for="@Model.Groupradio[i].ID" style="font-style:italic;font-weight:500">
+                                                                    @if (docno == "")
+                                                                    {
+                                                                        @if (itemchk.Trim() != Model.Groupradio[i].ItemCode.Trim())
+                                                                        {
+                                                                            @Html.RadioButton(Model.Groupradio[i].ItemCode, Model.Groupradio[i].ID, true, new { @class = "option-input radio", @Id = @Model.Groupradio[i].ID })
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @Html.RadioButton(Model.Groupradio[i].ItemCode, Model.Groupradio[i].ID, false, new { @class = "option-input radio", @Id = @Model.Groupradio[i].ID })
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Html.RadioButton(Model.Groupradio[i].ItemCode, Model.Groupradio[i].ID, Model.Groupradio[i].IsChecked, new { @class = "option-input radio", @Id = @Model.Groupradio[i].ID })
+                                                                    }
+                                                                    @Html.DisplayFor(x => Model.Groupradio[i].Display)
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        itemchk = Model.Groupradio[i].ItemCode;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                        break;
+                                    case "checkspe":
+
+                                        <label class="col-form-label text-dark">@Html.Raw(text)</label>
+                                        var itemchks = "";
+                                        <div>
+                                            <div class="input-group input-group-sm">
+                                                @{
+                                                    var GroupspecialCount = Model.Groupspecial.Count();
+                                                }
+
+                                                @for (var i = 0; i < GroupspecialCount; i++)
+                                                {
+                                                    if (@Model.vewDocumentItemList[item].valueold.Trim() == Convert.ToString(Model.Groupspecial[i].ValueCode.Trim()) &&
+                                                    @Model.vewDocumentItemList[item].DocumentCode.Trim() == Model.Groupspecial[i].DocumentCode.Trim() &&
+                                                    @Model.vewDocumentItemList[item].ItemCateg.Trim() == Model.Groupspecial[i].ItemCateg.Trim() &&
+                                                    @Model.vewDocumentItemList[item].ItemCode.Trim() == Model.Groupspecial[i].ItemCode.Trim())
+                                                    {
+                                                        <div class="form-check col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4">
+
+                                                            @Html.HiddenFor(x => x.Groupspecial[i].ValueCode)
+                                                            @Html.HiddenFor(x => x.Groupspecial[i].DocumentCode)
+                                                            @Html.HiddenFor(x => x.Groupspecial[i].ItemCateg)
+                                                            @Html.HiddenFor(x => x.Groupspecial[i].DocumentNameE)
+                                                            @Html.HiddenFor(x => x.Groupspecial[i].DocumentNameT)
+                                                            @Html.HiddenFor(x => x.Groupspecial[i].DocumentNameJ)
+                                                            @Html.HiddenFor(x => x.Groupspecial[i].ItemCode)
+                                                            @Html.HiddenFor(x => x.Groupspecial[i].ItemNameE)
+                                                            @Html.HiddenFor(x => x.Groupspecial[i].ItemNameT)
+                                                            @Html.HiddenFor(x => x.Groupspecial[i].ItemNameJ)
+                                                            @Html.HiddenFor(x => Model.Groupspecial[i].ID)
+                                                            @Html.HiddenFor(x => Model.Groupspecial[i].Order)
+                                                            @Html.HiddenFor(x => Model.Groupspecial[i].Display)
+                                                            @Html.HiddenFor(x => Model.Groupspecial[i].IsChecked)
+
+                                                            <div class="custom-control custom-radio">
+
+                                                                <label for="@Model.Groupspecial[i].ID" style="font-style:italic;font-weight:500">
+                                                                    @if (docno == "")
+                                                                    {
+                                                                        @if (itemchks.Trim() != Model.Groupspecial[i].ItemCode.Trim())
+                                                                        {
+                                                                            @Html.RadioButton(Model.Groupspecial[i].ItemCode, Model.Groupspecial[i].ID, true, new { @class = "option-input radio", @Id = @Model.Groupspecial[i].ID })
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            @Html.RadioButton(Model.Groupspecial[i].ItemCode, Model.Groupspecial[i].ID, false, new { @class = "option-input radio", @Id = @Model.Groupspecial[i].ID })
+                                                                        }
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        @Html.RadioButton(Model.Groupspecial[i].ItemCode, Model.Groupspecial[i].ID, Model.Groupspecial[i].IsChecked, new { @class = "option-input radio", @Id = @Model.Groupspecial[i].ID })
+                                                                    }
+                                                                    @Html.DisplayFor(x => Model.Groupspecial[i].Display)
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                        itemchk = Model.Groupspecial[i].ItemCode;
+                                                    }
+                                                }
+                                            </div>
+                                        </div>
+                                        break;
+                                    case "table":
+                                        divid = "D" + @Model.vewDocumentItemList[item].InputItemCode.Trim(); ;
+                                        <div class="form-group">
+                                            <label class="col-form-label text-dark">@Html.Raw(text)</label>
+                                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 inputtable" id="@divid">
+
+                                            </div>
+                                        </div>
+                                        break;
+                                    case "fileimage":
+                                        var linkimage = "";
+                                        @if (docno != "")
+                                        {
+                                            linkimage = "~/Attach/" + code + "/" + docno + "/" + Model.vewDocumentItemList[item].ItemCode + "/" + Model.vewDocumentItemList[item].ValueCode;
+                                        }
+                                        var btnupfile = "upfile" + Model.vewDocumentItemList[item].ItemCode;
+                                        var btndeletefile = "deletefile" + Model.vewDocumentItemList[item].ItemCode;
+                                        var imgbox = "imgbox" + Model.vewDocumentItemList[item].ItemCode;
+                                        <div class="form-group">
+                                            <label class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-form-label text-dark">@Html.Raw(text)</label>
+
+
+                                            @Html.TextBoxFor(model => Model.vewDocumentItemList[item].ValueCode, "", new { type = "file", accept = ".jpg,.png,.gif",  id = Model.vewDocumentItemList[item].ItemCode })
+
+                                            <input type="button" class="btn btn-primary btn-sm" id="@btnupfile" onclick="UploadImage('@Model.vewDocumentItemList[item].ItemCode');" value="Upload">
+                                            <input type="button" class="btn btn-danger btn-sm" id="@btndeletefile" onclick="DeleteImage('@Model.vewDocumentItemList[item].ItemCode');" value="Delete">
+                                            <a href="@Url.Content(linkimage)" target="_blank">
+                                                <img id="@imgbox" src="@Url.Content(linkimage)" onerror="this.onerror=null; this.src='@Url.Content("~/image/default-150x150.png")'" alt="..." class="img-thumbnail" width="80" height="80">
+                                            </a>
+
+                                        </div>
+                                        break;
+                                    case "button":
+                                        @Html.Raw(text)
+                                        break;
+
+                                } //Close switch
+
+                                @Html.Raw("</div>");
+
+                                if (item == vewDocumentItemListcount)
+                                {
+                                    @Html.Raw("</div>");
+
+
+                                }
+                                rowood = rowood + 1;
+                                if (checktype == false)
+                                {
+                                    rowood = rowood + 1;
+                                }
+                                ItemCateg = v;
+
+                            }
+                        </fieldset>
+                    </div>
+                    @*------------------------End Dynamic------------------------------------------------*@
+                </form>
+            </div>
+            @*</div>*@
+        </div>
+    </div>
+</div>
+}
+
+@*------------------------Start PDF--with layout----------------------------------------------*@
+
+<a class="nav-link float sidebar1" data-widget="control-sidebar" data-slide="true" href="#">
+    <i class="fas fa-file fa-3x my-float"></i>
+</a>
+
+<button id="modalActivate"  class="float2" data-toggle="modal" data-target="#exampleModalPreview">
+    FULL
+</button>
+
+<a class="nav-link float3 sidebar2 text-center" data-widget="control-sidebar" data-slide="true" href="#">
+    USER
+    <br />
+    MANUAL
+</a>
+
+
+
+@*------------------------End PDF------------------------------------------------*@
+
+<!------------------------------------------------------------------------------------- Modal Header --------------------------------------------------->
+<div id="modal-placeholder">
+    <div class="modal fade bd-example-modal-lg" id="ModalConfirm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title" id="exampleModalLabel">Confirm Document</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data" name="addform" class="form-horizontal" id="confirmdoc">
+                        <div id="progressbar"><div class="progress-label">Please wait, the system is loading...</div></div>
+                        
+                        @foreach (var tblcomment in Model.Language.Where(x => x.GroupCode == "frmConfirmBtnInput"))
+                        {
+                            <button type="button" class="btn btn-dark-blue confirmdoc" id="@tblcomment.Code.Trim()" name="@tblcomment.Value1" value="@tblcomment.Value2"><i class="fas fa-save"> </i> @tblcomment.Value1</button>
+                        }
+                        <br />
+                        <br />
+                        <div class="row">
+                            <div class="col-md-9">
+                            </div>
+                            <div class="col-md-3">
+                                <div class="input-group input-group-sm">
+                                    @Html.TextBoxFor(m => m.Dateapprove, new { @id = "comdateapprove", @type = "datetime", @required = "required", @class = "form-control input-sm datecomm float-right" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="comremark" class="col-form-label">Remark</label>
+                            @Html.TextAreaFor(m => m.Comment, new { @id = "comremark", @required = "required", @class = "form-control memo" })
+                        </div>
+
+                        <div class="form-check">
+                            <input class="form-check-input option-input radio" type="radio" name="exampleRadios" id="exampleRadios1" value="1" checked>
+                            <label class="form-check-label" for="exampleRadios1">
+                                Stamper
+                            </label>
+                            &nbsp;&nbsp;&nbsp;
+                            <input class="form-check-input option-input radio" type="radio" name="exampleRadios" id="exampleRadios2" value="2">
+                            <label class="form-check-label" for="exampleRadios2">
+                                Image signature
+                            </label>
+                            &nbsp;&nbsp;&nbsp;
+                            <input class="form-check-input option-input radio" type="radio" name="exampleRadios" id="exampleRadios3" value="3">
+                            <label class="form-check-label" for="exampleRadios3">
+                                Create signature
+                            </label>
+                        </div>
+
+
+                        <div class="row" id="divsign">
+                            <div class="col-3">
+                            </div>
+                            <div class="col-6">
+                                <div class="card text-white bg-info mb-3 text-center">
+                                    <div class="card-header bg-dark">
+                                        Signature
+                                    </div>
+                                    <div class="card-body">
+                                        <div id="signature-pad" class="signature-pad">
+                                            <div class="signature-pad--body">
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+
+                                                                @*<p>Sign</p>*@
+
+                                                                <canvas id="signature"
+                                                                        style="border:1px solid black; background-color:#fff; width:300px; height:150px"></canvas>
+                                                            </div>
+
+                                                            @*<div class="col-md-6">
+                                                <p>Result</p>
+                                                <img width="200" height="104" id="savetarget"
+                                                     style="border:1px solid black;background-color:#fff">
+                                            </div>*@
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <textarea rows="5" type="text" id="SignatureDataUrl" hidden></textarea>
+                                            </div>
+                                            <div class="signature-pad--footer">
+                                                <div class="signature-pad--actions">
+                                                    <div>
+                                                        <button id="clear" type="button" class="btn btn-dark-blue clear" data-action="clear">Clear</button>
+
+                                                        @*<button type="button" class="btn btn-primary" data-action="undo">Undo</button>*@
+
+
+                                                        @*<button type="button" id="accept" class="btn btn-primary">Accept signature</button>
+                                        <button type="submit" id="save" class="btn btn-primary">Save</button>*@
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-placeholder">
+    <div class="modal fade bd-example-modal-lg" id="ModalTransfer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title" id="exampleModalLabel">Transfer Approve</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data" name="addform" class="form-horizontal" id="transferdoc">
+                        <div class="row">
+                            <div class="form-group col-md-12">
+                                <label for="comremark" class="col-form-label">Transfer To.</label>
+                                @Html.DropDownListFor(m => m.SelectedUsersTransfer, Model.SelectUsersTransferList, "- Please select -", new { @class = "form-control", @id = "ddlTransfer" })
+                            </div>
+
+                            <div class="text-center col-md-12">
+                                @foreach (var tblcomment in Model.Language.Where(x => x.GroupCode == "frmTransferBtnInput"))
+                                {
+                                    <button type="button" class="btn btn-dark-blue transferdoc" id="@tblcomment.Code.Trim()" name="@tblcomment.Value1" value="@tblcomment.Value2"><i class="fas fa-save"> </i> @tblcomment.Value1</button>
+                                }
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@using (Html.BeginForm("FileDownload", "DynamicForm", FormMethod.Post, new { @id = "todownload", @role = "form" }))
+{
+    @Html.Hidden("fileurl")
+}
+<!-- Control Sidebar -->
+<!-- /.control-sidebar -->
+@section Scripts{
+
+    <script type="text/javascript">
+        var urlParams = new URLSearchParams(window.location.search);
+
+        //var _DocCode = urlParams.get('code');
+        //var _DocNo = urlParams.get('docno');
+        var _DocCode = "@ViewBag.code";
+        var _DocNo = "@ViewBag.docno";
+        var _Mode = "@ViewBag.mode";
+        var _Seq = "@ViewBag.seq"
+
+
+        console.log(_DocNo);
+        function disableF5(e) { if ((e.which || e.keyCode) == 116) e.preventDefault(); };
+
+        $(document).ready(function () {
+
+            var config = {
+                '.chosen-select': {},
+                '.chosen-select-deselect': { allow_single_deselect: true },
+                '.chosen-select-no-single': { disable_search_threshold: 10 },
+                '.chosen-select-no-results': { no_results_text: 'Oops, nothing found!' },
+                '.chosen-select-rtl': { rtl: true },
+                '.chosen-select-width': { width: '95%' }
+            }
+            $.validator.setDefaults({ ignore: ":hidden:not(select)" })
+            for (var selector in config) {
+                $(selector).chosen(config[selector]);
+            }
+
+
+        $(document).on("keydown", disableF5);
+        //$(".CurrencySplit").blur(function () {
+        //    if (this.value != "") {
+        //        this.value = parseFloat(this.value.replace(/,/g, ""))
+        //            .toFixed(10)
+        //            .toString();
+        //    }
+        //});
+        //$(".CurrencySplit6").blur(function () {
+        //    if (this.value != "") {
+        //        this.value = parseFloat(this.value.replace(/,/g, ""))
+        //            .toFixed(6)
+        //            .toString();
+        //    }
+        //});
+        $("#BTN007").hide(); //btn transfer
+        $("#comdateapprove").hide(); //date approve
+        $("#divsign").hide();
+        $("input[name='exampleRadios']").click(function () {
+            if ($("#exampleRadios3").is(":checked")) {
+                $("#divsign").show();
+            }
+            else if ($("#exampleRadios2").is(":checked")) {
+                $("#divsign").hide();
+            } else if ($("#exampleRadios1").is(":checked")) {
+                $("#divsign").hide();
+            }
+
+        });
+    });
+
+        $(function () {
+            $('.listbox').chosen({
+                width : "100%"
+            }).change((event, info) => {
+                if (info.selected) {
+                    var container = document.querySelector("#" + event.target.id);
+                    var allSelected = container.querySelectorAll('option[selected]');
+                    //console.log(event.target.id);
+
+                    var lastSelected = allSelected[allSelected.length - 1];
+                    var selected = container.querySelector(`option[value="${info.selected}"]`);
+                         selected.setAttribute('selected', true);
+
+                    //console.log('lastSelected = ' + lastSelected);
+                     if (typeof lastSelected !== "undefined") {
+                        lastSelected.insertAdjacentElement('afterEnd', selected);
+                    }
+
+                } else { // info.deselected
+                        var container = document.querySelector("#" + event.target.id);
+                        var removed = container.querySelector(`option[value="${info.deselected}"]`);
+                        removed.setAttribute('selected', false); // this step is required for Edge
+                        removed.removeAttribute('selected');
+                    }
+                $("#" + event.target.id).trigger("chosen:updated");
+                //console.log($("#" + event.target.id).chosen().val());
+                });
+        });
+
+        function auto0(event, step, value, id) {
+            //console.log(event);
+            //console.log(id);
+            //console.log(value);
+            if (step != null && step != "") {
+            var decimalRegex = /(\d{0,})(\.(\d{1,})?)?/g
+            var decimalPartMatches = decimalRegex.exec(step);
+                    var decimalPart = "";
+                    if (decimalPartMatches[2]) {
+                        decimalPart = decimalPartMatches[2];
+            }
+            //console.log(decimalPart);
+
+                if (value != "" && decimalPart != "") {
+                value = parseFloat(value.replace(/,/g, ""))
+                    .toFixed(decimalPart.length - 1)
+                    .toString();
+                document.getElementById(id).value = value;
+                }
+            }
+            return true;
+        }
+    //-------------- Lock Refresh url--------------------------
+    //var clean_uri = location.protocol + "//" + location.host + location.pathname;
+    //window.history.replaceState({}, document.title, clean_uri);
+
+    //if (window.history.replaceState) {
+    //    window.history.replaceState(null, null, window.location.href);
+    //}
+    </script>
+    <script src="~/js/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="~/js/chosen/chosen.order.jquery.min.js"></script>
+    <script src="~/js/bootstrap-multiselect.js" type="text/javascript"></script>
+    <script src="~/Asset/LTE/bower_components/jquery/dist/jquery.serializejson.min.js"></script>
+    <!-- dependencies for zip mode -->
+    <script type="text/javascript" src="~/jquery.Thailand.js/dependencies/zip.js/zip.js"></script>
+    <!-- / dependencies for zip mode -->
+    <script type="text/javascript" src="~/jquery.Thailand.js/dependencies/JQL.min.js"></script>
+    <script type="text/javascript" src="~/jquery.Thailand.js/dependencies/typeahead.bundle.js"></script>
+    <script type="text/javascript" src="~/jquery.Thailand.js/src/jquery.Thailand.js"></script>
+    @*<script src="https://cdn.jsdelivr.net/npm/signature_pad@2.3.2/dist/signature_pad.min.js"></script>*@
+    <script src="~/signature_pad/js/signature_pad.umd.js"></script>
+    <script src="~/signature_pad/js/app.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/js/View/DynamicFormScript/index.js?version=7.9"></script>
+    <script src="~/js/View/DynamicFormScript/FormCondittion.js?version=1.8"></script>
+
+
+    <script>
+        $(function () {
+            var canvas = document.querySelector('#signature');
+            var pad = new SignaturePad(canvas);
+            $('#signature').on('mouseup', function () {
+                var data = pad.toDataURL();
+                //$('#savetarget').attr('src', data);
+                $('#SignatureDataUrl').val(data);
+                pad.off();
+            });
+
+            $('#clear').click(function () {
+
+                //$('#savetarget').removeAttr('src');
+                $('#SignatureDataUrl').val(null);
+
+            });
+        });
+
+
+
+    </script>
+    <partial name="_ValidationScriptsPartial" />
+}

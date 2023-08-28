@@ -1,0 +1,244 @@
+﻿@{
+
+    var username = "";
+    var Namempe = "";
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        username = User.Claims.FirstOrDefault(c => c.Type == "UserName").Value;
+        Namempe = User.Claims.FirstOrDefault(c => c.Type == "Namempe").Value;
+    }
+    else
+    {
+        username = "000000";
+    }
+    var img = username + ".jpg";
+
+}
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>AdmSOffice</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicons -->
+    <link href="~/image/Favicons.png" rel="icon">
+    <link href="~/Avilon/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Libraries CSS Files -->
+    <link href="~/Avilon/lib/animate/animate.min.css" rel="stylesheet">
+    <link href="~/Asset/LTE/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Avilon/lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+    <link href="~/Avilon/lib/magnific-popup/magnific-popup.css" rel="stylesheet">
+
+    <!-- Main Stylesheet File -->
+    <link href="~/Avilon/css/style.css" rel="stylesheet">
+
+
+    <link href="~/css/fontawesome-free-5.8.1-web/css/all.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/OwlCarousel/dist/assets/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/OwlCarousel/dist/assets/owl.theme.green.min.css" rel="stylesheet" />
+    <style>
+        body {
+            margin: 0;
+            font-family: "Prompt",-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+            font-size: 0.82rem;
+            font-weight: 400;
+            line-height: 1.4;
+            /*color: #212529;*/
+            text-align: left;
+            background-color: #ffffff;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!--==========================
+      Header
+    ============================-->
+
+
+    <nav id="aaa" class="main-header navbar navbar-expand-md navbar-light navbar-white" style="background: linear-gradient(45deg, #1de099, #1dc8cd)">
+        <a class="navbar-brand" href="@Url.Action("Index","Home")">
+            <img src="~/image/logo-smart.png" alt="Logo" style="width:250px;">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+                aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    @(await Component.InvokeAsync("MenuCMMHeaderControl", new { newstyle = "Normal" }))
+                </li>
+
+
+            </ul>
+            <ul class="navbar-nav ml-auto nav-flex-icons">
+                <li class="nav-item">
+                    @(await Component.InvokeAsync("SmartSearchControl"))
+                </li>
+
+                @if (User.Identity.IsAuthenticated == false)
+                {
+                    <li class="nav-item  ">
+                        <p class="mb-0"><a id="navbar-static-login" asp-area="Identity" asp-page="/Account/login" class="nav-link  waves-effect" style="color:white;"><i class="fas fa-sign-in-alt"></i> Sign In/Register </a></p>
+                    </li>
+
+                }
+                else
+                {
+                    <li class="nav-item dropdown open" style="padding-left: 15px;">
+                        <a href="javascript:;" class="user-profile dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false" style="color:white;">
+                            <img src="~/image/User/@img" alt="" style="width:40px" class="rounded-circle">@Namempe
+                        </a>
+                        <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+
+
+                            <a class="dropdown-item" href="../Home/Privacy"><i class="fas fa-user-cog"></i> Profile</a>
+
+
+                            <a href="javascript:$('#logout_form').submit();" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+
+                            <form class="form-inline" id="logout_form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"></form>
+
+
+
+                        </div>
+                    </li>
+                }
+
+
+            </ul>
+        </div>
+    </nav>
+ 
+    <!-- #header -->
+
+
+    <main id="main">
+        @RenderBody()
+    </main>
+
+    <!--==========================
+      Footer
+    ============================-->
+    <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="~/Avilon/lib/jquery/jquery.min.js"></script>
+    <script src="~/Avilon/lib/jquery/jquery-migrate.min.js"></script>
+    <script src="~/Avilon/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Avilon/lib/easing/easing.min.js"></script>
+    <script src="~/Avilon/lib/wow/wow.min.js"></script>
+    <script src="~/Avilon/lib/superfish/hoverIntent.js"></script>
+    <script src="~/Avilon/lib/superfish/superfish.min.js"></script>
+    <script src="~/Avilon/lib/magnific-popup/magnific-popup.min.js"></script>
+
+    <!-- Contact Form JavaScript File -->
+    <script src="~/Avilon/contactform/contactform.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script src="~/Avilon/js/main.js"></script>
+
+    <script src="~/Asset/LTE/bower_components/OwlCarousel/dist/owl.carousel.min.js"></script>
+    <script src="~/js/pagination.js"></script>
+
+    <script src="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.min.js"></script>
+
+    <!-- Template Main Javascript File -->
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#OwlHeader').owlCarousel({
+                items: 17,
+                loop: true,
+                autoplay: true,
+                nav: false,               
+                margin: 10,
+                responsiveClass: false,
+                responsive: {
+                    0: {
+                        items: 1, 
+                        loop: true,
+                        nav: false
+                    },                  
+                    1000: {
+                        items: 3,                      
+                        loop: true,
+                        nav: false
+                    }
+                }
+            });
+          
+            $("#owl-demo").owlCarousel({              
+                items: 12,
+                margin: 10,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    600: {
+                        items: 3,
+                        nav: true,
+                        loop: false
+                    },
+                    900: {
+                        items: 4,
+                        nav: true,
+                        loop: false
+                    },
+                    1300: {
+                        items: 6,
+                        nav: true,
+                        loop: false
+                    }
+                }
+
+            });
+
+            $("#owl-demo1").owlCarousel({
+                items: 12,
+                margin: 10,
+                responsive: {
+                    0: {
+                        items: 1,
+                        nav: true
+                    },
+                    600: {
+                        items: 3,
+                        nav: true,
+                        loop: false
+                    },
+                    900: {
+                        items: 4,
+                        nav: true,
+                        loop: false
+                    },
+                    1300: {
+                        items: 6,
+                        nav: true,
+                        loop: false
+                    }
+                }
+
+            });
+        });
+
+    </script>
+
+  
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,41 @@
+﻿@model SmartOffice.SurveyApp.ViewModel.ViewInputItem;
+<div class="card card-outline">
+    <div class="card-body">
+        <label>@Model.ItemName</label>
+        <div class="form-group">
+            @{
+                switch (Model.InputType)
+                {
+                    case "date":
+                        @*<input type="number" class="form-control" id="@Model.ItemCode" placeholder="Your Value">*@
+                        if (string.IsNullOrEmpty(@Model.FinalResult))
+                        {
+                            @Html.TextBox(@Model.ItemCode, @Model.FinalResult, new { @type = "text", @class = "form-control dateinput", @placeholder = "input Date" })
+                        }
+                        else
+                        {
+                            @Html.TextBox(@Model.ItemCode, @Model.FinalResult, new { @type = "text", @class = "form-control dateinputNoDefault", @placeholder = "input Date" })
+                        }
+
+                        break;
+                    case "time":
+                        @Html.TextBox(@Model.ItemCode, @Model.FinalResult, new { @type = "text", @class = "form-control timeinput", @placeholder = "Your Datetime" })
+                        break;
+                    case "datetime":
+                        if (string.IsNullOrEmpty(@Model.FinalResult))
+                        {
+                            @Html.TextBox(@Model.ItemCode, @Model.FinalResult, new { @type = "text", @class = "form-control datetimeinput", @placeholder = "input Date" })
+                        }
+                        else
+                        {
+                            @Html.TextBox(@Model.ItemCode, @Model.FinalResult, new { @type = "text", @class = "form-control datetimeinputNoDefault", @placeholder = "input Date" })
+                        }
+                        break;
+                    default:
+                        //Console.WriteLine("Default case");
+                        break;
+                }
+            }
+        </div>
+    </div>
+</div>

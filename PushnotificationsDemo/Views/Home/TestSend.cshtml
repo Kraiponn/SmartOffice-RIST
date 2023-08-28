@@ -1,0 +1,40 @@
+﻿<!doctype html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <title>Web Push Notifications Demo | Microsoft Edge Demos</title>
+    <meta name="viewport" content="viewport-fit=cover, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+  
+   
+    <meta name="theme-color" content="#2f32a0">
+    <!-- add to homescreen for ios -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="icon" href="images/favicon.png">
+
+</head>
+<body>
+
+    <main role="main">
+        <!-- Modal Content -->
+        <form class="modal-content animate" action="/action_page.php">
+            <div class="container">
+                <label for="title"><b>Title</b></label>
+                <input type="text" placeholder="Enter title" name="title" id="title" required>
+
+                <label for="message"><b>Message</b></label>
+                <input type="text" placeholder="Enter Message" name="message" id="message" required>
+
+                <input type="button" id="SendMessage" value="Send">
+
+            </div>
+        </form>
+    </main>
+    <script src="js/demo-template.js"></script>
+    <script src="js/util.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>

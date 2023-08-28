@@ -1,0 +1,456 @@
+﻿@model SmartOffice.Models.ViewModel.InternalTelephoneViewModel
+
+@{
+    ViewData["Title"] = "Internal Telephone Number";
+    Layout = null;
+
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    @*<link rel="shortcut icon" href="~/favicon.ico">*@
+    <link href="~/image/Favicons.png" rel="icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Internal Telephone Number</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="~/css/jquery-ui.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/InternalTelephone/plugins/fontawesome-free/css/all.min.css">
+    <!-- Tempusdominus Bbootstrap 4 -->
+    <link rel="stylesheet" href="~/InternalTelephone/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/InternalTelephone/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/InternalTelephone/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/InternalTelephone/dist/css/adminlte.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/InternalTelephone/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/InternalTelephone/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/InternalTelephone/plugins/summernote/summernote-bs4.css">
+
+    <link href="~/Asset/LTE/bower_components/datatables.net/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/responsive.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/rowGroup.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/select.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/buttons.dataTables.min.css" rel="stylesheet" />
+    <link href="~/css/menu-styles.css" rel="stylesheet" />
+
+
+
+    @*<link href="~/css/jquery-ui.css" rel="stylesheet">
+        <link href="~/Avilon/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link href="~/Asset/LTE/bower_components/datatables.net/dataTables.bootstrap4.css" rel="stylesheet" />
+        <link href="~/Asset/LTE/bower_components/datatables.net/responsive.dataTables.min.css" rel="stylesheet" />
+        <link href="~/Asset/LTE/bower_components/datatables.net/rowGroup.dataTables.min.css" rel="stylesheet" />
+        <link href="~/Asset/LTE/bower_components/datatables.net/select.dataTables.min.css" rel="stylesheet" />
+        <link href="~/css/fontawesome-free-5.8.1-web/css/all.min.css" rel="stylesheet" />
+        <link href="~/css/menu-styles.css" rel="stylesheet" />*@
+    @*<link href="~/Asset/LTE/bower_components/datatables.net/jquery.dataTables.min.css" rel="stylesheet" />*@
+    @*<link href="~/Asset/LTE/bower_components/datatables.net/buttons.dataTables.min.css" rel="stylesheet" />*@
+
+    <style>
+        /*.rowtd {
+            background-color: black;
+            opacity: 0.2;
+            filter: Alpha(opacity=50);
+            color:black;
+        }*/
+
+
+        html,
+        body {
+            height: 100%;
+            color: white;
+            background: #457fca; /* fallback for old browsers */
+            background: -webkit-linear-gradient(to right, #5691c8, #457fca); /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to right, #5691c8, #457fca); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+
+        body {
+            /*margin: 0;*/
+            /*font-family: sans-serif;*/
+            /*font-weight: 100;*/
+        }
+
+        .container {
+            /*position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);*/
+        }
+
+        table {
+            /*width: 800px;*/
+            border-collapse: collapse;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        th,
+        td {
+            /*padding: 5px;*/
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+        }
+
+        th {
+            text-align: left;
+        }
+
+        thead th {
+            background-color: #fff;
+            color: black
+        }
+
+
+        tbody tr:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        tbody td {
+            position: relative;
+        }
+
+            tbody td:hover:before {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: -9999px;
+                bottom: -9999px;
+                background-color: rgba(255, 255, 255, 0.1);
+                z-index: -1;
+            }
+
+        img {
+            border: 1px solid #ddd;
+            border-radius: 50%;
+            padding: 2px;
+            width: 70px;
+            border-color: #87dbf7;
+        }
+
+        .dataTables_filter {
+            display: none;
+        }
+
+        div.dt-buttons {
+            float: right;
+        }
+
+        .buttons-print {
+            background-color: white;
+            color: black;
+        }
+
+        .buttons-excel {
+            background-color: white;
+            color: black;
+        }
+
+        .buttons-copy {
+            background-color: white;
+            color: black;
+        }
+
+        .buttons-csv {
+            background-color: white;
+            color: black;
+        }
+
+        .has-search .form-control {
+            padding-left: 2.375rem;
+        }
+
+        .has-search .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #aaa;
+        }
+    </style>
+</head>
+
+<body class="hold-transition sidebar-mini layout-fixed">
+
+    <div class="wrapper">
+        @*<div id='stars'></div>
+            <div id='stars2'></div>
+            <div id='stars3'></div>*@
+        <!-- Navbar -->
+        
+            <nav class="main-header navbar navbar-expand navbar-dark navbar-light" style="background: #0575E6;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #021B79, #0575E6);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #021B79, #0575E6); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+                <!-- Left navbar links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                    </li>
+                    <li class='nav-item d-none d-sm-inline-block'>
+                        <a class="nav-link" href='../Home/Index'><span><i class="fas fa-home fa-1x"></i></span></a>
+                    </li>
+                    <li class="nav-item d-none d-sm-inline-block">
+
+                    </li>
+                </ul>
+
+                <!-- Right navbar links -->
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item">
+
+
+                        <div class="form-group has-search">
+                            <span class="fa fa-search form-control-feedback"></span>
+                            <input id="myFilter" class="form-control form-control-navbar bg-light" type="search" placeholder="Search" aria-label="Search" style="background-color: #000000;opacity: 0.6;filter: alpha(opacity=60);">
+                        </div>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- /.navbar -->
+            <!-- Main Sidebar Container -->
+            <aside class="main-sidebar sidebar-light-primary elevation-4">
+                <!-- Brand Logo -->
+                <a href="../InternalTelephone/Index" class="brand-link" style="background-color:#1d3047">
+                    <img src="~/image/Telephone/icon.gif" alt="" class="brand-image img-circle elevation-3"
+                         style="opacity: .8">
+                    <span class="brand-text font-weight-light text-light">Internal Telephone Number</span>
+                </a>
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <!-- Sidebar user panel (optional) -->
+                    <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                        <div class="image">
+                            @*<img src="dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">*@
+
+                            <i class="fas fa-map-marker-alt fa-2x " style="color:cornflowerblue"></i>
+                        </div>
+
+                        <form method="post" class="" id="forminput">
+                            <div class="info">
+                                @*<a href="#" class="d-block">Alexander Pierce</a>*@
+                                <div class="" id="divgroupcode" style="width:200px">
+
+                                    @Html.DropDownList("groupcode", Model.ddlgroups, new { @class = "form-control", @id = "groupcode", required = "required", @style = "background-color:#CAE9FF;" })
+                                    @Html.ValidationMessage("groupcode")
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Sidebar Menu -->
+                    <nav class="mt-2">
+                        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            <!-- Add icons to the links using the .nav-icon class
+                            with font-awesome or any other icon font library -->
+
+                            @foreach (var item in Model.groupdatas.Select(x => new { x.Group1, x.DisplayGroup1 }).Distinct().OrderBy(x => x.DisplayGroup1))
+                            {
+                                var item2 = Model.groupdatas.Where(x => x.DisplayGroup1 == item.DisplayGroup1 && x.Group2 != "").Select(x => new { x.Group2, x.DisplayGroup2 }).Distinct().OrderBy(x => x.DisplayGroup2).ToList();
+                                <li class="nav-item">
+                                    <a href='?displaygroup1=@item.DisplayGroup1&displaygroup2=0&displaygroup3=0' class="test nav-link text-white" style="background-color:#1d3047">
+                                        <i class="fas fa-map-marker-alt fa-lg"></i>
+                                        <p>
+                                            @item.Group1
+
+                                        </p>
+                                    </a>
+                                </li>
+                                @if (item2.Count > 0)
+                                {
+                                    @foreach (var item22 in item2)
+                                    {
+                                        var item3 = Model.groupdatas.Where(x => x.DisplayGroup1 == item.DisplayGroup1 && x.DisplayGroup2 == item22.DisplayGroup2 && x.Group3 != "").Select(x => new { x.Group3, x.DisplayGroup3 }).Distinct().OrderBy(x => x.DisplayGroup3).ToList();
+                                        <li class="nav-item pl-3">
+                                            <a href='?displaygroup1=@item.DisplayGroup1&displaygroup2=@item22.DisplayGroup2&displaygroup3=0' class="test nav-link">
+                                                <i class="fas fa-circle fa-sm"></i>
+                                                <p>@item22.Group2</p>
+                                            </a>
+                                        </li>
+                                        @if (item3.Count > 0)
+                                        {
+                                            @foreach (var item33 in item3)
+                                            {
+                                                <li class="nav-item pl-5">
+                                                    <a href='?displaygroup1=@item.DisplayGroup1&displaygroup2=@item22.DisplayGroup2&displaygroup3=@item33.DisplayGroup3' class="test nav-link">
+                                                        <i class="far fa-circle fa-sm"></i>
+                                                        <p>@item33.Group3</p>
+                                                    </a>
+                                                </li>
+                                            }
+
+                                        }
+
+                                    }
+
+                                }
+
+                            }
+
+                        </ul>
+                    </nav>
+                    <!-- /.sidebar-menu -->
+                </div>
+                <!-- /.sidebar -->
+            </aside>
+
+            <div class="content-wrapper" style="background: #457fca;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #5691c8, #457fca);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #5691c8, #457fca); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */">
+
+                <div>
+
+                    @*<div>
+                            <h3 style="color:#e50914 ;text-shadow: 3px 3px black ; font-family: Arial Black, Gadget, sans-serif"><img src="~/image/Telephone/icon.gif" style="width:50px ; background-color:#000000" class="rounded-circle" /> Internal Telephone Number</h3>
+                        </div>*@
+                    @*<div id='cssmenu'>
+                            <ul style="background-color:#000000">
+                                <li class='active'><a href='~/../Home/Index'><span><i class="fas fa-home fa-1x" style="color:#000; "></i></span></a></li>
+                                <li><a href='?search=ALL'><span>ALL</span></a></li>
+
+                                @foreach (var item in Model.groups)
+                                {
+                                    <li><a href='?search=@item.Group1'>@item.Group1</a></li>
+                                }
+
+                                <li>
+                                    <div class="md-form mt-1">
+                                        <input id="myFilter" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>*@
+
+                    <div class="container">
+                        <table class="table w-responsive display" cellpadding="0" cellspacing="0" border="0" style="width:100% ;" id="TableTelephone">
+                            <thead class="rowtd text-dark">
+                                <tr>
+                                    <th>Row Id</th>
+                                    <th>Group1</th>
+                                    <th>DisplayGroup1</th>
+                                    <th>Group2</th>
+                                    <th>DisplayGroup2</th>
+                                    <th>Group3</th>
+                                    <th>DisplayGroup3</th>
+                                    <th>Display</th>
+                                    <th>Title1</th>
+                                    <th>Title2</th>
+                                    <th>Picture</th>
+                                    <th>Emp Id</th>
+                                    <th>Name</th>
+                                    <th>Tel No</th>
+                                    <th>Fax No</th>
+                                    <th>D</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+                <!-- /.container -->
+            </div>
+       
+    </div>
+</body>
+</html>
+
+@*<script src="~/Asset/LTE/bower_components/datatables.net/jquery-3.3.1.js"></script>*@
+@*<script src="~/Avilon/lib/jquery/jquery.min.js"></script>
+    <script src="~/Avilon/lib/jquery/jquery-migrate.min.js"></script>*@
+@*<script src="~/Avilon/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/jquery.dataTables.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.bootstrap4.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.responsive.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.cellEdit.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.rowGroup.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.select.min.js"></script>
+
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.buttons.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/buttons.flash.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/jszip.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/pdfmake.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/vfs_fonts.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/buttons.html5.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/buttons.print.min.js"></script>*@
+
+
+<!-- jQuery -->
+<script src="~/InternalTelephone/plugins/jquery/jquery.min.js"></script>
+<!-- jQuery UI 1.11.4 -->
+@*<script src="~/InternalTelephone/plugins/jquery-ui/jquery-ui.min.js"></script>*@
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+@*<script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>*@
+<!-- Bootstrap 4 -->
+<script src="~/InternalTelephone/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- ChartJS -->
+<script src="~/InternalTelephone/plugins/chart.js/Chart.min.js"></script>
+<!-- Sparkline -->
+<script src="~/InternalTelephone/plugins/sparklines/sparkline.js"></script>
+<!-- JQVMap -->
+@*<script src="~/InternalTelephone/plugins/jqvmap/jquery.vmap.min.js"></script>*@
+@*<script src="~/InternalTelephone/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>*@
+<!-- jQuery Knob Chart -->
+<script src="~/InternalTelephone/plugins/jquery-knob/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="~/InternalTelephone/plugins/moment/moment.min.js"></script>
+<script src="~/InternalTelephone/plugins/daterangepicker/daterangepicker.js"></script>
+<!-- Tempusdominus Bootstrap 4 -->
+<script src="~/InternalTelephone/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- Summernote -->
+<script src="~/InternalTelephone/plugins/summernote/summernote-bs4.min.js"></script>
+<!-- overlayScrollbars -->
+<script src="~/InternalTelephone/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<!-- AdminLTE App -->
+<script src="~/InternalTelephone/dist/js/adminlte.js"></script>
+<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+@*<script src="~/InternalTelephone/dist/js/pages/dashboard.js"></script>*@
+<!-- AdminLTE for demo purposes -->
+<script src="~/InternalTelephone/dist/js/demo.js"></script>
+
+@*<script src="~/Asset/LTE/bower_components/datatables.net/jquery-3.3.1.js"></script>*@
+@*<script src="~/Avilon/lib/bootstrap/js/bootstrap.bundle.min.js"></script>*@
+<script src="~/Asset/LTE/bower_components/datatables.net/jquery.dataTables.min.js"></script>
+<script src="~/Asset/LTE/bower_components/datatables.net/dataTables.bootstrap4.js"></script>
+<script src="~/Asset/LTE/bower_components/datatables.net/dataTables.responsive.min.js"></script>
+<script src="~/Asset/LTE/bower_components/datatables.net/dataTables.cellEdit.js"></script>
+<script src="~/Asset/LTE/bower_components/datatables.net/dataTables.rowGroup.min.js"></script>
+<script src="~/Asset/LTE/bower_components/datatables.net/dataTables.select.min.js"></script>
+
+<script src="~/Asset/LTE/bower_components/datatables.net/dataTables.buttons.min.js"></script>
+<script src="~/Asset/LTE/bower_components/datatables.net/buttons.flash.min.js"></script>
+<script src="~/Asset/LTE/bower_components/datatables.net/jszip.min.js"></script>
+@*<script src="~/Asset/LTE/bower_components/datatables.net/pdfmake.min.js"></script>*@
+<script src="~/Asset/LTE/bower_components/datatables.net/vfs_fonts.js"></script>
+<script src="~/Asset/LTE/bower_components/datatables.net/buttons.html5.min.js"></script>
+<script src="~/Asset/LTE/bower_components/datatables.net/buttons.print.min.js"></script>
+
+<script src="~/InternalTelephone/dist/js/buttons.bootstrap4.min.js"></script>
+
+
+<script src="~/js/View/InternalTelephoneControl/InternalTelephone.js"></script>
+
+
+<script type="text/javascript">
+    var urlParams = new URLSearchParams(window.location.search);
+
+    var _displaygroup1 = urlParams.get('displaygroup1') == null ? $("#groupcode").val() : urlParams.get('displaygroup1');
+    var _displaygroup2 = urlParams.get('displaygroup2') == null ? 0 : urlParams.get('displaygroup2');
+    var _displaygroup3 = urlParams.get('displaygroup3') == null ? 0 : urlParams.get('displaygroup3');
+
+    //alert(_displaygroup1 + _displaygroup2 + _displaygroup3);
+</script>

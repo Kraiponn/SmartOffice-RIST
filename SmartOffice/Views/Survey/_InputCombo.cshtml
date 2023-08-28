@@ -1,0 +1,19 @@
+﻿@model SmartOffice.SurveyApp.ViewModel.ViewInputItem;
+<div class="card card-outline">
+    <div class="card-body">
+        <label>@Model.ItemName</label>
+        <div class="form-group">
+            @Html.DropDownList(Model.ItemCode,
+
+                        new SelectList
+                       (   Model.ValueLists,
+                           "Value",
+                          "ValueText",
+                          Model.FinalResult
+                        ),
+                    "Select Value",
+                    new { @class = "form-control" })
+            @Html.ValidationMessage(Model.ItemCode, "", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>

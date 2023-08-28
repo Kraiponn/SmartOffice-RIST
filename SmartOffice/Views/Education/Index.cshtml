@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutEducation.cshtml";
+}
+<style>
+    @@media only screen and (max-width: 1200px) {
+        #nav {
+            display: none;
+        }
+}
+</style>
+<div class="main-container">
+    <div class="row">
+        <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12">
+            @await Html.PartialAsync("_HeaderSlide")
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-2 col-md-12 col-xs-12">
+            @await Html.PartialAsync("_Menu")
+        </div>
+        <div class="col-xl-10 col-md-12 col-xs-12">          
+           @await Html.PartialAsync("_LastCourse")               
+         </div>          
+        </div>
+</div>
+           
+
+

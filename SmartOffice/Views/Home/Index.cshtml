@@ -1,0 +1,482 @@
+﻿@inject SmartOffice.Class.MenuMasterService menus
+@model List<SmartOffice.Models.Nnews>
+@{
+    Layout = "_Layout";
+    ViewData["Title"] = "Index";
+}
+<style>
+
+    .moonrise-gradient {
+        background: #DAD299; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to right, #B0DAB9, #DAD299); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to right, #B0DAB9, #DAD299); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    }
+
+    .black-gradient {
+        background-color: #2d3436;
+        background-image: linear-gradient(315deg, #2d3436 0%, #000000 74%);
+        box-shadow: 5px 5px 20px 7px rgba(0,0,0,0.25), -5px -5px 20px 7px rgba(0,0,0,0.22);
+    }
+
+    .rgba-gradient {
+        background: -moz-linear-gradient(45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+        background: -webkit-linear-gradient(45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+        background: linear-gradient(to 45deg, rgba(185,128,131, 0.6), rgba(31,73,91, 0.69) 100%);
+        box-shadow: 5px 5px 20px 7px rgba(0,0,0,0.25), -5px -5px 20px 7px rgba(0,0,0,0.22);
+    }
+
+    .anime-gradient {
+        background: linear-gradient(-45deg, #ee7752, #e73c7e, #b31217, #23d5ab);
+        background-size: 400% 400%;
+        animation: gradient 60s ease infinite;
+    }
+
+    .bg-image {
+        background-image: url('image/200236.jpg');
+        background-size: cover;
+    }
+
+
+    @@keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
+
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    .bg-bubbles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+        .bg-bubbles li {
+            position: absolute;
+            list-style: none;
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.15);
+            bottom: -160px;
+            -webkit-animation: square 25s infinite;
+            animation: square 25s infinite;
+            -webkit-transition-timing-function: linear;
+            transition-timing-function: linear;
+        }
+
+            .bg-bubbles li:nth-child(1) {
+                left: 10%;
+            }
+
+            .bg-bubbles li:nth-child(2) {
+                left: 20%;
+                width: 80px;
+                height: 80px;
+                animation-delay: 2s;
+                animation-duration: 17s;
+            }
+
+            .bg-bubbles li:nth-child(3) {
+                left: 25%;
+                animation-delay: 4s;
+            }
+
+            .bg-bubbles li:nth-child(4) {
+                left: 40%;
+                width: 60px;
+                height: 60px;
+                animation-duration: 22s;
+                background-color: rgba(255,255,255,0.25);
+            }
+
+            .bg-bubbles li:nth-child(5) {
+                left: 70%;
+            }
+
+            .bg-bubbles li:nth-child(6) {
+                left: 80%;
+                width: 120px;
+                height: 120px;
+                animation-delay: 3s;
+                background-color: rgba(255,255,255,0.2);
+            }
+
+            .bg-bubbles li:nth-child(7) {
+                left: 32%;
+                width: 160px;
+                height: 160px;
+                animation-delay: 7s;
+            }
+
+            .bg-bubbles li:nth-child(8) {
+                left: 55%;
+                width: 20px;
+                height: 20px;
+                animation-delay: 15s;
+                animation-duration: 40s;
+            }
+
+            .bg-bubbles li:nth-child(9) {
+                left: 25%;
+                width: 10px;
+                height: 10px;
+                animation-delay: 2s;
+                animation-duration: 40s;
+                background-color: rgba(255,255,255,0.3);
+            }
+
+            .bg-bubbles li:nth-child(10) {
+                left: 90%;
+                width: 160px;
+                height: 160px;
+                animation-delay: 11s;
+            }
+
+    @@-webkit-keyframes square {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(-700px) rotate(600deg);
+        }
+    }
+
+    @@keyframes square {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(-700px) rotate(600deg);
+        }
+    }
+
+
+    .background {
+        background-color: none;
+        /*opacity: 0.5;
+        filter: Alpha(opacity=90);*/
+        /*height:820px;*/
+    }
+
+
+
+    #carousel-pager .carousel-control-prev {
+        bottom: initial;
+        width: 100%;
+    }
+
+    #carousel-pager .carousel-control-next {
+        top: initial;
+        width: 100%;
+    }
+
+    #carousel-main .carousel-control-prev .carousel-control-prev-icon {
+        margin-left: -100px;
+    }
+
+    #carousel-main .carousel-control-next .carousel-control-next-icon {
+        margin-right: -100px;
+    }
+
+    #carousel-main .carousel-indicators li {
+        width: 10px;
+        height: 10px;
+        border-radius: 100%;
+    }
+
+    #carousel-main .carousel-indicators {
+        bottom: -20px;
+    }
+</style>
+
+<div class="main-container">
+    <div class="row" id="toppage">
+        <div class="col-xl-3 col-lg-4 col-md-12 col-xs-12 p-0" style="background-color:#141414">
+            @(await Component.InvokeAsync("PicslideMain2Control", new { GroupCateg = "0", newstyle = "Normal" }))
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-12 col-xs-12 p-0">
+            @(await Component.InvokeAsync("PicslideMainControl", new { GroupCateg = "0", newstyle = "Normal" }))
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-12 p-0">
+            @(await Component.InvokeAsync("SubMenuControl", new { newstyle = "Normal" }))
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-3 col-lg-4 col-md-12 col-xs-12 p-0">
+
+            @(await Component.InvokeAsync("FavoriteMenuControl"))
+
+            @(await Component.InvokeAsync("GroupControl", new { GroupCateg = "0", newstyle = "Normal" }))
+
+            @(await Component.InvokeAsync("QuickLinkControl"))
+
+        </div>
+        <div class="col-xl-9 col-lg-8 col-md-12 col-xs-12 p-0">
+            <div class="row  wow fadeInUp">
+                <div class="col-12 p-0">
+                    <div class="container-fluid">
+
+                        <section id="call-to-action" class="p-0">
+                            @(await Component.InvokeAsync("SubSystemsControl", new { newstyle = "Normal" }))
+                        </section>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 p-0">
+                    <div class="container-fluid">
+                        <section id="venue" class="p-0 ">
+                            @(await Component.InvokeAsync("NewsControl", new { DeptType = "Mainnews", newstyle = "Normal" }))
+                        </section>
+                    </div>
+
+                    <div class="container-fluid">
+                        <div class="p-2" style="background: #1D976C;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #93F9B9, #1D976C);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #93F9B9, #1D976C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+">
+                            <div class="row background">
+
+                                <div class="col-xl-9 col-lg-8 col-md-12 col-xs-12 p-3">
+                                    <div id="carousel-main" class="carousel slide " data-ride="carousel" data-interval="5000">
+
+                                        @{
+                                            var k = 0;
+                                        }
+                                        <ol class="carousel-indicators">
+                                            @foreach (var item in Model)
+                                            {
+                                                var active = "";
+                                                if (k == 0)
+                                                {
+                                                    active = "active";
+                                                }
+                                                <li data-target="#carousel-main" data-slide-to="@k" class="@active"></li>
+                                                k += 1;
+                                            }
+                                        </ol>
+
+                                        <div class="carousel-inner">
+
+                                            @{
+                                                var i = 0;
+                                            }
+                                            @foreach (var item in Model)
+                                            {
+                                                var active = "";
+                                                if (i == 0)
+                                                {
+                                                    active = "active";
+                                                }
+                                                <div class="carousel-item @active">
+
+                                                    @if (item.ItemType == "image")
+                                                    {
+                                                        <img class="img-fluid" src="~/image/@item.GroupCateg/@item.NewsType/@item.Value" alt="@item.Value1" />
+                                                    }
+                                                    else if (item.Value.Contains(".pdf"))
+                                                    {
+
+                                                        <iframe src="~/image/@item.GroupCateg/@item.NewsType/@item.Value#zoom=75" style="width:100%; height:100vh;" frameborder="0"></iframe>
+                                                    }
+                                                    else if (item.Value.Contains(".mp4") || item.Value.Contains(".avi") || item.Value.Contains(".m4v") || item.Value.Contains(".mov")
+                                                        || item.Value.Contains(".mpg") || item.Value.Contains(".mpeg") || item.Value.Contains(".wmv") || item.Value.Contains(".swf"))
+                                                    {
+                                                        <div class="embed-responsive embed-responsive-16by9">
+                                                            <video preload="auto" controls>
+                                                                <source src="~/image/@item.GroupCateg/@item.NewsType/@item.Value">
+                                                            </video>
+                                                        </div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <a href="~/image/@item.GroupCateg/@item.NewsType/@item.Value" target="_blank">
+                                                            <h6>@item.Value1</h6>
+                                                            <img class="img-fluid" src="~/image/FileMaster.jpg" alt="@item.Value1" />
+                                                        </a>
+                                                    }
+
+                                                </div>
+                                                i += 1;
+                                            }
+                                        </div>
+
+                                        <!-- Controls -->
+                                        @*<a class="carousel-control-prev" href="#carousel-main" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>*@
+                                        @*<a class="carousel-control-next" href="#carousel-main" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>*@
+
+
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 col-lg-4 col-md-12 col-xs-12">
+                                    <div id="carousel-pager" class="carousel vert slide " data-ride="carousel" data-interval="5000">
+                                        <!-- Carousel items -->
+                                        <div class="carousel-inner vertical">
+                                            @{
+                                                var j = 0;
+                                            }
+                                            @foreach (var item in Model)
+                                            {
+                                                var active = "";
+                                                if (j == 0)
+                                                {
+                                                    active = "active";
+                                                }
+                                                <div class="carousel-item @active">
+                                                    <div class="card" style="background-color:#fff;" data-target="#carousel-main" data-slide-to="@j">
+                                                        <div class="card-body">
+                                                            <div class="row">
+                                                                <div class="col-11">
+                                                                    <div class="font-weight-bold responsFont"><i class="far fa-calendar-alt"></i> @item.UpdateDate</div>
+                                                                    <div class="responsFont">@item.Title1</div>
+                                                                </div>
+
+                                                                <div class="col-1">
+                                                                    @if (User.Identity.IsAuthenticated)
+                                                                    {
+                                                                        var GroupCateg = User.Claims.FirstOrDefault(c => c.Type == "GroupCateg").Value;
+                                                                        if (GroupCateg == @item.GroupCateg)
+                                                                        {
+                                                                            <a onclick="return SetShowPublic('@item.GroupCateg','@item.NewHorder','@item.NewDorder','@item.PartId','@item.Title1');"><span class="fa-stack"><i class="fas fa-ban" style="color:#9abcc3"></i></span></a>
+                                                                        }
+                                                                    }
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                j += 1;
+                                            }
+                                        </div>
+
+                                        <!-- Controls -->
+                                        <a class=" carousel-control-prev" href="#carousel-pager" role="button" data-slide="prev">
+                                            <span class="" aria-hidden="true"><i class="fas fa-angle-up" style="color:black"></i></span>
+
+                                            <span class="sr-only">Previous</span>
+                                        </a>
+                                        <a class=" carousel-control-next" href="#carousel-pager" role="button" data-slide="next">
+                                            <span class="" aria-hidden="true"><i class="fas fa-angle-down" style="color:black"></i></span>
+                                            <span class="sr-only">Next</span>
+                                        </a>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts{
+
+    <script type="text/javascript">
+
+        $(document).ready(function () {
+
+            $('.carousel .vertical .carousel-item').each(function () {
+                var next = $(this).next();
+                if (!next.length) {
+                    next = $(this).siblings(':first');
+                }
+                next.children(':first-child').clone().appendTo($(this));
+
+                for (var i = 1; i < 8; i++) {
+                    next = next.next();
+                    if (!next.length) {
+                        next = $(this).siblings(':first');
+                    }
+
+                    next.children(':first-child').clone().appendTo($(this));
+                }
+            });
+
+
+            // executes when HTML-Document is loaded and DOM is ready
+            // breakpoint and up
+            $(window).resize(function () {
+                if ($(window).width() >= 980) {
+
+                    // when you hover a toggle show its dropdown menu
+                    $(".navbar .dropdown-toggle").hover(function () {
+                        $(this).parent().toggleClass("show");
+                        $(this).parent().find(".dropdown-menu").toggleClass("show");
+                    });
+
+                    // hide the menu when the mouse leaves the dropdown
+                    $(".navbar .dropdown-menu").mouseleave(function () {
+                        $(this).removeClass("show");
+                    });
+
+                    // do something here
+                }
+            });
+        });
+
+
+        function SetShowPublic(_DocCat, _NewsHOrder, _NewsDOrder, _Partid, _Title1) {
+
+            Swal.fire({
+                title: 'Are you sure to hide ' + _Title1 + ' ?',
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "Yes, Hide it !!"
+            }).then((result) => {
+                if (result.value) {
+
+                    var url = '../News/SetShowPublic';
+                    $.post(url, { DocCat: _DocCat, NewHorder: _NewsHOrder, NewsDOrder: _NewsDOrder, PartId: _Partid }, function (data) {
+                        if (data.status) {
+                            location.href = location.href;
+                            //successBR(data.detail, data.subject)
+                        }
+                        else {
+                            warningBR(data.detail, data.subject)
+                        }
+                    });
+                }
+            });
+        }
+    </script>
+}
+
+
+
+
+
+
+
+
+

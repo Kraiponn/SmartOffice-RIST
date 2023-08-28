@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewData["Title"] = "PRDashboard";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+    <link rel="stylesheet" type="text/css" href="~/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="~/css/style-dataTables-nested.css">
+}
+
+
+@*<div class="container-fluid">*@
+<div class="card shadow-none mt-3 border border-light">
+    <div class="card-header bg-primary"><h5>PRIssued</h5></div>
+    <div class="card-body">
+        <div id="G1"></div>
+    </div>
+</div>
+<div class="card shadow-none mt-3 border border-light">
+    <div class="card-header bg-primary"><h5>Remain Buyer</h5></div>
+    <div class="card-body">
+        <div id="G2"></div>
+    </div>
+</div>
+<div class="card shadow-none mt-3 border border-light">
+    <div class="card-header bg-primary"><h5>Waiting Buyer Get Data</h5></div>
+    <div class="card-body">
+        <div id="G3"></div>
+    </div>
+</div>
+<div class="card shadow-none mt-3 border border-light">
+    <div class="card-header bg-primary"><h5>Waiting POIssue Get Data</h5></div>
+    <div class="card-body">
+        <div id="G4"></div>
+    </div>
+</div>
+<div class="card shadow-none mt-3 border border-light">
+    <div class="card-header bg-primary"><h5>buyer approve finished</h5></div>
+    <div class="card-body">
+        <div id="G5"></div>
+    </div>
+</div>
+@*</div>*@
+
+
+
+
+@section Scripts{
+    <script src="~/datatables/js/nested.tables.min.js"></script>
+    <script src="~/js/View/PRMainControl/PRDashboard.js"></script>
+}
+

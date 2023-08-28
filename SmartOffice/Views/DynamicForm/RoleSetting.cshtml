@@ -1,0 +1,478 @@
+﻿@model SmartOffice.ModelsForm.SettingRole
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutStore.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+
+    <link href="~/css/bootstrap-multiselect.css" rel="stylesheet" type="text/css" />
+    <link href="~/css/chosen/chosen.css" rel="stylesheet" type="text/css" />
+
+    <style>
+        nav > .nav.nav-tabs {
+            border: none;
+            color: #fff;
+            background: #272e38;
+            border-radius: 0;
+        }
+
+        nav > div a.nav-item.nav-link,
+        nav > div a.nav-item.nav-link.active {
+            border: none;
+            padding: 18px 25px;
+            color: #fff;
+            background: #272e38;
+            border-radius: 0;
+        }
+
+            nav > div a.nav-item.nav-link.active:after {
+                content: "";
+                position: relative;
+                bottom: -60px;
+                left: -10%;
+                border: 15px solid transparent;
+                border-top-color: #e74c3c;
+            }
+
+        /*.tab-content {
+            background: #fdfdfd;
+            line-height: 25px;
+            border: 1px solid #ddd;
+            border-top: 5px solid #e74c3c;
+            border-bottom: 5px solid #e74c3c;
+            padding: 30px 25px;
+        }*/
+
+        nav > div a.nav-item.nav-link:hover,
+        nav > div a.nav-item.nav-link:focus {
+            border: none;
+            background: #e74c3c;
+            color: #fff;
+            border-radius: 0;
+            transition: background 0.20s linear;
+        }
+
+        .my-input-class {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="row">
+        <div class="col-md-12 ">
+            <nav>
+                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
+                    <a class="nav-item nav-link active" id="nav-Role-tab" data-toggle="tab" href="#nav-Role" role="tab" aria-controls="nav-Role" aria-selected="true">Role & User Master</a>
+
+                    <a class="nav-item nav-link " id="nav-Doc-tab" data-toggle="tab" href="#nav-Doc" role="tab" aria-controls="nav-Doc" aria-selected="false">Document</a>
+
+                </div>
+            </nav>
+            <div class="tab-content py-3 px-3 px-sm-0" id="nav-tabContent">
+
+                <!--------------------------------------------------------Table Role ---------------------------------------------------------------------->
+                <div class="tab-pane fade show active" id="nav-Role" role="tabpanel" aria-labelledby="nav-Role-tab">
+                    <h5 class="card-title">Role & User Master</h5>
+                    <hr COLOR="#FF0000" SIZE="3" />
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group mr-1">
+                                    <button type="button" class="btn btn-orange-moon" aria-label="Left Align" onclick="AddMasterRole();"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>New Role</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <table class="table table-striped display responsive table-sm" style="width:100%" id="TableMasterRole">
+                        <thead class="" style="background-color:#E4572E">
+                            <tr>
+                                <th></th>
+                                <th>Role ID</th>
+                                <th>Group ID</th>
+                                <th>Value</th>
+                                <th>Role Name</th>
+                                <th>AddDate</th>
+                                <th>UpdDate</th>
+                                <th>User</th>
+                                <th>ComputerName</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+
+
+                <!--------------------------------------------------------Table Doc ---------------------------------------------------------------------->
+
+                <div class="tab-pane fade " id="nav-Doc" role="tabpanel" aria-labelledby="nav-Doc-tab">
+                    <h5 class="card-title">Document</h5>
+                    <hr COLOR="#FF0000" SIZE="3" />
+
+                    <div class="row">
+                        <div class="col-12">
+                            <table class="table table-striped display responsive table-sm" style="width:100%" id="TableMasterDoc">
+                                <thead class="btn-dark-moon">
+                                    <tr>
+                                        <th></th>
+                                        <th>Form</th>
+                                        <th>Flow ID</th>
+                                        <th>Seq No</th>
+                                        <th>Role ID</th>
+                                        <th>Role Name</th>
+                                        <th>Code</th>
+                                        <th>Name TH</th>
+                                        <th>Name Eng</th>
+                                        <th>Name JP</th>
+                                        <th>0 คือ สามารถ Skip Flow / 1 คือ ไม่สามารถ Skip Flow</th>
+                                        <th>คำอธิบายเมื่อเลือก Skip Flow</th>
+                                        <th>0 คือ ทุกคนที่อยู่ใน Role ต้อง Approve / 1 คือ คนใดคนหนึ่งที่อยู่ใน Role ต้อง Approve</th>
+                                        <th>OR คือ คนใดคนหนึ่งที่อยู่ใน Role ต้อง Approve / AND คือ ทุกคนที่อยู่ใน Role ต้อง Approve</th>
+                                        <th>กำหนดสิทธิ์การเลือกคน (เฉพาะ AND) / ถ้าใส่ว่างคือให้ลำดับที่ 1 เลือก</th>
+                                        <th>กรณี Reject ให้ถอยกลับไปที่ลำดับไหน? / ถ้าใส่ว่างคือให้ถอยหลัง -1</th>
+                                    </tr>
+                                    @*<tr>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>1 คือ ไม่สามารถ Skip Flow</th>
+                                        <th></th>
+                                        <th>1 คือ คนใดคนหนึ่งที่อยู่ใน Role ต้อง Approve</th>
+                                        <th>AND คือ ทุกคนที่อยู่ใน Role ต้อง Approve</th>
+                                        <th>ถ้าใส่ว่างคือให้ลำดับที่ 1 เลือก</th>
+                                        <th>ถ้าใส่ว่างคือให้ถอยหลัง -1</th>
+                                    </tr>*@
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------------------Modal Doc ---------------------------------------------------------------------->
+    <div id="modal-placeholder">
+        <div class="modal fade bd-example-modal-lg" id="myModalMasterDoc" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content pt-5">
+                    <div class="modal-header text-light" style="background-color:#272e38">
+                        <h5 class="modal-title" id="exampleModalLabel">Edit Flow</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data" class="form-horizontal">
+                            <div id="divdoc">
+                                <div class="card">
+                                    <div class="card-header bg-gray">
+                                        ส่วนของเอกสาร
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="txtflowid" class="col-form-label">ID</label>
+                                            <div class="input-group">
+                                                <input type="text" id="txtflowid" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtform" class="col-form-label">Form</label>
+                                            <div class="input-group">
+                                                <textarea id="txtform" class="form-control" readonly></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header bg-gray">
+                                        ส่วนจัดการ Flow
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="txtseq" class="col-form-label">Seq No</label>
+                                            <div class="input-group">
+                                                <input type="text" id="txtseq" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtcode" class="col-form-label">Code</label>
+                                            <div class="input-group">
+                                                <input type="text" id="txtcode" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtnameth" class="col-form-label">Name TH</label>
+                                            <div class="input-group">
+                                                <input type="text" id="txtnameth" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtnameeng" class="col-form-label">Name Eng</label>
+                                            <div class="input-group">
+                                                <input type="text" id="txtnameeng" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtnamejp" class="col-form-label">Name JP</label>
+                                            <div class="input-group">
+                                                <input type="text" id="txtnamejp" class="form-control" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header bg-gray">
+                                        ส่วนจัดการ Role & User สำหรับ Approve
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="txtroleid" class="col-form-label">Old Role</label>
+                                            <div class="input-group">
+                                                <input type="text" id="txtroleid" class="form-control" readonly>
+                                                <textarea id="txtrolename" class="form-control" readonly></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="listroleid" class="col-form-label">New Role</label>
+                                            @Html.DropDownListFor(model => Model.select, new List<SelectListItem> { }
+                                                                .Concat(Model.dataRoles.Select(x => new SelectListItem { Text = x.text.Trim(), Value = x.value.Trim() })),
+                                                                new {@id= "listroleid", @class = "form-control" })
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header bg-gray">
+                                        ส่วนจัดการข้ามขั้นตอน Approve
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="selectrequirement">0 คือ สามารถ Skip Flow</label><br />
+                                            <label for="selectrequirement">1 คือ ไม่สามารถ Skip Flow</label>
+                                            <select class="form-control" id="selectrequirement">
+                                                <option>0</option>
+                                                <option>1</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtrequirementremark" class="col-form-label">คำอธิบาย</label>
+                                            <div class="input-group">
+                                                <textarea id="txtrequirementremark" class="form-control"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header bg-gray">
+                                        ส่วนจัดการรูปแบบการ Approve
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="selectassignflag">0 คือ ทุกคนที่อยู่ใน Role ต้อง Approve</label><br />
+                                            <label for="selectassignflag">1 คือ คนใดคนหนึ่งที่อยู่ใน Role ต้อง Approve</label><br />
+                                            <label for="selectassignflag" style="color:red">** ถ้ามีการเปลี่ยน OR - AND ต้องแจ้งผู้รับผิดชอบให้ปรับ PDF FORM MASTER ด้วย</label>
+                                            <select class="form-control" id="selectassignflag">
+                                                <option>0</option>
+                                                <option>1</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="selectassignflagremark">AND คือ ทุกคนที่อยู่ใน Role ต้อง Approve</label><br />
+                                            <label for="selectassignflagremark">OR คือ คนใดคนหนึ่งที่อยู่ใน Role ต้อง Approve</label>
+                                            <select class="form-control" id="selectassignflagremark" readonly>
+                                                <option>OR</option>
+                                                <option>AND</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="txtassignflagbyseq" class="col-form-label">กำหนดสิทธิ์การเลือกคน (เฉพาะ AND) ถ้าใส่ว่างคือให้ลำดับที่ 1 เลือก</label><br />
+                                            <label for="txtassignflagbyseq" class="col-form-label">ให้ใส่เลข Seq No น้อยกว่าลำดับนี้</label>
+                                            <div class="input-group">
+                                                <input type="text" id="txtassignflagbyseq" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card">
+                                    <div class="card-header bg-gray">
+                                        ส่วนจัดการรูปแบบการ Reject
+                                    </div>
+                                    <div class="card-body">                                      
+                                        <div class="form-group">
+                                            <label for="txtreject" class="col-form-label">กรณี Reject ให้ถอยกลับไปที่ลำดับไหน? ถ้าใส่ว่างคือให้ถอยหลัง -1</label><br />
+                                            <label for="txtreject" class="col-form-label">ให้ใส่เลข Seq No น้อยกว่าลำดับนี้</label>
+                                            <div class="input-group">
+                                                <input type="text" id="txtreject" class="form-control">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <input type="button" class="col btn" style="background-color:#A8C686" id="btn_addDocmaster" value="SAVE">
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------------------Modal Role ---------------------------------------------------------------------->
+    <div id="modal-placeholder">
+        <div class="modal fade bd-example-modal-lg" id="myModalMasterRole" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content pt-5">
+                    <div class="modal-header text-light" style="background-color:#272e38">
+                        <h5 class="modal-title" id="exampleModalLabel">New Role</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data" class="form-horizontal">
+
+                            <div class="form-group">
+                                <label for="Remarks" class="col-form-label">Role Name</label>
+                                <div class="input-group">
+                                    <input type="text" id="txtRemarks" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="button" class="col btn" style="background-color:#A8C686" id="btn_addRolemaster" value="Add Role">
+                            </div>
+                        </form>
+
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--------------------------------------------------------Modal User ---------------------------------------------------------------------->
+    <div id="modal-placeholder">
+        <div class="modal fade bd-example-modal-lg" id="myModalMasterUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content pt-5">
+                    <div class="modal-header text-light" style="background-color:#272e38">
+                        <h5 class="modal-title" id="exampleModalLabel">User Role</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="POST" enctype="multipart/form-data" class="form-horizontal">
+                            <div class="form-group">
+                                <label for="txtERoleId" class="col-form-label">Role ID</label>
+                                <input type="text" id="txtERoleId" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="txtERemarks" class="col-form-label">Role Name</label>
+                                <input type="text" id="txtERemarks" class="form-control" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="User" class="col-form-label">Slect User</label>
+
+
+                                @Html.ListBoxFor(model => Model.select, new List<SelectListItem> { }
+                                                            .Concat(Model.roleHrmsEmployees.Select(x => new SelectListItem { Text = x.text.Trim(), Value = x.value.Trim() })),
+                                                            new {@id= "listboxuser", @class = "form-control listbox", multiple = "multiple" })
+                            </div>
+
+                            <table class="table table-striped display responsive table-sm" style="width:100%" id="TableMasterUser">
+                                <thead style="background-color:#E4572E">
+                                    <tr>
+                                        <th></th>
+                                        <th>ID</th>
+                                        <th>Name Eng</th>
+                                        <th>Name TH</th>
+                                        <th>Division</th>
+                                        <th>Department</th>
+                                        <th>Section</th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                            <div class="form-group">
+                                <input type="button" class="col btn" style="background-color:#A8C686" id="btn_addUserRolemaster" value="Add User">
+                            </div>
+                        </form>
+                    </div>
+                    <!-- Modal Footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</body>
+</html>
+
+@section scripts {
+
+    <script type="text/javascript">
+        $(function () {
+
+
+            $('.listbox').chosen({
+                width: "100%"
+
+            });
+
+        });
+    </script>
+
+    
+    <script src="~/js/chosen/chosen.jquery.min.js" type="text/javascript"></script>
+    <script src="~/js/bootstrap-multiselect.js" type="text/javascript"></script>
+    <script src="~/js/View/DynamicFormScript/RoleSetting.js?version=1.1"></script>
+
+}
+
+
+
+
+
+

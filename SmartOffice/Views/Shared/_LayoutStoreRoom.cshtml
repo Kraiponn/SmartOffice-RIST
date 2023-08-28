@@ -1,0 +1,813 @@
+﻿@inject SmartOffice.Class.MenuMasterService2 menus
+@{
+    var Allmenu = new SmartOffice.Models.MasterMenuMaster();
+    var GroupMenu = new SmartOffice.eManagement.Models.TupleUser();
+    var GroupCateg = "";
+    var dept = "";
+    var dept2 = "";
+    var dept3 = "";
+    var Section = "";
+    var Division = "";
+    var username = "";
+    var Namempe = "";
+    var userid = "";
+    var Categ = "";
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        Categ = User.Claims.FirstOrDefault(c => c.Type == "GroupCateg").Value;
+        GroupCateg = User.Claims.FirstOrDefault(c => c.Type == "GroupCateg").Value;
+        dept = User.Claims.FirstOrDefault(c => c.Type == "Department").Value;
+        dept2 = User.Claims.FirstOrDefault(c => c.Type == "Department2").Value;
+        dept3 = User.Claims.FirstOrDefault(c => c.Type == "Department3").Value;
+        username = User.Claims.FirstOrDefault(c => c.Type == "UserName").Value;
+        Namempe = User.Claims.FirstOrDefault(c => c.Type == "Namempe").Value;
+        userid = User.Claims.FirstOrDefault(c => c.Type == "Id").Value;
+        Division = User.Claims.FirstOrDefault(c => c.Type == "Division").Value;
+        Section = User.Claims.FirstOrDefault(c => c.Type == "Section").Value;
+
+    }
+    else
+    {
+
+        username = "000000";
+        userid = "000000";
+    }
+
+    GroupMenu = menus.GetGroup1("U", Division, Section, dept, dept2, dept3, username, "");
+    var GroupMenu2 = new SmartOffice.eManagement.Models.TupleUser();
+    var img = username + ".jpg";
+
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="~/image/Favicons.png" rel="icon">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdmSOffice</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+
+    <!-- Bootstrap -->
+    <link href="~/gentelella/vendors/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="~/css/fontawesome-free-5.8.1-web/css/all.min.css" rel="stylesheet" />
+
+    <link href="~/Asset/LTE/dist/css/adminlte.css" rel="stylesheet" />
+    @*<link href="~/gentelella/build/css/custom.css" rel="stylesheet">*@
+
+
+    <link href="~/css/jquery-ui.css" rel="stylesheet">
+    <link href="~/lib/select2/css/select2.css" rel="stylesheet" />
+
+    <link href="~/Asset/LTE/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="~/Asset/LTE/bower_components/Ionicons/css/ionicons.min.css">
+    <link rel="stylesheet" href="~/Asset/LTE/bower_components/morris.js/morris.css">
+    <link rel="stylesheet" href="~/Asset/LTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="~/Asset/LTE/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+    <link rel="stylesheet" href="~/Asset/LTE/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+    <link rel="stylesheet" href="~/Asset/LTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+
+    <link href="~/lib/sweetalert/sweetalert.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/dataTables.bootstrap4.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/responsive.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/rowGroup.dataTables.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/datatables.net/select.dataTables.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/css/style-dataTables-nested.css">
+    <link href="~/Asset/LTE/bower_components/datatables.net/fixedColumns.dataTables.min.css" rel="stylesheet" />
+
+    <link href="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/lib/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/Asset/LTE/bower_components/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+
+    <link href="~/Asset/LTE/bower_components/Guriddo/css/ui.jqgrid-bootstrap4.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/dist/css/jquery.datetimepicker.css" rel="stylesheet">
+    <link href="~/css/fullcalendar/fullcalendar.min.css" rel="stylesheet" />
+    <link href="~/css/fullcalendar/fullcalendar.print.css" rel="stylesheet" media="print" />
+    <link href="~/css/fullcalendar/scheduler.css" rel="stylesheet" />
+    <link href="~/css/MaterialIcons.css" rel="stylesheet" />
+
+    <link href="~/css/pace.css" rel="stylesheet" />
+    <link href="~/MultipleDatesPickerjQueryUI/jquery-ui.multidatespicker.css" rel="stylesheet" />
+
+    <style>
+
+        .divmenu {
+            left: 100%;
+            position: absolute;
+            top: 0;
+            width: 300px;
+            height: 100%;
+            z-index: 4000;
+            background: #fff;
+        }
+
+            .divmenu ul {
+                list-style-type: none;
+                margin: 0;
+                padding: 0;
+                overflow: hidden;
+            }
+
+            .divmenu li {
+                float: left;
+                width: 100%;
+            }
+
+                .divmenu li a {
+                    display: block;
+                    color: black;
+                    text-align: left;
+                    padding: 16px;
+                    text-decoration: none;
+                }
+
+                    .divmenu li a:hover {
+                        background-color: #fff;
+                    }
+
+
+
+        .box {
+            padding: 60px 0px;
+        }
+
+        .box-part {
+            background: #FFF;
+            border-radius: 0;
+            padding: 60px 10px;
+            margin: 30px 0px;
+        }
+
+        /*.front {
+            z-index: 2000 !important;
+        }*/
+
+        /*.back {
+            z-index: 0 !important;
+        }*/
+
+
+
+        /*//////////////////////////////////////////////*/
+        p {
+            word-wrap: break-word;
+            white-space: normal;
+        }
+
+            p.effect-underline:after {
+                content: '';
+                position: absolute;
+                left: 0;
+                display: inline-block;
+                height: 1em;
+                width: 100%;
+                border-bottom: 1px solid;
+                margin-top: 10px;
+                opacity: 0;
+                -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+                transition: opacity 0.35s, transform 0.35s;
+                -webkit-transform: scale(0,1);
+                transform: scale(0,1);
+                color: #9abcc3;
+            }
+
+            p.effect-underline:hover:after {
+                opacity: 1;
+                -webkit-transform: scale(1);
+                transform: scale(1);
+            }
+
+        .dropdown-submenu {
+            position: relative;
+        }
+
+            .dropdown-submenu > .dropdown-menu {
+                top: 0;
+                left: 100%;
+                margin-top: -6px;
+                margin-left: -1px;
+                -webkit-border-radius: 0 6px 6px 6px;
+                -moz-border-radius: 0 6px 6px;
+                border-radius: 0 6px 6px 6px;
+            }
+
+            .dropdown-submenu:hover > .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-submenu > a:after {
+                display: block;
+                content: " ";
+                float: right;
+                width: 0;
+                height: 0;
+                border-color: transparent;
+                border-style: solid;
+                border-width: 5px 0 5px 5px;
+                border-left-color: #ccc;
+                margin-top: 5px;
+                margin-right: -10px;
+            }
+
+            .dropdown-submenu:hover > a:after {
+                border-left-color: #fff;
+            }
+
+            .dropdown-submenu.pull-left {
+                float: none;
+            }
+
+                .dropdown-submenu.pull-left > .dropdown-menu {
+                    left: -100%;
+                    margin-left: 10px;
+                    -webkit-border-radius: 6px 0 6px 6px;
+                    -moz-border-radius: 6px 0 6px 6px;
+                    border-radius: 6px 0 6px 6px;
+                }
+
+        .fc-unthemed td.fc-today {
+            background-color: aliceblue;
+        }
+
+        .custom-control-input:checked ~ .custom-control-label::before {
+            color: #fff;
+            border-color: #7B1FA2;
+            background-color: #7B1FA2;
+        }
+
+
+
+        .fc-icon-print::before {
+            font-family: 'Material Icons';
+            content: "\e8ad";
+            font-size: 24px;
+        }
+
+        .fc-printButton-button {
+            padding: 0 3px !important;
+        }
+
+        .fc-icon-calendar_today::before {
+            font-family: 'Material Icons';
+            content: "\e916";
+            font-size: 24px;
+        }
+
+        .fc-datePickerButton-button {
+            padding: 0 3px !important;
+        }
+
+
+
+        /*td.fc-other-month {
+            visibility: hidden;
+        }*/
+
+
+
+        #top,
+        #calendar.fc-unthemed {
+            /*font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;*/
+        }
+
+        #top {
+            background: #eee;
+            border-bottom: 1px solid #ddd;
+            padding: 0 10px;
+            line-height: 40px;
+            font-size: 12px;
+            color: #000;
+        }
+
+            #top .selector {
+                display: inline-block;
+                margin-right: 10px;
+            }
+
+            #top select {
+                font: inherit; /* mock what Boostrap does, don't compete  */
+            }
+
+        .left {
+            float: left
+        }
+
+        .right {
+            float: right
+        }
+
+        .clear {
+            clear: both
+        }
+
+        .fc-sun {
+            background-color: #C0C0C0;
+        }
+
+        .fc-sat {
+            background-color: #C0C0C0;
+        }
+
+        tr[data-time="12:00:00"] > td:not(:first-child) {
+            border-top: 2px dotted blue !important;
+        }
+
+        tr[data-time="13:00:00"] > td:not(:first-child) {
+            border-top: 2px dotted blue !important;
+        }
+
+
+        .control-sidebar, .control-sidebar:before {
+            width: 780px;
+            right: -780px;
+            bottom: 0;
+            transition: right 0.3s ease-in-out;
+        }
+
+        /* If the screen size is 601px wide or more, set the font-size of <div> to 80px */
+        @@media screen and (min-width: 1281px) {
+            .ui-jqgrid {
+                font-size: 0.8em
+            }
+        }
+
+        /* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+        @@media screen and (max-width: 1280px) {
+            .ui-jqgrid {
+                font-size: 0.85em
+            }
+        }
+
+        @@media screen and (max-width:640px) {
+            .ui-jqgrid {
+                font-size: 0.7em
+            }
+        }
+
+
+        .search-field {
+            position: relative;
+            margin: auto;
+            width: 70%;
+        }
+
+        .searchinput {
+            /*background: none;*/
+            outline: none;
+            display: inline-block;
+            width: 100%;
+            margin: 8px 0;
+            padding: 13px 15px;
+            padding-right: 42.5px;
+            border: 1px solid #1dd5b1;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: medium;
+        }
+
+        .clear {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 13px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body class="sidebar-collapse nav-sm">
+
+    <div class="container1 body">
+        <div class="main_container">
+            <!-- Navbar -->
+            <nav class="navbar navbar-expand-md navbar-light navbar-white front" style="background: linear-gradient(45deg, #1de099, #1dc8cd);">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="@Url.Action("Index","Home")">
+                        <img src="~/image/logo-smart.png" alt="Logo" style="width:250px;">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent-333"
+                            aria-controls="navbarSupportedContent-333" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item">
+                                @(await Component.InvokeAsync("MenuCMMHeaderControl", new { newstyle = "Normal" }))
+                            </li>
+
+
+                        </ul>
+                        <ul class="navbar-nav ml-auto nav-flex-icons">
+                            <li class="nav-item">
+                                @(await Component.InvokeAsync("SmartSearchControl"))
+                            </li>
+
+                            @if (User.Identity.IsAuthenticated == false)
+                            {
+                                <li class="nav-item">
+                                    <p class="mb-0"><a href="javascript:$('#login_form').submit();" class="nav-link  waves-effect" style="color:white;"><i class="fas fa-sign-in-alt"></i> Sign In/Register </a></p>
+                                    <form class="form-inline" id="login_form" asp-area="Identity" asp-page="/Account/login" asp-route-returnUrl="@Url.Action("EReservationRoom", "EReservation", new { area = "" })"></form>
+                                </li>
+
+                            }
+                            else
+                            {
+                                <li class="nav-item dropdown open" style="padding-left: 15px;">
+                                    <a href="javascript:;" class="dropdown-toggle" aria-haspopup="true" id="navbarDropdown" data-toggle="dropdown" aria-expanded="false" style="color:white;">
+                                        <img src="~/image/User/@img" alt="" style="width:40px" class="rounded-circle">@Namempe
+                                    </a>
+                                    <div class="dropdown-menu dropdown-usermenu pull-right" aria-labelledby="navbarDropdown">
+
+
+                                        <a class="dropdown-item" style="color:black" href="../Home/Privacy"><i class="fas fa-user-cog" style="color:black"></i> Profile</a>
+
+
+                                        <a href="javascript:$('#logout_form').submit();" class="dropdown-item"><i class="fas fa-sign-out-alt"></i> Sign Out</a>
+
+                                        <form class="form-inline" id="logout_form" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })"></form>
+
+
+
+                                    </div>
+                                </li>
+                            }
+
+
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- /.navbar -->
+            <!--/.Navbar -->
+            <!-- /top navigation -->
+            @*<div class="col-md-3 left_col back" id="slidetab">
+                    <div class="left_col scroll-view">
+
+                        <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                            <div class="">
+
+                                <ul class="nav nav-pills flex-column side-menu" id="myTab" role="tablist">
+
+                                    @{
+                                        foreach (var itemG1 in GroupMenu.userOperationGroups)
+                                        {
+                                            <li class="nav-item clickli">
+                                                <a href="#@itemG1.OperationCode" class="nav-link" data-toggle="tab" role="tab" aria-controls="@itemG1.OperationCode" aria-selected="false">@Html.Raw(@itemG1.OperationName)</a>
+                                            </li>
+                                        }
+                                    }
+
+                                </ul>
+
+
+                                <div class="tab-content">
+
+                                    @{
+
+                                        foreach (var itemG1 in GroupMenu.userOperationGroups)
+                                        {
+
+                                            GroupMenu2 = menus.GetGroup2(itemG1.strObj, itemG1.OperationCode, itemG1.OpeGroupCateg, itemG1.InputKind, "", username);
+
+                                            var chkactive = "";
+
+                                            <div class="tab-pane fade divmenu" id="@itemG1.OperationCode" style="width:93vw; height:auto; min-height:200vh; background-color:#f5fdfb">
+                                                <div class="row pt-3">
+                                                    <div class="col-md-3">
+                                                        <h6 class="pl-3 font-weight-bold" style="color:#006972"><i class="fab fa-app-store"></i> @GroupMenu2.userOperationItems.Select(x => x.ItemCategName).FirstOrDefault()</h6>
+                                                        <ul class="nav nav-pills">
+                                                            @{
+                                                                var num = 0;
+                                                            }
+                                                            @foreach (var itemG2 in GroupMenu2.userOperationItems)
+                                                            {
+                                                                var active = "";
+                                                                if (num == 0 && itemG2.InputType.Contains("link"))
+                                                                {
+                                                                    active = "active";
+                                                                    chkactive = "O" + @itemG1.OperationCode + @itemG2.ItemCode;
+                                                                    num++;
+                                                                }
+                                                                if (itemG2.InputType == "search")
+                                                                {
+                                                                    var idd = "S" + @itemG1.OperationCode;
+                                                                    <li>
+                                                                        <div class="text-center">
+                                                                            <div class="form-group  search-field">
+                                                                                <input id="@idd" class="form-control searchli searchinput" type="text" placeholder="Search" onkeyup="myFunction(this)">
+                                                                                <span class="clear"><i class="far fa-times-circle fa-2x" style="color:#1dd5b1"></i></span>
+                                                                            </div>
+                                                                        </div>
+                                                                    </li>
+                                                                }
+                                                                else if (itemG2.InputType.Contains("link"))
+                                                                {
+                                                                    var idd = "O" + @itemG1.OperationCode + @itemG2.ItemCode;
+
+                                                                    <li>
+
+                                                                        <a class="nav-link @active" id="@idd-tab" data-toggle="tab" href="#@idd" aria-controls="@idd" aria-selected="false">@itemG2.ItemName</a>
+
+                                                                    </li>
+                                                                }
+
+                                                            }
+                                                        </ul>
+                                                    </div>
+                                                    <div class="col-md-9">
+                                                        <div class="tab-content">
+
+                                                            @foreach (var itemG3H in GroupMenu2.userOperationItems.Where(x => x.InputType.Contains("link") && x.OperationCode == @itemG1.OperationCode))
+                                                            {
+                                                                var idd = "O" + @itemG1.OperationCode + @itemG3H.ItemCode;
+                                                                var active = "";
+                                                                var show = "";
+                                                                if (chkactive == idd)
+                                                                {
+                                                                    active = "active";
+                                                                    show = "show";
+                                                                }
+                                                                <div class=" tab-pane fade divlim @active @show" id="@idd">
+                                                                    <div class="row">
+                                                                        @foreach (var itemG3 in GroupMenu2.userMenulists.Where(x => x.No == @idd && x.UserId == userid))
+                                                                        {
+
+                                                                            @if (@itemG3.MenuUrl != "")
+                                                                            {
+                                                                                <div class="animated flipInY col-lg-3 col-md-3 col-sm-9 divli">
+                                                                                    <div class="tile-stats card border-info mx-sm-1 p-1">
+
+                                                                                        <div class="">
+                                                                                            @Html.Raw(@itemG3.IconClass) <span class="@itemG3.Badges">@itemG3.BadgesName</span>
+                                                                                        </div>
+
+
+                                                                                        <a href="@itemG3.MenuUrl" class=" nav-link" target="_blank">
+
+                                                                                            <p class="  mt-1">@itemG3.MenuNameT</p>
+                                                                                            <p class="  mt-1">@itemG3.MenuNameE</p>
+                                                                                            <p class="  mt-1">@itemG3.MenuNameJ</p>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                var chkblank = "";
+                                                                                if (@itemG3.Param != "")
+                                                                                {
+                                                                                    chkblank = "_blank";
+                                                                                }
+                                                                                <div class="animated flipInY col-lg-3 col-md-3 col-sm-9 divli">
+                                                                                    <div class="tile-stats card border-info mx-sm-1 p-1">
+
+                                                                                        <div class="">
+                                                                                            @Html.Raw(@itemG3.IconClass) <span class="@itemG3.Badges">@itemG3.BadgesName</span>
+                                                                                        </div>
+
+
+                                                                                        <a asp-area="" asp-controller=@itemG3.Controller asp-action=@itemG3.Action class=" nav-link" target="@chkblank" asp-route-code="@itemG3.Param" asp-route-docno=" " asp-route-mode=" ">
+
+                                                                                            <p class="  mt-1">@itemG3.MenuNameT</p>
+                                                                                            <p class="  mt-1">@itemG3.MenuNameE</p>
+                                                                                            <p class="  mt-1">@itemG3.MenuNameJ</p>
+                                                                                        </a>
+                                                                                    </div>
+                                                                                </div>
+                                                                            }
+                                                                        }
+
+                                                                        @if (itemG3H.InputType == "linknews")
+                                                                        {
+                                                                            <div>
+                                                                                @(await Component.InvokeAsync("NewsControl", new { DeptType = itemG3H.DataType, newstyle = "Normal" }))
+                                                                            </div>
+                                                                        }
+                                                                        @if (itemG3H.InputType == "linksurvey")
+                                                                        {
+                                                                            <div style="width:100%">
+                                                                                @{
+                                                                                    var model = menus.GetGroup3("Q", Division, Section, dept, dept2, dept3, username, itemG3H.DataType);
+
+                                                                                }
+
+                                                                                @await Html.PartialAsync("~/Views/EManageForm/FormIndex.cshtml", model)
+                                                                            </div>
+                                                                        }
+                                                                    </div>
+                                                                </div>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>*@
+
+            <!-- Content Wrapper. Contains page content -->
+            <div class="" role="main">
+                @RenderBody()
+            </div>
+            <!-- /.content-wrapper -->
+
+        </div>
+    </div>
+
+
+
+
+
+
+    <script src="~/gentelella/vendors/jquery/dist/jquery.min.js"></script>
+    <script src="~/js/fullcalendar/jquery-ui.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="~/gentelella/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="~/lib/select2/js/select2.min.js"></script>
+
+    <!-- Morris.js charts -->
+    <script src="~/Asset/LTE/bower_components/raphael/raphael.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Asset/LTE/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/Asset/LTE/bower_components/moment/min/moment.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <!-- datepicker -->
+    <script src="~/Asset/LTE/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap WYSIHTML5 -->
+    <script src="~/Asset/LTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+    <!-- Slimscroll -->
+    <script src="~/Asset/LTE/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!-- AdminLTE App -->
+    <script src="~/Asset/LTE/dist/js/adminlte.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/Guriddo/js/i18n/grid.locale-en.js"></script>
+    <script src="~/Asset/LTE/bower_components/Guriddo/js/jquery.jqGrid.min.js"></script>
+    @*<script src="~/Asset/LTE/bower_components/Guriddo/js/jquery.jqGrid.js"></script>
+        <script src="~/Asset/LTE/bower_components/Guriddo/src/grid.base.js"></script>
+        <script src="~/Asset/LTE/bower_components/Guriddo/src/grid.grouping.js"></script>*@
+
+    <script src="~/Asset/LTE/bower_components/datatables.net/jquery.dataTables.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.fixedColumns.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.bootstrap4.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.responsive.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.cellEdit.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.rowGroup.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/dataTables.buttons.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/buttons.flash.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/jszip.min.js"></script>
+    @*<script src="~/Asset/LTE/bower_components/datatables.net/pdfmake.min.js"></script>*@
+    <script src="~/Asset/LTE/bower_components/datatables.net/vfs_fonts.js"></script>
+    <script src="~/Asset/LTE/bower_components/datatables.net/buttons.html5.min.js"></script>
+
+    <script src="~/Asset/LTE/bower_components/datatables.net/buttons.print.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/lib/toastr/toastr.min.js"></script>
+    <script src="~/lib/toastr/toastr.init.js"></script>
+    <script src="~/lib/jqueryui/jquery-ui.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.all.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/sweetalert2/package/dist/sweetalert2.min.js"></script>
+    <script src="~/lib/jquery/dist/jquery.datetimepicker.full.js"></script>
+    @*<script src="~/js/bootstrap-2.min.js"></script>*@
+
+
+    <script src="~/lib/aspnet/signalr/dist/browser/signalr.js"></script>
+    <script src="~/Asset/LTE/bower_components/select2/dist/js/select2.js"></script>
+    <script src="~/Asset/LTE/bower_components/jquery/dist/jquery.serializejson.min.js"></script>
+    <script src="~/js/fullcalendar/moment.min.js"></script>
+    <script src="~/js/fullcalendar/fullcalendar.js"></script>
+    <script src="~/js/fullcalendar/gcal.min.js"></script>
+    <script src="~/js/fullcalendar/locale-all.js"></script>
+    <script src="~/js/fullcalendar/scheduler.min.js"></script>
+    <script src="~/js/fullcalendar/theme-chooser.js"></script>
+
+
+    <script src="~/TheEvent/lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="~/Asset/LTE/bower_components/OwlCarousel/dist/owl.carousel.min.js"></script>
+    <script src="~/js/pace.min.js"></script>
+
+    <script src="~/MultipleDatesPickerjQueryUI/jquery-ui.multidatespicker.js"></script>
+
+    @if (User.Identity.IsAuthenticated)
+    {
+        <script src="~/js/NotiAndRealTime.js"></script>
+    }
+
+    <script>
+
+        //// Chrome 1 - 71
+        //var isChrome = !!window.chrome && (!!window.chrome.webstore || !!window.chrome.runtime);
+        ////console.log('isChrome: ' + isChrome);
+
+        //if (isChrome == false) {
+        //    location.href = "http://rthsrv17/smartoffice/Home/UnSupportPage";
+        //}
+
+        $.widget.bridge('uibutton', $.ui.button);
+        $.jgrid.defaults.width = 780;
+        $.jgrid.defaults.responsive = true;
+        $.jgrid.defaults.styleUI = 'Bootstrap4';
+        // $.jgrid.defaults.iconSet = "Iconic";
+        $.jgrid.defaults.iconSet = "fontAwesome";
+
+
+        $('.owl-carousel').owlCarousel({
+            animateOut: 'slideOutDown',
+            animateIn: 'flipInX',
+            items: 4,
+            margin: 10,
+            stagePadding: 10,
+            smartSpeed: 450
+        });
+
+        $('.owl-carousel1').owlCarousel({
+            animateOut: 'slideOutDown',
+            animateIn: 'flipInX',
+            items: 4,
+            margin: 30,
+            stagePadding: 30,
+            smartSpeed: 200
+        });
+
+        $('.owl-carousel').on('mousewheel', '.owl-stage', function (e) {
+            if (e.deltaY > 0) {
+                owl.trigger('next.owl');
+            } else {
+                owl.trigger('prev.owl');
+            }
+            e.preventDefault();
+        });
+
+
+        $(document).on('click', '.nav-link.active', function () {
+            var href = $(this).attr('href').substring(1);
+            //alert(href);
+            $(this).removeClass('active');
+            $('.tab-pane[id="' + href + '"]').removeClass('active');
+        })
+
+        //clear filter
+        $(".clickli").on("click", function () {
+
+            $(".divlim *").filter(function () {
+                $(this).toggle($(this).text().toLowerCase().indexOf("") > -1)
+            });
+
+            $(".searchli").val(null);
+        });
+
+        //filter
+        function myFunction(val) {
+            var value = document.getElementById(val.id).value.toLowerCase();
+            //$(".divli *").filter(function () {
+
+            //    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+            //});
+
+
+            $('.divli').each(function () {
+                if ($(this).text().toLowerCase().indexOf(value.toLowerCase()) != -1) {
+                    $(this).show();
+                } else {
+                    $(this).hide();
+                }
+            });
+        }
+
+        Array.from(document.querySelectorAll('.search-field')).forEach(field => {
+            field.querySelector('.clear').addEventListener('click', e => {
+                field.querySelector('.searchinput').value = '';
+
+                $('.divli').each(function () {
+                    if ($(this).text().toLowerCase().indexOf('') != -1) {
+                        $(this).show();
+                    } else {
+                        $(this).hide();
+                    }
+                });
+            });
+        });
+
+
+
+
+
+    </script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

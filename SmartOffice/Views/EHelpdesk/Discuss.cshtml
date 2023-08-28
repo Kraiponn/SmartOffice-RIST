@@ -1,0 +1,1604 @@
+﻿
+@{
+    ViewData["Title"] = "Discuss";
+    Layout = "~/Views/Shared/_LayoutHelpdesk.cshtml";
+}
+<div class="plato-body">
+    <div class="container-fluid container-fluid-1400 pt-2">
+        <nav aria-label="breadcrumb" class="mt-3">
+            <ol class="breadcrumb p-0 m-0 bg-transparent col-12"><li class="breadcrumb-item"><a href="/">Home</a></li><li class="breadcrumb-item">Discuss</li></ol>
+        </nav>
+
+        <form method="post" enctype="multipart/form-data" data-disable-submit="true" role="form" action="/discuss">
+            <div class="layout">
+                <div class="layout-header layout-header-sticky" style="height: 109px;">
+                    <div class="layout-header-content" style="width: auto;">
+                        <div class="float-right layout-tools">
+
+
+                            <a class="btn btn-primary" title="New Topic" href="/discuss/new">
+                                <i class="fas fa-fw fa-plus"></i>
+                                New Topic
+                            </a>
+
+                        </div>
+                        <div class="layout-header-item">
+
+                            <h4>Discuss</h4>
+                            <span class="text-muted">Chat &amp; get help from others within our community.</span>
+                            <hr>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="layout-body">
+                    <div class="row gutter-sm">
+                        <div class="col-lg-9 layout-content">
+
+
+                            <div class="card card-body-flush">
+                                <div class="card-header">
+                                    <h6 class="card-title float-left">Topics</h6>
+                                    <ul class="nav navbar p-0 float-right">
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link text-muted dropdown-toggle" href="#" id="filterDropDown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="fasse">
+                                                Filter
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right anim anim-2x anim-scale-in" aria-labelledby="filterDropDown">
+                                                <div class="min-w-200 max-h-250 overflow-auto">
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=All">
+                                                        <i class="fas fa-fw fa-check"></i>
+                                                        All
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=Started">
+                                                        <i class="fas fa-fw"></i>
+                                                        Started
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=Participated">
+                                                        <i class="fas fa-fw"></i>
+                                                        Participated
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=Following">
+                                                        <i class="fas fa-fw"></i>
+                                                        Following
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=Starred">
+                                                        <i class="fas fa-fw"></i>
+                                                        Starred
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=Unanswered">
+                                                        <i class="fas fa-fw"></i>
+                                                        Unanswered
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=LastReply&amp;opts.order=Desc&amp;opts.filter=NoReplies">
+                                                        <i class="fas fa-fw"></i>
+                                                        No Replies
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown">
+                                            <a class="nav-link text-muted dropdown-toggle" href="#" id="sortByDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="fasse">
+                                                Sort
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right anim anim-2x anim-scale-in" aria-labelledby="sortByDropdown">
+                                                <div class="min-w-200 max-h-250 overflow-auto">
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=LastReply">
+                                                        <i class="fas fa-fw fa-check"></i>
+                                                        Latest
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=Popular">
+                                                        <i class="fas fa-fw"></i>
+                                                        Popular
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=Replies">
+                                                        <i class="fas fa-fw"></i>
+                                                        Replies
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=Views">
+                                                        <i class="fas fa-fw"></i>
+                                                        Views
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=Participants">
+                                                        <i class="fas fa-fw"></i>
+                                                        Participants
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=Reactions">
+                                                        <i class="fas fa-fw"></i>
+                                                        Reactions
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=Follows">
+                                                        <i class="fas fa-fw"></i>
+                                                        Follows
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=Stars">
+                                                        <i class="fas fa-fw"></i>
+                                                        Stars
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=Created">
+                                                        <i class="fas fa-fw"></i>
+                                                        Created
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=Modified">
+                                                        <i class="fas fa-fw"></i>
+                                                        Modified
+                                                    </a>
+                                                    <div class="dropdown-divider"></div>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=LastReply&amp;opts.order=Desc">
+                                                        <i class="fas fa-fw fa-check"></i>
+                                                        Descending
+                                                    </a>
+                                                    <a class="dropdown-item px-2" href="/discuss?opts.sort=LastReply&amp;opts.order=Asc">
+                                                        <i class="fas fa-fw"></i>
+                                                        Ascending
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div><div class="card-body">
+
+                                    <ul data-provide="infiniteScroll" data-infinite-scroll-url="/discuss" data-infinite-scroll-offset="0" data-infinite-scroll-row-offset="1" data-infinite-scroll-page="1" data-infinite-scroll-total-pages="3" class="list-group list-group-flush list-group-hover infinite-scroll">
+                                        <li class="list-group-item infinite-scroll-loader" data-type="previous"></li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="1" data-infinite-scroll-highlight="1">
+
+                                                <div class="list-left">
+                                                    <a href="/u/70/atpw25">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="atpw25"><span style="background-image: url('/u/l/a/ACC759');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                79 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 1927" href="/discuss/t/1095/example-topic-1927">Example Topic 1927</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1095/example-topic-1927/28706">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:50 PM">11/13/2019 2:55:50 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/13/2019 2:55:50 PM">11/13/2019 2:55:50 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="2" data-infinite-scroll-highlight="2">
+
+                                                <div class="list-left">
+                                                    <a href="/u/97/oxid2178">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="Oxid2178"><span style="background-image: url('/u/l/o/25A681');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: web-browser">
+                                                                1 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                41 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 125" href="/discuss/t/1094/example-topic-125">Example Topic 125</a>
+                                                    <span class="pl-2">
+                                                        <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #AFC800; color: #ffffff" href="/discuss/label/61/example-label-693">
+                                                            Example Label 693
+                                                        </a>
+                                                    </span>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                            <a href="/u/95/rossang"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="rossang - 1 reply"><span style="background-image: url('/u/l/r/6E85D9');"></span></span></a>
+                                                            <a href="/u/34/eric-914"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="eric-914 - 1 reply"><span style="background-image: url('/u/l/e/7397BE');"></span></span></a>
+                                                            <a href="/u/74/unichan2018"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="unichan2018 - 1 reply"><span style="background-image: url('/u/l/u/A18DB9');"></span></span></a>
+                                                            <a href="/u/12/tabs"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="tabs - 2 replies"><span style="background-image: url('/u/l/t/6AC494');"></span></span></a>
+                                                            <a href="/u/118/jrkimkio"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="jrkimkio - 2 replies"><span style="background-image: url('/u/l/j/59C7AE');"></span></span></a>
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1094/example-topic-125/28681">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:49 PM">11/13/2019 2:55:49 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/13/2019 2:55:49 PM">11/13/2019 2:55:49 PM</span>
+                                                        <span>In</span>
+                                                        <a href="/discuss/categories/50/example-category-474">
+                                                            Example Category 474
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="3" data-infinite-scroll-highlight="3">
+
+                                                <div class="list-left">
+                                                    <a href="/u/102/bryan">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="bryan"><span style="background-image: url('/u/l/b/E34B49');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: mysql">
+                                                                1 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                22 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 681" href="/discuss/t/1093/example-topic-681">Example Topic 681</a>
+                                                    <span class="pl-2">
+                                                        <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #8A8FA4; color: #ffffff" href="/discuss/label/126/example-label-419">
+                                                            Example Label 419
+                                                        </a>
+                                                    </span>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1093/example-topic-681/28656">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:49 PM">11/13/2019 2:55:49 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/13/2019 2:55:48 PM">11/13/2019 2:55:48 PM</span>
+                                                        <span>In</span>
+                                                        <a href="/discuss/categories/49/example-category-1573">
+                                                            Example Category 1573
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="4" data-infinite-scroll-highlight="4">
+
+                                                <div class="list-left">
+                                                    <a href="/u/101/toadrage">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="ToadRage"><span style="background-image: url('/u/l/t/A79652');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: vmware">
+                                                                1 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                14 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 1074" href="/discuss/t/1092/example-topic-1074">Example Topic 1074</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1092/example-topic-1074/28631">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:48 PM">11/13/2019 2:55:48 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/13/2019 2:55:47 PM">11/13/2019 2:55:47 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="5" data-infinite-scroll-highlight="5">
+
+                                                <div class="list-left">
+                                                    <a href="/u/102/bryan">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="bryan"><span style="background-image: url('/u/l/b/E34B49');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: intellij">
+                                                                1 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                14 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 1787" href="/discuss/t/1091/example-topic-1787">Example Topic 1787</a>
+                                                    <span class="pl-2">
+                                                        <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #BAC44A; color: #ffffff" href="/discuss/label/129/example-label-1706">
+                                                            Example Label 1706
+                                                        </a>
+                                                    </span>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1091/example-topic-1787/28606">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:47 PM">11/13/2019 2:55:47 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/13/2019 2:55:46 PM">11/13/2019 2:55:46 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="6" data-infinite-scroll-highlight="6">
+
+                                                <div class="list-left">
+                                                    <a href="/u/99/jimshelly">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="JimShelly"><span style="background-image: url('/u/l/j/7397BE');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: performance-tuning">
+                                                                1 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                13 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 69" href="/discuss/t/1090/example-topic-69">Example Topic 69</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                            <a href="/u/14/raymak23"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="raymak23 - 1 reply"><span style="background-image: url('/u/l/r/BC8971');"></span></span></a>
+                                                            <a href="/u/12/tabs"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="tabs - 1 reply"><span style="background-image: url('/u/l/t/6AC494');"></span></span></a>
+                                                            <a href="/u/56/carry"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="Carry - 1 reply"><span style="background-image: url('/u/l/c/25A681');"></span></span></a>
+                                                            <a href="/u/26/abiniyam"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="abiniyam - 1 reply"><span style="background-image: url('/u/l/a/FF817F');"></span></span></a>
+                                                            <a href="/u/62/gogetter"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="gogetter - 1 reply"><span style="background-image: url('/u/l/g/ABB98D');"></span></span></a>
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1090/example-topic-69/28581">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:46 PM">11/13/2019 2:55:46 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/13/2019 2:55:45 PM">11/13/2019 2:55:45 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="7" data-infinite-scroll-highlight="7">
+
+                                                <div class="list-left">
+                                                    <a href="/u/74/unichan2018">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="unichan2018"><span style="background-image: url('/u/l/u/A18DB9');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: uriencoding">
+                                                                1 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                20 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 70" href="/discuss/t/1089/example-topic-70">Example Topic 70</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1089/example-topic-70/28556">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:45 PM">11/13/2019 2:55:45 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/13/2019 2:55:44 PM">11/13/2019 2:55:44 PM</span>
+                                                        <span>In</span>
+                                                        <a href="/discuss/categories/52/example-category-1831">
+                                                            Example Category 1831
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="8" data-infinite-scroll-highlight="8">
+
+                                                <div class="list-left">
+                                                    <a href="/u/29/einaradolfsen">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="einaradolfsen"><span style="background-image: url('/u/l/e/75ADA8');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: windows-server-2019">
+                                                                1 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                12 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 759" href="/discuss/t/1088/example-topic-759">Example Topic 759</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1088/example-topic-759/28531">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:44 PM">11/13/2019 2:55:44 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/13/2019 2:55:43 PM">11/13/2019 2:55:43 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="9" data-infinite-scroll-highlight="9">
+
+                                                <div class="list-left">
+                                                    <a href="/u/102/bryan">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="bryan"><span style="background-image: url('/u/l/b/E34B49');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: intel-c++">
+                                                                1 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                17 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 915" href="/discuss/t/1087/example-topic-915">Example Topic 915</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1087/example-topic-915/28506">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:43 PM">11/13/2019 2:55:43 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/13/2019 2:55:42 PM">11/13/2019 2:55:42 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="10" data-infinite-scroll-highlight="10">
+
+                                                <div class="list-left">
+                                                    <a href="/u/107/petereltgroth">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="PeterEltgroth"><span style="background-image: url('/u/l/p/D48C3E');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: intel-c++">
+                                                                1 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                16 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 428" href="/discuss/t/1086/example-topic-428">Example Topic 428</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1086/example-topic-428/28481">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/13/2019 2:55:42 PM">11/13/2019 2:55:42 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/13/2019 2:55:41 PM">11/13/2019 2:55:41 PM</span>
+                                                        <span>In</span>
+                                                        <a href="/discuss/categories/51/example-category-1271">
+                                                            Example Category 1271
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="11" data-infinite-scroll-highlight="11">
+
+                                                <div class="list-left">
+                                                    <a href="/u/31/samos">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="samos"><span style="background-image: url('/u/l/s/A18AA4');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: efcore">
+                                                                1 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                26 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 1500" href="/discuss/t/1035/example-topic-1500">Example Topic 1500</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1035/example-topic-1500/27206">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:03 PM">11/8/2019 12:03:03 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/8/2019 12:03:02 PM">11/8/2019 12:03:02 PM</span>
+                                                        <span>In</span>
+                                                        <a href="/discuss/categories/50/example-category-474">
+                                                            Example Category 474
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="12" data-infinite-scroll-highlight="12">
+
+                                                <div class="list-left">
+                                                    <a href="/u/61/fjanon">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="fjanon"><span style="background-image: url('/u/l/f/A18DB9');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: imports, spark-sql">
+                                                                2 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                16 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 628" href="/discuss/t/1034/example-topic-628">Example Topic 628</a>
+                                                    <span class="pl-2">
+                                                        <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #AA8BAE; color: #ffffff" href="/discuss/label/130/example-label-915">
+                                                            Example Label 915
+                                                        </a>
+                                                    </span>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1034/example-topic-628/27181">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:02 PM">11/8/2019 12:03:02 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/8/2019 12:03:01 PM">11/8/2019 12:03:01 PM</span>
+                                                        <span>In</span>
+                                                        <a href="/discuss/categories/48/example-category-1686">
+                                                            Example Category 1686
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="13" data-infinite-scroll-highlight="13">
+
+                                                <div class="list-left">
+                                                    <a href="/u/57/loulou">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="Loulou"><span style="background-image: url('/u/l/l/C66ED9');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: webflow, efcore">
+                                                                2 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                15 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 579" href="/discuss/t/1033/example-topic-579">Example Topic 579</a>
+                                                    <span class="pl-2">
+                                                        <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #C7B459; color: #ffffff" href="/discuss/label/124/example-label-2">
+                                                            Example Label 2
+                                                        </a>
+                                                    </span>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                            <a href="/u/6/johan"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="Johan - 1 reply"><span style="background-image: url('/u/l/j/00F19A');"></span></span></a>
+                                                            <a href="/u/45/barryv"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="BarryV - 1 reply"><span style="background-image: url('/u/l/b/6AC494');"></span></span></a>
+                                                            <a href="/u/44/tipsy"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="Tipsy - 2 replies"><span style="background-image: url('/u/l/t/C7597B');"></span></span></a>
+                                                            <a href="/u/5/reverbe"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="Reverbe - 1 reply"><span style="background-image: url('/u/l/r/76ADCF');"></span></span></a>
+                                                            <a href="/u/114/huhu"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="Huhu - 1 reply"><span style="background-image: url('/u/l/h/E34B49');"></span></span></a>
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1033/example-topic-579/27156">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:01 PM">11/8/2019 12:03:01 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/8/2019 12:03:00 PM">11/8/2019 12:03:00 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="14" data-infinite-scroll-highlight="14">
+
+                                                <div class="list-left">
+                                                    <a href="/u/23/nathanchase">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="nathanchase"><span style="background-image: url('/u/l/n/ACC759');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: sql, html">
+                                                                2 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                82 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 1922" href="/discuss/t/1032/example-topic-1922">Example Topic 1922</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1032/example-topic-1922/27131">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:03:00 PM">11/8/2019 12:03:00 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/8/2019 12:02:59 PM">11/8/2019 12:02:59 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="15" data-infinite-scroll-highlight="15">
+
+                                                <div class="list-left">
+                                                    <a href="/u/78/jaipundir">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="JaiPundir"><span style="background-image: url('/u/l/j/7A6ED9');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: android-p, azure-app-service">
+                                                                2 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                10 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 1877" href="/discuss/t/1031/example-topic-1877">Example Topic 1877</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1031/example-topic-1877/27106">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:02:59 PM">11/8/2019 12:02:59 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/8/2019 12:02:57 PM">11/8/2019 12:02:57 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="16" data-infinite-scroll-highlight="16">
+
+                                                <div class="list-left">
+                                                    <a href="/u/79/zyberzero">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="zyberzero"><span style="background-image: url('/u/l/z/6AC494');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: bug, percent-encoding">
+                                                                2 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                12 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 1797" href="/discuss/t/1030/example-topic-1797">Example Topic 1797</a>
+                                                    <span class="pl-2">
+                                                        <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #ACC759; color: #ffffff" href="/discuss/label/69/example-label-1898">
+                                                            Example Label 1898
+                                                        </a>
+                                                    </span>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1030/example-topic-1797/27081">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:02:57 PM">11/8/2019 12:02:57 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/8/2019 12:02:56 PM">11/8/2019 12:02:56 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="17" data-infinite-scroll-highlight="17">
+
+                                                <div class="list-left">
+                                                    <a href="/u/65/najijzr">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="NajiJzr"><span style="background-image: url('/u/l/n/AFC800');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: .net-4.5.2, sql-server">
+                                                                2 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                81 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 417" href="/discuss/t/1029/example-topic-417">Example Topic 417</a>
+                                                    <span class="pl-2">
+                                                        <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #71BC99; color: #ffffff" href="/discuss/label/122/example-label-437">
+                                                            Example Label 437
+                                                        </a>
+                                                    </span>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1029/example-topic-417/27056">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:02:56 PM">11/8/2019 12:02:56 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/8/2019 12:02:55 PM">11/8/2019 12:02:55 PM</span>
+                                                        <span>In</span>
+                                                        <a href="/discuss/categories/51/example-category-1271">
+                                                            Example Category 1271
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="18" data-infinite-scroll-highlight="18">
+
+                                                <div class="list-left">
+                                                    <a href="/u/91/tedprosoft">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="TedProsoft"><span style="background-image: url('/u/l/t/ED3857');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: mysql, azure-app-service">
+                                                                2 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                20 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 538" href="/discuss/t/1028/example-topic-538">Example Topic 538</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                            <a href="/u/62/gogetter"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="gogetter - 1 reply"><span style="background-image: url('/u/l/g/ABB98D');"></span></span></a>
+                                                            <a href="/u/34/eric-914"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="eric-914 - 1 reply"><span style="background-image: url('/u/l/e/7397BE');"></span></span></a>
+                                                            <a href="/u/23/nathanchase"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="nathanchase - 1 reply"><span style="background-image: url('/u/l/n/ACC759');"></span></span></a>
+                                                            <a href="/u/111/00ffx"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="00ffx - 1 reply"><span style="background-image: url('/u/l/0/BC8971');"></span></span></a>
+                                                            <a href="/u/14/raymak23"><span data-toggle="tooltip" title="" class="avatar avatar-sm" role="avatar" data-original-title="raymak23 - 1 reply"><span style="background-image: url('/u/l/r/BC8971');"></span></span></a>
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1028/example-topic-538/27031">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:02:55 PM">11/8/2019 12:02:55 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/8/2019 12:02:54 PM">11/8/2019 12:02:54 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="19" data-infinite-scroll-highlight="19">
+
+                                                <div class="list-left">
+                                                    <a href="/u/1/admin">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="admin"><span style="background-image: url('/u/l/a/76ADCF');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: mysql-server, mysql-server">
+                                                                2 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                25 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 328" href="/discuss/t/1027/example-topic-328">Example Topic 328</a>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1027/example-topic-328/27006">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:02:54 PM">11/8/2019 12:02:54 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/8/2019 12:02:53 PM">11/8/2019 12:02:53 PM</span>
+                                                        <span>In</span>
+                                                        <a href="/discuss/categories/50/example-category-474">
+                                                            Example Category 474
+                                                        </a>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item list-group-item-action p-0">
+                                            <div class="p-3 infinite-scroll-item" data-infinite-scroll-offset="20" data-infinite-scroll-highlight="20">
+
+                                                <div class="list-left">
+                                                    <a href="/u/81/zakjan">
+                                                        <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="zakjan"><span style="background-image: url('/u/l/z/D5E09E');"></span></span>
+                                                    </a>
+                                                </div>
+                                                <div class="list-body">
+
+                                                    <ol class="list-inline text-muted float-right text-right">
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Tags: c++, chart">
+                                                                2 <i class="fas fa-tag"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Replies">
+                                                                25 <i class="fas fa-comment-alt-lines"></i>
+                                                            </span>
+                                                        </li>
+                                                        <li class="list-inline-item">
+                                                            <span title="" data-toggle="tooltip" data-original-title="Views">
+                                                                8 <i class="fas fa-eye"></i>
+                                                            </span>
+                                                        </li>
+                                                    </ol>
+
+                                                    <a class="font-weight-bold" title="Example Topic 1221" href="/discuss/t/1026/example-topic-1221">Example Topic 1221</a>
+                                                    <span class="pl-2">
+                                                        <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #ABB98D; color: #ffffff" href="/discuss/label/66/example-label-1281">
+                                                            Example Label 1281
+                                                        </a>
+                                                        <a title="This is just an example label desccription." class="btn btn-xs label font-weight-bold" style="background-color: #E27D0C; color: #ffffff" href="/discuss/label/128/example-label-537">
+                                                            Example Label 537
+                                                        </a>
+                                                    </span>
+                                                    <div class="text-muted">
+                                                        Hi There,
+                                                        This is just a sample topic to demonstrate how the &amp;quot;Plato.Discuss&amp;quot; module works within Plato. This is not a real post and simply exists to help you get a sense for how Plato.Discuss works.
+                                                        Messages...
+                                                    </div>
+                                                    <div>
+
+
+                                                        <div class="avatar-group float-right ml-2">
+                                                        </div>
+
+                                                        <div class="float-right">
+                                                            <a href="/discuss/g/1026/example-topic-1221/26981">
+                                                                <span title="" data-toggle="tooltip" data-original-title="11/8/2019 12:02:53 PM">11/8/2019 12:02:53 PM</span>
+                                                            </a>
+                                                        </div>
+
+
+                                                        <span itemprop="createdDate" data-toggle="tooltip" title="" data-original-title="11/8/2019 12:02:52 PM">11/8/2019 12:02:52 PM</span>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </li>
+                                        <li class="list-group-item infinite-scroll-loader" data-type="next"></li>
+                                    </ul>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <div class="col-lg-3 layout-sidebar">
+
+
+                            <div class="card card-body-flush">
+                                <div class="card-header">
+                                    <a data-toggle="tooltip" title="" class="float-right text-muted" href="/discuss/categories" data-original-title="All Categories">
+                                        <i class="fas fa-ellipsis-h fa-2x"></i>
+                                    </a>
+                                    <h6 class="card-title float-left">Categories</h6>
+                                </div><div class="card-body">
+                                    <div class="list-group list-group-flush list-group-hover">
+                                        <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/discuss/categories/48/example-category-1686">
+                                            <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Topics">
+                                                0
+                                            </span>
+                                            <div class="float-left mr-3">
+                                                <span class="icon-wrapper icon-wrapper-sm" style="background-color: #D48C3E; color: #ffffff">
+                                                    <i class="fas fa-diamond"></i>
+                                                   
+                                                </span>
+                                            </div>
+                                            Example Category 1686
+                                        </a>
+                                        <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/discuss/categories/49/example-category-1573">
+                                            <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Topics">
+                                                5
+                                            </span>
+                                            <div class="float-left mr-3">
+                                                <span class="icon-wrapper icon-wrapper-sm" style="background-color: #FF817F; color: #ffffff">
+                                                    <i class="fas fa-piggy-bank"></i>
+                                                </span>
+                                            </div>
+                                            Example Category 1573
+                                        </a>
+                                        <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/discuss/categories/50/example-category-474">
+                                            <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Topics">
+                                                7
+                                            </span>
+                                            <div class="float-left mr-3">
+                                                <span class="icon-wrapper icon-wrapper-sm" style="background-color: #71A4BC; color: #ffffff">
+                                                    <i class="fas fa-dumbbell"></i>
+                                                </span>
+                                            </div>
+                                            Example Category 474
+                                        </a>
+                                        <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/discuss/categories/51/example-category-1271">
+                                            <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Topics">
+                                                0
+                                            </span>
+                                            <div class="float-left mr-3">
+                                                <span class="icon-wrapper icon-wrapper-sm" style="background-color: #71A4BC; color: #ffffff">
+                                                    <i class="fas fa-trademark"></i>
+                                                </span>
+                                            </div>
+                                            Example Category 1271
+                                        </a>
+                                        <a title="This is just an example category desccription." class="list-group-item list-group-item-action" href="/discuss/categories/52/example-category-1831">
+                                            <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Topics">
+                                                0
+                                            </span>
+                                            <div class="float-left mr-3">
+                                                <span class="icon-wrapper icon-wrapper-sm" style="background-color: #C66ED9; color: #ffffff">
+                                                    <i class="fas fa-phone-plus"></i>
+                                                </span>
+                                            </div>
+                                            Example Category 1831
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="card card-body-flush">
+                                <div class="card-header">
+                                    <a data-toggle="tooltip" title="" class="float-right text-muted" href="/discuss/labels" data-original-title="All Labels">
+                                        <i class="fas fa-ellipsis-h fa-2x"></i>
+                                    </a>
+                                    <h6 class="card-title">Top Labels</h6>
+                                </div><div class="card-body">
+
+                                    <div class="list-group list-group-flush list-group-hover">
+                                        <a title="This is just an example label desccription." class="list-group-item list-group-item-action" href="/discuss/label/61/example-label-693">
+                                            <span class="btn btn-sm label font-weight-bold" style="background-color: #AFC800; color: #ffffff">
+                                                Example Label 693
+                                            </span>
+                                            <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Topics">
+                                                5
+                                            </span>
+                                        </a>
+                                        <a title="This is just an example label desccription." class="list-group-item list-group-item-action" href="/discuss/label/64/example-label-1974">
+                                            <span class="btn btn-sm label font-weight-bold" style="background-color: #96B98D; color: #ffffff">
+                                                Example Label 1974
+                                            </span>
+                                            <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Topics">
+                                                4
+                                            </span>
+                                        </a>
+                                        <a title="This is just an example label desccription." class="list-group-item list-group-item-action" href="/discuss/label/66/example-label-1281">
+                                            <span class="btn btn-sm label font-weight-bold" style="background-color: #ABB98D; color: #ffffff">
+                                                Example Label 1281
+                                            </span>
+                                            <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Topics">
+                                                4
+                                            </span>
+                                        </a>
+                                        <a title="This is just an example label desccription." class="list-group-item list-group-item-action" href="/discuss/label/67/example-label-512">
+                                            <span class="btn btn-sm label font-weight-bold" style="background-color: #6AC494; color: #ffffff">
+                                                Example Label 512
+                                            </span>
+                                            <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Topics">
+                                                3
+                                            </span>
+                                        </a>
+                                        <a title="This is just an example label desccription." class="list-group-item list-group-item-action" href="/discuss/label/69/example-label-1898">
+                                            <span class="btn btn-sm label font-weight-bold" style="background-color: #ACC759; color: #ffffff">
+                                                Example Label 1898
+                                            </span>
+                                            <span data-toggle="tooltip" title="" class="badge badge-info float-right" data-original-title="Public Topics">
+                                                3
+                                            </span>
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="card card-default">
+                                <div class="card-header">
+                                    <a data-toggle="tooltip" title="" class="float-right text-muted" href="/discuss/tags" data-original-title="All Tags">
+                                        <i class="fas fa-ellipsis-h fa-2x"></i>
+                                    </a>
+                                    <h6 class="card-title">Top Tags</h6>
+                                </div><div class="card-body">
+
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1315/percent-encoding">
+                                            percent-encoding
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1319/sql-server">
+                                            sql-server
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1320/uriencoding">
+                                            uriencoding
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1316/udf">
+                                            udf
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1322/array-slice">
+                                            array-slice
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1334/ptr">
+                                            ptr
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1323/data-uri-scheme">
+                                            data-uri-scheme
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1317/spark-sql">
+                                            spark-sql
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1318/sql">
+                                            sql
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1327/intel-c">
+                                            intel-c++
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1328/c">
+                                            c++
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1331/.net-core">
+                                            .net-core
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1333/efcore">
+                                            efcore
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1330/.net-4.5.2">
+                                            .net-4.5.2
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1321/slicing">
+                                            slicing
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1324/watir-webdriver">
+                                            watir-webdriver
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1325/azure-app-service">
+                                            azure-app-service
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1340/performance-tuning">
+                                            performance-tuning
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1347/plt-scheme">
+                                            plt-scheme
+                                        </a>
+                                    </div>
+                                    <div class="btn-group my-1">
+                                        <a class="btn btn-sm label" href="/discuss/tag/1351/enumulation">
+                                            enumulation
+                                        </a>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="card card-default">
+                                <div class="card-header">
+                                    <h6 class="card-title">Community Team</h6>
+                                </div><div class="card-body">
+                                    <a class="d-inline-block my-2" href="/u/1/admin">
+                                        <span data-provide="tooltip" title="" class="avatar" role="avatar" data-original-title="admin"><span style="background-image: url('/u/l/a/76ADCF');"></span></span>
+                                    </a>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="layout-footer">
+                </div>
+            </div>
+            <input name="plato-csrf" type="hidden" value="CfDJ8DkNSpR_pttIvcpaLHm1Ynh4w1W65LRDL_zxqNLfjYB8Smq3Z-YSocZjWv6eegBKdw68rEGWcgy3dKTPtVmxRdkRmVD7LxBsK-94yHZ6RZHwKoM1apA2dEF_m4-ZK623lLc_5kiShMCb02861kkyFBTF2qEGk1sncG5DuxNgtZcNKGLj9rzixxn0yZxPCdZIVQ">
+        </form>
+        <footer>
+            <hr class="mb-0">
+            <div class="row py-4">
+                <div class="col-lg-6">
+                    <p>© Plato 2020</p>
+                </div>
+                <div class="col-lg-6 text-lg-right">
+                    <p>
+                        <a href="https://www.instantasp.co.uk/" target="_blank" class="text-muted">
+                            Powered by Plato 1.1.0 Final
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+

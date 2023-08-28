@@ -1,0 +1,353 @@
+﻿
+@{
+    ViewData["Title"] = "NewDoc";
+    Layout = "~/Views/Shared/_LayoutHelpdesk.cshtml";
+}
+
+<div class="plato-body">
+    <div class="container-fluid container-fluid-1400 pt-2">
+        <div class="layout">
+
+            <div class="layout-header">
+                <div class="layout-header-content">
+                    <div class="layout-header-item">
+
+                        <h4>New Doc</h4>
+                        <span class="text-muted">Create a new doc.</span>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+            <div class="layout-body">
+                <div class="row gutter-sm">
+                    <div class="col-lg-9 layout-content">
+
+                        <div class="validation-summary-errors" data-valmsg-summary="true">
+                            <ul>
+                                <li>The category field is required.</li>
+                            </ul>
+                        </div>
+                        <div class="mt-0" id="postReply">
+                            <div class="list-left reply-left">
+                                <span data-toggle="tooltip" title="" class="avatar" role="avatar" data-original-title="admin"><span style="background-image: url('/u/l/a/76ADCF');"></span></span>
+                            </div>
+                            <div class="list-body reply-body">
+                                <div class="card mt-0">
+                                    <div class="card-header">
+                                        <h6 class="card-title float-left">Edit Article</h6>
+
+                                        <div class="nav navbar p-0 float-right">
+                                            <div class="nav-item first last">
+                                                <div class="dropdown" data-provide="select-dropdown">
+                                                    <a href="#" class="nav-link dropdown-toggle nav-item text-hidden text-muted" id="publishedDropDown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        Public
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-400 dropdown-menu-right anim anim-2x anim-scale-in" aria-labelledby="publishedDropDown">
+                                                        <div class="d-block">
+                                                            <div class="dropdown-header">
+                                                                <h6>Visibility</h6>
+                                                            </div>
+                                                            <hr class="m-0">
+                                                            <div class="btn-group d-block">
+
+                                                                <label for="published-private" data-toggle="collapse" data-target="#privatecollapse" class="dropdown-item m-0 p-3 cursor-pointer" data-stop-propagation="true">
+                                                                    <input data-nav-text="Private" type="radio" name="published" value="private" id="published-private" autocomplete="off">
+                                                                    <i class="fal float-right check-icon"></i>
+                                                                    <span class="d-inline m-0 p-0"><strong>Private</strong></span>
+                                                                </label>
+
+                                                                <div class="w-100 collapse" id="privatecollapse">
+                                                                    <div class="px-3 py-2">
+                                                                        The article will only be visible to you and those with permission to view private articles. Choose this option whilst your authoring your article.
+                                                                    </div>
+                                                                </div>
+
+                                                                <label for="published-hidden" data-toggle="collapse" data-target="#hiddencollapse" class="dropdown-item m-0 p-3 cursor-pointer" data-stop-propagation="true">
+                                                                    <input data-nav-text="Hidden" type="radio" name="published" value="hidden" id="published-hidden" autocomplete="off">
+                                                                    <i class="fal float-right check-icon"></i>
+                                                                    <span class="d-inline m-0 p-0"><strong>Hidden</strong></span>
+                                                                </label>
+
+                                                                <div class="w-100 collapse" id="hiddencollapse">
+                                                                    <div class="px-3 py-2">
+                                                                        The article will only be visible to those with permission to view hidden articles. Choose this option once your article is ready for review.
+                                                                    </div>
+                                                                </div>
+
+                                                                <label for="published-public" data-toggle="collapse" data-target="#publiccollapse" class="dropdown-item m-0 p-3 cursor-pointer active" data-stop-propagation="true">
+                                                                    <input data-nav-text="Public" type="radio" checked="checked" name="published" value="public" id="published-public" autocomplete="off">
+                                                                    <i class="fal float-right check-icon"></i>
+                                                                    <span class="d-inline m-0 p-0"><strong>Public</strong></span>
+                                                                </label>
+
+                                                                <div class="w-100 collapse show" id="publiccollapse">
+                                                                    <div class="px-3 py-2">
+                                                                        The article will be visible to everyone. Chose this option once your ready to publish to the world.
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div><div class="card-body">
+
+    <input type="hidden" data-val="true" data-val-required="The Id field is required." id="Id" name="Id" value="1115">
+
+    <fieldset>
+        <div class="form-group">
+            <input placeholder="Title" tabindex="1" class="form-control valid" autofocus="" type="text" data-val="true" data-val-maxlength="The field title must be a string or array type with a maximum length of '255'." data-val-maxlength-max="255" data-val-minlength="The field title must be a string or array type with a minimum length of '4'." data-val-minlength-min="4" data-val-required="The title field is required." id="Title" maxlength="255" name="Title" value="Example Articles 1488" aria-describedby="Title-error" aria-invalid="false">
+        </div>
+        <div class="form-group">
+
+            <span class="text-danger field-validation-valid" data-valmsg-for="Value" data-valmsg-replace="true"></span>
+            <div class="position-relative">
+                <div class="md-editor" id="1584342313215">
+                    <div class="md-header-row">
+
+
+                        <main>
+                            
+                            <div class="centered">
+                                <div class="document-editor">
+                                    <div class="toolbar-container"></div>
+                                    <div class="content-container">
+                                        <div id="editor">
+                                            <h2>The three greatest things you learn from traveling</h2>
+
+                                            <p>Like all the great things on earth traveling teaches us by example. Here are some of the most precious lessons I’ve learned over the years of traveling.</p>
+
+                                            <h3>Appreciation of diversity</h3>
+
+                                            <p>Getting used to an entirely different culture can be challenging. While it’s also nice to learn about cultures online or from books, nothing comes close to experiencing <a href="https://en.wikipedia.org/wiki/Cultural_diversity">cultural diversity</a> in person. You learn to appreciate each and every single one of the differences while you become more culturally fluid.</p>
+
+                                            <figure class="image image-style-align-right">
+                                                <img src="sample/img/umbrellas.jpg" alt="Three Monks walking on ancient temple.">
+                                                <figcaption>Leaving your comfort zone might lead you to such beautiful sceneries like this one.</figcaption>
+                                            </figure>
+
+                                            <h3>Confidence</h3>
+
+                                            <p>Going to a new place can be quite terrifying. While change and uncertainty makes us scared, traveling teaches us how ridiculous it is to be afraid of something before it happens. The moment you face your fear and see there was nothing to be afraid of, is the moment you discover bliss.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                             
+                            </div>
+                        </main>
+
+
+
+                    </div>
+                    <div class="md-dropzone dropzone dz-clickable">
+                        <div class="dz-default dz-message">
+                            <span>
+                                Attach files by dragging and dropping here,
+                                <a id="#dzUpload" class="dz-clickable" href="#">click to browse</a> or paste from the clipboard
+                            </span>
+                        </div>
+                    </div>
+                    <div class="md-footer">
+                        <button type="submit" class="btn btn-primary" data-original-title="" title="">Save</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </fieldset>
+    <!-- HTML heavily inspired by http://blueimp.github.io/jQuery-File-Upload/ -->
+    <div class="table table-striped" class="files" id="previews">
+
+        <div id="template" class="file-row">
+            <!-- This is used as the file preview template -->
+            <div>
+                <span class="preview"><img data-dz-thumbnail /></span>
+            </div>
+            <div>
+                <p class="name" data-dz-name></p>
+                <strong class="error text-danger" data-dz-errormessage></strong>
+            </div>
+            <div>
+                <p class="size" data-dz-size></p>
+                <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                    <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                </div>
+            </div>
+            <div>
+                <button class="btn btn-primary start">
+                    <i class="glyphicon glyphicon-upload"></i>
+                    <span>Start</span>
+                </button>
+                <button data-dz-remove class="btn btn-warning cancel">
+                    <i class="glyphicon glyphicon-ban-circle"></i>
+                    <span>Cancel</span>
+                </button>
+                <button data-dz-remove class="btn btn-danger delete">
+                    <i class="glyphicon glyphicon-trash"></i>
+                    <span>Delete</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+                                </div>
+                            </div>
+                        </div><input type="hidden" data-validation-optional="true" name="tags" id="tags" data-val="true" data-val-required="The tags field is required." value="">
+
+                    </div>
+                    <div class="col-lg-3 layout-sidebar">
+                        <div class="card" data-provide="category-dropdown">
+
+                            <div class="dropdown list-group-flush">
+                                <a class="list-group-item list-group-item-action dropdown-toggle dropdown-toggle-no-caret font-weight-bold" href="#" id="categoryDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="fal fa-cog float-right"></i>
+                                    Category
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right anim anim-2x anim-scale-in p-0" style="width: 450px;" aria-labelledby="categoryDropdown">
+                                    <div class="dropdown-header my-2">
+                                        <a href="#" class="text-muted float-right" data-toggle="dropdown">
+                                            <i class="fal fa-times"></i>
+                                        </a>
+                                        Select a category...
+                                    </div>
+                                    <div class="my-2 mx-3">
+                                        <input type="search" class="form-control" data-filter-list-empty=".no-channel-results" placeholder="Search categories...">
+                                    </div>
+                                    <div class="dropdown-header hidden">
+                                        No categories found
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <ul data-empty-preview-text="No category selected." class="list-group list-group-flush select-dropdown-preview"><div class="list-group-item"><label data-category-id="59"><i class="fal mr-2 check-icon"></i><span class="icon-wrapper icon-wrapper-sm mr-2" style="background-color: #92D5B0;color: #ffffff;"><i class="fal fa-marker"></i></span>Example Category 914</label></div></ul>
+
+                        </div>
+
+
+                        <input type="hidden" id="label" name="label" value="">
+
+                        <div class="card" data-provide="label-dropdown" data-max-items="4" data-select-dropdown-store="#label">
+                            <div class="dropdown list-group-flush">
+                                <a class="list-group-item list-group-item-action dropdown-toggle dropdown-toggle-no-caret font-weight-bold" href="#" id="channelDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-display="static">
+                                    <i class="fal fa-cog float-right"></i>
+                                    Labels
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right anim anim-2x anim-scale-in p-0" style="width: 450px;" aria-labelledby="channelDropdown">
+                                    <div class="dropdown-header my-2">
+                                        <a href="#" class="text-muted float-right" data-toggle="dropdown">
+                                            <i class="fal fa-times"></i>
+                                        </a>
+                                        Select up to 4 labels for this post...
+                                    </div>
+                                    <div class="my-2 mx-3">
+                                        <input type="search" autocomplete="off" class="form-control" data-autocomplete-target="#labelAutoCompleteResults" data-autocomplete-url="api/labels/get?pager.page={page}&amp;pager.size={pageSize}&amp;opts.search={keywords}&amp;opts.featureId=12" placeholder="Search labels...">
+                                    </div>
+                                    <div class="max-h-350 overflow-auto">
+                                        <div id="labelAutoCompleteResults" class="list-group list-group-flush tree list-group-hover hidden" data-paged-list-page-size="5" data-paged-list-item-css="list-group-item list-group-item-action">
+                                            <p class="text-center">
+                                                <i class="fal fa-spinner fa-spin"></i>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul data-empty-preview-text="No labels selected." class="list-group list-group-flush select-dropdown-preview"><li class="list-group-item">No labels selected.</li></ul>
+                        </div>
+
+                        <div class="card card-default">
+                            <div class="card-header">
+                                <h6 class="card-title">Follow</h6>
+                            </div><div class="card-body">
+
+                                <label data-toggle="tooltip" title="" for="follow" class="btn btn-block btn-secondary" data-on-css="btn-danger" data-off-css="btn-secondary" data-subscribe-text="Follow Article" data-unsubscribe-text="Unsubscribe" data-subscribe-tooltip="Follow this article to get notified when major changes or comments are posted" data-unsubscribe-tooltip="You are following this article and will be notified when major changes &amp; comments are posted, click to unsubscribe" role="button" data-original-title="Follow this article to get notified when major changes or comments are posted">
+                                    <input type="checkbox" data-provide="follow-checkbox" class="hidden" name="follow" id="follow">
+                                    <i class="fal fa-bell"></i>
+                                    <span>
+                                        Follow Article
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+
+        DecoupledEditor.create(document.querySelector('#editor'), {
+            //toolbar: [ 'heading', '|', 'bold', 'italic', 'link' ]
+        })
+            .then(editor => {
+                const toolbarContainer = document.querySelector('main .toolbar-container');
+
+                toolbarContainer.prepend(editor.ui.view.toolbar.element);
+
+                window.editor = editor;
+            })
+            .catch(err => {
+                console.error(err.stack);
+            });
+        var aa = DecoupledEditor.text();
+        console.log(aa);
+        //// Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+        //var previewNode = document.querySelector("#template");
+        //previewNode.id = "";
+        //var previewTemplate = previewNode.parentNode.innerHTML;
+        //previewNode.parentNode.removeChild(previewNode);
+        //Dropzone.autoDiscover = false;
+
+        //var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+        //    url: "~/../../image/helpdesk", // Set the url
+        //    thumbnailWidth: 80,
+        //    thumbnailHeight: 80,
+        //    parallelUploads: 20,
+        //    previewTemplate: previewTemplate,
+        //    autoQueue: false, // Make sure the files aren't queued until manually added
+        //    previewsContainer: "#previews", // Define the container to display the previews
+        //    clickable: ".fileinput-button" // Define the element that should be used as click trigger to select files.
+        //});
+
+        //myDropzone.on("addedfile", function (file) {
+        //    // Hookup the start button
+        //    file.previewElement.querySelector(".start").onclick = function () { myDropzone.enqueueFile(file); };
+        //});
+
+        //// Update the total progress bar
+        //myDropzone.on("totaluploadprogress", function (progress) {
+        //    document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
+        //});
+
+        //myDropzone.on("sending", function (file) {
+        //    // Show the total progress bar when upload starts
+        //    document.querySelector("#total-progress").style.opacity = "1";
+        //    // And disable the start button
+        //    file.previewElement.querySelector(".start").setAttribute("disabled", "disabled");
+        //});
+
+        //// Hide the total progress bar when nothing's uploading anymore
+        //myDropzone.on("queuecomplete", function (progress) {
+        //    document.querySelector("#total-progress").style.opacity = "0";
+        //});
+
+        //// Setup the buttons for all transfers
+        //// The "add files" button doesn't need to be setup because the config
+        //// `clickable` has already been specified.
+        //document.querySelector("#actions .start").onclick = function () {
+        //    myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED));
+        //};
+        //document.querySelector("#actions .cancel").onclick = function () {
+        //    myDropzone.removeAllFiles(true);
+        //};
+
+    </script>
+}
+
+

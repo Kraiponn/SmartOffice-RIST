@@ -1,0 +1,248 @@
+﻿@model SmartOffice.Models.ModelMenuCMMFooter
+
+<div class="pl-5 pt-5 pr-5">
+    <div class="row" style="color:#888">
+        <div class="col-lg-2 col-md-4 footer-links">
+            <ul style="list-style:none;">
+                @foreach (var item in Model.menuCMMFooters.Where(x => x.GroupCateg == "CMMMENUF01").OrderBy(x => x.DisplayOrder))
+                {
+                    if (item.Action != "" && item.Controller != "")
+                    {
+                        <li>
+                            <a class="" style="color:#888" href="@Url.Action(item.Action, null, new {controller = item.Controller })">
+                                @*<i class="@item.IconClass"></i>*@
+                                @Html.Raw(@item.IconClass)
+                                @if (@item.Image != "")
+                                {
+                                    <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 border  rounded" alt="@item.MenuNameE" style="width:80px"><br />
+                                }
+                                <span>@item.MenuNameE</span>
+                                @if (item.Badges != "")
+                                {
+                                    <span class="@item.Badges">@item.BadgesName</span>
+                                }
+                            </a>
+                        </li>
+                    }
+                    else if (item.MenuUrl != "")
+                    {
+                        <li>
+                            <a href="@item.MenuUrl" class="" style="color:#888" target="_blank">
+                                @*<i class="@item.IconClass"></i>*@
+                                @Html.Raw(@item.IconClass)
+                                @if (@item.Image != "")
+                                {
+                                    <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 border  rounded" alt="@item.MenuNameE" style="width:80px"><br />
+                                }
+                                <span>@item.MenuNameE</span>
+                                @if (item.Badges != "")
+                                {
+                                    <span class="@item.Badges">@item.BadgesName</span>
+                                }
+                            </a>
+                        </li>
+                    }
+                    else
+                    {
+                        <li>
+
+                            @if (@item.Image != "")
+                            {
+                                <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 border  img-fluid" alt="@item.MenuNameE"><br />
+                            }
+                            <p>@Html.Raw(@item.IconClass) @item.MenuNameE</p>
+                            @if (item.Badges != "")
+                            {
+                                <span class="@item.Badges">@item.BadgesName</span>
+                            }
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-4 footer-links">
+            <ul style="list-style:none;">
+                @foreach (var item in Model.menuCMMFooters.Where(x => x.GroupCateg == "CMMMENUF02").OrderBy(x => x.DisplayOrder))
+                {
+                    if (item.Action != "" && item.Controller != "")
+                    {
+                        <li>
+                            <a class="" style="color:#888" href="@Url.Action(item.Action, null, new {controller = item.Controller })">
+                                @*<i class="@item.IconClass"></i>*@
+                                @Html.Raw(@item.IconClass)
+                                @if (@item.Image != "")
+                                {
+                                    <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 border  rounded" alt="@item.MenuNameE" style="width:80px"><br />
+                                }
+                                <span>@item.MenuNameE</span>
+                                @if (item.Badges != "")
+                                {
+                                    <span class="@item.Badges">@item.BadgesName</span>
+                                }
+                            </a>
+                        </li>
+                    }
+                    else if (item.MenuUrl != "")
+                    {
+                        <li>
+                            <a href="@item.MenuUrl" class="" style="color:#888" target="_blank">
+                                @*<i class="@item.IconClass"></i>*@
+                                @Html.Raw(@item.IconClass)
+                                @if (@item.Image != "")
+                                {
+                                    <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 border  rounded" alt="@item.MenuNameE" style="width:80px"><br />
+                                }
+                                <span>@item.MenuNameE</span>
+                                @if (item.Badges != "")
+                                {
+                                    <span class="@item.Badges">@item.BadgesName</span>
+                                }
+                            </a>
+                        </li>
+                    }
+
+                    else
+                    {
+                        <li>
+
+                            @if (@item.Image != "")
+                            {
+                                <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 border  img-fluid" alt="@item.MenuNameE"><br />
+                            }
+                            <p>@Html.Raw(@item.IconClass) @item.MenuNameE</p>
+                            @if (item.Badges != "")
+                            {
+                                <span class="@item.Badges">@item.BadgesName</span>
+                            }
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+
+        <div class="col-lg-2 col-md-4 footer-links">
+            <ul style="list-style:none;">
+                @foreach (var item in Model.menuCMMFooters.Where(x => x.GroupCateg == "CMMMENUF03").OrderBy(x => x.DisplayOrder))
+                {
+                    if (item.Action != "" && item.Controller != "")
+                    {
+                        <li>
+                            <a class="" style="color:#888" href="@Url.Action(item.Action, null, new {controller = item.Controller })">
+                                @*<i class="@item.IconClass"></i>*@
+                                @Html.Raw(@item.IconClass)
+                                @if (@item.Image != "")
+                                {
+                                    <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 border  rounded" alt="@item.MenuNameE" style="width:80px"><br />
+                                }
+                                <span>@item.MenuNameE</span>
+                                @if (item.Badges != "")
+                                {
+                                    <span class="@item.Badges">@item.BadgesName</span>
+                                }
+                            </a>
+                        </li>
+                    }
+                    else if (item.MenuUrl != "")
+                    {
+                        <li>
+                            <a href="@item.MenuUrl" class="" style="color:#888" target="_blank">
+                                @*<i class="@item.IconClass"></i>*@
+                                @Html.Raw(@item.IconClass)
+                                @if (@item.Image != "")
+                                {
+                                    <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 border  rounded" alt="@item.MenuNameE" style="width:80px"><br />
+                                }
+                                <span>@item.MenuNameE</span>
+                                @if (item.Badges != "")
+                                {
+                                    <span class="@item.Badges">@item.BadgesName</span>
+                                }
+                            </a>
+                        </li>
+                    }
+
+                    else
+                    {
+                        <li>
+
+                            @if (@item.Image != "")
+                            {
+                                <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 border  img-fluid" alt="@item.MenuNameE"><br />
+                            }
+                            <p>@Html.Raw(@item.IconClass) @item.MenuNameE</p>
+                            @if (item.Badges != "")
+                            {
+                                <span class="@item.Badges">@item.BadgesName</span>
+                            }
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+            @foreach (var item in Model.menuCMMFooters.Where(x => x.GroupCateg == "CMMMENUF04").OrderBy(x => x.DisplayOrder))
+            {
+                @if (@item.Image != "")
+                {
+                    <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 border  img-fluid" alt="@item.MenuNameE"><br />
+                }
+                <p>@Html.Raw(@item.IconClass) @item.MenuNameE</p>
+                @if (item.Badges != "")
+                {
+                    <span class="@item.Badges">@item.BadgesName</span>
+                }
+            }
+        </div>
+
+        <div class="col-lg-3 col-md-6 footer-contact">
+            @foreach (var item in Model.menuCMMFooters.Where(x => x.GroupCateg == "CMMMENUF05").OrderBy(x => x.DisplayOrder))
+            {
+                if (@item.Image != "")
+                {
+                    <img src="~/image/Footer/@item.Image" class="img-circle elevation-2 img-fluid" alt="@item.MenuNameE" style="border-style: solid;border-width: 2px;border-color:#1dc8cd;"><br />
+                }
+                <a>@item.MenuNameE</a><br />
+            }
+
+            <div class="social-links">
+                <br />
+                @foreach (var item in Model.menuCMMFooters.Where(x => x.GroupCateg == "CMMMENUF06").OrderBy(x => x.DisplayOrder))
+                {
+                    <a href="@item.MenuUrl" class="">@Html.Raw(@item.IconClass)</a>
+                }
+            </div>
+
+
+
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="footer-copyright text-center py-3 contact-about" style="background-color:#d8d8d8;color:#888">
+
+
+    @foreach (var item in Model.menuCMMFooters.Where(x => x.GroupCateg == "CMMMENUF07").OrderBy(x => x.DisplayOrder))
+    {
+        <a><i class="@item.IconClass"></i> @item.MenuNameE</a><br />
+    }
+
+</div>
+
+
+@*</section>*@
+
+
+
+
+
+
+
+
+
+

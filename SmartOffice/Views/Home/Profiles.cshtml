@@ -1,0 +1,343 @@
+﻿@model SmartOffice.Models.InputProfile
+@{
+    ViewData["Title"] = "Profiles";
+    Layout = null;
+    var a = ViewBag.mm;
+
+    var Codempid = User.Claims.FirstOrDefault(c => c.Type == "Codempid").Value;
+    var Company = User.Claims.FirstOrDefault(c => c.Type == "Company").Value;
+    var Department = User.Claims.FirstOrDefault(c => c.Type == "Department").Value;
+    var Department2 = User.Claims.FirstOrDefault(c => c.Type == "Department2").Value;
+    var Department3 = User.Claims.FirstOrDefault(c => c.Type == "Department3").Value;
+    var Division = User.Claims.FirstOrDefault(c => c.Type == "Division").Value;
+    var Dtebirth = User.Claims.FirstOrDefault(c => c.Type == "Dtebirth").Value;
+    var Email1 = User.Claims.FirstOrDefault(c => c.Type == "Email1").Value;
+    var Emplevel = User.Claims.FirstOrDefault(c => c.Type == "Emplevel").Value;
+    var Namempe = User.Claims.FirstOrDefault(c => c.Type == "Namempe").Value;
+    var Namempt = User.Claims.FirstOrDefault(c => c.Type == "Namempt").Value;
+    var Nationality = User.Claims.FirstOrDefault(c => c.Type == "Nationality").Value;
+    var Organizationname = User.Claims.FirstOrDefault(c => c.Type == "Organizationname").Value;
+    var Passport = User.Claims.FirstOrDefault(c => c.Type == "Passport").Value;
+    var Position = User.Claims.FirstOrDefault(c => c.Type == "Position").Value;
+    var Section = User.Claims.FirstOrDefault(c => c.Type == "Section").Value;
+    var Age = User.Claims.FirstOrDefault(c => c.Type == "Age").Value;
+    var Id = User.Claims.FirstOrDefault(c => c.Type == "Id").Value;
+    var UserName = User.Claims.FirstOrDefault(c => c.Type == "UserName").Value;
+    var GroupCateg = User.Claims.FirstOrDefault(c => c.Type == "GroupCateg").Value;
+    var PhoneNumber = User.Claims.FirstOrDefault(c => c.Type == "PhoneNumber").Value;
+    var Email2 = User.Claims.FirstOrDefault(c => c.Type == "Email2").Value;
+    var Password = User.Claims.FirstOrDefault(c => c.Type == "Password").Value;
+
+
+    var img = UserName + ".jpg";
+
+    var GenderT = User.Claims.FirstOrDefault(c => c.Type == "GenderT").Value;
+    var GenderE = User.Claims.FirstOrDefault(c => c.Type == "GenderE").Value;
+
+    var Sign = Model.OperatorSign;
+
+}
+
+
+
+<div class="row">
+    <div class="col-md-3">
+
+        <div class="card card-primary  card-outline">
+            <div class="card-body box-profile btn-dark-moon" style="background-color:aliceblue">
+                <div class="text-center">
+                    <img id="userimg" class="profile-user-img img-fluid img-circle"
+                         alt="User profile picture" src="~/image/User/@img">
+                </div>
+                <h6 class=" text-center">@Namempe</h6>
+                <h6 class=" text-center">@Namempt</h6>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header text-white" style="background-image: radial-gradient( circle 654px at 0.6% 48%,  rgba(12,170,255,1) 0%, rgba(151,255,129,1) 86.3% );">
+                <h3 class="card-title">About Me</h3>
+            </div>
+            <div class="card-body">
+
+                <strong><i class="fas fa-angle-right" style="color:hotpink;"></i>NATIONALITY</strong>
+                <p class="text-muted">
+                    @Nationality
+                </p>
+                <hr>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-9">
+        <div class="card">
+            <div class="card-header btn-dark-moon p-2">
+                <ul class="nav nav-pills">
+                    <li class="nav-item"><a class="nav-link active" href="#Work" data-toggle="tab">Work Information</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#System" data-toggle="tab">About System</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Edit Profile</a></li>
+                </ul>
+            </div>
+
+            <div class="tab-content">
+                <div class="show active  tab-pane fade" id="Work" style="background-color:white;width:100%">
+
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong><i class="fas fa-angle-right" style="color:red;"></i> COMPANY</strong>
+                                <p class="text-muted">
+                                    @Company
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-angle-right" style="color:hotpink;"></i> ID</strong>
+                                <p class="text-muted">
+                                    @Codempid
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-angle-right" style="color:red;"></i> SECT</strong>
+                                <p class="text-muted">
+                                    @Department3
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-angle-right" style="color:hotpink;"></i> DEPT</strong>
+                                <p class="text-muted">
+                                    @Department2
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-angle-right" style="color:red;"></i> DIV</strong>
+                                <p class="text-muted">
+                                    @Department
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-angle-right" style="color:red;"></i> HQ</strong>
+                                <p class="text-muted">
+                                    @Division
+                                </p>
+                                <hr>
+
+                            </div>
+                            <div class="col-md-6">
+                                <strong><i class="fas fa-angle-right" style="color:hotpink;"></i> ORGANIZATION NAME</strong>
+                                <p class="text-muted">
+                                    @Organizationname
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-angle-right" style="color:red;"></i> POSITION</strong>
+                                <p class="text-muted">
+                                    @Position
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-angle-right" style="color:hotpink;"></i> LEVEL</strong>
+                                <p class="text-muted">
+                                    @Emplevel
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-angle-right" style="color:red;"></i> EMAIL1</strong>
+                                <p class="text-muted">
+                                    @Email1
+                                </p>
+                                <hr>
+                                <strong><i class="fas fa-angle-right" style="color:hotpink;"></i> EMAIL2</strong>
+                                <p class="text-muted">
+                                    @Email2
+                                </p>
+                                <hr>
+
+                                <strong><i class="fas fa-angle-right" style="color:red;"></i> INTERNAL TELEPHONE NUMBER</strong>
+                                <p class="text-muted">
+                                    @PhoneNumber
+                                </p>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="System" style="background-color:white;">
+
+
+                    <div class="card-body">
+                        <strong><i class="fas fa-minus" style="color:red;"></i> USER</strong>
+                        <p class="text-muted">
+                            @UserName
+                        </p>
+                        <hr>
+                        <strong><i class="fas fa-minus" style="color:hotpink;"></i> PASSWORD</strong>
+                        <p class="text-muted">
+                            @Password
+                        </p>
+                        <hr>
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="tab-pane fade" id="settings" style="background-color:white;">
+
+
+                    <div class="card">
+                        <div class="card-header" style="background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);">
+                            <h3 class="card-title text-dark">Change Telephone&Password</h3>
+                        </div>
+
+                        <div class="card-body">
+                            <form class="form-horizontal" method="post" asp-action="upProfiles" asp-controller="Home">
+                                <div asp-validation-summary="All" class="text-danger"></div>
+                                <input asp-for="@Model.id" type="hidden" />
+
+                                <div class="form-group">
+                                    <label asp-for="@Model.Phone">Internal Telephone</label>
+                                    <input asp-for="@Model.Phone" class="form-control" />
+                                    <span asp-validation-for="@Model.Phone" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.Password">New Password</label>
+                                    <input asp-for="@Model.Password" class="form-control" />
+                                    <span asp-validation-for="@Model.Password" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="@Model.ConfirmPassword">Confirm New Password</label>
+                                    <input asp-for="@Model.ConfirmPassword" class="form-control" />
+                                    <span asp-validation-for="@Model.ConfirmPassword" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-sm btn-danger">Submit</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header" style="background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);">
+                                    <h3 class="card-title text-dark">Change My Image</h3>
+                                </div>
+
+                                <div class="card-body">
+                                    <form asp-controller="Home" asp-action="upimg" enctype="multipart/form-data">
+                                        <div class="form-group">
+                                            <label for="file">Select</label>
+                                            <input type="file" name="file" id="file" data-val="true" data-val-required="Please select image" accept=".jpg" />
+                                            @Html.ValidationMessage("file", new { @style = "color:red;!important" })
+                                        </div>
+
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-upload"></i>Upload
+                                        </button>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card">
+                                <div class="card-header" style="background-image: linear-gradient(120deg, #89f7fe 0%, #66a6ff 100%);">
+                                    <h3 class="card-title text-dark">Change Image Signature</h3>
+                                </div>
+
+                                <div class="card-body">
+                                    <form asp-controller="Home" asp-action="upsignature" enctype="multipart/form-data">
+                                        <img id="mysignature" src="@Sign" style="height:160px ;width:160px">
+                                        <div class="form-group">
+                                            <label for="file">Select</label>
+                                            <input type="file" name="inputFileToLoad" id="inputFileToLoad" onchange="encodeImageFileAsURL();" data-val="true" data-val-required="Please select image" accept=".png" />
+
+                                            @Html.ValidationMessage("inputFileToLoad", new { @style = "color:red;!important" })
+
+                                        </div>
+                                        <button type="submit" class="btn btn-sm btn-danger">
+                                            <i class="fas fa-upload"></i>Upload
+                                        </button>
+
+                                        <div id="myImg"></div>
+                                        <textarea rows="5" type="text" id="SignatureDataUrl" name="SignatureDataUrl" hidden></textarea>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@*@section Scripts {*@
+
+<script type='text/javascript'>
+
+        document.getElementById("userimg").src = "../image/User/@img" + "? timestamp =" + new Date().getTime();
+
+
+        function encodeImageFileAsURL() {
+
+            var filesSelected = document.getElementById("inputFileToLoad").files;
+            if (filesSelected.length > 0) {
+                var fileToLoad = filesSelected[0];
+                var fileReader = new FileReader();
+
+                fileReader.onload = function (fileLoadedEvent) {
+                    var srcData = fileLoadedEvent.target.result; // <--- data: base64
+                    //console.log(srcData);
+                    var newImage = document.createElement('img');
+                    newImage.src = srcData;
+
+                    document.getElementById("myImg").innerHTML = newImage.outerHTML;
+
+                    $("#SignatureDataUrl").val(srcData);
+
+                    //alert("Converted Base64 version is " + document.getElementById("myImg").innerHTML);
+                    //console.log("Converted Base64 version is " + document.getElementById("myImg").innerHTML);
+                }
+                fileReader.readAsDataURL(fileToLoad);
+            }
+        }
+
+</script>
+
+@*<partial name="_ValidationScriptsPartial" />*@
+
+@*<script type='text/javascript'>
+
+    function uploadFile() {
+        var filename = $('#file').val();
+        if (filename == '') {
+            alert("kkk");
+            return false;
+        } else {
+            var url = '../Home/upimg';
+            $.ajax({
+                type: "POST",
+                url: url,
+                data: $('#settings2').serialize(),
+                success: function (data) {
+                    if (data.status) {
+
+                        successBR(data.detail, data.subject);
+                        $('#tabledata').DataTable().ajax.reload();
+
+                        $('#modal-placeholder').html("");
+
+
+                        $("body").removeClass("modal-open");
+
+                    } else {
+                        warningBR(data.detail, data.subject);
+                    }
+                }
+            })
+        }
+    }
+    e.preventDefault();*@
+@*</script>*@
+@*}*@

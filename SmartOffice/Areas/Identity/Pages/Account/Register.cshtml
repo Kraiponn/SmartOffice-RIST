@@ -1,0 +1,375 @@
+﻿@page
+@model RegisterModel
+
+
+<h2>@ViewData["Register"]</h2>
+
+
+<style type="text/css">
+    .largerCheckbox {
+        transform: scale(1.5);
+    }
+
+    .checkboxtext {
+        /* Checkbox text */
+        font-size: 500%;
+        display: inline;
+    }
+
+    :root {
+        --input-padding-x: 1.5rem;
+        --input-padding-y: .75rem;
+    }
+
+
+    .card-signin {
+        border: 0;
+        border-radius: 1rem;
+        box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+        opacity: 1;
+        width: 500px;
+        height: 650px;
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+
+        .card-signin .card-title {
+            margin-bottom: 2rem;
+            font-weight: 300;
+            font-size: 1.5rem;
+        }
+
+        .card-signin .card-body {
+            padding: 2rem;
+        }
+
+    .form-signin {
+        width: 100%;
+    }
+
+        .form-signin .btn {
+            font-size: 80%;
+            border-radius: 5rem;
+            letter-spacing: .1rem;
+            font-weight: bold;
+            padding: 1rem;
+            transition: all 0.2s;
+        }
+
+    .form-label-group {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+        .form-label-group input {
+            height: auto;
+            border-radius: 2rem;
+        }
+
+        .form-label-group > input,
+        .form-label-group > label {
+            padding: var(--input-padding-y) var(--input-padding-x);
+        }
+
+        .form-label-group > label {
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            width: 100%;
+            margin-bottom: 0;
+            /* Override default `<label>` margin */
+            line-height: 1.5;
+            color: #495057;
+            border: 1px solid transparent;
+            border-radius: .25rem;
+            transition: all .1s ease-in-out;
+        }
+
+        .form-label-group input::-webkit-input-placeholder {
+            color: transparent;
+        }
+
+        .form-label-group input:-ms-input-placeholder {
+            color: transparent;
+        }
+
+        .form-label-group input::-ms-input-placeholder {
+            color: transparent;
+        }
+
+        .form-label-group input::-moz-placeholder {
+            color: transparent;
+        }
+
+        .form-label-group input::placeholder {
+            color: transparent;
+        }
+
+        .form-label-group input:not(:placeholder-shown) {
+            padding-top: calc(var(--input-padding-y) + var(--input-padding-y) * (2 / 3));
+            padding-bottom: calc(var(--input-padding-y) / 3);
+        }
+
+            .form-label-group input:not(:placeholder-shown) ~ label {
+                padding-top: calc(var(--input-padding-y) / 3);
+                padding-bottom: calc(var(--input-padding-y) / 3);
+                font-size: 12px;
+                color: #777;
+            }
+
+    .btn-google {
+        color: white;
+        background-color: #ea4335;
+    }
+
+    .btn-facebook {
+        color: white;
+        background-color: #3b5998;
+    }
+
+    .wrapper1 {
+        background: #50a3a2;
+        background: -webkit-linear-gradient(top left,#50a3a2 0%,#53e3a6 100%);
+        background: -moz-linear-gradient(top left,#50a3a2 0%,#53e3a6 100%);
+        background: -o-linear-gradient(top left,#50a3a2 0%,#53e3a6 100%);
+        background: linear-gradient(to bottom right,#50a3a2 0%,#53e3a6 100%);
+        /*position: absolute;*/
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        /*min-height: 800px;
+        min-width: 1024px*/
+    }
+
+        .wrapper1.form-success .container h1 {
+            transform: translateY(85px);
+        }
+
+    .container1 {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 80px 0;
+        /*height: 400px;*/
+        text-align: center;
+    }
+
+    .container h1 {
+        font-size: 40px;
+        transition-duration: 1s;
+        transition-timing-function: ease-in-put;
+        font-weight: 200;
+    }
+
+    form {
+        /*padding: 20px 0;*/
+        position: relative;
+        z-index: 2;
+    }
+
+
+
+    .bg-bubbles {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+        .bg-bubbles li {
+            position: absolute;
+            list-style: none;
+            display: block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.15);
+            bottom: -160px;
+            -webkit-animation: square 25s infinite;
+            animation: square 25s infinite;
+            -webkit-transition-timing-function: linear;
+            transition-timing-function: linear;
+        }
+
+            .bg-bubbles li:nth-child(1) {
+                left: 10%;
+            }
+
+            .bg-bubbles li:nth-child(2) {
+                left: 20%;
+                width: 80px;
+                height: 80px;
+                animation-delay: 2s;
+                animation-duration: 17s;
+            }
+
+            .bg-bubbles li:nth-child(3) {
+                left: 25%;
+                animation-delay: 4s;
+            }
+
+            .bg-bubbles li:nth-child(4) {
+                left: 40%;
+                width: 60px;
+                height: 60px;
+                animation-duration: 22s;
+                background-color: rgba(255,255,255,0.25);
+            }
+
+            .bg-bubbles li:nth-child(5) {
+                left: 70%;
+            }
+
+            .bg-bubbles li:nth-child(6) {
+                left: 80%;
+                width: 120px;
+                height: 120px;
+                animation-delay: 3s;
+                background-color: rgba(255,255,255,0.2);
+            }
+
+            .bg-bubbles li:nth-child(7) {
+                left: 32%;
+                width: 160px;
+                height: 160px;
+                animation-delay: 7s;
+            }
+
+            .bg-bubbles li:nth-child(8) {
+                left: 55%;
+                width: 20px;
+                height: 20px;
+                animation-delay: 15s;
+                animation-duration: 40s;
+            }
+
+            .bg-bubbles li:nth-child(9) {
+                left: 25%;
+                width: 10px;
+                height: 10px;
+                animation-delay: 2s;
+                animation-duration: 40s;
+                background-color: rgba(255,255,255,0.3);
+            }
+
+            .bg-bubbles li:nth-child(10) {
+                left: 90%;
+                width: 160px;
+                height: 160px;
+                animation-delay: 11s;
+            }
+
+    @@-webkit-keyframes square {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(-700px) rotate(600deg);
+        }
+    }
+
+    @@keyframes square {
+        0% {
+            transform: translateY(0);
+        }
+
+        100% {
+            transform: translateY(-700px) rotate(600deg);
+        }
+    }
+</style>
+
+<div class="wrapper1">
+    <div class="container1">
+        <div class="row">
+            <div class="mx-auto">
+                <div class="card card-signin my-5">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">Register</h5>
+                        <form class="form-signin" method="post" role="form">
+
+                            <div asp-validation-summary="All" class="text-danger"></div>
+                            <div class="form-label-group">
+
+                                <input id="inputEmail" asp-for="Input.Email" class="form-control" placeholder="UserID" required autofocus />
+                                <label for="inputEmail">UserID</label>
+                                <span asp-validation-for="Input.Email" class="text-danger"></span>
+                            </div>
+                            <div class="form-label-group">
+
+                                <input id="inputTel" asp-for="Input.Tel" class="form-control" placeholder="Internal Telephone" required />
+                                <label for="inputTel">Internal Telephone</label>
+                                <span asp-validation-for="Input.Tel" class="text-danger"></span>
+                            </div>
+                            @*<div class="form-group">
+                                @Html.LabelFor(model => model.Input.GroupCateg)
+                                @Html.DropDownListFor(model => model.Input.GroupCateg, Model.Input.GroupCategl, "Select", new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Input.GroupCateg, "", new { @class = "text-danger" })
+                            </div>*@
+                            @*<div class="form-group">
+                                    <label>Access rights</label>
+                                    @for (var i = 0; i < Model.Inputchecklist.Count(); i++)
+                                    {
+                                        <br />
+                                        <div class="custom-control custom-checkbox">
+
+                                            @Html.HiddenFor(x => Model.Inputchecklist[i].Id)
+                                            @Html.HiddenFor(x => Model.Inputchecklist[i].Name)
+
+                                            @Html.CheckBoxFor(x => Model.Inputchecklist[i].Checked, new { @type = "checkbox", @class = "form-check-input largerCheckbox" })
+
+
+                                            @Html.DisplayFor(x => Model.Inputchecklist[i].Name, new { @class = "form-check-label checkboxtext" })
+
+                                        </div>
+
+                                    }
+                                </div>*@
+                            <div class="form-label-group">
+
+                                <input id="inputPassword" asp-for="Input.Password" class="form-control" placeholder="Password" required />
+                                <label for="inputPassword">Password</label>
+                                <span asp-validation-for="Input.Password" class="text-danger"></span>
+
+                            </div>
+                            <div class="form-label-group">
+
+                                <input id="inputCPassword" asp-for="Input.ConfirmPassword" class="form-control" placeholder="Confirm Password" required />
+                                <label for="inputCPassword">Confirm Password</label>
+                                <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+                            </div>
+
+                            <button class="btn btn-lg btn-warning btn-block text-uppercase">Register <i class="fas fa-user-plus"></i></button>
+
+
+                            <hr class="my-4">
+                            <div class="options text-center text-md-right mt-1">
+                                <p><a asp-page="./Login" asp-route-returnUrl="@Model.ReturnUrl" class="btn btn-primary">Back <i class="fas fa-arrow-circle-left"></i></a></p>
+                            </div>
+                            <br />
+                            <br />
+                            <br />
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+    @section Scripts {
+        <script>
+            $('.a-middle').css('margin-top', function () {
+                return ($(window).height() - $(this).height()) / 2
+            });
+
+
+        </script>
+
+
+        <partial name="_ValidationScriptsPartial" />
+    }

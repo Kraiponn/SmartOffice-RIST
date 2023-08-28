@@ -1,0 +1,1007 @@
+﻿
+
+<link href="~/lib/bootstrap4-toggle/bootstrap4-toggle.min.css" rel="stylesheet" />
+<link href="~/lib/sweetalert/sweetalert.css" rel="stylesheet" />
+<link href="~/Asset/LTE/bower_components/bootstrap-colorpicker/dist/css/bootstrap-colorpicker.min.css" rel="stylesheet" />
+
+<style type="text/css">
+
+    /* USER LIST TABLE */
+    .user-list tbody td > img {
+        position: relative;
+        max-width: 50px;
+        float: left;
+        margin-right: 15px;
+    }
+
+    .user-list tbody td .user-link {
+        display: block;
+        font-size: 1.25em;
+        padding-top: 3px;
+        margin-left: 60px;
+    }
+
+    .user-list tbody td .user-subhead {
+        font-size: 0.875em;
+        font-style: italic;
+    }
+
+    .table a.table-link {
+        margin: 0 5px;
+        font-size: 1.125em;
+    }
+
+        .table a.table-link:hover {
+            text-decoration: none;
+            color: #2aa493;
+        }
+
+        .table a.table-link.danger {
+            color: #fe635f;
+        }
+        .table a.table-link.success {
+            color: #66BB6A;
+        }
+        .table a.table-link.warning {
+            color: #FF7043;
+        }
+            .table a.table-link.danger:hover {
+                color: #dd504c;
+            }
+
+    .table-products tbody > tr > td {
+        background: none;
+        border: none;
+        border-bottom: 1px solid #ebebeb;
+        -webkit-transition: background-color 0.15s ease-in-out 0s;
+        transition: background-color 0.15s ease-in-out 0s;
+        position: relative;
+    }
+
+    .table-products tbody > tr:hover > td {
+        text-decoration: none;
+        background-color: #f6f6f6;
+    }
+
+    .table-products .name {
+        display: block;
+        font-weight: 600;
+        padding-bottom: 7px;
+    }
+
+    .table-products .price {
+        display: block;
+        text-decoration: none;
+        width: 50%;
+        float: left;
+        font-size: 0.875em;
+    }
+
+        .table-products .price > i {
+            color: #8dc859;
+        }
+
+    .table-products .warranty {
+        display: block;
+        text-decoration: none;
+        width: 50%;
+        float: left;
+        font-size: 0.875em;
+    }
+
+        .table-products .warranty > i {
+            color: #f1c40f;
+        }
+
+    .table tbody > tr.table-line-fb > td {
+        background-color: #9daccb;
+        color: #262525;
+    }
+
+    .table tbody > tr.table-line-twitter > td {
+        background-color: #9fccff;
+        color: #262525;
+    }
+
+    .table tbody > tr.table-line-plus > td {
+        background-color: #eea59c;
+        color: #262525;
+    }
+
+    .table-stats .status-social-icon {
+        font-size: 1.9em;
+        vertical-align: bottom;
+    }
+
+    .table-stats .table-line-fb .status-social-icon {
+        color: #556484;
+    }
+
+    .table-stats .table-line-twitter .status-social-icon {
+        color: #5885b8;
+    }
+
+    .table-stats .table-line-plus .status-social-icon {
+        color: #a75d54;
+    }
+    /* Custom Radio Button Start*/
+
+    .radiotextsty {
+        color: #A5A4BF;
+        font-size: 18px;
+    }
+
+    .customradio {
+        display: block;
+        position: relative;
+        padding-left: 30px;
+        margin-bottom: 0px;
+        cursor: pointer;
+        font-size: 18px;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+        /* Hide the browser's default radio button */
+        .customradio input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+    /* Create a custom radio button */
+    .checkmark {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 22px;
+        width: 22px;
+        background-color: white;
+        border-radius: 50%;
+        border: 1px solid #BEBEBE;
+    }
+
+    /* On mouse-over, add a grey background color */
+    .customradio:hover input ~ .checkmark {
+        background-color: transparent;
+    }
+
+    /* When the radio button is checked, add a blue background */
+    .customradio input:checked ~ .checkmark {
+        background-color: white;
+        border: 1px solid #BEBEBE;
+    }
+
+    /* Create the indicator (the dot/circle - hidden when not checked) */
+    .checkmark:after {
+        content: "";
+        position: absolute;
+        display: none;
+    }
+
+    /* Show the indicator (dot/circle) when checked */
+    .customradio input:checked ~ .checkmark:after {
+        display: block;
+    }
+
+    /* Style the indicator (dot/circle) */
+    .customradio .checkmark:after {
+        top: 2px;
+        left: 2px;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        background: #A3A0FB;
+    }
+
+    .modal-open .modal {
+        overflow: hidden;
+    }
+
+    .modal-body {
+        height: calc(100vh - 126px);
+        overflow-y: scroll;
+    }
+</style>
+
+
+<section class="content p-0">
+               
+            <div id="accordionExample">
+                <div class="card">
+                    <div class="card-header bg-dark">
+                        <a class="card-link" data-toggle="collapse" href="#collapseOne">
+                            <i class="fa fa-chevron-down pull-right"></i> Layout Navigator
+                        </a>
+                    </div>
+                    <div id="collapseOne" class="collapse" data-parent="#accordionExample">
+                        <div class="card-body">
+                            <img src="~/image/sample.png" class="img-fluid" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+      
+
+            <div class="row">
+                <div class="col-md-12 col-sm-12">
+                    <div class="vertical-tabs">
+                        <ul class="nav nav-tabs nav-fill" role="tablist">
+                            <li class="nav-item ">
+                                <a class="nav-item nav-link btn btn-dark-moon active" data-toggle="tab" href="#home-v" role="tab" aria-controls="home-v"><h6>Article/News</h6></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-item nav-link btn btn-dark-moon" data-toggle="tab" href="#profile-v" role="tab" aria-controls="profile-v"><h6>Information and Link</h6></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-item nav-link btn btn-dark-moon" data-toggle="tab" href="#messages-v" role="tab" aria-controls="messages-v"><h6>Department Info</h6></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-item nav-link btn btn-dark-moon" data-toggle="tab" href="#settings-v" role="tab" aria-controls="settings-v"><h6>Header</h6></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tab-content">
+                        <!------------------------------------------------------------------------------ Main News ---------------------------------------------------------------------------------------------->
+                        <div class="tab-pane fade show active" id="home-v" role="tabpanel">
+                            <div class="sv-tab-panel">
+                                <!--  <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="btn-toolbar" role="toolbar">
+                                        <div class="btn-group mr-1">
+                                            <button type="button" class="btn btn-success" aria-label="Left Align" onclick="Addgroup('News');"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>เพิ่มหัวข้อ</button>
+                                            <button type="button" class="btn btn-cool-blues" aria-label="Left Align" onclick="Addgroup();"><span class="fa fas fa-cogs fa-lg" aria-hidden="true"></span>Template Setting</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>  -->
+                                <div class="card shadow-none mt-3 border border-light">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Article/News</h5>
+                                        <hr COLOR="#FF0000" SIZE="3" />
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <div class="btn-toolbar" role="toolbar">
+                                                    <div class="btn-group mr-1">
+                                                        <button type="button" class="btn btn-success" aria-label="Left Align" onclick="Addgroup('News');"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>ADD</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- End row -->
+                                        <br>
+                                        <table class="table table-striped display responsive" style="width:100%" id="tabledata">
+                                            <thead class="btn-dark-moon">
+                                                <tr>
+                                                    <th></th>
+                                                    <th>No</th>
+                                                    <th> </th>
+                                                    <th>Title</th>
+                                                    <th>Display</th>
+                                                    <th>Group</th>
+                                                    <th>Type</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>Start</th>
+                                                    <th>End</th>
+                                                    <th></th>
+                                                    <th></th>
+                                                    <th>UpdateDate</th>
+                                                    <th>UpdateBy</th>
+
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div> <!-- card -->
+                            </div>
+                        </div>
+                        <!---------------------------------------------------------------------------------------- Main New --------------------------------------------------------------------------------->
+                        <!---------------------------------------------------------------------------------------- Right Bar -------------------------------------------------------------------------------->
+                        <div class="tab-pane fade show" id="profile-v" role="tabpanel">
+                            <div class="sv-tab-panel">
+                                <div class="card shadow-none mt-3 border border-light">
+                                    <div class="card-body">
+                                        <h5 class="card-title">Information & Link</h5>
+                                        <hr COLOR="#FF0000" SIZE="3" />
+                                        <div class="row">
+                                            <div class="col-lg-8">
+                                                <div class="btn-toolbar" role="toolbar">
+                                                    <div class="btn-group mr-1">
+                                                        <button type="button" class="btn btn-success" aria-label="Left Align" onclick="Addgroup('Slide');"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>ADD</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- End row -->
+                                        <br>
+                                        <table class="table table-striped display responsive" style="width:100%" id="tableSlide">
+                                            <thead class="btn-dark-moon">
+                                                <tr>
+                                                    <th></th>
+                                                    <th>No</th>
+                                                    <th></th>
+                                                    <th>Title</th>
+                                                    <th>Type</th>
+                                                    <th></th>
+                                                    <th>NewsGroup</th>
+                                                    <th>NewsType</th>
+                                                    <th>Status</th>
+                                                    <th>CreateDate</th>
+                                                    <th>Create By</th>
+                                                    <th>UpdateDate</th>
+                                                    <th>UpdateBy</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div> <!-- card -->
+                            </div>
+                        </div>
+                        <!-------------------------------------------------------------------------------------  Right Bar -------------------------------------------------------------------------->
+                        <!-------------------------------------------------------------------------------------- Footer -------------------------------------------------------------------------------->
+                        <div class="tab-pane fade show" id="messages-v" role="tabpanel">
+                            <div class="row">
+                                <div class="col-lg-8">
+                                    <div class="btn-toolbar" role="toolbar">
+                                        <div class="btn-group mr-1">
+                                            <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                                <li class="nav-item">
+                                                    <a class="btn btn-primary" id="one-tab" data-toggle="tab" href="#one" role="tab" aria-controls="One" aria-selected="true"><span class="fa fas fa-wrench fa-lg" aria-hidden="true"></span>Category</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="btn btn-primary" id="two-tab" data-toggle="tab" href="#two" role="tab" aria-controls="Two" aria-selected="false"><span class="fa fas fa-info-circle fa-lg" aria-hidden="true"></span>Item in category</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> <!-- End row -->
+                            <div class="card shadow-none mt-3 border border-light">
+                                <div class="card-body">
+                                    <div class="tab-content" id="myTabContent">
+                                        <div class="tab-pane fade show active p-3" id="one" role="tabpanel" aria-labelledby="one-tab">
+                                            <h5 class="card-title">Category</h5>
+                                            <hr COLOR="#FF0000" SIZE="3" />
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <div class="btn-toolbar" role="toolbar">
+                                                        <div class="btn-group mr-1">
+                                                            <button type="button" class="btn btn-success" aria-label="Left Align" onclick="AddHeader();"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>New Category</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- End row -->
+                                            <br>
+                                            <table class="table table-striped display responsive" style="width:100%" id="tablefoothead">
+                                                <thead class="btn-dark-moon">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>No</th>
+                                                        <th>Title</th>
+                                                        <th>GroupCateg</th>
+                                                        <th>ConfigOrder</th>
+                                                        <th>Text Color</th>
+                                                        <th>Blackgound Color</th>
+                                                        <th>CorlorTextD</th>
+                                                        <th>BgD</th>
+                                                        <th>ColorButton</th>
+                                                        <th>CreatedDate</th>
+                                                        <th>CreateBy</th>
+                                                        <th>UpdateDate</th>
+                                                        <th>UpdateBy</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                            <div class="form-group" style="display:none">
+                                                <label>Color picker:</label>
+                                                <input type="text" class="form-control my-colorpicker1 colorpicker-element">
+                                            </div>
+                                            @*<img class="img-fluid" src="~/image/Colorpalette.png" />*@
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="two" role="tabpanel" aria-labelledby="two-tab">
+                                            <h5 class="card-title">Item in category</h5>
+                                            <hr COLOR="#FF0000" SIZE="3" />
+                                            <div class="row">
+                                                <div class="col-lg-8">
+                                                    <div class="btn-toolbar" role="toolbar">
+                                                        <div class="btn-group mr-1">
+                                                            <button type="button" class="btn btn-success" aria-label="Left Align" onclick="Addgroup('Footer');"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>New Item</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- End row -->
+                                            <br>
+                                            <table class="table table-striped display responsive" style="width:100%" id="tableFooter">
+                                                <thead class="btn-dark-moon">
+                                                    <tr>
+                                                        <th></th>
+                                                        <th>No</th>
+                                                        <th></th>
+                                                        <th>Title</th>
+                                                        <th>Type</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th>Category</th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th></th>
+                                                        <th>UpdateDate</th>
+                                                        <th>UpdateBy</th>
+                                                    </tr>
+                                                </thead>
+                                            </table>
+                                        </div>
+                                        <div class="tab-pane fade p-3" id="three" role="tabpanel" aria-labelledby="three-tab">
+                                            <h5 class="card-title">Tab Card Three</h5>
+                                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                            <a href="#" class="btn btn-primary">Go somewhere</a>
+                                        </div>
+
+                                    </div>
+
+                                    <hr>
+                                </div>
+                            </div> <!-- card -->
+                        </div>
+                        <!----------------------------------------------------------- Footer -------------------------------------------------------------------------------------------->
+                        <!---------------------------------------------------------- Header ----------------------------------------->
+                        <div class="tab-pane fade show " id="settings-v" role="tabpanel">
+                            <div class="sv-tab-panel">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div class="btn-toolbar" role="toolbar">
+                                            <div class="btn-group mr-1">
+                                                <button type="button" class="btn btn-success" aria-label="Left Align" onclick="AddgroupHeader();"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>Add Slide</button>
+                                                @*<button type="button" class="btn btn-cool-blues" aria-label="Left Align" onclick="Addgroup();"><span class="fa fas fa-cogs fa-lg" aria-hidden="true"></span>Template Setting</button>*@
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div> <!-- End row -->
+                                <div class="card shadow-none mt-3 border border-light">
+                                    <div class="card-body">
+                                        <table class="table table-striped display responsive" style="width:100%" id="tabledataheader">
+                                            <thead class="btn-dark-moon">
+                                                <tr>
+                                                    <th></th>
+                                                    <th>Order</th>
+                                                    <th></th>
+                                                    <th>PartId</th>
+                                                    <th>GroupCateg</th>
+                                                    <th>ImgPath</th>
+                                                    <th>Show Public?</th>
+                                                    <th>First Image</th>
+                                                    <th>Link</th>
+                                                    <th>Attach</th>
+                                                    <th>Link Name</th>
+                                                    <th>Link Path</th>
+                                                    <th>Display</th>
+                                                    <th>Created Date</th>
+                                                    <th>CreateBy</th>
+                                                    <th>Update Date</th>
+                                                    <th>Update By</th>
+                                                    <th>Start Show</th>
+                                                    <th>End Show</th>
+                                                </tr>
+                                            </thead>
+                                        </table>
+                                    </div>
+                                </div> <!-- card -->
+                            </div>
+                        </div>
+                        <!---------------------------------------------------------------- Header ---------------------------------------------------------------------------->
+                    </div>
+                </div>
+            </div>
+        
+
+</section>
+
+<!--------------------------------------------------------------- Modal News ------------------------------------------------------------------------------------------->
+<div id="modal-placeholder">
+    <div class="modal fade bd-example-modal-lg" id="myModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content pt-5">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data" name="addform" class="form-horizontal" id="addform">
+                        <div class="form-group">
+                            <label for="title-name" class="col-form-label">Title :</label>
+                            <input name="title" id="title" type="text" required class="form-control" placeholder="" />
+                        </div>
+                        <div class="form-group" id="topic_type">
+                            <label class="col-form-label">Type</label><br>
+                            <div class="form-check">
+                                <label for="radio2" class="customradio">
+                                    <span class="radiotextsty">File Download</span>
+                                    <input type="radio" id="radio2" name="childtype" value="2" checked="checked" />
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="radio3" class="customradio">
+                                    <span class="radiotextsty">Link</span>
+                                    <input type="radio" id="radio3" name="childtype" value="3" />
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="radio4" class="customradio">
+                                    <span class="radiotextsty">Image Gallery</span>
+                                    <input type="radio" id="radio4" name="childtype" value="4" />
+                                    <span class="checkmark"></span>
+                                </label>
+
+                                <label for="radio6" class="customradio">
+                                    <span class="radiotextsty">Information</span>
+                                    <input type="radio" id="radio6" name="childtype" value="6" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group" id="rol_news">
+                            <label class="col-form-label">Display</label><br>
+                            <div class="form-check">
+                                <label for="Nrole1" class="customradio">
+                                    <span class="radiotextsty">Private(Only Departmen site)</span>
+                                    <input type="radio" id="Nrole1" name="Disable" value="false" checked="checked" />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="Nrole2" class="customradio">
+                                    <span class="radiotextsty">Public(Include Esmart site)</span>
+                                    <input type="radio" id="Nrole2" name="Disable" value="true" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="BadgesName" class="col-form-label">Category</label>
+                            <select class="input-lg btn btn-default" id="BadgesName" name="BadgesName">
+                                <option value="" disabled="disabled">Please select a category</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="date_range" class="col-form-label">Display Date Range</label>
+                            <input type="text" id="date_range" class="form-control float-right">
+                        </div>
+                        <div class="form-group" id="ckedit">
+                            <label for="txtMessage" class="col-form-label">Detail</label>
+                            <textarea name="txtMessage" id="txtMessage" class="ckeditor"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="fUpload" class="col-form-label">Attach file</label>
+                            <input type="file" id="fUpload" name="fUpload" multiple class="form-control" accept=".jpg,.gif,.png,.jpeg,.tiff,.pdf,.docx,.doc,.docm,.dotx,.dotm,
+                                   .xls,.xlsx,.xlsm,.xltx,.xltm,.xlsb,.xlam,.pptx,.pptm,.ppsx,.ppsm,.zip,.7z,.mp4,.avi,.m4v,.mov,.mpg,.mpeg,.swf"/>
+                        </div>
+
+                        <div class="form-group" id="Group_picture">
+                            <label for="tablepicture" class="col-form-label">File</label>
+                            <table class="table table-striped display responsive" style="width:100%" id="tablepicture">
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>partId</th>
+                                        <th>value</th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>itemType</th>
+                                        <th>newDorder</th>
+                                        <th>newHorder</th>
+                                        <th>groupCateg</th>
+                                        <th>showPublic</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                        </div>
+                        <div class="form-group">
+                            <input type="button" class="col btn btn-dark-blue" id="btn" value="Save">
+                        </div>
+                    </form>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-------------------------------------------------------------------------------------End Modal News --------------------------------------------------->
+<!------------------------------------------------------------------------------------- Modal Header --------------------------------------------------->
+<div id="modal-placeholder">
+    <div class="modal fade bd-example-modal-lg" id="myModalAddHeader" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content pt-5">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel"><i class='fas fa-image' style='font-size:36px;color:lightseagreen'></i> Manage Image Slide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data" name="addform1" class="form-horizontal" id="addform1">
+
+                        <table class="table table-striped table-bordered">
+                            <thead style="background-color:black;color:white">
+                                <tr>
+                                    <th>Upload image</th>
+                                    <th>Preview new image</th>
+                                    <th>Current image</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <div class="form-group" id="topic_iUpload">
+                                            @*<label for="iUpload" class="col-form-label">Select Image</label>*@
+                                            <input type="file" id="iUpload" name="iUpload" multiple class="form-control" accept=".jpg,.gif,.png,.jpeg,.tiff" onchange="document.getElementById('blah').src = window.URL.createObjectURL(this.files[0])" />
+                                        </div>
+                                    </td>
+                                    <td width="30%">
+                                        <div class="form-group" id="Group_img2">
+                                            <img id="blah" alt="your image" class="img-thumbnail" width="100%" />
+                                        </div>
+                                    </td>
+                                    <td width="30%">
+                                        <div class="form-group" id="Group_img1">
+                                            <input type="image" id="image" src="" class="img-thumbnail" width="100%">
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+
+
+                        <div class="form-group">
+                            <label for="date_range" class="col-form-label">Start-End Show</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-calendar"></i>
+                                    </span>
+                                </div>
+                                <input type="text" id="date_rangeh" class="form-control float-right">
+                            </div>
+                        </div>
+
+
+                        @*---------------------------------*@
+                        <div class="form-group" id="topic_disable">
+                            <div class="form-check-inline">
+                                <label for="disable" class="customradio">
+                                    <span class="radiotextsty">Want to show public?</span>
+                                    <input type="checkbox" id="disable" name="disable" value="1" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+
+                        @*---------------------------------*@
+                        <div class="form-group" id="topic_checkboxactive">
+                            <div class="form-check-inline">
+                                <label for="checkboxactive" class="customradio">
+                                    <span class="radiotextsty">Set as the first image?</span>
+                                    <input type="checkbox" id="checkboxactive" name="imgActive" value="1" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        @*---------------------------------*@
+
+
+                        <div class="form-group" id="topic_type">
+                            <div class="form-check-inline">
+                                <label for="radiotype1" class="customradio">
+                                    <span class="radiotextsty">FULL</span>
+                                    <input type="radio" id="radiotype1" name="childtype1" value="1" checked />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="radiotype2" class="customradio">
+                                    <span class="radiotextsty">HALF</span>
+                                    <input type="radio" id="radiotype2" name="childtype1" value="2" />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="radiotype3" class="customradio">
+                                    <span class="radiotextsty">LEFT</span>
+                                    <input type="radio" id="radiotype3" name="childtype1" value="3" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        @*---------------------------------*@
+                        <div class="form-group" id="topic_Link">
+                            <div class="form-check-inline">
+                                <label for="radiolink0" class="customradio">
+                                    <span class="radiotextsty">None</span>
+                                    <input type="radio" id="radiolink0" name="childlink" value="0" checked />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="radiolink1" class="customradio">
+                                    <span class="radiotextsty">Link page</span>
+                                    <input type="radio" id="radiolink1" name="childlink" value="1" />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="radiolink2" class="customradio">
+                                    <span class="radiotextsty">Link download attach</span>
+                                    <input type="radio" id="radiolink2" name="childlink" value="2" />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="radiolink3" class="customradio">
+                                    <span class="radiotextsty">Link open attach</span>
+                                    <input type="radio" id="radiolink3" name="childlink" value="3" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        @*---------------------------------*@
+
+                        <div class="form-group" id="topic_linkname">
+                            <label for="linkname" class="col-form-label">Link Name</label>
+                            <input name="linkname" id="linkname" type="text" required class="form-control" placeholder="Link Name" />
+                        </div>
+                        @*---------------------------------*@
+                        <div class="form-group" id="topic_linkpath">
+                            <label for="linkpath" class="col-form-label">Link Path</label>
+                            <input name="linkpath" id="linkpath" type="text" required class="form-control" placeholder="Link Path" />
+                        </div>
+
+                        @*---------------------------------*@
+
+                        <div class="form-group" id="topic_fUploadH">
+                            <label for="fUploadH" class="col-form-label">Select Flie</label>
+                            <input type="file" id="fUploadH" name="fUploadH" multiple class="form-control" accept=".pdf,.docx,.doc,.docm,.dotx,.dotm,
+                                   .xls,.xlsx,.xlsm,.xltx,.xltm,.xlsb,.xlam,.pptx,.pptm,.ppsx,.ppsm,.zip,.7z" />
+
+                            <div class="form-group" id="topic_fUploadH2">
+                                @*<a href="" target="_self" id="file1">
+                                        <h3>Download</h3>
+                                    </a>*@
+                                <a id="file1" href="" class="terms" target="_blank" style="font-size:large">Preview file</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="button" class="col btn btn-dark-blue" id="btn_header" value="Add Image">
+                        </div>
+
+                    </form>
+
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modal-placeholder">
+    <div class="modal fade bd-example-modal-lg" id="myModalAddHeaderT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content pt-5">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelT"><i class='fab fa-tumblr-square' style='font-size:36px;color:lightseagreen'></i> Text Slide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="btn-toolbar" role="toolbar">
+                                <div class="btn-group mr-1">
+                                    <button type="button" class="btn btn-success" aria-label="Left Align" onclick="AddgroupTextHeader();"><span class="fa fa fa-plus fa-lg" aria-hidden="true"></span>Add Text Slide</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <form method="POST" enctype="multipart/form-data" name="addformT" class="form-horizontal" id="addformT">
+                        <div class="form-group table-responsive" id="Group_Text ">
+                            @*<label for="tabletext" class="col-form-label">Text</label>*@
+                            <table class="table table-striped " id="tableheadertext" style=" word-wrap: break-word">
+                                @*table-layout: fixed;*@
+                                <thead style="background-color:black;color:white">
+                                    <tr>
+                                        <th></th>
+                                        <th>PartID</th>
+                                        <th>GroupCateg</th>
+                                        <th>ImgOrder</th>
+                                        <th>No.</th>
+                                        <th>Head</th>
+                                        <th>Detail</th>
+                                        <th>Link</th>
+                                        <th>Attach</th>
+                                        <th>Path</th>
+                                        <th>CreatedDate</th>
+                                        <th>CreateBy</th>
+                                        <th>UpdateDate</th>
+                                        <th>UpdateBy</th>
+                                    </tr>
+                                </thead>
+                            </table>
+
+                        </div>
+
+
+                    </form>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal-placeholder">
+    <div class="modal fade bd-example-modal-lg" id="myModalAddHeaderTT" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content pt-5">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabelT"><i class='fab fa-tumblr-square' style='font-size:36px;color:lightseagreen'></i> Manage Text Slide</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data" name="addformTT" class="form-horizontal" id="addformTT">
+                        <div class="form-group">
+                            <label for="txtMessageT1" class="col-form-label">Text Header</label>
+                            <textarea name="txtMessageT1" id="txtMessageT1" class="ckeditor"></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="txtMessageT2" class="col-form-label">Text Detail</label>
+                            <textarea name="txtMessageT2" id="txtMessageT2" class="ckeditor"></textarea>
+                        </div>
+                        @*---------------------------------*@
+                        <div class="form-group" id="topic_LinkT">
+                            <div class="form-check-inline">
+                                <label for="radiolinkT0" class="customradio">
+                                    <span class="radiotextsty">None</span>
+                                    <input type="radio" id="radiolinkT0" name="childlinkT" value="0" checked />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="radiolinkT1" class="customradio">
+                                    <span class="radiotextsty">Link page</span>
+                                    <input type="radio" id="radiolinkT1" name="childlinkT" value="1" />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="radiolinkT2" class="customradio">
+                                    <span class="radiotextsty">Link download attach</span>
+                                    <input type="radio" id="radiolinkT2" name="childlinkT" value="2" />
+                                    <span class="checkmark"></span>
+                                </label>
+                                <label for="radiolinkT3" class="customradio">
+                                    <span class="radiotextsty">Link open attach</span>
+                                    <input type="radio" id="radiolinkT3" name="childlinkT" value="3" />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </div>
+                        </div>
+                        @*---------------------------------*@
+                        <div class="form-group" id="topic_linkpathT">
+                            <label for="linkpathT" class="col-form-label">Link Path</label>
+                            <input name="linkpathT" id="linkpathT" type="text" required class="form-control" placeholder="Link Path" />
+                        </div>
+                        @*---------------------------------*@
+
+                        <div class="form-group" id="topic_fUploadHT">
+                            <label for="fUploadHT" class="col-form-label">Select Flie</label>
+                            <input type="file" id="fUploadHT" name="fUploadHT" multiple class="form-control" accept=".pdf,.docx,.doc,.docm,.dotx,.dotm,
+                                   .xls,.xlsx,.xlsm,.xltx,.xltm,.xlsb,.xlam,.pptx,.pptm,.ppsx,.ppsm,.zip,.7z" />
+
+                            <div class="form-group" id="topic_fUploadH2T">
+                                @*<a href="" target="_self" id="file1">
+                                        <h3>Download</h3>
+                                    </a>*@
+                                <a id="file1T" href="" class="terms" target="_blank" style="font-size:large">Preview file</a>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="button" class="col btn btn-dark-blue" id="btn_headerText" value="Add Text">
+                        </div>
+                    </form>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!------------------------------------------------------------------------------------- End Modal header --------------------------------------------------->
+<!-- Modal Footer -->
+<div id="modal-placeholder">
+    <div class="modal fade bd-example-modal-lg" id="myModalAddFooter" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content pt-5">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">New Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" enctype="multipart/form-data" name="addform" class="form-horizontal" id="addfooter">
+                        <div class="form-group">
+                            <label for="TextH" class="col-form-label">Category Name :</label>
+                            <input name="TextH" id="TextH" type="text" required class="form-control" placeholder="" />
+                        </div>
+
+                        <div class="form-group" style="display:none">
+                            <label for="ColorTextH" class="col-form-label">Text Color</label>
+                            <input type="color" name="ColorTextH" id="ColorTextH" class="form-control" value="#212121" style="height:60px" />
+                        </div>
+
+
+                        <div class="form-group" style="display:none">
+                            <label for="BgH" class="col-form-label">Background Color</label>
+                            <input type="color" name="BgH" id="BgH" class="form-control" value="#D32F2F" style="height:60px" />
+
+                        </div>
+                        <div class="form-group" >
+                            <input type="button" class="col btn btn-dark-blue" id="btnfooter" value="Save">
+                        </div>
+                    </form>
+                </div>
+                <!-- Modal Footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!---------------------------------------------------------------End Modal Footer -------------------------------------------------------------------------------------------->
+<script src="~/Asset/LTE/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="~/Asset/LTE/bower_components/ckeditor/ckeditor.js"></script>
+<script src="~/Asset/LTE/bower_components/ckeditor/Config.js"></script>
+<script src="~/js/View/NewsScript/NewsManage.js"></script>
+<script src="~/lib/datatables/js/jquery.dataTables.min.js"></script>
+<script src="~/lib/datatables/js/dataTables.bootstrap.min.js"></script>
+<script src="~/Asset/LTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script src="~/lib/bootstrap4-toggle/bootstrap4-toggle.min.js"></script>
+<script src="~/lib/sweetalert/sweetalert.min.js"></script>
+<script src="~/Asset/LTE/bower_components/bootstrap-colorpicker/dist/js/bootstrap-colorpicker.min.js"></script>
+
+<script>
+    $('.my-colorpicker1').colorpicker()
+</script>
+
+
+
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
